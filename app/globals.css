@@ -189,6 +189,26 @@ img {
   color: var(--brand-deep);
 }
 
+.course-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 900;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.course-btn:hover {
+  background: var(--brand-deep);
+  transform: translateY(-1px);
+}
+
 .logout button {
   font: inherit;
   font-size: 0.78rem;
@@ -219,8 +239,10 @@ img {
     height: 42px;
   }
 
-  .logout {
+  .course-btn {
     margin-left: auto;
+    padding: 5px 12px;
+    font-size: 0.75rem;
   }
 
   .nav {
@@ -1785,4 +1807,139 @@ img {
   .headline a {
     grid-template-columns: 40px minmax(0, 1fr) 92px;
   }
+}
+
+/* ---------- 爆速AIの講座（レクティ） ---------- */
+.courses {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.course-card {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  height: 100%;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+@media (max-width: 480px) {
+  .course-card {
+    grid-template-columns: 110px minmax(0, 1fr);
+  }
+}
+
+.course-visual {
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  background: #fff;
+  border-right: 1px solid var(--line);
+}
+
+.course-visual img {
+  width: 100%;
+  height: auto;
+}
+
+.course-mark {
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 900;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: #111;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.course-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px 20px;
+}
+
+.course-name {
+  font-weight: 900;
+  line-height: 1.5;
+}
+
+.course-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.course-go {
+  margin-top: auto;
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--brand);
+}
+
+.course-banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 36px 0 8px;
+  padding: 24px 80px 24px 28px;
+  border-radius: var(--radius);
+  color: #fff;
+  overflow: hidden;
+  background: var(--stripes), linear-gradient(120deg, #e8382d 0%, #ff7a3d 100%);
+  box-shadow: var(--shadow);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.course-banner:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.course-banner-en {
+  font-family: var(--font-en), sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  opacity: 0.9;
+}
+
+.course-banner-title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  line-height: 1.5;
+}
+
+.course-banner-sub {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.course-banner-go {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  translate: 0 -50%;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  color: #16171b;
+  font-weight: 900;
 }

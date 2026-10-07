@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CATEGORIES, CATEGORY_KEYS } from "@/lib/categories";
+import { LECTEA_COURSES_URL } from "@/lib/links";
 
 const TICKER = ["仕事に効くAI情報を、爆速で。", "毎週更新 WEEKLY TOP", "ChatGPT / Gemini / Claude / Copilot", "爆速AI会員限定"];
 
@@ -19,6 +20,9 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
               </Link>
             ))}
           </nav>
+          <a href={LECTEA_COURSES_URL} target="_blank" rel="noopener noreferrer" className="course-btn">
+            講座を見る <span aria-hidden="true">↗</span>
+          </a>
           <form method="post" action="/logout" className="logout">
             <button type="submit">ログアウト</button>
           </form>
@@ -53,6 +57,9 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                   {CATEGORIES[key].label}
                 </Link>
               ))}
+              <a href={LECTEA_COURSES_URL} target="_blank" rel="noopener noreferrer">
+                爆速AIの講座（レクティ）↗
+              </a>
             </nav>
             <div className="footer-note">
               <p>爆速AI NEWS は爆速AI会員専用サイトです。記事・画像の転載や合言葉の共有はご遠慮ください。</p>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getArticles, getAllTags, formatDate } from "@/lib/articles";
 import { getFeedItems } from "@/lib/feeds";
 import { FeedList } from "@/components/FeedList";
+import { CourseCards } from "@/components/CourseLinks";
 import { CATEGORIES, CATEGORY_KEYS } from "@/lib/categories";
 import { ArticleCard, CategoryLabel, HeadlineItem, NewBadge, SectionHeading, Thumb } from "@/components/ArticleParts";
 
@@ -111,6 +112,11 @@ export default async function HomePage() {
           </section>
         );
       })}
+
+      <section className="block">
+        <SectionHeading en="COURSES" ja="爆速AIの講座（レクティ）" />
+        <CourseCards />
+      </section>
 
       <section className="block">
         <SectionHeading en="KEYWORDS" ja="キーワードから探す" />

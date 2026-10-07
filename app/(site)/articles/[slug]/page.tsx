@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { formatDate, getAllArticles, getArticle, getArticleWithImage, getArticles } from "@/lib/articles";
 import { SafeImage } from "@/components/SafeImage";
+import { CourseBanner } from "@/components/CourseLinks";
 import { ArticleCard, CategoryLabel, SectionHeading } from "@/components/ArticleParts";
 import { CATEGORIES } from "@/lib/categories";
 import { Ranking } from "@/components/Ranking";
@@ -84,6 +85,8 @@ export default async function ArticlePage({ params }: Props) {
             <p>{article.impact}</p>
           </section>
         )}
+
+        <CourseBanner />
 
         {article.sources.length > 0 && (
           <section className="sources">

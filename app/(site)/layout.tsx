@@ -6,8 +6,9 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
     <>
       <header className="site-header">
         <div className="wrap header-inner">
-          <Link href="/" className="logo">
-            爆速<span>AI</span> <small>NEWS</small>
+          <Link href="/" className="logo" aria-label="爆速AI NEWS トップへ">
+            <img src="/brand/logo-header.png" alt="爆速AI" width={72} height={48} />
+            <small>NEWS</small>
           </Link>
           <p className="tagline">会員限定・仕事に効くAI情報</p>
           <form method="post" action="/logout" className="logout">

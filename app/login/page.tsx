@@ -12,8 +12,9 @@ export default async function LoginPage({
   return (
     <div className="login">
       <div className="login-card">
-        <div className="logo logo-lg">
-          爆速<span>AI</span> <small>NEWS</small>
+        <div className="login-logo">
+          <img src="/brand/logo.png" alt="爆速AI" width={180} height={120} />
+          <small>NEWS</small>
         </div>
         <p className="muted">爆速AI会員専用のニュースサイトです。会員向けにお知らせしている合言葉を入力してください。</p>
         <form method="post" action="/api/login">

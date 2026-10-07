@@ -4,6 +4,7 @@
   --fg: #1f2328;
   --muted: #5b6370;
   --line: #e2e5ea;
+  --brand: #d0362e;
   --accent: #1a56db;
   --accent-soft: #e8effd;
   --new: #d93025;
@@ -25,6 +26,7 @@
     --fg: #e8eaed;
     --muted: #9aa1ab;
     --line: #2a2f37;
+    --brand: #e5534b;
     --accent: #7aa7ff;
     --accent-soft: #1c2840;
     --new: #ff6b6b;
@@ -78,6 +80,7 @@ img {
 /* ---------- header ---------- */
 .site-header {
   background: var(--surface);
+  border-top: 4px solid var(--brand);
   border-bottom: 1px solid var(--line);
   position: sticky;
   top: 0;
@@ -88,30 +91,42 @@ img {
   display: flex;
   align-items: center;
   gap: 16px;
-  height: 56px;
+  height: 66px;
 }
 
 .logo {
-  font-weight: 800;
-  font-size: 1.35rem;
-  letter-spacing: 0.02em;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
   white-space: nowrap;
 }
 
-.logo span {
-  color: var(--accent);
+.logo img {
+  display: block;
+  height: 52px;
+  width: auto;
 }
 
-.logo small {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--muted);
-  letter-spacing: 0.15em;
+.logo small,
+.login-logo small {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--brand);
+  letter-spacing: 0.2em;
 }
 
-.logo-lg {
-  font-size: 2rem;
-  text-align: center;
+.login-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.login-logo img {
+  display: block;
+  width: 180px;
+  height: auto;
 }
 
 .tagline {
@@ -154,8 +169,8 @@ img {
 }
 
 .cat-nav a:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+  color: var(--brand);
+  border-bottom-color: var(--brand);
 }
 
 @media (max-width: 640px) {
@@ -200,7 +215,7 @@ main > section {
   font-size: 1.05rem;
   margin: 0 0 12px;
   padding-left: 10px;
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--brand);
 }
 
 .more {
@@ -846,15 +861,9 @@ main > section {
   padding: 10px;
   border: 0;
   border-radius: 8px;
-  background: var(--accent);
+  background: var(--brand);
   color: #fff;
   cursor: pointer;
-}
-
-@media (prefers-color-scheme: dark) {
-  .login-card button {
-    color: #111;
-  }
 }
 
 .error {

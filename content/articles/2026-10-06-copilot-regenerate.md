@@ -45,7 +45,36 @@ Microsoftは2026年10月6日のMicrosoft 365 Copilotのリリースノートで�
 <figcaption>図：質問を書き直す前に「再生成」を試す</figcaption>
 </figure>
 
-<div class="shot-placeholder">📷 スクショ差し込み枠：Copilotの回答の下に表示される「再生成」ボタン<br>（編集部で撮影して <code>/images/articles/2026-10-06-copilot-regenerate/regenerate.png</code> に保存）</div>
+<figure class="diagram">
+<svg viewBox="0 0 720 300" role="img" aria-label="画面イメージ：Copilotの回答の下にある再生成ボタンを押すと、もう一度試す・モデルを切り替えるが選べる">
+<rect x="16" y="12" width="688" height="276" rx="14" class="d-screen"/>
+<rect x="44" y="36" width="440" height="120" rx="12" class="d-box"/>
+<text x="64" y="70" class="d-text">Copilotの回答</text>
+<rect x="64" y="86" width="380" height="10" rx="5" class="d-accent"/>
+<rect x="64" y="106" width="330" height="10" rx="5" class="d-accent"/>
+<rect x="64" y="126" width="250" height="10" rx="5" class="d-accent"/>
+<rect x="44" y="168" width="36" height="32" rx="8" class="d-box"/>
+<text x="62" y="190" text-anchor="middle" class="d-sub">👍</text>
+<rect x="88" y="168" width="36" height="32" rx="8" class="d-box"/>
+<text x="106" y="190" text-anchor="middle" class="d-sub">👎</text>
+<rect x="132" y="168" width="36" height="32" rx="8" class="d-box"/>
+<text x="150" y="190" text-anchor="middle" class="d-text">⟳</text>
+<rect x="126" y="162" width="48" height="44" rx="10" class="d-mark"/>
+<circle cx="126" cy="160" r="12" class="d-mark-dot"/>
+<text x="126" y="165" text-anchor="middle" class="d-mark-num">1</text>
+<rect x="150" y="214" width="250" height="62" rx="10" class="d-box"/>
+<text x="168" y="240" class="d-text">もう一度試す</text>
+<text x="168" y="264" class="d-text">モデルを切り替える ›</text>
+<rect x="144" y="246" width="262" height="28" rx="8" class="d-mark"/>
+<circle cx="406" cy="246" r="12" class="d-mark-dot"/>
+<text x="406" y="251" text-anchor="middle" class="d-mark-num">2</text>
+<text x="520" y="200" class="d-sub">① 回答の下の</text>
+<text x="520" y="220" class="d-sub">　 再生成ボタンを押す</text>
+<text x="520" y="250" class="d-sub">② 別のモデルで</text>
+<text x="520" y="270" class="d-sub">　 答え直すこともできる</text>
+</svg>
+<figcaption>画面イメージ：回答の下の再生成ボタンから選ぶ（実際の画面とボタンの位置・形は異なる場合があります）</figcaption>
+</figure>
 
 ## 使いどころ
 

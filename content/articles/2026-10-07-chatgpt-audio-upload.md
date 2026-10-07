@@ -69,7 +69,32 @@ OpenAIは2026年10月6日のリリースノートで、**ChatGPTに音声ファ�
 2. 「この会議の議事録を作って」など、やりたいことを書いて送信
 3. 出てきた議事録を確認し、必要なら「決定事項だけ表にして」「参加者へのお礼メールも書いて」と追加で頼む
 
-<div class="shot-placeholder">📷 スクショ差し込み枠：ChatGPTの入力欄から音声ファイルを添付している画面<br>（編集部で撮影して <code>/images/articles/2026-10-07-chatgpt-audio-upload/upload.png</code> に保存）</div>
+<figure class="diagram">
+<svg viewBox="0 0 720 300" role="img" aria-label="画面イメージ：チャットの入力欄で、①添付ボタンから録音ファイルを選び、②やりたいことを書いて送信する">
+<rect x="16" y="12" width="688" height="276" rx="14" class="d-screen"/>
+<rect x="150" y="34" width="420" height="44" rx="12" class="d-box"/>
+<text x="360" y="62" text-anchor="middle" class="d-sub">（これまでの会話がここに表示されます）</text>
+<rect x="60" y="150" width="600" height="110" rx="22" class="d-box"/>
+<rect x="84" y="164" width="230" height="40" rx="8" class="d-accent"/>
+<text x="102" y="189" class="d-text">♪ 定例会議_1007.m4a</text>
+<text x="84" y="234" class="d-text">この会議の議事録を作って</text>
+<circle cx="606" cy="232" r="18" class="d-accent"/>
+<text x="606" y="238" text-anchor="middle" class="d-text">↑</text>
+<circle cx="560" cy="232" r="16" class="d-box"/>
+<text x="560" y="238" text-anchor="middle" class="d-text">＋</text>
+<rect x="538" y="210" width="44" height="44" rx="10" class="d-mark"/>
+<circle cx="538" cy="206" r="12" class="d-mark-dot"/>
+<text x="538" y="211" text-anchor="middle" class="d-mark-num">1</text>
+<rect x="74" y="156" width="250" height="56" rx="10" class="d-mark"/>
+<circle cx="74" cy="152" r="12" class="d-mark-dot"/>
+<text x="74" y="157" text-anchor="middle" class="d-mark-num">2</text>
+<rect x="582" y="208" width="48" height="48" rx="10" class="d-mark"/>
+<circle cx="630" cy="206" r="12" class="d-mark-dot"/>
+<text x="630" y="211" text-anchor="middle" class="d-mark-num">3</text>
+<text x="360" y="118" text-anchor="middle" class="d-sub">①「＋」やクリップのボタン → ②録音ファイルが添付される → ③送信</text>
+</svg>
+<figcaption>画面イメージ：入力欄の添付ボタンから録音ファイルを付けて、やりたいことを書いて送るだけ（実際の画面とボタンの位置・形は異なる場合があります）</figcaption>
+</figure>
 
 すぐに使えるプロンプトは、同時公開の「[今週のプロンプト：録音から議事録・ToDo・お礼メールを一発で](/articles/2026-10-07-prompt-meeting-minutes)」にまとめています。
 

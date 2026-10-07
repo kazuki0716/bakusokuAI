@@ -649,6 +649,29 @@ main > section {
   fill: var(--accent);
 }
 
+/* 画面イメージ図：操作する場所を赤枠と番号で示す */
+.diagram .d-screen {
+  fill: var(--bg);
+  stroke: var(--line);
+  stroke-width: 2;
+}
+
+.diagram .d-mark {
+  fill: none;
+  stroke: var(--new);
+  stroke-width: 3;
+}
+
+.diagram .d-mark-dot {
+  fill: var(--new);
+}
+
+.diagram .d-mark-num {
+  fill: #fff;
+  font-size: 14px;
+  font-weight: 800;
+}
+
 .sources h2 {
   font-size: 0.95rem;
   margin: 24px 0 4px;

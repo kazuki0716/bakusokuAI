@@ -63,7 +63,7 @@ export default async function HomePage() {
               <h2 className="money-block-title">YourLife {MONEY_NAME}</h2>
               <p className="money-block-desc">爆速AI会員だけの特典。公式LINEで届く「お金のお得情報」をまとめて見られます。</p>
             </div>
-            <Link href="/money" className="more more-light">
+            <Link href="/money" className="more">
               すべて見る <span aria-hidden="true">→</span>
             </Link>
           </div>

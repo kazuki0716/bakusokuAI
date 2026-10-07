@@ -21,8 +21,8 @@ export default async function LoginPage({
           <input type="hidden" name="next" value={next ?? "/"} />
           <label htmlFor="password">合言葉</label>
           <input id="password" name="password" type="password" autoComplete="current-password" required autoFocus />
-          {error === "1" && <p className="error">合言葉が違います。公式LINEのお知らせをご確認ください。</p>}
-          {error === "unset" && <p className="error">合言葉が未設定です（運営者：Vercelの環境変数 SITE_PASSWORD を設定してください）。</p>}
+          {error === "1" && <p className="error">⚠ 合言葉が違います。公式LINEのお知らせをご確認ください。</p>}
+          {error === "unset" && <p className="error">⚠ 合言葉が未設定です（運営者：Vercelの環境変数 SITE_PASSWORD を設定してください）。</p>}
           <button type="submit">ログイン</button>
         </form>
         <p className="muted small">合言葉が分からない場合は、爆速AI公式LINEまでお問い合わせください。</p>

@@ -4,54 +4,136 @@
    ========================================================= */
 
 :root {
+  /* 基本 */
   --bg: #fbf8f4;
   --surface: #ffffff;
+  --surface-2: #f3efe9;
   --fg: #16171b;
-  --muted: #6b6f78;
-  --line: #ebe5dc;
-  --brand: #e8382d;
-  --brand-deep: #c4261c;
+  --muted: #5f636c;
+  --line: #e3ddd3;
+  --line-strong: #8a8d94;
+  --focus: #1f56d6;
+  --link: #1f56d6;
+
+  /* 赤：主ボタン・今日・NEW だけ */
+  --brand: #d42a20;
+  --brand-hover: #b3221a;
   --brand-soft: #fdece8;
+  --brand-ink: #c4261c;
+  --on-brand: #ffffff;
+  --new: #d42a20;
+  --on-new: #ffffff;
+
+  /* 黄・墨帯 */
   --pop: #ffd23f;
-  --accent: #c4261c;
-  --new: #e8382d;
-  --cat-weekly: #e8382d;
-  --cat-news: #2f6bff;
-  --cat-video: #f0487c;
-  --cat-howto: #10a37a;
-  --cat-prompt: #f5900c;
+  --on-pop: #16171b;
+  --marker: #ffe27a;
+  --band: #16171b;
+  --on-band: #ffffff;
+  --band-accent: #ffd23f;
+
+  /* カテゴリ：ink=文字 / bg=ラベル地 / solid=白文字を載せる地 */
+  --cat-news-ink: #1f56d6;   --cat-news-bg: #e9efff;   --cat-news-solid: #2456d0;
+  --cat-video-ink: #b8225a;  --cat-video-bg: #fde9f0;  --cat-video-solid: #bc2459;
+  --cat-howto-ink: #0b7553;  --cat-howto-bg: #e2f4ec;  --cat-howto-solid: #0b7050;
+  --cat-prompt-ink: #9a4d00; --cat-prompt-bg: #fff0de; --cat-prompt-solid: #9a4c00;
+  --cat-weekly-ink: #16171b; --cat-weekly-bg: #fff1b8; --cat-weekly-solid: #1d1e24;
+  --on-solid: #ffffff;
+
+  /* LINE */
+  --line-green: #00843d;
+  --line-green-hover: #006e33;
+  --on-line: #ffffff;
+
+  /* お金の秘密辞典（控えめ） */
+  --money-ink: #2d4a86;
+  --money-bg: #eef2f8;
+  --money-line: #d5ddeb;
+  --money-solid: #24427a;
+
+  /* 注意・その他 */
   --note-bg: #fff7dc;
-  --note-line: #f2c230;
+  --note-line: #e0b020;
+  --note-ink: #6b4a00;
+  --ok: #0b7553;
+  --on-ok: #ffffff;
+  --footer-bg: #16171b;
+  --footer-fg: #d7d8dc;
+  --footer-muted: #a2a5ad;
+  --footer-head: #ffffff;
+  --footer-logo: #ff5a4e;
+  --code-bg: #1b1c22;
+  --code-fg: #eceef2;
+
+  /* 互換（置き換え後に削除可） */
+  --brand-deep: var(--brand-hover);
+  --accent: var(--link);
+  --cat-news: var(--cat-news-solid);
+  --cat-video: var(--cat-video-solid);
+  --cat-howto: var(--cat-howto-solid);
+  --cat-prompt: var(--cat-prompt-solid);
+  --cat-weekly: var(--cat-weekly-solid);
+
   --radius: 22px;
   --radius-sm: 14px;
-  --shadow: 0 1px 2px rgba(22, 23, 27, 0.04), 0 12px 32px -18px rgba(22, 23, 27, 0.28);
-  --shadow-hover: 0 2px 4px rgba(22, 23, 27, 0.05), 0 22px 40px -18px rgba(22, 23, 27, 0.38);
-  --stripes: repeating-linear-gradient(-60deg, rgba(255, 255, 255, 0.13) 0 2px, transparent 2px 16px);
+  --shadow: 0 0 0 1px var(--line), 0 1px 2px rgba(22, 23, 27, 0.04), 0 12px 32px -18px rgba(22, 23, 27, 0.28);
+  --shadow-hover: 0 0 0 1px var(--line), 0 2px 4px rgba(22, 23, 27, 0.05), 0 22px 40px -18px rgba(22, 23, 27, 0.38);
+  --stripes: repeating-linear-gradient(-60deg, rgba(255, 255, 255, 0.08) 0 2px, transparent 2px 16px);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #111215;
-    --surface: #1a1c21;
+    --bg: #0e0f12;
+    --surface: #1c1e24;
+    --surface-2: #262931;
     --fg: #f1f1f3;
-    --muted: #a0a4ad;
-    --line: #2b2e35;
-    --brand: #ff5a4e;
-    --brand-deep: #ff7b71;
-    --brand-soft: #3a1e1b;
+    --muted: #a7abb4;
+    --line: #3a3f4a;
+    --line-strong: #7c818c;
+    --focus: #8ab4ff;
+    --link: #8ab4ff;
+
+    --brand: #d42a20;        /* ボタン地は明るくしない（白文字のため） */
+    --brand-hover: #b3221a;
+    --brand-soft: #3a1d1a;
+    --brand-ink: #ff8a80;    /* 赤い文字はこちら */
+    --on-brand: #ffffff;
+    --new: #d42a20;
+    --on-new: #ffffff;
+
     --pop: #ffd84f;
-    --accent: #ff7b71;
-    --new: #ff6b61;
-    --cat-weekly: #ff5a4e;
-    --cat-news: #6d97ff;
-    --cat-video: #ff74a0;
-    --cat-howto: #3cc79c;
-    --cat-prompt: #ffaa3d;
-    --note-bg: #2b2513;
-    --note-line: #a8862a;
+    --on-pop: #16171b;
+    --marker: #5c4a10;
+    --band: #262931;
+    --on-band: #f1f1f3;
+    --band-accent: #ffd84f;
+
+    --cat-news-ink: #8fb0ff;   --cat-news-bg: #1b2542;
+    --cat-video-ink: #ff8fb6;  --cat-video-bg: #3a1b29;
+    --cat-howto-ink: #5fd3a6;  --cat-howto-bg: #13302a;
+    --cat-prompt-ink: #ffb466; --cat-prompt-bg: #3a2a14;
+    --cat-weekly-ink: #ffd84f; --cat-weekly-bg: #33290c; --cat-weekly-solid: #2a2d35;
+    /* 他の -solid はライトと同じ値（白文字用なので変えない） */
+
+    --money-ink: #a9c1f5;
+    --money-bg: #1a2132;
+    --money-line: #2f3a55;
+
+    --note-bg: #2a2414;
+    --note-line: #8a6d1e;
+    --note-ink: #f2d37a;
+    --footer-bg: #08090b;
+    --code-bg: #08090b;
+
     --shadow: 0 0 0 1px var(--line);
-    --shadow-hover: 0 0 0 1px var(--brand);
+    --shadow-hover: 0 0 0 1px var(--line-strong);
   }
+}
+
+/* 全体のフォーカス（新規） */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
 }
 
 * {
@@ -161,7 +243,7 @@ img {
   font-size: 0.8rem;
   font-weight: 800;
   font-style: italic;
-  color: var(--brand);
+  color: var(--brand-ink);
   letter-spacing: 0.22em;
   line-height: 1.6;
 }
@@ -182,8 +264,8 @@ img {
 }
 
 .nav-link:hover {
-  background: var(--brand-soft);
-  color: var(--brand-deep);
+  background: var(--surface-2);
+  color: var(--fg);
 }
 
 @media (max-width: 960px) {
@@ -227,8 +309,8 @@ img {
 
 /* ---------- ticker ---------- */
 .ticker {
-  background: var(--brand);
-  color: #fff;
+  background: var(--band);
+  color: var(--on-band);
   overflow: hidden;
   white-space: nowrap;
   font-weight: 800;
@@ -257,8 +339,8 @@ img {
   height: 2px;
   margin: 0 22px;
   vertical-align: middle;
-  background: currentColor;
-  opacity: 0.6;
+  background: var(--band-accent);
+  opacity: 1;
   transform: skewX(-30deg);
 }
 
@@ -346,7 +428,7 @@ img {
 
 /* ---------- labels ---------- */
 .cat {
-  --c: var(--cat-news);
+  --c: var(--cat-news-solid);
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -354,8 +436,8 @@ img {
   font-weight: 700;
   padding: 1px 10px 1px 8px;
   border-radius: 999px;
-  color: var(--c);
-  background: color-mix(in srgb, var(--c) 12%, transparent);
+  color: var(--ci, var(--cat-news-ink));
+  background: var(--cb, var(--cat-news-bg));
   white-space: nowrap;
   line-height: 1.7;
 }
@@ -369,19 +451,27 @@ img {
 }
 
 .cat-weekly {
-  --c: var(--cat-weekly);
+  --c: var(--cat-weekly-solid);
+  --ci: var(--cat-weekly-ink);
+  --cb: var(--cat-weekly-bg);
 }
 
 .cat-video {
-  --c: var(--cat-video);
+  --c: var(--cat-video-solid);
+  --ci: var(--cat-video-ink);
+  --cb: var(--cat-video-bg);
 }
 
 .cat-howto {
-  --c: var(--cat-howto);
+  --c: var(--cat-howto-solid);
+  --ci: var(--cat-howto-ink);
+  --cb: var(--cat-howto-bg);
 }
 
 .cat-prompt {
-  --c: var(--cat-prompt);
+  --c: var(--cat-prompt-solid);
+  --ci: var(--cat-prompt-ink);
+  --cb: var(--cat-prompt-bg);
 }
 
 .new {
@@ -391,7 +481,7 @@ img {
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   line-height: 1.6;
-  color: #fff;
+  color: var(--on-new);
   background: var(--new);
   padding: 0 7px;
   border-radius: 4px;
@@ -400,7 +490,7 @@ img {
 .level {
   font-size: 0.72rem;
   font-weight: 700;
-  border: 1.5px solid var(--line);
+  border: 1.5px solid var(--line-strong);
   border-radius: 999px;
   padding: 0 10px;
 }
@@ -417,7 +507,7 @@ img {
 
 /* ---------- thumbnails ---------- */
 .thumb {
-  --c: var(--cat-news);
+  --c: var(--cat-news-solid);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -428,24 +518,24 @@ img {
   overflow: hidden;
   border-radius: var(--radius-sm);
   padding: 16px 18px;
-  color: #fff;
-  background: var(--stripes), linear-gradient(135deg, var(--c), color-mix(in srgb, var(--c) 60%, #ffb199));
+  color: var(--on-solid);
+  background: var(--stripes), linear-gradient(135deg, var(--c), color-mix(in srgb, var(--c) 75%, #000));
 }
 
 .thumb-weekly {
-  --c: var(--cat-weekly);
+  --c: var(--cat-weekly-solid);
 }
 
 .thumb-video {
-  --c: var(--cat-video);
+  --c: var(--cat-video-solid);
 }
 
 .thumb-howto {
-  --c: var(--cat-howto);
+  --c: var(--cat-howto-solid);
 }
 
 .thumb-prompt {
-  --c: var(--cat-prompt);
+  --c: var(--cat-prompt-solid);
 }
 
 .thumb-en {
@@ -474,7 +564,7 @@ img {
   width: 28px;
   height: 4px;
   margin-bottom: 8px;
-  background: #fff;
+  background: var(--on-solid);
   transform: skewX(-30deg);
 }
 
@@ -488,12 +578,6 @@ img {
 
 .thumb-lg .thumb-label {
   font-size: clamp(1.45rem, 3.4vw, 2.2rem);
-}
-
-@media (prefers-color-scheme: dark) {
-  .thumb {
-    background: var(--stripes), linear-gradient(135deg, color-mix(in srgb, var(--c) 80%, #000), color-mix(in srgb, var(--c) 48%, #000));
-  }
 }
 
 /* 写真のアイキャッチ */
@@ -534,8 +618,8 @@ img {
   line-height: 1.8;
   padding: 0 9px;
   border-radius: 999px;
-  color: #fff;
-  background: var(--c, var(--cat-news));
+  color: var(--on-solid);
+  background: var(--c, var(--cat-news-solid));
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 
@@ -592,7 +676,8 @@ img {
 }
 
 .card a:hover .card-title {
-  color: var(--brand-deep);
+  color: var(--link);
+  text-decoration: underline;
 }
 
 /* ---------- weekly cards ---------- */
@@ -614,15 +699,16 @@ img {
   height: 100%;
   padding: 26px 28px 28px;
   border-radius: var(--radius);
-  color: #fff;
+  color: var(--on-solid);
   overflow: hidden;
-  background: var(--stripes), linear-gradient(120deg, #e8382d 0%, #ff7a3d 100%);
+  background: var(--stripes), linear-gradient(120deg, var(--cat-weekly-solid), color-mix(in srgb, var(--cat-weekly-solid) 82%, #fff));
   box-shadow: var(--shadow);
   transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .weekly-cards li:nth-child(2) .weekly-card:not(.weekly-card-photo) {
-  background: var(--stripes), linear-gradient(120deg, #1d1e24 0%, #3d404b 100%);
+  background: var(--surface-2);
+  color: var(--fg);
 }
 
 .weekly-card-photo {
@@ -634,11 +720,11 @@ img {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, rgba(232, 56, 45, 0.94) 0%, rgba(232, 56, 45, 0.78) 45%, rgba(232, 56, 45, 0.2) 100%);
+  background: linear-gradient(100deg, rgba(22, 23, 27, 0.92) 0%, rgba(22, 23, 27, 0.78) 50%, rgba(22, 23, 27, 0.25) 100%);
 }
 
 .weekly-cards li:nth-child(2) .weekly-card-photo::before {
-  background: linear-gradient(100deg, rgba(22, 23, 27, 0.95) 0%, rgba(22, 23, 27, 0.8) 45%, rgba(22, 23, 27, 0.25) 100%);
+  background: linear-gradient(100deg, rgba(22, 23, 27, 0.92) 0%, rgba(22, 23, 27, 0.78) 50%, rgba(22, 23, 27, 0.25) 100%);
 }
 
 .weekly-card > * {
@@ -658,11 +744,15 @@ img {
   line-height: 1;
 }
 
+.weekly-cards li:nth-child(2) .weekly-card:not(.weekly-card-photo) .weekly-count strong {
+  color: var(--fg);
+}
+
 .weekly-count strong {
   font-size: 3.8rem;
   font-weight: 900;
   margin-left: 4px;
-  color: #ffd23f;
+  color: var(--pop);
 }
 
 .weekly-title {
@@ -688,8 +778,8 @@ img {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #fff;
-  color: #16171b;
+  background: var(--pop);
+  color: var(--on-pop);
   font-weight: 900;
   transition: transform 0.2s;
 }
@@ -743,8 +833,8 @@ img {
   place-items: center;
   height: 100%;
   font-weight: 900;
-  color: #fff;
-  background: var(--stripes), linear-gradient(135deg, #16171b, #3d404b);
+  color: var(--on-band);
+  background: var(--stripes), linear-gradient(135deg, var(--band), color-mix(in srgb, var(--band) 80%, #fff));
 }
 
 .feed-body {
@@ -762,7 +852,8 @@ img {
 }
 
 .feed-item:hover .feed-title {
-  color: var(--brand-deep);
+  color: var(--link);
+  text-decoration: underline;
 }
 
 .feed-meta {
@@ -796,8 +887,8 @@ img {
 }
 
 .tag:hover {
-  border-color: var(--brand);
-  color: var(--brand-deep);
+  border-color: var(--fg);
+  color: var(--fg);
 }
 
 .tag-cloud .tag {
@@ -807,30 +898,30 @@ img {
 
 /* ---------- page head（カテゴリ・タグ一覧） ---------- */
 .page-head {
-  --c: var(--brand);
+  --c: var(--cat-weekly-solid);
   position: relative;
   margin-bottom: 36px;
   padding: 40px 34px;
   border-radius: var(--radius);
-  color: #fff;
+  color: var(--on-solid);
   overflow: hidden;
-  background: var(--stripes), linear-gradient(120deg, var(--c), color-mix(in srgb, var(--c) 58%, #ffb199));
+  background: var(--stripes), linear-gradient(120deg, var(--c), color-mix(in srgb, var(--c) 75%, #000));
 }
 
 .page-head-news {
-  --c: var(--cat-news);
+  --c: var(--cat-news-solid);
 }
 
 .page-head-video {
-  --c: var(--cat-video);
+  --c: var(--cat-video-solid);
 }
 
 .page-head-howto {
-  --c: var(--cat-howto);
+  --c: var(--cat-howto-solid);
 }
 
 .page-head-prompt {
-  --c: var(--cat-prompt);
+  --c: var(--cat-prompt-solid);
 }
 
 .page-en {
@@ -860,26 +951,26 @@ img {
 }
 
 .article-head {
-  --c: var(--cat-news);
+  --c: var(--cat-news-ink);
   padding: 8px 0 26px;
   margin-bottom: 8px;
   border-bottom: 1px solid var(--line);
 }
 
 .article-head-weekly {
-  --c: var(--cat-weekly);
+  --c: var(--cat-weekly-ink);
 }
 
 .article-head-video {
-  --c: var(--cat-video);
+  --c: var(--cat-video-ink);
 }
 
 .article-head-howto {
-  --c: var(--cat-howto);
+  --c: var(--cat-howto-ink);
 }
 
 .article-head-prompt {
-  --c: var(--cat-prompt);
+  --c: var(--cat-prompt-ink);
 }
 
 .article-en {
@@ -967,8 +1058,8 @@ img {
   font-weight: 900;
   font-size: 0.72rem;
   letter-spacing: 0.12em;
-  color: #fff;
-  background: var(--brand);
+  color: var(--on-band);
+  background: var(--band);
   padding: 2px 12px;
   border-radius: 999px;
 }
@@ -999,8 +1090,8 @@ img {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: var(--brand-soft);
-  color: var(--brand-deep);
+  background: var(--fg);
+  color: var(--bg);
   font-weight: 900;
   font-size: 0.8rem;
 }
@@ -1043,7 +1134,7 @@ img {
   bottom: 0.18em;
   width: 6px;
   border-radius: 3px;
-  background: var(--brand);
+  background: var(--fg);
   transform: skewX(-12deg);
 }
 
@@ -1054,7 +1145,7 @@ img {
 }
 
 .article-body a {
-  color: var(--accent);
+  color: var(--link);
   text-decoration: underline;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
@@ -1062,13 +1153,7 @@ img {
 
 .article-body strong {
   font-weight: 900;
-  background: linear-gradient(transparent 64%, rgba(255, 210, 63, 0.55) 64%);
-}
-
-@media (prefers-color-scheme: dark) {
-  .article-body strong {
-    background: linear-gradient(transparent 64%, rgba(255, 216, 79, 0.3) 64%);
-  }
+  background: linear-gradient(transparent 64%, var(--marker) 64%);
 }
 
 .article-body ol,
@@ -1126,14 +1211,14 @@ img {
 }
 
 .article-body th {
-  background: var(--brand-soft);
+  background: var(--surface-2);
   font-weight: 900;
   white-space: nowrap;
 }
 
 .article-body pre {
-  background: #1b1c22;
-  color: #eceef2;
+  background: var(--code-bg);
+  color: var(--code-fg);
   padding: 18px 20px;
   border-radius: var(--radius-sm);
   overflow-x: auto;
@@ -1147,7 +1232,7 @@ img {
 }
 
 .article-body :not(pre) > code {
-  background: var(--brand-soft);
+  background: var(--surface-2);
   padding: 1px 6px;
   border-radius: 6px;
   font-size: 0.88em;
@@ -1188,8 +1273,8 @@ img {
 }
 
 .diagram .d-accent {
-  fill: var(--brand-soft);
-  stroke: var(--brand);
+  fill: var(--cat-news-bg);
+  stroke: var(--cat-news-ink);
   stroke-width: 2;
 }
 
@@ -1205,13 +1290,13 @@ img {
 }
 
 .diagram .d-arrow {
-  stroke: var(--brand);
+  stroke: var(--fg);
   stroke-width: 2.5;
   fill: none;
 }
 
 .diagram .d-arrowhead {
-  fill: var(--brand);
+  fill: var(--fg);
 }
 
 /* 画面イメージ図：操作する場所を赤枠と番号で示す */
@@ -1223,16 +1308,16 @@ img {
 
 .diagram .d-mark {
   fill: none;
-  stroke: var(--new);
+  stroke: var(--fg);
   stroke-width: 3;
 }
 
 .diagram .d-mark-dot {
-  fill: var(--new);
+  fill: var(--fg);
 }
 
 .diagram .d-mark-num {
-  fill: #fff;
+  fill: var(--bg);
   font-size: 14px;
   font-weight: 800;
 }
@@ -1276,7 +1361,7 @@ img {
   display: block;
   aspect-ratio: 16 / 9;
   border-radius: 10px;
-  background: var(--stripes), linear-gradient(135deg, var(--brand), #ff9a6b);
+  background: var(--stripes), linear-gradient(135deg, var(--band), color-mix(in srgb, var(--band) 80%, #fff));
 }
 
 .rank-no {
@@ -1296,15 +1381,15 @@ img {
 }
 
 .rank-no-1 {
-  color: var(--brand);
+  color: var(--fg);
 }
 
 .rank-no-2 {
-  color: #f5900c;
+  color: var(--fg);
 }
 
 .rank-no-3 {
-  color: #d9a400;
+  color: var(--fg);
 }
 
 .rank-thumb {
@@ -1330,8 +1415,8 @@ img {
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background: rgba(232, 56, 45, 0.92);
-  color: #fff;
+  background: rgba(22, 23, 27, 0.8);
+  color: var(--on-band);
   font-size: 1rem;
   padding-left: 3px;
 }
@@ -1343,7 +1428,7 @@ img {
 }
 
 .rank-title:hover {
-  color: var(--brand-deep);
+  color: var(--link);
   text-decoration: underline;
 }
 
@@ -1383,7 +1468,7 @@ img {
   display: grid;
   place-items: center;
   padding: 16px;
-  background: var(--stripes), linear-gradient(135deg, #e8382d 0%, #ff7a3d 100%);
+  background: var(--stripes), linear-gradient(135deg, var(--brand), var(--brand-hover));
 }
 
 .login-card {
@@ -1425,15 +1510,15 @@ img {
   font-size: 1rem;
   padding: 12px 18px;
   border-radius: 999px;
-  border: 1.5px solid var(--line);
+  border: 1.5px solid var(--line-strong);
   background: var(--bg);
   color: var(--fg);
 }
 
 .login-card input:focus {
   outline: none;
-  border-color: var(--brand);
-  box-shadow: 0 0 0 4px var(--brand-soft);
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 35%, transparent);
 }
 
 .login-card button {
@@ -1444,19 +1529,19 @@ img {
   padding: 12px;
   border: 0;
   border-radius: 999px;
-  background: var(--fg);
-  color: var(--bg);
+  background: var(--brand);
+  color: var(--on-brand);
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
 }
 
 .login-card button:hover {
-  background: var(--brand);
-  color: #fff;
+  background: var(--brand-hover);
+  color: var(--on-brand);
 }
 
 .error {
-  color: var(--new);
+  color: var(--brand-ink);
   font-size: 0.85rem;
   font-weight: 700;
   margin: 0;
@@ -1464,8 +1549,8 @@ img {
 
 /* ---------- footer ---------- */
 .site-footer {
-  background: #16171b;
-  color: #d7d8dc;
+  background: var(--footer-bg);
+  color: var(--footer-fg);
   padding: 60px 0 44px;
   overflow: hidden;
 }
@@ -1477,19 +1562,19 @@ img {
   font-size: clamp(2.2rem, 9vw, 6rem);
   line-height: 1;
   letter-spacing: -0.01em;
-  color: #fff;
+  color: var(--footer-head);
   white-space: nowrap;
 }
 
 .footer-mark span {
-  color: #ff5a4e;
+  color: var(--footer-logo);
   margin: 0 0.12em;
 }
 
 .footer-note p {
   margin: 0 0 6px;
   font-size: 0.82rem;
-  color: #a2a5ad;
+  color: var(--footer-muted);
 }
 
 .line-banner {
@@ -1499,8 +1584,8 @@ img {
   margin: 36px 0 8px;
   padding: 22px 24px;
   border-radius: var(--radius);
-  color: #fff;
-  background: linear-gradient(120deg, #06c755 0%, #00b14f 100%);
+  color: var(--on-line);
+  background: linear-gradient(120deg, var(--line-green), var(--line-green-hover));
   box-shadow: var(--shadow);
   transition: transform 0.25s, box-shadow 0.25s;
 }
@@ -1518,7 +1603,7 @@ img {
   height: 56px;
   border-radius: 16px;
   background: #fff;
-  color: #06c755;
+  color: var(--line-green);
   font-family: var(--font-en), sans-serif;
   font-weight: 900;
   font-size: 0.85rem;
@@ -1539,7 +1624,7 @@ img {
   font-weight: 900;
   font-size: 0.75rem;
   letter-spacing: 0.2em;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .line-banner-title {
@@ -1550,7 +1635,7 @@ img {
 
 .line-banner-sub {
   font-size: 0.82rem;
-  opacity: 0.95;
+  opacity: 1;
 }
 
 .line-banner-go {
@@ -1558,7 +1643,7 @@ img {
   padding: 10px 18px;
   border-radius: 999px;
   background: #fff;
-  color: #06a548;
+  color: var(--line-green);
   font-weight: 900;
   font-size: 0.85rem;
   white-space: nowrap;
@@ -1584,7 +1669,7 @@ img {
 .impact-box {
   position: relative;
   background: var(--surface);
-  border-left: 5px solid var(--brand);
+  border-left: 5px solid var(--pop);
   box-shadow: var(--shadow);
 }
 
@@ -1611,7 +1696,7 @@ img {
 }
 
 .src-card:hover {
-  border-color: var(--brand);
+  border-color: var(--fg);
   transform: translateY(-2px);
 }
 
@@ -1648,8 +1733,8 @@ img {
   font-weight: 900;
   font-size: 0.8rem;
   text-align: center;
-  color: #fff;
-  background: var(--stripes), linear-gradient(135deg, #16171b, #3d404b);
+  color: var(--on-band);
+  background: var(--stripes), linear-gradient(135deg, var(--band), color-mix(in srgb, var(--band) 80%, #fff));
 }
 
 .src-body {
@@ -1711,8 +1796,9 @@ img {
 .money-block {
   padding: 32px;
   border-radius: var(--radius);
-  background: radial-gradient(circle at 90% 0%, rgba(242, 183, 5, 0.35), transparent 45%), linear-gradient(135deg, #0f2a63 0%, #1b4bb0 100%);
-  color: #fff;
+  background: var(--money-bg);
+  color: var(--fg);
+  border: 1px solid var(--money-line);
 }
 
 @media (max-width: 640px) {
@@ -1735,7 +1821,11 @@ img {
   font-weight: 900;
   font-size: 0.8rem;
   letter-spacing: 0.24em;
-  color: #f2b705;
+  color: var(--money-ink);
+}
+
+.money-head .money-head-en {
+  color: var(--pop);
 }
 
 .money-block-title {
@@ -1748,17 +1838,8 @@ img {
 .money-block-desc {
   margin: 0;
   font-size: 0.88rem;
-  opacity: 0.88;
-}
-
-.more-light {
-  border-color: #fff;
-  color: #fff;
-}
-
-.more-light:hover {
-  background: #fff;
-  color: #0f2a63;
+  opacity: 1;
+  color: var(--muted);
 }
 
 .money-list {
@@ -1779,11 +1860,11 @@ img {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: #fff;
-  color: #16171b;
+  background: var(--surface);
+  color: var(--fg);
   border-radius: var(--radius-sm);
   overflow: hidden;
-  box-shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.45);
+  box-shadow: var(--shadow);
   transition: transform 0.25s, box-shadow 0.25s;
 }
 
@@ -1796,7 +1877,7 @@ a.money-card:hover {
   position: relative;
   display: block;
   aspect-ratio: 1 / 1;
-  background: #eef2fb;
+  background: var(--surface-2);
 }
 
 .money-img img {
@@ -1815,7 +1896,7 @@ a.money-card:hover {
   font-weight: 900;
   font-size: 0.75rem;
   color: #fff;
-  background: #0f2a63;
+  background: var(--money-solid);
   padding: 1px 10px;
   border-radius: 999px;
 }
@@ -1826,8 +1907,8 @@ a.money-card:hover {
   top: 10px;
   font-size: 0.7rem;
   font-weight: 900;
-  color: #6b4a00;
-  background: #f2b705;
+  color: var(--money-ink);
+  background: var(--money-bg);
   padding: 1px 10px;
   border-radius: 999px;
 }
@@ -1861,8 +1942,8 @@ a.money-card:hover {
   height: 18px;
   margin-right: 6px;
   border-radius: 4px;
-  background: #1b9e5a;
-  color: #fff;
+  background: var(--ok);
+  color: var(--on-ok);
   font-size: 0.7rem;
   font-weight: 900;
 }
@@ -1871,11 +1952,11 @@ a.money-card:hover {
   margin-top: auto;
   font-size: 0.82rem;
   font-weight: 900;
-  color: #1b4bb0;
+  color: var(--link);
 }
 
 .money-card-static .money-go {
-  color: #6b6f78;
+  color: var(--muted);
 }
 
 .money-head {
@@ -1883,7 +1964,7 @@ a.money-card:hover {
   padding: 40px 34px;
   border-radius: var(--radius);
   color: #fff;
-  background: radial-gradient(circle at 90% 0%, rgba(242, 183, 5, 0.4), transparent 45%), linear-gradient(135deg, #0f2a63 0%, #1b4bb0 100%);
+  background: var(--money-solid);
 }
 
 .money-head-title {
@@ -1951,7 +2032,7 @@ a.money-card:hover {
   width: 6px;
   height: 1.2em;
   border-radius: 3px;
-  background: var(--cat-video);
+  background: var(--cat-video-ink);
   transform: skewX(-12deg);
 }
 
@@ -2043,7 +2124,7 @@ a.money-card:hover {
 }
 
 .archive-link a {
-  color: var(--accent);
+  color: var(--link);
   text-decoration: underline;
 }
 
@@ -2101,7 +2182,7 @@ a.money-card:hover {
 
 .archive-month-total {
   font-weight: 900;
-  color: var(--brand);
+  color: var(--fg);
 }
 
 .archive-group + .archive-group {
@@ -2143,7 +2224,8 @@ a.money-card:hover {
 }
 
 .archive-list a:hover .archive-title {
-  color: var(--brand-deep);
+  color: var(--link);
+  text-decoration: underline;
 }
 
 .stale-note {
@@ -2159,17 +2241,6 @@ a.money-card:hover {
 /* =========================================================
    ヘッダーの右側（はじめての方へ・LINEで質問）／フッター（サイトの地図）
    ========================================================= */
-:root {
-  --line-green: #06c755;
-  /* 仮の値（配色の見直しで置き換える） */
-  --on-brand: #ffffff;
-  --brand-hover: var(--brand-deep);
-  --brand-text: var(--brand-deep);
-  --focus: #2f6bff;
-  --money-ink: #7a5600;
-  --money-bg: #fff4cc;
-}
-
 .header-actions {
   display: flex;
   align-items: center;
@@ -2198,7 +2269,7 @@ a.money-card:hover {
   padding: 7px 14px;
   border-radius: 999px;
   background: var(--line-green);
-  color: #fff;
+  color: var(--on-line);
   font-size: 0.8rem;
   font-weight: 900;
   white-space: nowrap;
@@ -2207,7 +2278,7 @@ a.money-card:hover {
 
 .header-line-btn:hover {
   transform: translateY(-1px);
-  filter: brightness(1.05);
+  background: var(--line-green-hover);
 }
 
 @media (max-width: 960px) {
@@ -2235,7 +2306,7 @@ a.money-card:hover {
 .footer-catch {
   margin: -16px 0 32px;
   font-weight: 800;
-  color: #fff;
+  color: var(--footer-head);
 }
 
 .footer-groups {
@@ -2256,7 +2327,7 @@ a.money-card:hover {
   font-size: 0.75rem;
   font-weight: 900;
   letter-spacing: 0.12em;
-  color: #ff7b71;
+  color: var(--footer-head);
 }
 
 .footer-group ul {
@@ -2270,7 +2341,7 @@ a.money-card:hover {
 }
 
 .footer-group a:hover {
-  color: #fff;
+  color: var(--footer-head);
   text-decoration: underline;
 }
 
@@ -2283,12 +2354,12 @@ a.money-card:hover {
   padding: 0;
   border: 0;
   background: none;
-  color: #a2a5ad;
+  color: var(--footer-muted);
   cursor: pointer;
 }
 
 .footer-logout button:hover {
-  color: #fff;
+  color: var(--footer-head);
   text-decoration: underline;
 }
 
@@ -2333,7 +2404,7 @@ a.money-card:hover {
 
 .hero-count {
   margin: 0 2px;
-  color: var(--brand-text);
+  color: var(--brand-ink);
   white-space: nowrap;
 }
 
@@ -2426,15 +2497,6 @@ a.money-card:hover {
   transform: scale(0.97);
 }
 
-.btn-primary:focus-visible,
-.btn-ghost:focus-visible,
-a:focus-visible,
-button:focus-visible,
-summary:focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 2px;
-}
-
 @media (max-width: 640px) {
   .hero-actions .btn-primary {
     flex: 1 1 100%;
@@ -2522,7 +2584,7 @@ summary:focus-visible {
   margin-top: auto;
   font-size: 0.8rem;
   font-weight: 900;
-  color: var(--brand);
+  color: var(--brand-ink);
 }
 
 .today-card:hover .today-go span {
@@ -2580,8 +2642,8 @@ summary:focus-visible {
   flex-shrink: 0;
   padding: 4px 12px;
   border-radius: 999px;
-  background: var(--brand-soft);
-  color: var(--brand-deep);
+  background: var(--surface-2);
+  color: var(--fg);
   font-size: 0.78rem;
   font-weight: 800;
 }
@@ -2612,7 +2674,7 @@ summary:focus-visible {
   margin-right: 8px;
   border-radius: 50%;
   background: var(--pop);
-  color: #16171b;
+  color: var(--on-pop);
   font-size: 0.72rem;
   font-weight: 900;
   vertical-align: 1px;
@@ -2633,7 +2695,7 @@ summary:focus-visible {
   font-style: italic;
   letter-spacing: 0.16em;
   font-size: 0.8rem;
-  color: var(--brand);
+  color: var(--note-ink);
 }
 
 .guide-banner-title {
@@ -2667,8 +2729,8 @@ summary:focus-visible {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: var(--brand);
-  color: #fff;
+  background: var(--band);
+  color: var(--on-band);
   font-family: var(--font-en), sans-serif;
   font-style: italic;
   font-weight: 900;
@@ -2716,7 +2778,7 @@ summary:focus-visible {
 }
 
 .persona-card {
-  --c: var(--brand);
+  --c: var(--fg);
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -2730,15 +2792,15 @@ summary:focus-visible {
 }
 
 .persona-card-backoffice {
-  --c: var(--cat-howto);
+  --c: var(--cat-howto-ink);
 }
 
 .persona-card-sales {
-  --c: var(--cat-news);
+  --c: var(--cat-news-ink);
 }
 
 .persona-card-skillup {
-  --c: var(--cat-video);
+  --c: var(--cat-video-ink);
 }
 
 .persona-card:hover {
@@ -2842,7 +2904,7 @@ summary:focus-visible {
   font-style: italic;
   font-weight: 900;
   font-size: 0.8rem;
-  color: var(--cat-howto);
+  color: var(--cat-howto-ink);
 }
 
 .task-name {
@@ -2989,7 +3051,8 @@ summary:focus-visible {
 }
 
 .explore-months a:hover {
-  color: var(--brand-deep);
+  color: var(--link);
+  text-decoration: underline;
 }
 
 .explore .more {
@@ -3047,24 +3110,24 @@ summary:focus-visible {
 }
 
 .persona-title-news::before {
-  background: var(--cat-news);
+  background: var(--cat-news-ink);
 }
 
 .persona-title-weekly::before {
-  background: var(--cat-weekly);
+  background: var(--cat-weekly-ink);
 }
 
 .persona-title-howto::before {
-  background: var(--cat-howto);
+  background: var(--cat-howto-ink);
 }
 
 .persona-title-prompt::before {
-  background: var(--cat-prompt);
+  background: var(--cat-prompt-ink);
 }
 
 /* 画像が届くまで灰色の箱にしない（カテゴリ色の模様を敷く） */
 .thumb-photo {
-  background: var(--stripes), color-mix(in srgb, var(--cat-news) 30%, var(--line));
+  background: var(--surface-2);
 }
 
 /* =========================================================
@@ -3101,8 +3164,8 @@ summary:focus-visible {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: var(--brand);
-  color: #fff;
+  background: var(--band);
+  color: var(--on-band);
   font-size: 0.72rem;
   font-weight: 900;
 }
@@ -3127,8 +3190,8 @@ summary:focus-visible {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--brand);
-  color: #fff;
+  background: var(--band);
+  color: var(--on-band);
   font-family: var(--font-en), sans-serif;
   font-style: italic;
   font-size: 1rem;
@@ -3234,8 +3297,8 @@ summary:focus-visible {
 }
 
 .cat-money {
-  color: #8a6200;
-  background: var(--note-bg);
+  color: var(--money-ink);
+  background: var(--money-bg);
 }
 
 @media (max-width: 640px) {
@@ -3269,7 +3332,7 @@ summary:focus-visible {
 .guide-how a,
 .guide-marks a,
 .guide-courses a {
-  color: var(--brand-deep);
+  color: var(--link);
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -3307,7 +3370,7 @@ summary:focus-visible {
   margin: 0 0 8px;
   font-size: 0.95rem;
   font-weight: 900;
-  color: var(--brand);
+  color: var(--muted);
 }
 
 .guide-map-group ul {
@@ -3329,7 +3392,8 @@ summary:focus-visible {
 }
 
 .guide-map-group a:hover {
-  color: var(--brand-deep);
+  color: var(--link);
+  text-decoration: underline;
 }
 
 .guide-map-group li span {

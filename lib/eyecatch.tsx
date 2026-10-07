@@ -12,11 +12,12 @@ const WIDTH = 1200;
 const HEIGHT = 630;
 
 const COLORS: Record<Article["category"], [string, string]> = {
-  weekly: ["#e8382d", "#ff7a3d"],
-  news: ["#2f6bff", "#6f9bff"],
-  video: ["#f0487c", "#ff8fb1"],
-  howto: ["#10a37a", "#4fd1a5"],
-  prompt: ["#f5900c", "#ffc04d"],
+  // 白文字が読めるよう、globals.css の --cat-*-solid から暗くなる方向のグラデーション
+  weekly: ["#1d1e24", "#3a3d47"],
+  news: ["#2456d0", "#1b409c"],
+  video: ["#bc2459", "#8d1b43"],
+  howto: ["#0b7050", "#08543c"],
+  prompt: ["#9a4c00", "#733900"],
 };
 
 let logoDataUri: string | undefined;

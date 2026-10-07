@@ -106,7 +106,7 @@ export function GuideBanner() {
           </li>
         ))}
       </ol>
-      <Link href="/guide" className="btn-primary guide-banner-btn">
+      <Link href="/guide" className="btn-ghost guide-banner-btn">
         サイトの見方をくわしく見る <span aria-hidden="true">→</span>
       </Link>
     </section>

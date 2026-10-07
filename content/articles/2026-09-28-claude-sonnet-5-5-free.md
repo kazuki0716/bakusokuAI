@@ -2,7 +2,6 @@
 title: "Claudeの新モデル「Sonnet 5.5」公開。無料プランでも使えて、速く・安く"
 date: 2026-09-28
 category: news
-photoQuery: "laptop writing desk"
 thumbLabel: "Claude Sonnet 5.5"
 summary:
   - Anthropicが2026年9月28日、Claudeの新モデル「Claude Sonnet 5.5」を公開した

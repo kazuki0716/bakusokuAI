@@ -3,7 +3,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import { marked } from "marked";
 import { isCategory, type CategoryKey } from "./categories";
-import { getOgImage, searchStockPhoto, youtubeThumb } from "./ogp";
+import { getOgImage, youtubeThumb } from "./ogp";
 
 const ARTICLES_DIR = path.join(process.cwd(), "content", "articles");
 
@@ -36,7 +36,6 @@ export type ArticleMeta = {
   level?: "初級" | "中級" | "上級";
   thumbnail?: string; // アイキャッチ画像を手動で指定（/images/articles/... または https://...）
   eyecatchFrom?: string; // このURLのOGP画像をアイキャッチにする（省略時は sources の1件目）
-  photoQuery?: string; // OGP画像が無いとき、無料素材（Unsplash / Pexels）をこの英語キーワードで探す
   thumbnailCredit?: string; // thumbnail の引用元（例："窓の杜「OpenAI、DevDay 2026を開催」より"）
   thumbnailCreditUrl?: string; // 引用元ページのURL
   thumbLabel?: string; // 自動サムネに載せる短い文字
@@ -81,7 +80,6 @@ function readArticle(file: string): Article {
     level: data.level,
     thumbnail: data.thumbnail ?? data.image,
     eyecatchFrom: data.eyecatchFrom,
-    photoQuery: data.photoQuery,
     thumbnailCredit: data.thumbnailCredit,
     thumbnailCreditUrl: data.thumbnailCreditUrl,
     thumbLabel: data.thumbLabel,
@@ -109,6 +107,11 @@ export function getArticle(slug: string): Article | undefined {
   return getAllArticles().find((a) => a.slug === slug);
 }
 
+// 自動生成のオリジナル・アイキャッチ画像のURL（app/eyecatch/[file]/route.tsx で作る）
+export function generatedEyecatch(slug: string): string {
+  return `/eyecatch/${slug}.png`;
+}
+
 function hostOf(url: string): string {
   try {
     return new URL(url).hostname.replace(/^www\./, "");
@@ -120,7 +123,7 @@ function hostOf(url: string): string {
 // アイキャッチ画像の決め方（上から順に、見つかったものを使う）
 // 1. frontmatter の thumbnail  2. 記事の youtube  3. ランキング1位のYouTube
 // 4. eyecatchFrom または sources 1件目のOGP画像  5. ランキング1位のリンク先のOGP画像
-// 6. photoQuery で探した無料素材写真（Unsplash / Pexels）  7. どれも無ければカテゴリ柄のサムネ
+// 6. どれも無ければ、記事タイトル入りのオリジナル画像を自動生成（/eyecatch/<slug>.png）
 type ImageInfo = Pick<Article, "image" | "imageCredit" | "imageCreditUrl">;
 
 async function resolveImage(a: Article): Promise<ImageInfo> {
@@ -144,9 +147,7 @@ async function resolveImage(a: Article): Promise<ImageInfo> {
       return { image, imageCredit: title ? `出典：${title}` : `出典：${hostOf(url)}`, imageCreditUrl: url };
     }
   }
-  const stock = await searchStockPhoto(a.photoQuery ?? "");
-  if (stock) return { image: stock.image, imageCredit: stock.credit, imageCreditUrl: stock.creditUrl };
-  return {};
+  return { image: generatedEyecatch(a.slug) };
 }
 
 let enriched: Promise<Article[]> | undefined;

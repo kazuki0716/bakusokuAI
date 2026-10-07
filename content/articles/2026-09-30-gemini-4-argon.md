@@ -2,7 +2,6 @@
 title: "Google、最上位AI「Gemini 4 Argon」を発表。まずはサイバー防御の専門家から段階的に公開"
 date: 2026-09-30
 category: news
-photoQuery: "data center servers"
 thumbLabel: "Gemini 4 Argon"
 summary:
   - Googleが2026年9月30日、新しい最上位モデル「Gemini 4 Argon」を発表した

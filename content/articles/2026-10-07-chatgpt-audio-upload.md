@@ -3,7 +3,6 @@ title: "ChatGPTに会議の録音をそのまま渡せる時代に。文字起�
 date: 2026-10-07
 category: news
 pickup: true
-photoQuery: "business meeting laptop"
 thumbLabel: "録音ファイル → 議事録"
 summary:
   - ChatGPTに音声ファイルをアップロードすると、文字起こし・要約・内容への質問ができるようになった（2026年10月6日のリリースノート）

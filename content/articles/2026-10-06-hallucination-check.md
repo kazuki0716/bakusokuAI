@@ -2,7 +2,6 @@
 title: "AIの「もっともらしいウソ」を見抜く。仕事で使う前の3つのチェック"
 date: 2026-10-06
 category: howto
-photoQuery: "magnifying glass documents"
 thumbLabel: "AIのウソを見抜く3チェック"
 summary:
   - 生成AIは、事実と違う内容を自信満々に書くことがある（ハルシネーション）

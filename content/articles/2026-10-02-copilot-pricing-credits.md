@@ -2,7 +2,6 @@
 title: "Microsoft 365 Copilotの料金が2本立てに。毎日のAIは定額、高度なAIは使った分だけ"
 date: 2026-10-02
 category: news
-photoQuery: "calculator finance office"
 thumbLabel: "Copilotの料金が変わる"
 summary:
   - Microsoftが9月下旬、Microsoft 365 Copilotの料金を「定額」と「使った分だけ（Copilot Credits）」の2本立てにする方針を示した

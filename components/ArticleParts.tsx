@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Article } from "@/lib/articles";
 import { SafeImage } from "./SafeImage";
-import { formatDate } from "@/lib/articles";
+import { formatDate, generatedEyecatch } from "@/lib/articles";
 import { CATEGORIES } from "@/lib/categories";
 
 const NEW_DAYS = 3;
@@ -50,10 +50,16 @@ export function Thumb({ article, large = false }: { article: Article; large?: bo
   const base = `thumb thumb-${article.category}${large ? " thumb-lg" : ""}`;
   const pattern = <PatternThumb article={article} className={base} />;
   if (!article.image) return pattern;
+  const generated = generatedEyecatch(article.slug);
+  // 外部の画像が読めなかったら、自動生成のアイキャッチに切り替える
+  const fallback =
+    article.image === generated ? pattern : <SafeImage src={generated} className="thumb-img" fallback={pattern} />;
   return (
     <div className={`thumb-photo${large ? " thumb-photo-lg" : ""}`}>
-      <SafeImage src={article.image} className="thumb-img" fallback={pattern} />
-      <span className={`thumb-chip cat-${article.category}`}>{CATEGORIES[article.category].en}</span>
+      <SafeImage src={article.image} className="thumb-img" fallback={fallback} />
+      {article.image !== generated && (
+        <span className={`thumb-chip cat-${article.category}`}>{CATEGORIES[article.category].en}</span>
+      )}
     </div>
   );
 }

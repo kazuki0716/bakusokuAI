@@ -2,7 +2,6 @@
 title: "今週のおすすめYouTube Top5｜ChatGPT「Work」の実演から、Excel業務のAI化まで（10月第2週）"
 date: 2026-10-07
 category: weekly
-photoQuery: "watching video laptop"
 thumbLabel: "今週のYouTube Top5"
 summary:
   - 今週の1位は、ChatGPTの新しい仕事用機能「ChatGPT Work」を実際に動かしてみせる実演動画

@@ -4,10 +4,9 @@ title: "記事タイトル（30〜45字。何がどう変わるかが分かる�
 date: 2026-01-01
 category: news # news / video / howto / prompt
 pickup: false # true にするとトップの大枠に表示
-thumbLabel: "サムネの文字" # 12文字前後（画像が無いときの自動サムネ用）
-# アイキャッチ画像は自動で決まる：YouTube → 出典ページのOGP画像 → photoQuery の無料素材写真 → 自動サムネ
+thumbLabel: "サムネの文字" # 12文字前後。自動生成のアイキャッチ画像に大きく入るキャッチコピー
+# アイキャッチ画像は自動で決まる：YouTube → 出典ページのOGP画像 → タイトル入りのオリジナル画像（自動生成）
 # eyecatchFrom: "https://..." # 特定ページのOGP画像を使いたいとき
-photoQuery: "business meeting" # 無料素材写真（Unsplash）を探す英語キーワード
 # thumbnail: "https://..." # アイキャッチ画像のURL（最優先）。元記事の og:image を使うときは下の2行も必ず書く
 # thumbnailCredit: "出典：媒体名「記事タイトル」"
 # thumbnailCreditUrl: "https://（元記事のURL）"

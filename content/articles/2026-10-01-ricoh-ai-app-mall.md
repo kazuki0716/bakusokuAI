@@ -2,7 +2,6 @@
 title: "リコー、Difyで作った業務AIアプリを企業間で共有できる「RICOH AI App Mall」を開始"
 date: 2026-10-01
 category: news
-photoQuery: "business people office japan"
 thumbLabel: "AIアプリを会社間で共有"
 summary:
   - リコーが2026年10月1日、ノーコードツール「Dify」で作った業務AIアプリを、企業どうしで共有できる「RICOH AI App Mall powered by Dify」を始めた

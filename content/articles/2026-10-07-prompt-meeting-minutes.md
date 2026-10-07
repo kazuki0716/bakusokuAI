@@ -2,7 +2,6 @@
 title: "【今週のプロンプト】録音から「議事録・ToDo・お礼メール」を一発で作る"
 date: 2026-10-07
 category: prompt
-photoQuery: "meeting notes notebook"
 thumbLabel: "議事録プロンプト"
 summary:
   - 会議の録音や文字起こしを渡すだけで、議事録・ToDo表・お礼メールの3点セットができるプロンプト

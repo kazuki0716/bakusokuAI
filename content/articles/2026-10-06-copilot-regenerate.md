@@ -2,7 +2,6 @@
 title: "Microsoft 365 Copilotに「回答を作り直す」ボタン。別のAIモデルに切り替えて答え直しも"
 date: 2026-10-06
 category: news
-photoQuery: "office laptop work"
 thumbLabel: "Copilot 回答の再生成"
 summary:
   - Microsoft 365 Copilotに、直前の回答を作り直す「Regenerate（再生成）」が追加された（2026年10月6日のリリースノート）

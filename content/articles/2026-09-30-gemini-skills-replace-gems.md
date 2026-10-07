@@ -2,7 +2,6 @@
 title: "Geminiに「スキル」登場、Gemは置き換えへ。よく使う指示を保存して組み合わせられる"
 date: 2026-09-30
 category: news
-photoQuery: "notebook checklist planning"
 thumbLabel: "Gemini スキル"
 summary:
   - Googleが2026年9月30日、よく使う指示を保存して呼び出せる「スキル」をGeminiに導入すると発表した

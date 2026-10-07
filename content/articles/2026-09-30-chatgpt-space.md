@@ -2,7 +2,6 @@
 title: "ChatGPTに「Space」登場。チームで資料を共有し、AIと一緒に作業できる場所に"
 date: 2026-09-30
 category: news
-photoQuery: "team collaboration meeting"
 thumbLabel: "ChatGPT Space"
 summary:
   - DevDay 2026で、チームとAIが同じ資料を一緒に作れる共有スペース「ChatGPT Space」が発表された

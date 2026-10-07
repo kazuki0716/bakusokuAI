@@ -2,7 +2,6 @@
 title: "【今週のプロンプト】箇条書きのメモを「上司に送れる報告メール」に3秒で変える"
 date: 2026-10-01
 category: prompt
-photoQuery: "email laptop office"
 thumbLabel: "報告メールプロンプト"
 summary:
   - 走り書きのメモを貼るだけで、上司向けの報告メールに整えるプロンプト

@@ -3,7 +3,6 @@ title: "OpenAI DevDay 2026：24時間働き続けるAIエージェント「dots�
 date: 2026-09-29
 category: news
 pickup: true
-photoQuery: "team working office computer"
 thumbLabel: "常時稼働AI「dots」"
 summary:
   - OpenAIが2026年9月29日の開発者イベント「DevDay 2026」で、常時稼働のAIエージェント「dots」を発表した

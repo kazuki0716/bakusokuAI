@@ -2,7 +2,6 @@
 title: "ChatGPTの画像生成中に広告表示へ。まずは米国の無料・Goプランから"
 date: 2026-10-05
 category: news
-photoQuery: "smartphone advertising"
 thumbLabel: "ChatGPTに広告"
 summary:
   - OpenAIが2026年10月5日、ChatGPTで画像を作っている間に表示される新しい広告を発表した

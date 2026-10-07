@@ -32,7 +32,8 @@ export type ArticleMeta = {
   summary: string[]; // 3行まとめ
   impact?: string; // 「あなたの仕事への影響」
   tags: string[];
-  audience: string[];
+  audience: string[]; // 対象ペルソナ（AUDIENCES のいずれか）
+  task?: string; // 業務カテゴリ（TASKS のいずれか。業務に関係しない記事は省略）
   level?: "初級" | "中級" | "上級";
   thumbnail?: string; // アイキャッチ画像を手動で指定（/images/articles/... または https://...）
   eyecatchFrom?: string; // このURLのOGP画像をアイキャッチにする（省略時は sources の1件目）
@@ -77,6 +78,7 @@ function readArticle(file: string): Article {
     impact: data.impact,
     tags: data.tags ?? [],
     audience: data.audience ?? [],
+    task: data.task,
     level: data.level,
     thumbnail: data.thumbnail ?? data.image,
     eyecatchFrom: data.eyecatchFrom,

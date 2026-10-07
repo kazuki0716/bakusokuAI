@@ -39,6 +39,7 @@ export default async function ArticlePage({ params }: Props) {
           <p className="card-meta">
             <CategoryLabel article={article} />
             <time>{formatDate(article.date)}</time>
+            {article.task && <span className="level">業務：{article.task}</span>}
             {article.level && <span className="level">{article.level}</span>}
           </p>
           <h1 className="article-title">{article.title}</h1>

@@ -2287,3 +2287,26 @@ a.money-card:hover {
     flex-wrap: wrap;
   }
 }
+
+/* おすすめ動画：ペルソナごとの見出し */
+.persona-block + .persona-block {
+  margin-top: 48px;
+}
+
+.persona-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.persona-title::before {
+  content: "";
+  width: 6px;
+  height: 1.2em;
+  border-radius: 3px;
+  background: var(--cat-video);
+  transform: skewX(-12deg);
+}

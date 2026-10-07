@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getArticles } from "@/lib/articles";
-import { CATEGORIES, CATEGORY_KEYS, isCategory } from "@/lib/categories";
+import { AUDIENCES, CATEGORIES, CATEGORY_KEYS, isCategory } from "@/lib/categories";
 import { ArticleCard } from "@/components/ArticleParts";
 
 type Props = { params: Promise<{ category: string }> };
@@ -30,6 +30,22 @@ export default async function CategoryPage({ params }: Props) {
       </header>
       {list.length === 0 ? (
         <p className="empty">まだ記事がありません。</p>
+      ) : category === "video" ? (
+        // おすすめ動画はペルソナ（立場）ごとに並べる
+        AUDIENCES.map((who) => {
+          const forWho = list.filter((a) => a.audience.includes(who));
+          if (forWho.length === 0) return null;
+          return (
+            <section key={who} className="persona-block">
+              <h2 className="persona-title">{who}におすすめ</h2>
+              <ul className="cards">
+                {forWho.map((a) => (
+                  <ArticleCard key={a.slug} article={a} />
+                ))}
+              </ul>
+            </section>
+          );
+        })
       ) : (
         <ul className="cards">
           {list.map((a) => (

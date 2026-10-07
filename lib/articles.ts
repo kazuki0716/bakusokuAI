@@ -30,7 +30,7 @@ export type ArticleMeta = {
   date: string; // YYYY-MM-DD
   category: CategoryKey;
   summary: string[]; // 3行まとめ
-  impact?: string; // 「あなたの仕事への影響」
+  impact?: string; // 「爆速AIからのひとこと」（編集部コラム）
   tags: string[];
   audience: string[]; // 対象ペルソナ（AUDIENCES のいずれか）
   task?: string; // 業務カテゴリ（TASKS のいずれか。業務に関係しない記事は省略）

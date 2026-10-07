@@ -12,7 +12,7 @@ import {
   STALE_DAYS,
 } from "@/lib/articles";
 import { SafeImage } from "@/components/SafeImage";
-import { CourseBanner } from "@/components/CourseLinks";
+import { LineBanner } from "@/components/CourseLinks";
 import { SourceCard } from "@/components/SourceCard";
 import { ArticleCard, CategoryLabel, SectionHeading } from "@/components/ArticleParts";
 import { CATEGORIES } from "@/lib/categories";
@@ -124,13 +124,13 @@ export default async function ArticlePage({ params }: Props) {
         {article.impact && (
           <section className="impact-box">
             <h2>
-              <span className="box-en">FOR MEMBERS</span>爆速AI会員への影響
+              <span className="box-en">COLUMN</span>爆速AIからのひとこと
             </h2>
             <p>{article.impact}</p>
           </section>
         )}
 
-        <CourseBanner />
+        <LineBanner />
 
         {article.sources.length > 0 && (
           <section className="sources">

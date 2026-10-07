@@ -1,4 +1,4 @@
-import { COURSES, LECTEA_COURSES_URL } from "@/lib/links";
+import { COURSES, LINE_URL } from "@/lib/links";
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -26,15 +26,20 @@ export function CourseCards() {
   );
 }
 
-// 記事の最後に置く案内
-export function CourseBanner() {
+// 記事の最後に置く公式LINEへの案内
+export function LineBanner() {
   return (
-    <a href={LECTEA_COURSES_URL} {...external} className="course-banner">
-      <span className="course-banner-en">LEARN MORE</span>
-      <span className="course-banner-title">もっと体系的に学ぶなら、爆速AIの講座へ</span>
-      <span className="course-banner-sub">【飛翔】体系的に学ぶコース／【爆速AI】業務効率化コース</span>
-      <span className="course-banner-go" aria-hidden="true">
-        ↗
+    <a href={LINE_URL} {...external} className="line-banner">
+      <span className="line-banner-icon" aria-hidden="true">
+        LINE
+      </span>
+      <span className="line-banner-body">
+        <span className="line-banner-en">QUESTIONS?</span>
+        <span className="line-banner-title">この記事やAIについての質問は、公式LINEへ</span>
+        <span className="line-banner-sub">「うちの業務だとどう使う？」など、気軽にメッセージを送ってください。</span>
+      </span>
+      <span className="line-banner-go">
+        公式LINEで質問する <span aria-hidden="true">↗</span>
       </span>
     </a>
   );

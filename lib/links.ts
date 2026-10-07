@@ -15,3 +15,6 @@ export const COURSES = [
     description: "メール・議事録・Excelなど、毎日の業務をAIで効率化。月10時間の時短を目指す実践コースです。",
   },
 ] as const;
+
+// 爆速AI公式LINE（記事やAIについての質問の窓口）
+export const LINE_URL = "https://lin.ee/Z5WhsnZ";

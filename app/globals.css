@@ -1282,10 +1282,6 @@ img {
   font-size: 0.8rem;
 }
 
-.impact-box {
-  background: var(--brand-soft);
-}
-
 .impact-box p {
   margin: 0;
 }
@@ -1884,59 +1880,100 @@ img {
   color: var(--brand);
 }
 
-.course-banner {
-  position: relative;
+.line-banner {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  gap: 18px;
   margin: 36px 0 8px;
-  padding: 24px 80px 24px 28px;
+  padding: 22px 24px;
   border-radius: var(--radius);
   color: #fff;
-  overflow: hidden;
-  background: var(--stripes), linear-gradient(120deg, #e8382d 0%, #ff7a3d 100%);
+  background: linear-gradient(120deg, #06c755 0%, #00b14f 100%);
   box-shadow: var(--shadow);
   transition: transform 0.25s, box-shadow 0.25s;
 }
 
-.course-banner:hover {
+.line-banner:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-hover);
 }
 
-.course-banner-en {
+.line-banner-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: #fff;
+  color: #06c755;
+  font-family: var(--font-en), sans-serif;
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+.line-banner-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+
+.line-banner-en {
   font-family: var(--font-en), sans-serif;
   font-style: italic;
   font-weight: 900;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   letter-spacing: 0.2em;
   opacity: 0.9;
 }
 
-.course-banner-title {
-  font-size: 1.15rem;
+.line-banner-title {
+  font-size: 1.1rem;
   font-weight: 900;
   line-height: 1.5;
 }
 
-.course-banner-sub {
-  font-size: 0.8rem;
-  opacity: 0.9;
+.line-banner-sub {
+  font-size: 0.82rem;
+  opacity: 0.95;
 }
 
-.course-banner-go {
-  position: absolute;
-  right: 24px;
-  top: 50%;
-  translate: 0 -50%;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+.line-banner-go {
+  flex: none;
+  padding: 10px 18px;
+  border-radius: 999px;
   background: #fff;
-  color: #16171b;
+  color: #06a548;
   font-weight: 900;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .line-banner {
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+  .line-banner-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 0.75rem;
+  }
+  .line-banner-go {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* 爆速AIからのひとこと（コラム） */
+.impact-box {
+  position: relative;
+  background: var(--surface);
+  border-left: 5px solid var(--brand);
+  box-shadow: var(--shadow);
 }
 
 /* ---------- 元記事カード（NewsPicks風） ---------- */

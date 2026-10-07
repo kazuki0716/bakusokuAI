@@ -16,7 +16,7 @@ export default async function HomePage() {
   }
 
   const hero = articles.find((a) => a.pickup) ?? articles[0];
-  const latest = articles.filter((a) => a.slug !== hero.slug).slice(0, 6);
+  const latest = articles.filter((a) => a.slug !== hero.slug).slice(0, 8);
   const weekly = articles.filter((a) => a.category === "weekly").slice(0, 2);
 
   return (
@@ -99,7 +99,7 @@ export default async function HomePage() {
       )}
 
       {CATEGORY_KEYS.filter((key) => key !== "weekly").map((key) => {
-        const list = articles.filter((a) => a.category === key).slice(0, 3);
+        const list = articles.filter((a) => a.category === key).slice(0, 6);
         if (list.length === 0) return null;
         return (
           <section key={key} className="block">

@@ -22,7 +22,8 @@ function Card({ item, detailed }: { item: MoneySecret; detailed: boolean }) {
         <span className="money-go">
           {item.url ? (
             <>
-              {item.label ?? "イラスト解説"}を見る <span aria-hidden="true">↗</span>
+              {/\.(mp3|m4a|wav)$/i.test(item.url) ? "🎧 音声を聞く" : `${item.label ?? "イラスト解説"}を見る`}{" "}
+              <span aria-hidden="true">↗</span>
             </>
           ) : (
             "公式LINEで配信中"

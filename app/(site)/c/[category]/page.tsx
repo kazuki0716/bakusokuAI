@@ -23,12 +23,15 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <section>
-      <h1 className="page-title">{CATEGORIES[category].label}</h1>
-      <p className="muted">{CATEGORIES[category].description}</p>
+      <header className={`page-head page-head-${category}`}>
+        <p className="page-en">{CATEGORIES[category].en}</p>
+        <h1 className="page-title">{CATEGORIES[category].label}</h1>
+        <p className="page-desc">{CATEGORIES[category].description}</p>
+      </header>
       {list.length === 0 ? (
         <p className="empty">まだ記事がありません。</p>
       ) : (
-        <ul className="cards cards-wide">
+        <ul className="cards">
           {list.map((a) => (
             <ArticleCard key={a.slug} article={a} />
           ))}

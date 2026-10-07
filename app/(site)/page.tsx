@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getAllArticles, getAllTags, formatDate } from "@/lib/articles";
 import { CATEGORIES, CATEGORY_KEYS } from "@/lib/categories";
-import { ArticleCard, CategoryLabel, HeadlineItem, NewBadge, Thumb } from "@/components/ArticleParts";
+import { ArticleCard, CategoryLabel, HeadlineItem, NewBadge, SectionHeading, Thumb } from "@/components/ArticleParts";
 
 export default function HomePage() {
   const articles = getAllArticles();
@@ -10,23 +10,34 @@ export default function HomePage() {
   }
 
   const hero = articles.find((a) => a.pickup) ?? articles[0];
-  const headlines = articles.filter((a) => a.slug !== hero.slug).slice(0, 8);
+  const latest = articles.filter((a) => a.slug !== hero.slug).slice(0, 6);
   const weekly = articles.filter((a) => a.category === "weekly").slice(0, 2);
-  const videos = articles.filter((a) => a.category === "video").slice(0, 3);
-  const prompts = articles.filter((a) => a.category === "prompt").slice(0, 3);
 
   return (
-    <div className="layout">
-      <div className="main-col">
-        <section className="topics" aria-labelledby="topics-heading">
-          <h2 id="topics-heading" className="section-title">主要トピックス</h2>
+    <>
+      <section className="top-intro">
+        <p className="intro-en">
+          AI NEWS <em>for</em> BUSINESS
+        </p>
+        <h1 className="intro-ja">
+          仕事に効くAI情報を、<span>爆速で。</span>
+        </h1>
+      </section>
+
+      <section className="top-grid">
+        <div className="pickup">
+          <SectionHeading en="PICK UP" ja="今日の注目" />
           <Link href={`/articles/${hero.slug}`} className="hero">
-            <Thumb article={hero} large />
+            <div className="hero-thumb">
+              <Thumb article={hero} large />
+            </div>
             <div className="hero-body">
               <p className="card-meta">
-                <CategoryLabel article={hero} /> {formatDate(hero.date)} <NewBadge date={hero.date} />
+                <CategoryLabel article={hero} />
+                <time>{formatDate(hero.date)}</time>
+                <NewBadge date={hero.date} />
               </p>
-              <h3 className="hero-title">{hero.title}</h3>
+              <h2 className="hero-title">{hero.title}</h2>
               {hero.summary.length > 0 && (
                 <ul className="hero-summary">
                   {hero.summary.map((line) => (
@@ -34,70 +45,67 @@ export default function HomePage() {
                   ))}
                 </ul>
               )}
+              <span className="read-more">
+                記事を読む <span aria-hidden="true">→</span>
+              </span>
             </div>
           </Link>
-          <ul className="headlines">
-            {headlines.map((a) => (
-              <HeadlineItem key={a.slug} article={a} />
+        </div>
+
+        <div className="latest">
+          <SectionHeading en="LATEST" ja="新着記事" />
+          <ol className="headlines">
+            {latest.map((a, i) => (
+              <HeadlineItem key={a.slug} article={a} index={i} />
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {weekly.length > 0 && (
+        <section className="block">
+          <SectionHeading en="WEEKLY TOP" ja="今週のランキング" href="/c/weekly" />
+          <ul className="weekly-cards">
+            {weekly.map((a) => (
+              <li key={a.slug}>
+                <Link href={`/articles/${a.slug}`} className="weekly-card">
+                  <span className="weekly-count">
+                    TOP<strong>{a.ranking.length}</strong>
+                  </span>
+                  <span className="weekly-title">{a.title}</span>
+                  <span className="weekly-date">{formatDate(a.date)} 更新</span>
+                </Link>
+              </li>
             ))}
           </ul>
         </section>
-
-        {CATEGORY_KEYS.map((key) => {
-          const list = articles.filter((a) => a.category === key).slice(0, 4);
-          if (list.length === 0) return null;
-          return (
-            <section key={key} className="cat-section">
-              <h2 className="section-title">
-                {CATEGORIES[key].label}
-                <Link href={`/c/${key}`} className="more">
-                  もっと見る ›
-                </Link>
-              </h2>
-              <ul className="cards">
-                {list.map((a) => (
-                  <ArticleCard key={a.slug} article={a} />
-                ))}
-              </ul>
-            </section>
-          );
-        })}
-      </div>
-
-      <aside className="side-col">
-        <SideBox title="今週のTop" items={weekly} empty="毎週更新予定です" />
-        <SideBox title="おすすめ動画" items={videos} empty="動画は準備中です" />
-        <SideBox title="今週のプロンプト" items={prompts} empty="プロンプトは準備中です" />
-        <section className="side-box">
-          <h2 className="side-title">キーワード</h2>
-          <div className="tag-list">
-            {getAllTags().map((tag) => (
-              <Link key={tag} href={`/tags/${encodeURIComponent(tag)}`} className="tag">
-                #{tag}
-              </Link>
-            ))}
-          </div>
-        </section>
-      </aside>
-    </div>
-  );
-}
-
-function SideBox({ title, items, empty }: { title: string; items: ReturnType<typeof getAllArticles>; empty: string }) {
-  return (
-    <section className="side-box">
-      <h2 className="side-title">{title}</h2>
-      {items.length === 0 ? (
-        <p className="muted small">{empty}</p>
-      ) : (
-        <ol className="side-list">
-          {items.map((a) => (
-            <li key={a.slug}>
-              <Link href={`/articles/${a.slug}`}>{a.title}</Link>
-            </li>
-          ))}
-        </ol>
       )}
-    </section>
+
+      {CATEGORY_KEYS.filter((key) => key !== "weekly").map((key) => {
+        const list = articles.filter((a) => a.category === key).slice(0, 3);
+        if (list.length === 0) return null;
+        return (
+          <section key={key} className="block">
+            <SectionHeading en={CATEGORIES[key].en} ja={CATEGORIES[key].label} href={`/c/${key}`} />
+            <ul className="cards">
+              {list.map((a) => (
+                <ArticleCard key={a.slug} article={a} />
+              ))}
+            </ul>
+          </section>
+        );
+      })}
+
+      <section className="block">
+        <SectionHeading en="KEYWORDS" ja="キーワードから探す" />
+        <div className="tag-list tag-cloud">
+          {getAllTags().map((tag) => (
+            <Link key={tag} href={`/tags/${encodeURIComponent(tag)}`} className="tag">
+              #{tag}
+            </Link>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

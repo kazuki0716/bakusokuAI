@@ -21,8 +21,12 @@ export default async function TagPage({ params }: Props) {
 
   return (
     <section>
-      <h1 className="page-title">#{tag}</h1>
-      <ul className="cards cards-wide">
+      <header className="page-head">
+        <p className="page-en">KEYWORD</p>
+        <h1 className="page-title">#{tag}</h1>
+        <p className="page-desc">{list.length}件の記事</p>
+      </header>
+      <ul className="cards">
         {list.map((a) => (
           <ArticleCard key={a.slug} article={a} />
         ))}

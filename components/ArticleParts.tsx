@@ -18,6 +18,23 @@ export function NewBadge({ date }: { date: string }) {
   return isNew(date) ? <span className="new">NEW</span> : null;
 }
 
+// 英語の大見出し＋日本語の小見出し
+export function SectionHeading({ en, ja, href }: { en: string; ja: string; href?: string }) {
+  return (
+    <div className="section-heading">
+      <h2>
+        <span className="sh-en">{en}</span>
+        <span className="sh-ja">{ja}</span>
+      </h2>
+      {href && (
+        <Link href={href} className="more">
+          もっと見る <span aria-hidden="true">→</span>
+        </Link>
+      )}
+    </div>
+  );
+}
+
 export function Thumb({ article, large = false }: { article: ArticleMeta; large?: boolean }) {
   const className = `thumb thumb-${article.category}${large ? " thumb-lg" : ""}`;
   if (article.thumbnail) {
@@ -28,19 +45,26 @@ export function Thumb({ article, large = false }: { article: ArticleMeta; large?
   }
   return (
     <div className={className} aria-hidden="true">
-      <span>{article.thumbLabel ?? CATEGORIES[article.category].label}</span>
+      <span className="thumb-en">{CATEGORIES[article.category].en}</span>
+      <span className="thumb-label">{article.thumbLabel ?? CATEGORIES[article.category].label}</span>
     </div>
   );
 }
 
-// 主要トピックス風の1行見出し
-export function HeadlineItem({ article }: { article: ArticleMeta }) {
+// 番号付きの1行見出し
+export function HeadlineItem({ article, index }: { article: ArticleMeta; index: number }) {
   return (
     <li className="headline">
       <Link href={`/articles/${article.slug}`}>
-        <CategoryLabel article={article} />
-        <span className="headline-title">{article.title}</span>
-        <NewBadge date={article.date} />
+        <span className="headline-no">{String(index + 1).padStart(2, "0")}</span>
+        <span className="headline-main">
+          <span className="headline-meta">
+            <CategoryLabel article={article} />
+            <time>{formatDate(article.date)}</time>
+            <NewBadge date={article.date} />
+          </span>
+          <span className="headline-title">{article.title}</span>
+        </span>
       </Link>
     </li>
   );
@@ -51,12 +75,16 @@ export function ArticleCard({ article }: { article: ArticleMeta }) {
   return (
     <li className="card">
       <Link href={`/articles/${article.slug}`}>
-        <Thumb article={article} />
+        <div className="card-thumb">
+          <Thumb article={article} />
+        </div>
         <div className="card-body">
-          <p className="card-title">{article.title}</p>
           <p className="card-meta">
-            <CategoryLabel article={article} /> {formatDate(article.date)} <NewBadge date={article.date} />
+            <CategoryLabel article={article} />
+            <time>{formatDate(article.date)}</time>
+            <NewBadge date={article.date} />
           </p>
+          <p className="card-title">{article.title}</p>
         </div>
       </Link>
     </li>

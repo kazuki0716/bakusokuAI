@@ -1,5 +1,21 @@
 import type { Metadata, Viewport } from "next";
+import { Outfit, Zen_Kaku_Gothic_New } from "next/font/google";
 import "./globals.css";
+
+const zenKaku = Zen_Kaku_Gothic_New({
+  weight: ["400", "500", "700", "900"],
+  subsets: ["latin"],
+  display: "swap",
+  preload: false,
+  variable: "--font-ja",
+});
+
+const outfit = Outfit({
+  weight: ["500", "700", "800", "900"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-en",
+});
 
 export const metadata: Metadata = {
   title: { default: "爆速AI NEWS", template: "%s | 爆速AI NEWS" },
@@ -8,12 +24,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#d0362e",
+  themeColor: "#e8382d",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja">
+    <html lang="ja" className={`${zenKaku.variable} ${outfit.variable}`}>
       <body>{children}</body>
     </html>
   );

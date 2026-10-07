@@ -6,7 +6,7 @@ import { LineBanner } from "@/components/LineBanner";
 import { getMoneySecrets, MONEY_NAME } from "@/lib/money";
 import { MoneySecretList } from "@/components/MoneySecrets";
 import { SectionHeading } from "@/components/ArticleParts";
-import { mondayOf, nextMonday, todayJST } from "@/lib/schedule";
+import { nextMonday, todayJST } from "@/lib/schedule";
 import { HomeHero } from "@/components/home/HomeHero";
 import {
   CategoryRails,
@@ -40,20 +40,13 @@ export default async function HomePage() {
   );
 
   const weekly = articles.filter((a) => a.category === "weekly").slice(0, 2);
-  const weekCount = articles.filter((a) => a.date >= mondayOf(today)).length;
   const shown = new Set([...todayList, ...weekly].map((a) => a.slug));
   const months = [...new Set(articles.map((a) => monthKey(a.date)))];
   const money = getMoneySecrets().slice(0, 4);
 
   return (
     <>
-      <HomeHero
-        today={today}
-        isFallback={isFallback}
-        shownCount={todayList.length}
-        weekCount={weekCount}
-        total={articles.length}
-      />
+      <HomeHero today={today} isFallback={isFallback} shownCount={todayList.length} />
 
       <TodayUpdates list={todayList} isFallback={isFallback} date={shownDate} />
       <WeeklyTopPreview articles={weekly} next={nextMonday(today)} />

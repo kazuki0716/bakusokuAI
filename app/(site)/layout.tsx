@@ -26,7 +26,9 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
                 {CATEGORIES[key].label}
               </Link>
             ))}
+            {/* 会員特典はメインではないので、最後に控えめに */}
             <Link href="/money" className="nav-link nav-money">
+              <span className="nav-money-tag">特典</span>
               {MONEY_NAME}
             </Link>
           </nav>

@@ -19,7 +19,7 @@ export function NewBadge({ date }: { date: string }) {
   return isNew(date) ? <span className="new">NEW</span> : null;
 }
 
-// 英語の大見出し＋日本語の小見出し
+// 見出し：日本語を大きく、英字は小さな飾りとして上に
 export function SectionHeading({ en, ja, href, more = "もっと見る" }: { en: string; ja: string; href?: string; more?: string }) {
   return (
     <div className="section-heading">

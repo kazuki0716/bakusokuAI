@@ -10,7 +10,6 @@ export function TodayUpdates({ list, isFallback, date }: { list: Article[]; isFa
   return (
     <section id="today" className="block home-section reveal">
       <SectionHeading en="TODAY" ja={isFallback ? `最新の記事（${shortDate(date)}）` : "今日の記事"} />
-      <p className="section-lead">毎朝届くニュース2本と、曜日ごとのおすすめ1本です。まずはタイトルと1行まとめだけでもどうぞ。</p>
       <ul className="today-list">
         {list.map((a, i) => (
           <li key={a.slug} className={i === 0 ? "today-item today-item-lg" : "today-item"}>

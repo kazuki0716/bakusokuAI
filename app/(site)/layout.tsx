@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CATEGORIES, CATEGORY_KEYS } from "@/lib/categories";
 import { LECTEA_COURSES_URL } from "@/lib/links";
+import { MONEY_NAME } from "@/lib/money";
 
 const TICKER = ["仕事に効くAI情報を、爆速で。", "毎週更新 WEEKLY TOP", "ChatGPT / Gemini / Claude / Copilot", "爆速AI会員限定"];
 
@@ -19,6 +20,9 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                 {CATEGORIES[key].label}
               </Link>
             ))}
+            <Link href="/money" className="nav-link nav-money">
+              {MONEY_NAME}
+            </Link>
           </nav>
           <a href={LECTEA_COURSES_URL} target="_blank" rel="noopener noreferrer" className="course-btn">
             講座を見る <span aria-hidden="true">↗</span>
@@ -57,6 +61,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                   {CATEGORIES[key].label}
                 </Link>
               ))}
+              <Link href="/money">YourLife {MONEY_NAME}</Link>
               <a href={LECTEA_COURSES_URL} target="_blank" rel="noopener noreferrer">
                 爆速AIの講座（レクティ）↗
               </a>

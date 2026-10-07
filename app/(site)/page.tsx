@@ -3,6 +3,8 @@ import { getArticles, getAllTags, formatDate } from "@/lib/articles";
 import { getFeedItems } from "@/lib/feeds";
 import { FeedList } from "@/components/FeedList";
 import { CourseCards } from "@/components/CourseLinks";
+import { getMoneySecrets, MONEY_NAME } from "@/lib/money";
+import { MoneySecretList } from "@/components/MoneySecrets";
 import { CATEGORIES, CATEGORY_KEYS } from "@/lib/categories";
 import { ArticleCard, CategoryLabel, HeadlineItem, NewBadge, SectionHeading, Thumb } from "@/components/ArticleParts";
 
@@ -18,6 +20,7 @@ export default async function HomePage() {
   const hero = articles.find((a) => a.pickup) ?? articles[0];
   const latest = articles.filter((a) => a.slug !== hero.slug).slice(0, 8);
   const weekly = articles.filter((a) => a.category === "weekly").slice(0, 2);
+  const money = getMoneySecrets().slice(0, 4);
 
   return (
     <>
@@ -67,6 +70,22 @@ export default async function HomePage() {
           </ol>
         </div>
       </section>
+
+      {money.length > 0 && (
+        <section className="block money-block">
+          <div className="money-block-head">
+            <div>
+              <p className="money-head-en">MEMBERS BENEFIT</p>
+              <h2 className="money-block-title">YourLife {MONEY_NAME}</h2>
+              <p className="money-block-desc">爆速AI会員だけの特典。公式LINEで届く「お金のお得情報」をまとめて見られます。</p>
+            </div>
+            <Link href="/money" className="more more-light">
+              すべて見る <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+          <MoneySecretList items={money} />
+        </section>
+      )}
 
       {feed.length > 0 && (
         <section className="block">

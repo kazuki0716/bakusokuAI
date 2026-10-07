@@ -10,6 +10,12 @@
 - `proxy.ts` ＋ `app/api/login` — 合言葉ログイン。合言葉はVercelの環境変数 `SITE_PASSWORD`
 - `app/(site)/` — 会員ページ、`app/login/` — ログイン画面
 
+## YourLife「お金の秘密辞典」（会員特典・AIニュースとは別枠）
+
+- 公式LINEで配信しているお金のお得情報を `content/money-secrets.yaml` で管理する（新しいものを上に追加）
+- 画像は `public/images/money/` に正方形で置く。表示は `/money` ページとトップページの特典枠
+- AIニュースの定期実行ではこのファイルを触らない
+
 ## 記事を書くとき
 
 必ず `docs/editorial-guide.md` を読んでから書くこと。テンプレートは `content/articles/_template.md`。

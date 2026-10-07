@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { formatDate, getAllArticles, getArticle } from "@/lib/articles";
+import { formatDate, getAllArticles, getArticle, getArticleWithImage, getArticles } from "@/lib/articles";
+import { SafeImage } from "@/components/SafeImage";
 import { ArticleCard, CategoryLabel, SectionHeading } from "@/components/ArticleParts";
 import { CATEGORIES } from "@/lib/categories";
 import { Ranking } from "@/components/Ranking";
@@ -18,10 +19,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ArticlePage({ params }: Props) {
-  const article = getArticle((await params).slug);
+  const article = await getArticleWithImage((await params).slug);
   if (!article) notFound();
 
-  const related = getAllArticles()
+  const related = (await getArticles())
     .filter((a) => a.slug !== article.slug && a.tags.some((t) => article.tags.includes(t)))
     .slice(0, 3);
 
@@ -38,6 +39,13 @@ export default async function ArticlePage({ params }: Props) {
           <h1 className="article-title">{article.title}</h1>
           {article.audience.length > 0 && <p className="audience">こんな人におすすめ：{article.audience.join("／")}</p>}
         </header>
+
+        {article.image && !article.youtube && (
+          <figure className="eyecatch">
+            <SafeImage src={article.image} fallback={null} />
+            {article.imageCredit && <figcaption>{article.imageCredit}</figcaption>}
+          </figure>
+        )}
 
         {article.summary.length > 0 && (
           <section className="summary-box">

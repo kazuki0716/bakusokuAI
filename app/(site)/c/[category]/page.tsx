@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllArticles } from "@/lib/articles";
+import { getArticles } from "@/lib/articles";
 import { CATEGORIES, CATEGORY_KEYS, isCategory } from "@/lib/categories";
 import { ArticleCard } from "@/components/ArticleParts";
 
@@ -19,7 +19,7 @@ export default async function CategoryPage({ params }: Props) {
   const { category } = await params;
   if (!isCategory(category)) notFound();
 
-  const list = getAllArticles().filter((a) => a.category === category);
+  const list = (await getArticles()).filter((a) => a.category === category);
 
   return (
     <section>

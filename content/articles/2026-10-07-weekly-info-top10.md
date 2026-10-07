@@ -3,6 +3,7 @@ title: "今週の「仕事に役立つAI情報」Top10｜ChatGPTの録音読み�
 date: 2026-10-07
 category: weekly
 pickup: false
+photoQuery: "newspaper technology"
 thumbLabel: "仕事に役立つAI情報 Top10"
 summary:
   - 1位はChatGPTの録音ファイル読み込み。会議の録音から議事録まで、ChatGPTだけで作れるようになった

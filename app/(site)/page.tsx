@@ -1,10 +1,15 @@
 import Link from "next/link";
-import { getAllArticles, getAllTags, formatDate } from "@/lib/articles";
+import { getArticles, getAllTags, formatDate } from "@/lib/articles";
+import { getFeedItems } from "@/lib/feeds";
+import { FeedList } from "@/components/FeedList";
 import { CATEGORIES, CATEGORY_KEYS } from "@/lib/categories";
 import { ArticleCard, CategoryLabel, HeadlineItem, NewBadge, SectionHeading, Thumb } from "@/components/ArticleParts";
 
-export default function HomePage() {
-  const articles = getAllArticles();
+// 外部ニュースフィードを1時間ごとに更新
+export const revalidate = 3600;
+
+export default async function HomePage() {
+  const [articles, feed] = await Promise.all([getArticles(), getFeedItems()]);
   if (articles.length === 0) {
     return <p className="empty">まだ記事がありません。</p>;
   }
@@ -62,13 +67,24 @@ export default function HomePage() {
         </div>
       </section>
 
+      {feed.length > 0 && (
+        <section className="block">
+          <SectionHeading en="AI NEWS FEED" ja="いま話題のAIニュース（外部サイト）" />
+          <FeedList items={feed} />
+        </section>
+      )}
+
       {weekly.length > 0 && (
         <section className="block">
           <SectionHeading en="WEEKLY TOP" ja="今週のランキング" href="/c/weekly" />
           <ul className="weekly-cards">
             {weekly.map((a) => (
               <li key={a.slug}>
-                <Link href={`/articles/${a.slug}`} className="weekly-card">
+                <Link
+                  href={`/articles/${a.slug}`}
+                  className={`weekly-card${a.image ? " weekly-card-photo" : ""}`}
+                  style={a.image ? { backgroundImage: `url("${a.image}")` } : undefined}
+                >
                   <span className="weekly-count">
                     TOP<strong>{a.ranking.length}</strong>
                   </span>

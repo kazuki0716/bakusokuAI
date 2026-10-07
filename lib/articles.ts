@@ -3,6 +3,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import { marked } from "marked";
 import { isCategory, type CategoryKey } from "./categories";
+import { getOgImage, searchStockPhoto, youtubeThumb } from "./ogp";
 
 const ARTICLES_DIR = path.join(process.cwd(), "content", "articles");
 
@@ -15,6 +16,7 @@ export type RankingItem = {
   youtube?: string; // YouTube動画ID（動画のときだけ）
   channel?: string; // YouTubeのチャンネル名、または記事の媒体名
   comment: string; // 編集部のおすすめポイント
+  image?: string; // 自動で付く（YouTubeのサムネ・記事のアイキャッチ・リンク先のOGP画像）
 };
 
 export type ArticleMeta = {
@@ -27,7 +29,9 @@ export type ArticleMeta = {
   tags: string[];
   audience: string[];
   level?: "初級" | "中級" | "上級";
-  thumbnail?: string; // /images/articles/... （無ければカテゴリ色のサムネを自動生成）
+  thumbnail?: string; // アイキャッチ画像を手動で指定（/images/articles/... または https://...）
+  eyecatchFrom?: string; // このURLのOGP画像をアイキャッチにする（省略時は sources の1件目）
+  photoQuery?: string; // OGP画像が無いとき、無料素材（Pexels）をこの英語キーワードで探す
   thumbLabel?: string; // 自動サムネに載せる短い文字
   youtube?: string; // YouTube動画ID
   sources: Source[];
@@ -35,7 +39,11 @@ export type ArticleMeta = {
   ranking: RankingItem[];
 };
 
-export type Article = ArticleMeta & { html: string };
+export type Article = ArticleMeta & {
+  html: string;
+  image?: string; // 実際に表示するアイキャッチ（getArticles で自動的に決まる）
+  imageCredit?: string; // 外部サイトの画像を使うときの出典表示
+};
 
 function toDateString(value: unknown): string {
   if (value instanceof Date) return value.toISOString().slice(0, 10);
@@ -63,7 +71,9 @@ function readArticle(file: string): Article {
     tags: data.tags ?? [],
     audience: data.audience ?? [],
     level: data.level,
-    thumbnail: data.thumbnail,
+    thumbnail: data.thumbnail ?? data.image,
+    eyecatchFrom: data.eyecatchFrom,
+    photoQuery: data.photoQuery,
     thumbLabel: data.thumbLabel,
     youtube: data.youtube ? String(data.youtube) : undefined,
     sources: data.sources ?? [],
@@ -87,6 +97,62 @@ export function getAllArticles(): Article[] {
 
 export function getArticle(slug: string): Article | undefined {
   return getAllArticles().find((a) => a.slug === slug);
+}
+
+function hostOf(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
+
+// アイキャッチ画像の決め方（上から順に、見つかったものを使う）
+// 1. frontmatter の thumbnail  2. 記事の youtube  3. ランキング1位のYouTube
+// 4. eyecatchFrom または sources 1件目のOGP画像  5. ランキング1位のリンク先のOGP画像
+// 6. photoQuery で探した無料素材写真（Pexels）  7. どれも無ければカテゴリ柄のサムネ
+async function resolveImage(a: Article): Promise<Pick<Article, "image" | "imageCredit">> {
+  if (a.thumbnail) return { image: a.thumbnail };
+  if (a.youtube) return { image: youtubeThumb(a.youtube), imageCredit: "画像：YouTube" };
+  const topVideo = a.ranking.find((r) => r.youtube);
+  if (topVideo?.youtube) return { image: youtubeThumb(topVideo.youtube), imageCredit: "画像：YouTube" };
+
+  const candidates = [a.eyecatchFrom, ...a.sources.map((s) => s.url), ...a.ranking.map((r) => r.url)].filter(
+    (u): u is string => Boolean(u && /^https?:\/\//.test(u)),
+  );
+  for (const url of candidates.slice(0, 4)) {
+    const image = await getOgImage(url);
+    if (image) return { image, imageCredit: `画像：${hostOf(url)}` };
+  }
+  const stock = await searchStockPhoto(a.photoQuery ?? "");
+  if (stock) return { image: stock.image, imageCredit: stock.credit };
+  return {};
+}
+
+let enriched: Promise<Article[]> | undefined;
+
+// アイキャッチ画像付きの全記事。ページの表示にはこちらを使う
+export function getArticles(): Promise<Article[]> {
+  if (process.env.NODE_ENV !== "production") enriched = undefined; // 開発中は記事の追加をすぐ反映
+  enriched ??= (async () => {
+    const articles = getAllArticles();
+    await Promise.all(articles.map(async (a) => Object.assign(a, await resolveImage(a))));
+    const bySlug = new Map(articles.map((a) => [`/articles/${a.slug}`, a]));
+    // ランキングの各項目にも画像を付ける
+    await Promise.all(
+      articles.flatMap((a) =>
+        a.ranking.map(async (r) => {
+          r.image = r.youtube ? youtubeThumb(r.youtube) : (bySlug.get(r.url)?.image ?? (await getOgImage(r.url)));
+        }),
+      ),
+    );
+    return articles;
+  })();
+  return enriched;
+}
+
+export async function getArticleWithImage(slug: string): Promise<Article | undefined> {
+  return (await getArticles()).find((a) => a.slug === slug);
 }
 
 export function getAllTags(): string[] {

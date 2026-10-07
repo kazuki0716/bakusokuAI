@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllArticles, getAllTags } from "@/lib/articles";
+import { getArticles, getAllTags } from "@/lib/articles";
 import { ArticleCard } from "@/components/ArticleParts";
 
 type Props = { params: Promise<{ tag: string }> };
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function TagPage({ params }: Props) {
   const tag = decodeURIComponent((await params).tag);
-  const list = getAllArticles().filter((a) => a.tags.includes(tag));
+  const list = (await getArticles()).filter((a) => a.tags.includes(tag));
   if (list.length === 0) notFound();
 
   return (

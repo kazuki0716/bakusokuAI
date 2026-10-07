@@ -4,7 +4,11 @@ title: "記事タイトル（30〜45字。何がどう変わるかが分かる�
 date: 2026-01-01
 category: news # news / video / howto / prompt
 pickup: false # true にするとトップの大枠に表示
-thumbLabel: "サムネの文字" # 12文字前後
+thumbLabel: "サムネの文字" # 12文字前後（画像が無いときの自動サムネ用）
+# アイキャッチ画像は自動で決まる：YouTube → 出典ページのOGP画像 → photoQuery の無料素材写真 → 自動サムネ
+# eyecatchFrom: "https://..." # 特定ページのOGP画像を使いたいとき
+photoQuery: "business meeting" # 無料素材写真（Pexels）を探す英語キーワード
+# thumbnail: "/images/articles/xxx/eyecatch.png" # 自前の画像を使うとき（最優先）
 # youtube: "動画ID" # video のときだけ。https://www.youtube.com/watch?v=XXXX の XXXX 部分
 summary:
   - 1行目：何が起きたか

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import type { ArticleMeta } from "@/lib/articles";
+import type { Article } from "@/lib/articles";
+import { SafeImage } from "./SafeImage";
 import { formatDate } from "@/lib/articles";
 import { CATEGORIES } from "@/lib/categories";
 
@@ -10,7 +11,7 @@ function isNew(date: string): boolean {
   return diff >= 0 && diff < NEW_DAYS * 24 * 60 * 60 * 1000;
 }
 
-export function CategoryLabel({ article }: { article: ArticleMeta }) {
+export function CategoryLabel({ article }: { article: Article }) {
   return <span className={`cat cat-${article.category}`}>{CATEGORIES[article.category].label}</span>;
 }
 
@@ -35,14 +36,8 @@ export function SectionHeading({ en, ja, href }: { en: string; ja: string; href?
   );
 }
 
-export function Thumb({ article, large = false }: { article: ArticleMeta; large?: boolean }) {
-  const className = `thumb thumb-${article.category}${large ? " thumb-lg" : ""}`;
-  if (article.thumbnail) {
-    return <img className={className} src={article.thumbnail} alt="" loading="lazy" />;
-  }
-  if (article.youtube) {
-    return <img className={className} src={`https://i.ytimg.com/vi/${article.youtube}/hqdefault.jpg`} alt="" loading="lazy" />;
-  }
+// カテゴリ色＋スピード線の自動サムネ（画像が無いときの代わり）
+function PatternThumb({ article, className }: { article: Article; className: string }) {
   return (
     <div className={className} aria-hidden="true">
       <span className="thumb-en">{CATEGORIES[article.category].en}</span>
@@ -51,8 +46,20 @@ export function Thumb({ article, large = false }: { article: ArticleMeta; large?
   );
 }
 
+export function Thumb({ article, large = false }: { article: Article; large?: boolean }) {
+  const base = `thumb thumb-${article.category}${large ? " thumb-lg" : ""}`;
+  const pattern = <PatternThumb article={article} className={base} />;
+  if (!article.image) return pattern;
+  return (
+    <div className={`thumb-photo${large ? " thumb-photo-lg" : ""}`}>
+      <SafeImage src={article.image} className="thumb-img" fallback={pattern} />
+      <span className={`thumb-chip cat-${article.category}`}>{CATEGORIES[article.category].en}</span>
+    </div>
+  );
+}
+
 // 番号付きの1行見出し
-export function HeadlineItem({ article, index }: { article: ArticleMeta; index: number }) {
+export function HeadlineItem({ article, index }: { article: Article; index: number }) {
   return (
     <li className="headline">
       <Link href={`/articles/${article.slug}`}>
@@ -65,13 +72,16 @@ export function HeadlineItem({ article, index }: { article: ArticleMeta; index: 
           </span>
           <span className="headline-title">{article.title}</span>
         </span>
+        <span className="headline-thumb">
+          <Thumb article={article} />
+        </span>
       </Link>
     </li>
   );
 }
 
 // サムネ付きのカード
-export function ArticleCard({ article }: { article: ArticleMeta }) {
+export function ArticleCard({ article }: { article: Article }) {
   return (
     <li className="card">
       <Link href={`/articles/${article.slug}`}>

@@ -2310,3 +2310,51 @@ a.money-card:hover {
   background: var(--cat-video);
   transform: skewX(-12deg);
 }
+
+/* スマホ：メニューを横スクロールせず、全部見えるように折り返す。お金の秘密辞典は先頭に */
+@media (max-width: 960px) {
+  .nav {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    gap: 6px;
+  }
+
+  .nav-money {
+    order: -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-link {
+    padding: 5px 11px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 640px) {
+  /* メニューが2段になるので、スマホではヘッダーを画面上部に固定しない */
+  .site-header {
+    position: relative;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo img {
+    height: 36px;
+  }
+
+  .logo-news {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+  }
+
+  .course-btn,
+  .logout button {
+    padding: 4px 10px;
+    font-size: 0.72rem;
+  }
+
+  .header-inner {
+    gap: 6px 8px;
+  }
+}

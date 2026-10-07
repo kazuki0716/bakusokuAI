@@ -164,6 +164,22 @@ thumbnailCreditUrl: "https://forest.watch.impress.co.jp/docs/news/2144866.html" 
 - 画像は1記事につき、アイキャッチ＋本文1〜2枚まで。記事の主役は自分たちの解説文・図解にする（引用は補足）
 - 「転載禁止」と書かれている画像、人物写真、他社の有料素材は使わない。迷ったら公式発表（企業のニュースルーム・公式ブログ）の画像を使う
 
+### 元記事カード（NewsPicks風）
+
+ニュース記事（`category: news`）では、`sources` の1件目が記事の上部に「元記事カード」（元記事の画像・タイトル・媒体名）として大きく表示される。
+
+- `sources` の1件目には、いちばん中心になる元記事（できれば公式発表）を置く
+- `title` は元記事のタイトルを正確に、`media` に媒体名を書く。`image` に元記事の og:image を書くと確実に表示される（省略時は自動取得）
+- 元記事の本文はコピーしない。引用するときは「」で囲んだ短い一文にとどめ、出典を明記する。記事の中心は編集部の解説にする
+
+```yaml
+sources:
+  - title: "OpenAI、「DevDay 2026」を開催 ～常時稼働エージェント「dots」や「ChatGPT Space」などを発表"
+    url: "https://forest.watch.impress.co.jp/docs/news/2144866.html"
+    media: "窓の杜"
+    image: "https://（元記事の og:image）"
+```
+
 ## 13. 定期実行（自動で記事を書く）
 
 | いつ | 何を書く |

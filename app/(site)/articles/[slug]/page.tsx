@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { formatDate, getAllArticles, getArticle, getArticleWithImage, getArticles } from "@/lib/articles";
 import { SafeImage } from "@/components/SafeImage";
 import { CourseBanner } from "@/components/CourseLinks";
+import { SourceCard } from "@/components/SourceCard";
 import { ArticleCard, CategoryLabel, SectionHeading } from "@/components/ArticleParts";
 import { CATEGORIES } from "@/lib/categories";
 import { Ranking } from "@/components/Ranking";
@@ -23,6 +24,9 @@ export default async function ArticlePage({ params }: Props) {
   const article = await getArticleWithImage((await params).slug);
   if (!article) notFound();
 
+  // ニュースは1件目の出典を「元記事カード」として上部に出す（NewsPicks風）
+  const mainSource = article.category === "news" ? article.sources[0] : undefined;
+
   const related = (await getArticles())
     .filter((a) => a.slug !== article.slug && a.tags.some((t) => article.tags.includes(t)))
     .slice(0, 3);
@@ -41,21 +45,29 @@ export default async function ArticlePage({ params }: Props) {
           {article.audience.length > 0 && <p className="audience">こんな人におすすめ：{article.audience.join("／")}</p>}
         </header>
 
-        {article.image && !article.youtube && (
-          <figure className="eyecatch">
-            <SafeImage src={article.image} fallback={null} />
-            {article.imageCredit && (
-              <figcaption>
-                {article.imageCreditUrl ? (
-                  <a href={article.imageCreditUrl} target="_blank" rel="noopener noreferrer">
-                    {article.imageCredit}
-                  </a>
-                ) : (
-                  article.imageCredit
-                )}
-              </figcaption>
-            )}
-          </figure>
+        {mainSource ? (
+          <div className="src-main">
+            <SourceCard source={mainSource} main />
+            <p className="src-note">爆速AI編集部が、この記事のポイントと仕事への活かし方を解説します。</p>
+          </div>
+        ) : (
+          article.image &&
+          !article.youtube && (
+            <figure className="eyecatch">
+              <SafeImage src={article.image} fallback={null} />
+              {article.imageCredit && (
+                <figcaption>
+                  {article.imageCreditUrl ? (
+                    <a href={article.imageCreditUrl} target="_blank" rel="noopener noreferrer">
+                      {article.imageCredit}
+                    </a>
+                  ) : (
+                    article.imageCredit
+                  )}
+                </figcaption>
+              )}
+            </figure>
+          )
         )}
 
         {article.summary.length > 0 && (
@@ -100,16 +112,12 @@ export default async function ArticlePage({ params }: Props) {
 
         {article.sources.length > 0 && (
           <section className="sources">
-            <h2>出典</h2>
-            <ul>
-              {article.sources.map((s) => (
-                <li key={s.url}>
-                  <a href={s.url} target="_blank" rel="noopener noreferrer">
-                    {s.title}
-                  </a>
-                </li>
+            <h2>SOURCES</h2>
+            <div className="src-list">
+              {article.sources.map((src) => (
+                <SourceCard key={src.url} source={src} />
               ))}
-            </ul>
+            </div>
           </section>
         )}
 

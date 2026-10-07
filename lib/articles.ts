@@ -7,7 +7,12 @@ import { getOgImage, searchStockPhoto, youtubeThumb } from "./ogp";
 
 const ARTICLES_DIR = path.join(process.cwd(), "content", "articles");
 
-export type Source = { title: string; url: string };
+export type Source = {
+  title: string; // 元記事のタイトル（媒体名を含めてもよい）
+  url: string;
+  media?: string; // 媒体名（例：窓の杜）。省略時はドメイン名
+  image?: string; // 元記事の og:image。省略時はビルド時に自動取得
+};
 
 // 「今週のTop」記事のランキング1件分
 export type RankingItem = {
@@ -152,6 +157,15 @@ export function getArticles(): Promise<Article[]> {
   enriched ??= (async () => {
     const articles = getAllArticles();
     await Promise.all(articles.map(async (a) => Object.assign(a, await resolveImage(a))));
+    // 出典（元記事カード）にも画像を付ける
+    await Promise.all(
+      articles.flatMap((a) =>
+        a.sources.slice(0, 3).map(async (src) => {
+          src.media ??= hostOf(src.url);
+          src.image ??= await getOgImage(src.url);
+        }),
+      ),
+    );
     const bySlug = new Map(articles.map((a) => [`/articles/${a.slug}`, a]));
     // ランキングの各項目にも画像を付ける
     await Promise.all(

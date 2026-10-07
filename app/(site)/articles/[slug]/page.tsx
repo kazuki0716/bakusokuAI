@@ -15,7 +15,7 @@ import { SafeImage } from "@/components/SafeImage";
 import { LineBanner } from "@/components/CourseLinks";
 import { SourceCard } from "@/components/SourceCard";
 import { ArticleCard, CategoryLabel, SectionHeading } from "@/components/ArticleParts";
-import { CATEGORIES } from "@/lib/categories";
+import { CATEGORIES, SKILLUP } from "@/lib/categories";
 import { Ranking } from "@/components/Ranking";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -58,7 +58,13 @@ export default async function ArticlePage({ params }: Props) {
             {article.level && <span className="level">{article.level}</span>}
           </p>
           <h1 className="article-title">{article.title}</h1>
-          {article.audience.length > 0 && <p className="audience">こんな人におすすめ：{article.audience.join("／")}</p>}
+          {article.skillup ? (
+            <p className="audience">
+              {SKILLUP.label}：{article.skillup}
+            </p>
+          ) : (
+            article.audience.length > 0 && <p className="audience">こんな人におすすめ：{article.audience.join("／")}</p>
+          )}
         </header>
 
         {stale && (

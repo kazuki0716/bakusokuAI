@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getArticles, PAGE_SIZE } from "@/lib/articles";
-import { AUDIENCES, CATEGORIES, type CategoryKey } from "@/lib/categories";
+import { AUDIENCES, CATEGORIES, SKILLUP, type CategoryKey } from "@/lib/categories";
 import { ArticleCard } from "./ArticleParts";
 
 export function pageHref(category: CategoryKey, page: number): string {
@@ -29,21 +29,36 @@ export async function CategoryListing({ category, page }: { category: CategoryKe
       {list.length === 0 ? (
         <p className="empty">まだ記事がありません。</p>
       ) : category === "video" ? (
-        // おすすめ動画はペルソナ（立場）ごとに並べる
-        AUDIENCES.map((who) => {
-          const forWho = list.filter((a) => a.audience.includes(who));
-          if (forWho.length === 0) return null;
-          return (
-            <section key={who} className="persona-block">
-              <h2 className="persona-title">{who}におすすめ</h2>
+        // おすすめ動画はペルソナ（立場）ごと＋「AIで自分磨き」枠に並べる
+        <>
+          {AUDIENCES.map((who) => {
+            const forWho = list.filter((a) => !a.skillup && a.audience.includes(who));
+            if (forWho.length === 0) return null;
+            return (
+              <section key={who} className="persona-block">
+                <h2 className="persona-title">{who}におすすめ</h2>
+                <ul className="cards">
+                  {forWho.map((a) => (
+                    <ArticleCard key={a.slug} article={a} />
+                  ))}
+                </ul>
+              </section>
+            );
+          })}
+          {list.some((a) => a.skillup) && (
+            <section className="persona-block">
+              <h2 className="persona-title">{SKILLUP.label}</h2>
+              <p className="persona-desc">{SKILLUP.description}の動画です。</p>
               <ul className="cards">
-                {forWho.map((a) => (
-                  <ArticleCard key={a.slug} article={a} />
-                ))}
+                {list
+                  .filter((a) => a.skillup)
+                  .map((a) => (
+                    <ArticleCard key={a.slug} article={a} />
+                  ))}
               </ul>
             </section>
-          );
-        })
+          )}
+        </>
       ) : (
         <ul className="cards">
           {list.map((a) => (

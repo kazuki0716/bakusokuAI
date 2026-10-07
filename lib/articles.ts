@@ -34,6 +34,7 @@ export type ArticleMeta = {
   tags: string[];
   audience: string[]; // 対象ペルソナ（AUDIENCES のいずれか）
   task?: string; // 業務カテゴリ（TASKS のいずれか。業務に関係しない記事は省略）
+  skillup?: string; // おすすめ動画の「AIで自分磨き」枠のテーマ（SKILLUP.themes のいずれか）
   level?: "初級" | "中級" | "上級";
   thumbnail?: string; // アイキャッチ画像を手動で指定（/images/articles/... または https://...）
   eyecatchFrom?: string; // このURLのOGP画像をアイキャッチにする（省略時は sources の1件目）
@@ -79,6 +80,7 @@ function readArticle(file: string): Article {
     tags: data.tags ?? [],
     audience: data.audience ?? [],
     task: data.task,
+    skillup: data.skillup,
     level: data.level,
     thumbnail: data.thumbnail ?? data.image,
     eyecatchFrom: data.eyecatchFrom,

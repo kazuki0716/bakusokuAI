@@ -13,7 +13,7 @@ export const CATEGORIES = {
   video: {
     label: "おすすめ動画",
     en: "MOVIE",
-    description: "経営者・管理職／事務・総務・経理／マーケ・営業の立場ごとに、仕事に直結するYouTube動画を編集部が1本ずつ厳選。",
+    description: "経営者・管理職／事務・総務・経理／マーケ・営業の立場ごとに、仕事に直結するYouTube動画を編集部が1本ずつ厳選。英語学習や調べものなど、毎日使える「AIで自分磨き」の動画も。",
   },
   howto: {
     label: "使い方・特集",
@@ -37,6 +37,13 @@ export function isCategory(value: string): value is CategoryKey {
 
 // 会員ペルソナ（スプレッドシート「ペルソナ」シート・営業資料_V04 より）
 export const AUDIENCES = ["経営者・管理職", "事務・総務・経理", "マーケ・営業"] as const;
+
+// おすすめ動画の「AIで自分磨き」枠（ペルソナを問わず、仕事以外でも毎日使えるAI活用の動画）
+export const SKILLUP = {
+  label: "AIで自分磨き",
+  description: "英語の勉強、ChatGPTとの音声会話での調べもの、学び直しなど、毎日の暮らしで使えるAI活用",
+  themes: ["英語・語学", "調べもの・情報収集", "学び直し・資格", "アイデア出し・壁打ち", "暮らし・健康"],
+} as const;
 
 // 爆速AI 業務効率化コースの10カテゴリ（営業資料_V04 のカリキュラム構成より）
 export const TASKS = [

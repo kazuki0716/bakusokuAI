@@ -2348,6 +2348,12 @@ a.money-card:hover {
   transform: skewX(-12deg);
 }
 
+.persona-desc {
+  margin: -10px 0 18px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
 /* スマホ：メニューを横スクロールせず、全部見えるように折り返す。お金の秘密辞典は先頭に */
 @media (max-width: 960px) {
   .nav {

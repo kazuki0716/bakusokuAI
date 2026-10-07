@@ -131,7 +131,7 @@ ranking:
 1. `thumbnail:` — 自前で用意した画像（最優先）
 2. `youtube:`、またはランキング1位のYouTube動画のサムネイル
 3. `eyecatchFrom:` または `sources` 1件目のページのOGP画像（ニュースサイトや公式ブログがSNS共有用に用意している画像）
-4. `photoQuery:` の英語キーワードで探した無料素材写真（Pexels。Vercelの環境変数 `PEXELS_API_KEY` が必要）
+4. `photoQuery:` の英語キーワードで探した無料素材写真（Unsplash。Vercelの環境変数 `UNSPLASH_ACCESS_KEY` が必要。`PEXELS_API_KEY` があればPexelsも使う）
 5. どれも無ければ、カテゴリ色の自動サムネ
 
 - **ニュース記事は、公式発表やニュース記事を `sources` の1件目に置く**（そのページの画像がアイキャッチになる）

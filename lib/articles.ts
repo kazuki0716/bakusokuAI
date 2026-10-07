@@ -36,7 +36,7 @@ export type ArticleMeta = {
   level?: "初級" | "中級" | "上級";
   thumbnail?: string; // アイキャッチ画像を手動で指定（/images/articles/... または https://...）
   eyecatchFrom?: string; // このURLのOGP画像をアイキャッチにする（省略時は sources の1件目）
-  photoQuery?: string; // OGP画像が無いとき、無料素材（Pexels）をこの英語キーワードで探す
+  photoQuery?: string; // OGP画像が無いとき、無料素材（Unsplash / Pexels）をこの英語キーワードで探す
   thumbnailCredit?: string; // thumbnail の引用元（例："窓の杜「OpenAI、DevDay 2026を開催」より"）
   thumbnailCreditUrl?: string; // 引用元ページのURL
   thumbLabel?: string; // 自動サムネに載せる短い文字
@@ -120,7 +120,7 @@ function hostOf(url: string): string {
 // アイキャッチ画像の決め方（上から順に、見つかったものを使う）
 // 1. frontmatter の thumbnail  2. 記事の youtube  3. ランキング1位のYouTube
 // 4. eyecatchFrom または sources 1件目のOGP画像  5. ランキング1位のリンク先のOGP画像
-// 6. photoQuery で探した無料素材写真（Pexels）  7. どれも無ければカテゴリ柄のサムネ
+// 6. photoQuery で探した無料素材写真（Unsplash / Pexels）  7. どれも無ければカテゴリ柄のサムネ
 type ImageInfo = Pick<Article, "image" | "imageCredit" | "imageCreditUrl">;
 
 async function resolveImage(a: Article): Promise<ImageInfo> {
@@ -145,7 +145,7 @@ async function resolveImage(a: Article): Promise<ImageInfo> {
     }
   }
   const stock = await searchStockPhoto(a.photoQuery ?? "");
-  if (stock) return { image: stock.image, imageCredit: stock.credit };
+  if (stock) return { image: stock.image, imageCredit: stock.credit, imageCreditUrl: stock.creditUrl };
   return {};
 }
 

@@ -43,23 +43,53 @@ export function youtubeThumb(id: string): string {
   return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 }
 
-// 無料素材サイト Pexels の API で、キーワードに合う写真を探す（環境変数 PEXELS_API_KEY が必要）
-// https://www.pexels.com/api/ — 写真は無料で商用利用可。クレジット表記を付ける
-export async function searchStockPhoto(query: string): Promise<{ image: string; credit: string } | undefined> {
-  const key = process.env.PEXELS_API_KEY;
-  if (!key || !query) return undefined;
-  try {
-    const url = `https://api.pexels.com/v1/search?${new URLSearchParams({ query, per_page: "1", orientation: "landscape" })}`;
-    const res = await fetch(url, {
-      headers: { authorization: key },
-      signal: AbortSignal.timeout(6000),
-      next: { revalidate: 60 * 60 * 24 * 7 },
-    });
-    if (!res.ok) return undefined;
-    const photo = (await res.json()).photos?.[0];
-    if (!photo?.src) return undefined;
-    return { image: photo.src.landscape ?? photo.src.large, credit: `Photo: ${photo.photographer} / Pexels` };
-  } catch {
-    return undefined;
+export type StockPhoto = { image: string; credit: string; creditUrl?: string };
+
+// 無料素材サイト Unsplash の API で、キーワードに合う写真を探す（環境変数 UNSPLASH_ACCESS_KEY が必要）
+// https://unsplash.com/developers — 無料。撮影者名とUnsplashへのリンクの表記が必要
+async function searchUnsplash(query: string): Promise<StockPhoto | undefined> {
+  const key = process.env.UNSPLASH_ACCESS_KEY;
+  if (!key) return undefined;
+  const headers = { authorization: `Client-ID ${key}`, "accept-version": "v1" };
+  const url = `https://api.unsplash.com/search/photos?${new URLSearchParams({ query, per_page: "1", orientation: "landscape", content_filter: "high" })}`;
+  const res = await fetch(url, { headers, signal: AbortSignal.timeout(6000), next: { revalidate: 60 * 60 * 24 * 7 } });
+  if (!res.ok) return undefined;
+  const photo = (await res.json()).results?.[0];
+  if (!photo?.urls?.regular) return undefined;
+  // Unsplashの規約：写真を使ったらダウンロード数を記録するAPIを呼ぶ
+  if (photo.links?.download_location) {
+    fetch(photo.links.download_location, { headers, signal: AbortSignal.timeout(6000) }).catch(() => {});
   }
+  const utm = "utm_source=bakusoku_ai_news&utm_medium=referral";
+  return {
+    image: photo.urls.regular,
+    credit: `Photo: ${photo.user?.name ?? "Unknown"} / Unsplash`,
+    creditUrl: `${photo.links?.html ?? "https://unsplash.com"}?${utm}`,
+  };
+}
+
+// 無料素材サイト Pexels の API（環境変数 PEXELS_API_KEY がある場合のみ）
+async function searchPexels(query: string): Promise<StockPhoto | undefined> {
+  const key = process.env.PEXELS_API_KEY;
+  if (!key) return undefined;
+  const url = `https://api.pexels.com/v1/search?${new URLSearchParams({ query, per_page: "1", orientation: "landscape" })}`;
+  const res = await fetch(url, { headers: { authorization: key }, signal: AbortSignal.timeout(6000), next: { revalidate: 60 * 60 * 24 * 7 } });
+  if (!res.ok) return undefined;
+  const photo = (await res.json()).photos?.[0];
+  if (!photo?.src) return undefined;
+  return { image: photo.src.landscape ?? photo.src.large, credit: `Photo: ${photo.photographer} / Pexels`, creditUrl: photo.url };
+}
+
+// キーワードに合う無料素材写真を探す（Unsplash → Pexels の順）
+export async function searchStockPhoto(query: string): Promise<StockPhoto | undefined> {
+  if (!query) return undefined;
+  for (const search of [searchUnsplash, searchPexels]) {
+    try {
+      const photo = await search(query);
+      if (photo) return photo;
+    } catch {
+      // 次の素材サイトを試す
+    }
+  }
+  return undefined;
 }

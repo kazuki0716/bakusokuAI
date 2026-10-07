@@ -32,6 +32,8 @@ export type ArticleMeta = {
   thumbnail?: string; // アイキャッチ画像を手動で指定（/images/articles/... または https://...）
   eyecatchFrom?: string; // このURLのOGP画像をアイキャッチにする（省略時は sources の1件目）
   photoQuery?: string; // OGP画像が無いとき、無料素材（Pexels）をこの英語キーワードで探す
+  thumbnailCredit?: string; // thumbnail の引用元（例："窓の杜「OpenAI、DevDay 2026を開催」より"）
+  thumbnailCreditUrl?: string; // 引用元ページのURL
   thumbLabel?: string; // 自動サムネに載せる短い文字
   youtube?: string; // YouTube動画ID
   sources: Source[];
@@ -43,6 +45,7 @@ export type Article = ArticleMeta & {
   html: string;
   image?: string; // 実際に表示するアイキャッチ（getArticles で自動的に決まる）
   imageCredit?: string; // 外部サイトの画像を使うときの出典表示
+  imageCreditUrl?: string; // 出典ページへのリンク
 };
 
 function toDateString(value: unknown): string {
@@ -74,6 +77,8 @@ function readArticle(file: string): Article {
     thumbnail: data.thumbnail ?? data.image,
     eyecatchFrom: data.eyecatchFrom,
     photoQuery: data.photoQuery,
+    thumbnailCredit: data.thumbnailCredit,
+    thumbnailCreditUrl: data.thumbnailCreditUrl,
     thumbLabel: data.thumbLabel,
     youtube: data.youtube ? String(data.youtube) : undefined,
     sources: data.sources ?? [],
@@ -111,18 +116,28 @@ function hostOf(url: string): string {
 // 1. frontmatter の thumbnail  2. 記事の youtube  3. ランキング1位のYouTube
 // 4. eyecatchFrom または sources 1件目のOGP画像  5. ランキング1位のリンク先のOGP画像
 // 6. photoQuery で探した無料素材写真（Pexels）  7. どれも無ければカテゴリ柄のサムネ
-async function resolveImage(a: Article): Promise<Pick<Article, "image" | "imageCredit">> {
-  if (a.thumbnail) return { image: a.thumbnail };
-  if (a.youtube) return { image: youtubeThumb(a.youtube), imageCredit: "画像：YouTube" };
-  const topVideo = a.ranking.find((r) => r.youtube);
-  if (topVideo?.youtube) return { image: youtubeThumb(topVideo.youtube), imageCredit: "画像：YouTube" };
+type ImageInfo = Pick<Article, "image" | "imageCredit" | "imageCreditUrl">;
 
+async function resolveImage(a: Article): Promise<ImageInfo> {
+  if (a.thumbnail) {
+    return { image: a.thumbnail, imageCredit: a.thumbnailCredit, imageCreditUrl: a.thumbnailCreditUrl };
+  }
+  const video = a.youtube ? { youtube: a.youtube, url: `https://www.youtube.com/watch?v=${a.youtube}`, title: a.title } : a.ranking.find((r) => r.youtube);
+  if (video?.youtube) {
+    return { image: youtubeThumb(video.youtube), imageCredit: `出典：YouTube「${video.title}」`, imageCreditUrl: video.url };
+  }
+
+  // 出典ページ（または指定ページ）のOGP画像。引用元として媒体名・記事名を表示する
+  const titleOf = new Map<string, string>([...a.sources.map((s) => [s.url, s.title] as const), ...a.ranking.map((r) => [r.url, r.title] as const)]);
   const candidates = [a.eyecatchFrom, ...a.sources.map((s) => s.url), ...a.ranking.map((r) => r.url)].filter(
     (u): u is string => Boolean(u && /^https?:\/\//.test(u)),
   );
   for (const url of candidates.slice(0, 4)) {
     const image = await getOgImage(url);
-    if (image) return { image, imageCredit: `画像：${hostOf(url)}` };
+    if (image) {
+      const title = titleOf.get(url);
+      return { image, imageCredit: title ? `出典：${title}` : `出典：${hostOf(url)}`, imageCreditUrl: url };
+    }
   }
   const stock = await searchStockPhoto(a.photoQuery ?? "");
   if (stock) return { image: stock.image, imageCredit: stock.credit };

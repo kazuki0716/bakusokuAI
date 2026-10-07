@@ -8,7 +8,9 @@ thumbLabel: "サムネの文字" # 12文字前後（画像が無いときの自�
 # アイキャッチ画像は自動で決まる：YouTube → 出典ページのOGP画像 → photoQuery の無料素材写真 → 自動サムネ
 # eyecatchFrom: "https://..." # 特定ページのOGP画像を使いたいとき
 photoQuery: "business meeting" # 無料素材写真（Pexels）を探す英語キーワード
-# thumbnail: "/images/articles/xxx/eyecatch.png" # 自前の画像を使うとき（最優先）
+# thumbnail: "https://..." # アイキャッチ画像のURL（最優先）。元記事の og:image を使うときは下の2行も必ず書く
+# thumbnailCredit: "出典：媒体名「記事タイトル」"
+# thumbnailCreditUrl: "https://（元記事のURL）"
 # youtube: "動画ID" # video のときだけ。https://www.youtube.com/watch?v=XXXX の XXXX 部分
 summary:
   - 1行目：何が起きたか

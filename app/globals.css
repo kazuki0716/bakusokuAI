@@ -1212,6 +1212,11 @@ img {
   text-align: right;
 }
 
+.eyecatch figcaption a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .summary-box,
 .impact-box {
   border-radius: var(--radius-sm);

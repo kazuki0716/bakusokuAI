@@ -44,7 +44,17 @@ export default async function ArticlePage({ params }: Props) {
         {article.image && !article.youtube && (
           <figure className="eyecatch">
             <SafeImage src={article.image} fallback={null} />
-            {article.imageCredit && <figcaption>{article.imageCredit}</figcaption>}
+            {article.imageCredit && (
+              <figcaption>
+                {article.imageCreditUrl ? (
+                  <a href={article.imageCreditUrl} target="_blank" rel="noopener noreferrer">
+                    {article.imageCredit}
+                  </a>
+                ) : (
+                  article.imageCredit
+                )}
+              </figcaption>
+            )}
           </figure>
         )}
 

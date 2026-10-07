@@ -197,3 +197,32 @@ export function formatDate(date: string): string {
   const wd = "日月火水木金土"[new Date(Date.UTC(y, m - 1, d)).getUTCDay()];
   return `${y}/${m}/${d}(${wd})`;
 }
+
+// ---------- バックナンバー・古い記事の扱い ----------
+
+// カテゴリページの1ページあたりの記事数
+export const PAGE_SIZE = 24;
+
+// ビルド時に先に作っておく記事ページの範囲（日数）。これより古い記事ページは、
+// 最初に読まれたときに作って保存する（記事が増えてもビルド時間が伸びないようにするため）
+export const PREBUILD_DAYS = 120;
+
+// この日数を過ぎたニュースには「古い情報です」の注意書きを出す
+export const STALE_DAYS = 180;
+
+export function daysSince(date: string): number {
+  return Math.floor((Date.now() - new Date(`${date}T00:00:00+09:00`).getTime()) / 86_400_000);
+}
+
+export function isPrebuilt(article: ArticleMeta): boolean {
+  return daysSince(article.date) <= PREBUILD_DAYS;
+}
+
+export function monthKey(date: string): string {
+  return date.slice(0, 7); // YYYY-MM
+}
+
+export function formatMonth(key: string): string {
+  const [y, m] = key.split("-").map(Number);
+  return `${y}年${m}月`;
+}

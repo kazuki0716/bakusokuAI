@@ -1,7 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { formatDate, getAllArticles, getArticle, getArticleWithImage, getArticles } from "@/lib/articles";
+import {
+  daysSince,
+  formatDate,
+  getAllArticles,
+  getArticle,
+  getArticleWithImage,
+  getArticles,
+  isPrebuilt,
+  STALE_DAYS,
+} from "@/lib/articles";
 import { SafeImage } from "@/components/SafeImage";
 import { CourseBanner } from "@/components/CourseLinks";
 import { SourceCard } from "@/components/SourceCard";
@@ -11,8 +20,11 @@ import { Ranking } from "@/components/Ranking";
 
 type Props = { params: Promise<{ slug: string }> };
 
+// 最近の記事だけビルド時に作る。古い記事は最初に読まれたときに作って保存する
 export function generateStaticParams() {
-  return getAllArticles().map((a) => ({ slug: a.slug }));
+  return getAllArticles()
+    .filter(isPrebuilt)
+    .map((a) => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -23,6 +35,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ArticlePage({ params }: Props) {
   const article = await getArticleWithImage((await params).slug);
   if (!article) notFound();
+
+  const age = daysSince(article.date);
+  const stale = age >= STALE_DAYS; // AIツールの情報は古くなりやすいので全カテゴリで表示
 
   // ニュースは1件目の出典を「元記事カード」として上部に出す（NewsPicks風）
   const mainSource = article.category === "news" ? article.sources[0] : undefined;
@@ -45,6 +60,12 @@ export default async function ArticlePage({ params }: Props) {
           <h1 className="article-title">{article.title}</h1>
           {article.audience.length > 0 && <p className="audience">こんな人におすすめ：{article.audience.join("／")}</p>}
         </header>
+
+        {stale && (
+          <p className="stale-note">
+            ⚠ この記事は約{Math.floor(age / 30)}か月前（{formatDate(article.date)}）の情報です。AIツールの機能や料金は変わっている可能性があるため、最新の情報は公式サイトでご確認ください。
+          </p>
+        )}
 
         {mainSource ? (
           <div className="src-main">

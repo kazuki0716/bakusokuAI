@@ -1,11 +1,14 @@
-import { getAllArticles } from "@/lib/articles";
+import { getAllArticles, isPrebuilt } from "@/lib/articles";
 import { renderEyecatch } from "@/lib/eyecatch";
 
 // /eyecatch/<記事のスラッグ>.png — 記事ごとのオリジナル・アイキャッチ画像（ビルド時に生成）
 export const dynamic = "force-static";
 
 export function generateStaticParams() {
-  return getAllArticles().map((a) => ({ file: `${a.slug}.png` }));
+  // 最近の記事だけビルド時に作る。古い記事の画像は最初に読まれたときに作って保存する
+  return getAllArticles()
+    .filter(isPrebuilt)
+    .map((a) => ({ file: `${a.slug}.png` }));
 }
 
 export async function GET(_request: Request, { params }: { params: Promise<{ file: string }> }) {

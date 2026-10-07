@@ -31,11 +31,11 @@ async function loadFont(text: string, weight: 700 | 900): Promise<ArrayBuffer | 
     const css = await fetch(
       `https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@${weight}&text=${encodeURIComponent(text)}`,
       // 古いブラウザとして問い合わせると、ImageResponse が読める TTF 形式が返ってくる
-      { headers: { "user-agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.30" }, signal: AbortSignal.timeout(8000) },
+      { headers: { "user-agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.30" }, signal: AbortSignal.timeout(8000), cache: "force-cache" },
     ).then((r) => r.text());
     const url = css.match(/src: url\((.+?)\) format\('(?:truetype|opentype)'\)/)?.[1];
     if (!url) return undefined;
-    return await fetch(url, { signal: AbortSignal.timeout(8000) }).then((r) => r.arrayBuffer());
+    return await fetch(url, { signal: AbortSignal.timeout(8000), cache: "force-cache" }).then((r) => r.arrayBuffer());
   } catch {
     return undefined;
   }

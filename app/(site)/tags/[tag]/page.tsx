@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getArticles, getAllTags } from "@/lib/articles";
+import Link from "next/link";
+import { getArticles, getAllTags, PAGE_SIZE } from "@/lib/articles";
 import { ArticleCard } from "@/components/ArticleParts";
 
 type Props = { params: Promise<{ tag: string }> };
@@ -16,21 +17,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function TagPage({ params }: Props) {
   const tag = decodeURIComponent((await params).tag);
-  const list = (await getArticles()).filter((a) => a.tags.includes(tag));
-  if (list.length === 0) notFound();
+  const all = (await getArticles()).filter((a) => a.tags.includes(tag));
+  if (all.length === 0) notFound();
+  // キーワードページは新しい記事を最大 PAGE_SIZE×2 本まで。古い記事はバックナンバーから探す
+  const list = all.slice(0, PAGE_SIZE * 2);
 
   return (
     <section>
       <header className="page-head">
         <p className="page-en">KEYWORD</p>
         <h1 className="page-title">#{tag}</h1>
-        <p className="page-desc">{list.length}件の記事</p>
+        <p className="page-desc">{all.length}件の記事</p>
       </header>
       <ul className="cards">
         {list.map((a) => (
           <ArticleCard key={a.slug} article={a} />
         ))}
       </ul>
+      {all.length > list.length && (
+        <p className="archive-link">
+          新しい{list.length}件を表示しています。<Link href="/archive">それより前の記事はバックナンバーへ →</Link>
+        </p>
+      )}
     </section>
   );
 }

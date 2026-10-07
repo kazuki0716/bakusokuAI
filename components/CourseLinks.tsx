@@ -8,9 +8,9 @@ export function CourseCards() {
     <ul className="courses">
       {COURSES.map((c, i) => (
         <li key={c.name}>
-          <a href={LECTEA_COURSES_URL} {...external} className={`course-card course-${i}`}>
+          <a href={c.url} {...external} className={`course-card course-${i}`}>
             <span className="course-visual" aria-hidden="true">
-              {i === 1 ? <img src="/brand/logo.png" alt="" /> : <span className="course-mark">{c.mark}</span>}
+              <img src={c.logo} alt="" />
             </span>
             <span className="course-body">
               <span className="course-name">{c.name}</span>

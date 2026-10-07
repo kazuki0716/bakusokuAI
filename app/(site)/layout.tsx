@@ -62,6 +62,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
                 </Link>
               ))}
               <Link href="/money">YourLife {MONEY_NAME}</Link>
+              <Link href="/archive">バックナンバー</Link>
               <a href={LECTEA_COURSES_URL} target="_blank" rel="noopener noreferrer">
                 爆速AIの講座（レクティ）↗
               </a>

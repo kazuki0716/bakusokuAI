@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { formatDate, getAllArticles, getArticle } from "@/lib/articles";
 import { ArticleCard, CategoryLabel } from "@/components/ArticleParts";
+import { Ranking } from "@/components/Ranking";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -54,6 +55,8 @@ export default async function ArticlePage({ params }: Props) {
           />
         </div>
       )}
+
+      {article.ranking.length > 0 && <Ranking items={article.ranking} />}
 
       <div className="article-body" dangerouslySetInnerHTML={{ __html: article.html }} />
 

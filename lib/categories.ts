@@ -1,4 +1,5 @@
 export const CATEGORIES = {
+  weekly: { label: "今週のTop", description: "毎週更新：おすすめYouTube Top5と、仕事に役立つAI情報Top10" },
   news: { label: "ニュース", description: "仕事に効くAIニュースを3行で" },
   video: { label: "おすすめ動画", description: "編集部が選んだ、見る価値のあるYouTube" },
   howto: { label: "使い方・特集", description: "図解とスクショで分かる実践ガイド" },

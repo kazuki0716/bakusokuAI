@@ -11,6 +11,7 @@
   --cat-video: #c2185b;
   --cat-howto: #0f7b5f;
   --cat-prompt: #b45309;
+  --cat-weekly: #6d28d9;
   --note-bg: #fff8e6;
   --note-line: #f2c94c;
   --radius: 10px;
@@ -31,6 +32,7 @@
     --cat-video: #f48fb1;
     --cat-howto: #5fd3b0;
     --cat-prompt: #f6b860;
+    --cat-weekly: #b79cff;
     --note-bg: #2a2412;
     --note-line: #a8862a;
     --shadow: none;
@@ -243,6 +245,10 @@ main > section {
   background: var(--cat-prompt);
 }
 
+.cat-weekly {
+  background: var(--cat-weekly);
+}
+
 @media (prefers-color-scheme: dark) {
   .cat {
     color: #111;
@@ -292,6 +298,10 @@ main > section {
 
 .thumb-prompt {
   background: linear-gradient(135deg, var(--cat-prompt), #f59e0b);
+}
+
+.thumb-weekly {
+  background: linear-gradient(135deg, var(--cat-weekly), #a78bfa);
 }
 
 .thumb-lg {
@@ -670,6 +680,108 @@ main > section {
   fill: #fff;
   font-size: 14px;
   font-weight: 800;
+}
+
+/* ---------- ranking（今週のTop） ---------- */
+.ranking {
+  list-style: none;
+  margin: 8px 0 24px;
+  padding: 0;
+}
+
+.rank-item {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.rank-video {
+  grid-template-columns: 40px 200px minmax(0, 1fr);
+}
+
+@media (max-width: 640px) {
+  .rank-video {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+
+  .rank-video .rank-thumb {
+    grid-column: 2;
+  }
+
+  .rank-video .rank-body {
+    grid-column: 2;
+  }
+}
+
+.rank-no {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--line);
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.rank-no-1 {
+  background: #e3b341;
+  color: #3b2a00;
+}
+
+.rank-no-2 {
+  background: #b8c0cc;
+  color: #1f2328;
+}
+
+.rank-no-3 {
+  background: #d39b6a;
+  color: #2b1600;
+}
+
+.rank-thumb {
+  position: relative;
+  display: block;
+}
+
+.rank-thumb img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px;
+  background: var(--line);
+}
+
+.rank-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 1.6rem;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+.rank-title {
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.rank-channel {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.rank-comment {
+  margin: 6px 0 0;
+  font-size: 0.92rem;
 }
 
 .sources h2 {

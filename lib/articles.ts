@@ -8,6 +8,15 @@ const ARTICLES_DIR = path.join(process.cwd(), "content", "articles");
 
 export type Source = { title: string; url: string };
 
+// 「今週のTop」記事のランキング1件分
+export type RankingItem = {
+  title: string;
+  url: string;
+  youtube?: string; // YouTube動画ID（動画のときだけ）
+  channel?: string; // YouTubeのチャンネル名、または記事の媒体名
+  comment: string; // 編集部のおすすめポイント
+};
+
 export type ArticleMeta = {
   slug: string;
   title: string;
@@ -23,6 +32,7 @@ export type ArticleMeta = {
   youtube?: string; // YouTube動画ID
   sources: Source[];
   pickup?: boolean; // トップの大枠に出す
+  ranking: RankingItem[];
 };
 
 export type Article = ArticleMeta & { html: string };
@@ -39,7 +49,7 @@ function readArticle(file: string): Article {
 
   const category = String(data.category ?? "");
   if (!isCategory(category)) {
-    throw new Error(`${file}: category "${category}" は news / video / howto / prompt のいずれかにしてください`);
+    throw new Error(`${file}: category "${category}" は weekly / news / video / howto / prompt のいずれかにしてください`);
   }
   if (!data.title) throw new Error(`${file}: title がありません`);
 
@@ -58,6 +68,10 @@ function readArticle(file: string): Article {
     youtube: data.youtube ? String(data.youtube) : undefined,
     sources: data.sources ?? [],
     pickup: Boolean(data.pickup),
+    ranking: (data.ranking ?? []).map((item: RankingItem) => ({
+      ...item,
+      youtube: item.youtube ? String(item.youtube) : undefined,
+    })),
     html: marked.parse(content, { async: false }),
   };
 }

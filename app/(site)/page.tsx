@@ -11,6 +11,7 @@ export default function HomePage() {
 
   const hero = articles.find((a) => a.pickup) ?? articles[0];
   const headlines = articles.filter((a) => a.slug !== hero.slug).slice(0, 8);
+  const weekly = articles.filter((a) => a.category === "weekly").slice(0, 2);
   const videos = articles.filter((a) => a.category === "video").slice(0, 3);
   const prompts = articles.filter((a) => a.category === "prompt").slice(0, 3);
 
@@ -64,6 +65,7 @@ export default function HomePage() {
       </div>
 
       <aside className="side-col">
+        <SideBox title="今週のTop" items={weekly} empty="毎週更新予定です" />
         <SideBox title="おすすめ動画" items={videos} empty="動画は準備中です" />
         <SideBox title="今週のプロンプト" items={prompts} empty="プロンプトは準備中です" />
         <section className="side-box">

@@ -9,6 +9,9 @@
 - `lib/articles.ts` — 記事の読み込み、`lib/categories.ts` — カテゴリ定義
 - `proxy.ts` ＋ `app/api/login` — 合言葉ログイン。合言葉はVercelの環境変数 `SITE_PASSWORD`
 - `app/(site)/` — 会員ページ、`app/login/` — ログイン画面
+  - ホーム（`page.tsx`＋`components/home/`）は「今日の記事・今週のTop・立場別・業務別」の案内所。`/guide` はサイトの見方、`/for/[立場]` と `/tasks/[業務]` は一覧
+- `lib/schedule.ts` — 曜日ごとの更新スケジュール（ホームと `/guide` に表示）。`docs/editorial-guide.md` 3章と必ず同じ内容にする
+- `lib/navigation.ts` — サイトの地図（フッターと `/guide` で共用）
 
 ## YourLife「お金の秘密辞典」（会員特典・AIニュースとは別枠）
 

@@ -20,7 +20,7 @@ export function NewBadge({ date }: { date: string }) {
 }
 
 // 英語の大見出し＋日本語の小見出し
-export function SectionHeading({ en, ja, href }: { en: string; ja: string; href?: string }) {
+export function SectionHeading({ en, ja, href, more = "もっと見る" }: { en: string; ja: string; href?: string; more?: string }) {
   return (
     <div className="section-heading">
       <h2>
@@ -29,7 +29,7 @@ export function SectionHeading({ en, ja, href }: { en: string; ja: string; href?
       </h2>
       {href && (
         <Link href={href} className="more">
-          もっと見る <span aria-hidden="true">→</span>
+          {more} <span aria-hidden="true">→</span>
         </Link>
       )}
     </div>
@@ -61,28 +61,6 @@ export function Thumb({ article, large = false }: { article: Article; large?: bo
         <span className={`thumb-chip cat-${article.category}`}>{CATEGORIES[article.category].en}</span>
       )}
     </div>
-  );
-}
-
-// 番号付きの1行見出し
-export function HeadlineItem({ article, index }: { article: Article; index: number }) {
-  return (
-    <li className="headline">
-      <Link href={`/articles/${article.slug}`}>
-        <span className="headline-no">{String(index + 1).padStart(2, "0")}</span>
-        <span className="headline-main">
-          <span className="headline-meta">
-            <CategoryLabel article={article} />
-            <time>{formatDate(article.date)}</time>
-            <NewBadge date={article.date} />
-          </span>
-          <span className="headline-title">{article.title}</span>
-        </span>
-        <span className="headline-thumb">
-          <Thumb article={article} />
-        </span>
-      </Link>
-    </li>
   );
 }
 

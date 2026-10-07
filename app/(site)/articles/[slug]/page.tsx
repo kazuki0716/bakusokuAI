@@ -12,7 +12,7 @@ import {
   STALE_DAYS,
 } from "@/lib/articles";
 import { SafeImage } from "@/components/SafeImage";
-import { LineBanner } from "@/components/CourseLinks";
+import { LineBanner } from "@/components/LineBanner";
 import { SourceCard } from "@/components/SourceCard";
 import { ArticleCard, CategoryLabel, SectionHeading } from "@/components/ArticleParts";
 import { CATEGORIES, SKILLUP } from "@/lib/categories";

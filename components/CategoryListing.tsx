@@ -46,7 +46,7 @@ export async function CategoryListing({ category, page }: { category: CategoryKe
             );
           })}
           {list.some((a) => a.skillup) && (
-            <section className="persona-block">
+            <section id="skillup" className="persona-block">
               <h2 className="persona-title">{SKILLUP.label}</h2>
               <p className="persona-desc">{SKILLUP.description}の動画です。</p>
               <ul className="cards">

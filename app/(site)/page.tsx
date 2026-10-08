@@ -8,6 +8,7 @@ import { MoneySecretList } from "@/components/MoneySecrets";
 import { SectionHeading } from "@/components/ArticleParts";
 import { nextMonday, todayJST } from "@/lib/schedule";
 import { HomeHero } from "@/components/home/HomeHero";
+import { latestWeeklyPair } from "@/components/WeeklyCards";
 import {
   CategoryRails,
   GuideBanner,
@@ -16,7 +17,6 @@ import {
   TaskGrid,
   TodayUpdates,
   WeeklyTopPreview,
-  weeklyKind,
 } from "@/components/home/HomeSections";
 
 // 外部ニュースフィードと「今日」の表示を1時間ごとに更新
@@ -41,10 +41,7 @@ export default async function HomePage() {
   );
 
   // 今週のTop：AI情報（読む）→ YouTube動画（見る）の順に、それぞれ最新の1本
-  const weeklyAll = articles.filter((a) => a.category === "weekly");
-  const weekly = (["info", "video"] as const)
-    .map((kind) => weeklyAll.find((a) => weeklyKind(a) === kind))
-    .filter((a): a is (typeof weeklyAll)[number] => Boolean(a));
+  const weekly = latestWeeklyPair(articles);
   const shown = new Set([...todayList, ...weekly].map((a) => a.slug));
   const months = [...new Set(articles.map((a) => monthKey(a.date)))];
   const money = getMoneySecrets().slice(0, 4);
@@ -65,7 +62,9 @@ export default async function HomePage() {
             <div>
               <p className="money-head-en">MEMBERS BENEFIT</p>
               <h2 className="money-block-title">YourLife {MONEY_NAME}</h2>
-              <p className="money-block-desc">爆速AI会員だけの特典。公式LINEで届く「お金のお得情報」をまとめて見られます。</p>
+              <p className="money-block-desc">
+                爆速AI会員だけの特典。公式LINEで届く「お金のお得情報」をまとめて見られます。
+              </p>
             </div>
             <Link href="/money" className="more">
               すべて見る <span aria-hidden="true">→</span>

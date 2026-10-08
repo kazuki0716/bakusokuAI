@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getArticles, PAGE_SIZE } from "@/lib/articles";
 import { AUDIENCES, CATEGORIES, SKILLUP, type CategoryKey } from "@/lib/categories";
 import { ArticleCard } from "./ArticleParts";
+import { latestWeeklyPair, WeeklyCards } from "./WeeklyCards";
 
 export function pageHref(category: CategoryKey, page: number): string {
   return page <= 1 ? `/c/${category}` : `/c/${category}/page/${page}`;
@@ -14,6 +15,9 @@ export async function CategoryListing({ category, page }: { category: CategoryKe
   const totalPages = Math.max(1, Math.ceil(all.length / PAGE_SIZE));
   if (page < 1 || page > totalPages) notFound();
   const list = all.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  // 今週のTop：1ページ目の先頭は、ホームと同じカードで最新のAI情報・YouTube動画を1本ずつ
+  const latestWeekly = category === "weekly" && page === 1 ? latestWeeklyPair(all) : [];
+  const rest = list.filter((a) => !latestWeekly.includes(a));
 
   return (
     <section>
@@ -60,11 +64,19 @@ export async function CategoryListing({ category, page }: { category: CategoryKe
           )}
         </>
       ) : (
-        <ul className="cards">
-          {list.map((a) => (
-            <ArticleCard key={a.slug} article={a} />
-          ))}
-        </ul>
+        <>
+          {latestWeekly.length > 0 && <WeeklyCards articles={latestWeekly} />}
+          {latestWeekly.length > 0 && rest.length > 0 && (
+            <h2 className="persona-title weekly-past-title">これまでのTop</h2>
+          )}
+          {rest.length > 0 && (
+            <ul className="cards">
+              {rest.map((a) => (
+                <ArticleCard key={a.slug} article={a} />
+              ))}
+            </ul>
+          )}
+        </>
       )}
 
       {totalPages > 1 && (

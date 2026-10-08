@@ -819,6 +819,10 @@ img {
   transform: translateX(4px);
 }
 
+.weekly-past-title {
+  margin-top: var(--sp-12);
+}
+
 /* ---------- AI NEWS FEED（外部サイト） ---------- */
 .feed {
   list-style: none;

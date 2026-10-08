@@ -49,9 +49,30 @@ process.stdin.on("data", (d) => (s += d)).on("end", () => {
   console.log(`タイトル: ${item.snippet.title}`);
   console.log(`チャンネル: ${item.snippet.channelTitle}`);
   for (const [k, v, ok, rule] of checks) console.log(`${ok ? "OK" : "NG"}  ${k}: ${v}（基準：${rule}）`);
-  console.log("説明文（先頭）: " + item.snippet.description.replace(/\s+/g, " ").slice(0, 300));
+  const desc = item.snippet.description;
+  const chapters = desc.split("\n").filter((l) => /^\s*\d{1,2}:\d{2}/.test(l));
+  console.log(chapters.length ? "目次:\n" + chapters.map((c) => "  " + c.trim()).join("\n") : "目次: なし（概要欄にチャプターが無い）");
+  console.log("説明文: " + desc.replace(/\s+/g, " ").slice(0, 1200));
   const pass = checks.every((c) => c[2]);
   console.log(pass ? "判定: OK（載せてよい）" : "判定: NG（基準を満たさないので載せない）");
   process.exit(pass ? 0 : 3);
 });
 '
+code=$?
+
+# 視聴者のコメント（評価の高い順に10件）。中身のチェックに使う（docs/editorial-guide.md「おすすめ動画の中身のチェック」）
+comments="$(curl -fsS "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${id}&order=relevance&maxResults=10&textFormat=plainText&key=${YOUTUBE_API_KEY}" 2>/dev/null)" || comments=""
+printf '%s' "$comments" | node -e '
+let s = "";
+process.stdin.on("data", (d) => (s += d)).on("end", () => {
+  let items = [];
+  try { items = JSON.parse(s).items || []; } catch {}
+  if (!items.length) { console.log("コメント（上位）: 取得できませんでした"); return; }
+  console.log("コメント（上位）:");
+  for (const it of items) {
+    const c = it.snippet.topLevelComment.snippet;
+    console.log(`  ・${c.textDisplay.replace(/\s+/g, " ").slice(0, 140)}（高評価${c.likeCount}）`);
+  }
+});
+'
+exit "$code"

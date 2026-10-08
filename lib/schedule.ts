@@ -5,7 +5,7 @@ export const UPDATE_HOUR = 7; // 毎朝7時ごろ更新
 export const DAILY = "ニュース2本";
 
 export const SCHEDULE: { wd: number; short: string; extra: string; detail: string; href: string; cat: CategoryKey }[] = [
-  { wd: 1, short: "月", extra: "今週のTop", detail: "今週のTop（AI情報Top10・YouTube動画Top5）＋AIで自分磨きの動画", href: "/c/weekly", cat: "weekly" },
+  { wd: 1, short: "月", extra: "今週のTop", detail: "今週のTop（AI情報Top5・YouTube動画Top5）＋AIで自分磨きの動画", href: "/c/weekly", cat: "weekly" },
   { wd: 2, short: "火", extra: "経営者・管理職向け動画", detail: "経営者・管理職向けの動画", href: "/c/video", cat: "video" },
   { wd: 3, short: "水", extra: "ノウハウ", detail: "ノウハウ（仕事ごとの実践ガイド）", href: "/c/howto", cat: "howto" },
   { wd: 4, short: "木", extra: "事務・総務・経理向け動画", detail: "事務・総務・経理向けの動画", href: "/c/video", cat: "video" },

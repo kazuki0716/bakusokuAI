@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { formatDate, type Article } from "@/lib/articles";
 
-// 今週のTop：AI情報Top10（記事で読む）とYouTube動画Top5（動画で見る）。
+// 今週のTop：AI情報Top5（記事で読む）とYouTube動画Top5（動画で見る）。
 // ホームと「今週のTop」一覧で同じカードを使い、どこで見ても同じものだと分かるようにする
 const WEEKLY_KINDS = {
   info: {
@@ -24,7 +24,7 @@ export function weeklyKind(a: Article): keyof typeof WEEKLY_KINDS {
   return a.ranking.some((r) => r.youtube) ? "video" : "info";
 }
 
-// タイトルから「今週の〜Top10｜」と「（10月第2週）」を外して、今週の中身だけを残す
+// タイトルから「今週の〜Top5｜」と「（10月第2週）」を外して、今週の中身だけを残す
 function weeklyHighlight(title: string) {
   const body = title.includes("｜") ? title.slice(title.indexOf("｜") + 1) : title;
   return body.replace(/（[^（）]*第\d週）\s*$/, "").trim();
@@ -41,7 +41,7 @@ export function latestWeeklyPair(list: Article[]): Article[] {
     .filter((a): a is Article => Boolean(a));
 }
 
-// その種類の短い名前（一覧のラベル用）：AI情報 Top10 ／ YouTube動画 Top5
+// その種類の短い名前（一覧のラベル用）：AI情報 Top5 ／ YouTube動画 Top5
 export function weeklyShortName(a: Article): string {
   return `${WEEKLY_KINDS[weeklyKind(a)].name} Top${a.ranking.length}`;
 }

@@ -3,7 +3,7 @@ export const CATEGORIES = {
   weekly: {
     label: "今週のTop",
     en: "WEEKLY TOP",
-    description: "毎週月曜更新。記事で読む「AI情報Top10」と、動画で見る「YouTube動画Top5」の2つのランキング。",
+    description: "毎週月曜更新。記事で読む「AI情報Top5」と、動画で見る「YouTube動画Top5」の2つのランキング。",
   },
   news: {
     label: "ニュース",

@@ -13,7 +13,7 @@ function isNew(date: string): boolean {
   return diff >= 0 && diff < NEW_DAYS * 24 * 60 * 60 * 1000;
 }
 
-// 今週のTopは「今週のTop｜AI情報 Top10」のように種類まで出す（2つのランキングを見分けるため）
+// 今週のTopは「今週のTop｜AI情報 Top5」のように種類まで出す（2つのランキングを見分けるため）
 export function CategoryLabel({ article }: { article: Article }) {
   return (
     <span className={`cat cat-${article.category}`}>

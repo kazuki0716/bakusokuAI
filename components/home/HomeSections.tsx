@@ -45,7 +45,7 @@ export function TodayUpdates({ list, isFallback, date }: { list: Article[]; isFa
   );
 }
 
-// ③ 今週のTop（AI情報Top10とYouTube動画Top5。一覧ページと同じカードを使う）
+// ③ 今週のTop（AI情報Top5とYouTube動画Top5。一覧ページと同じカードを使う）
 export function WeeklyTopPreview({ articles, next }: { articles: Article[]; next: string }) {
   if (articles.length === 0) return null;
   return (

@@ -1,13 +1,13 @@
 ---
-title: "今週の「仕事に役立つAI情報」Top10｜ChatGPTの録音読み込み、Copilotの回答再生成ほか（10月第2週）"
+title: "今週の「仕事に役立つAI情報」Top5｜ChatGPTの録音読み込み、Copilotの回答再生成ほか（10月第2週）"
 date: 2026-10-07
 category: weekly
 pickup: false
-thumbLabel: "仕事に役立つAI情報 Top10"
+thumbLabel: "仕事に役立つAI情報 Top5"
 summary:
   - 1位はChatGPTの録音ファイル読み込み。会議の録音から議事録まで、ChatGPTだけで作れるようになった
   - Microsoft 365 Copilotの「回答の再生成」や、Gemini・Workspaceの「スキル」など、毎日の操作が楽になる新機能が多い週だった
-  - 無料で使えるAIの性能アップや、AIに渡すデータの扱いについての話題も選んでいます
+  - Claudeの無料プランの性能アップなど、追加の費用なしで試せる話題も選んでいます
 tags: [ChatGPT, Copilot, Gemini, Claude, 議事録]
 audience: [経営者・管理職, 事務・総務・経理, マーケ・営業]
 ranking:
@@ -31,26 +31,6 @@ ranking:
     url: "/articles/2026-09-28-claude-sonnet-5-5-free"
     channel: "爆速AI NEWS"
     comment: "無料のままで、文章づくりに強いClaudeの上位モデルが使えるようになったと報じられています。「有料プランを契約する前に試したい」という方はこの機会にどうぞ。"
-  - title: "OpenAI DevDay 2026：24時間働き続けるAIエージェント「dots」登場"
-    url: "/articles/2026-09-29-openai-devday-dots"
-    channel: "爆速AI NEWS"
-    comment: "OpenAIの開発者向けイベントで、任せた仕事を24時間続けるAIエージェント「dots」や、チームで使う「ChatGPT Space」が発表されました。AIが“同僚”になる流れを押さえておきましょう。"
-  - title: "Google Workspace Weekly Recap - October 2, 2026"
-    url: "https://workspaceupdates.googleblog.com/2026/10/weekly-recap-10-02-2026.html"
-    channel: "Google Workspace Updates（公式・英語）"
-    comment: "Gmail・ドキュメント・スプレッドシートなどの今週の変更点を、Googleがまとめて紹介している公式ブログです。Googleのサービスを仕事で使っている会社の担当者は、毎週ここを見ておくと安心です。"
-  - title: "Gemini Notebook（旧NotebookLM）の新機能と料金の変更点"
-    url: "https://funnel-ai.jp/media/gemini-notebooklm-updates-202609/"
-    channel: "funnel-ai.jp"
-    comment: "NotebookLMは7月に「Gemini Notebook」へ名前が変わり、9月から利用量の数え方も変わったと解説されています。社内資料の要約に使っている方は、使える量が変わっていないか確認を。"
-  - title: "Anthropic、Claudeの利用者に音声データの提供を任意で依頼"
-    url: "https://bleepingcomputer.com/news/artificial-intelligence/anthropic-asks-claude-users-to-share-voice-data-for-ai-model-training"
-    channel: "BleepingComputer（英語）"
-    comment: "AIの学習のために音声会話のデータ提供をお願いする取り組みが始まったと報じられています。提供は任意です。仕事で使うアカウントでは、データ提供の設定がどうなっているか一度確認しておきましょう。"
-  - title: "AI・生成AIに関連するニュース一覧（2026年9月）"
-    url: "https://trends.codecamp.jp/blogs/media/it-news-ai-2026-09"
-    channel: "trends（CodeCamp）"
-    comment: "先月のAIニュースを一覧で振り返れるまとめ記事。今週のTop10で気になった話題の流れを、さかのぼって確認するのに便利です。"
 sources:
   - title: "ChatGPT Audio Uploads Add Transcripts for Paid Plans（DigitBin）"
     url: "https://www.digitbin.com/chatgpt-audio-uploads-transcripts/"
@@ -66,7 +46,7 @@ sources:
 
 ## 今週の選び方
 
-今週公開された情報の中から、<strong>「爆速AI会員の仕事に、どれだけすぐ役立つか」</strong>を基準に10本を選びました。
+今週公開された情報の中から、<strong>「爆速AI会員の仕事に、どれだけすぐ役立つか」</strong>を基準に5本を選びました。
 
 <figure class="diagram">
 <svg viewBox="0 0 720 376" role="img" aria-label="ランキングの選び方：すぐ使える、多くの会員に関係する、知らないと損をする、の3つの基準">

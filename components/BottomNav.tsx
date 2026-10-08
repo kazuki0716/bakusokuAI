@@ -14,7 +14,7 @@ export function BottomNav() {
     { href: "/", label: "ホーム", icon: "home" as IconName, current: pathname === "/" },
     ...MENU.map((m) => ({
       href: `/c/${m.key}`,
-      label: m.short,
+      label: m.label,
       icon: ICONS[m.key],
       current: pathname === `/c/${m.key}` || pathname.startsWith(`/c/${m.key}/`),
     })),

@@ -12,7 +12,7 @@ export function pageHref(category: CategoryKey, page: number): string {
 }
 
 // メニュー1つ分の記事一覧（新しい順に PAGE_SIZE 本ずつ）。古い記事は2ページ目以降とバックナンバーへ
-// 「使い方・プロンプト」（/c/howto）は使い方・特集とプロンプトの2つの種類をまとめて出す
+// 「使い方」（/c/howto）は使い方・特集とプロンプトの2つの種類をまとめて出す
 export async function CategoryListing({ category, page }: { category: CategoryKey; page: number }) {
   const menu = MENU.find((m) => m.key === category);
   if (!menu) notFound();
@@ -29,7 +29,7 @@ export async function CategoryListing({ category, page }: { category: CategoryKe
       {list.length === 0 ? (
         <p className="empty">まだ記事がありません。</p>
       ) : category === "video" ? (
-        // おすすめ動画はペルソナ（立場）ごと＋「AIで自分磨き」枠に並べる
+        // 動画はペルソナ（立場）ごと＋「AIで自分磨き」枠に並べる
         <>
           {AUDIENCES.map((who) => {
             const forWho = list.filter((a) => !a.skillup && a.audience.includes(who));

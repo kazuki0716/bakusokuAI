@@ -215,7 +215,7 @@ export function TaskGrid({ articles }: { articles: Article[] }) {
 
 const RAIL_KEYS: CategoryKey[] = ["news", "video", "howto"];
 
-// ⑦ メニューごとの新着（上で出した記事は除く。スマホは横スクロール）。使い方・プロンプトは1列にまとめる
+// ⑦ メニューごとの新着（上で出した記事は除く。スマホは横スクロール）。使い方（使い方・特集とプロンプト）は1列にまとめる
 export function CategoryRails({ articles, exclude }: { articles: Article[]; exclude: Set<string> }) {
   return (
     <>

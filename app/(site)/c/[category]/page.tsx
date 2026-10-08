@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CategoryPage({ params }: Props) {
   const { category } = await params;
   if (!isCategory(category)) notFound();
-  // プロンプトは「使い方・プロンプト」の一覧にまとめた（以前のURLから移動させる）
+  // プロンプトは「使い方」の一覧にまとめた（以前のURLから移動させる）
   if (category === "prompt") redirect(categoryHref(category));
   return <CategoryListing category={category} page={1} />;
 }

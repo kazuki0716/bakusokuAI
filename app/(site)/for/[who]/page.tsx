@@ -40,7 +40,7 @@ export default async function PersonaPage({ params }: Props) {
         <p className="page-en">FOR YOU</p>
         <h1 className="page-title">{persona.name}向け</h1>
         <p className="page-desc">
-          {persona.lead}。{persona.name}向けのおすすめ動画は毎週{persona.video}に届きます。
+          {persona.lead}。{persona.name}向けの動画は毎週{persona.video}に届きます。
         </p>
         <nav className="persona-switch" aria-label="ほかの立場">
           {PERSONAS.map((p) => (

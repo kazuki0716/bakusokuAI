@@ -11,7 +11,7 @@ export const CATEGORIES = {
     description: "ChatGPT・Gemini・Claude・Copilotなどの新機能や、料金・規約の変更、企業の活用事例を、元記事つきで3分で読める速報に。",
   },
   video: {
-    label: "おすすめ動画",
+    label: "動画",
     en: "MOVIE",
     description: "経営者・管理職／事務・総務・経理／マーケ・営業の立場ごとに、仕事に直結するYouTube動画を編集部が1本ずつ厳選。英語学習や調べものなど、毎日使える「AIで自分磨き」の動画も。",
   },
@@ -35,17 +35,16 @@ export function isCategory(value: string): value is CategoryKey {
   return value in CATEGORIES;
 }
 
-// 上のメニュー。読者の目的（使い方を知りたい）が同じなので、howto と prompt は1つの一覧「使い方・プロンプト」にまとめる
+// 上のメニュー（PC）と下のメニュー（スマホ）で同じ名前を使う。読者の目的（使い方を知りたい）が同じなので、
+// howto と prompt は1つの一覧「使い方」にまとめる
 // （記事の種類としては別のまま。一覧は /c/howto で、プロンプトはその中の #prompt）
-// short はスマホの下のメニュー用の短い名前
-export const MENU: { key: CategoryKey; label: string; short: string; en: string; description: string; cats: CategoryKey[] }[] = [
-  { key: "weekly", ...CATEGORIES.weekly, short: "今週のTop", cats: ["weekly"] },
-  { key: "news", ...CATEGORIES.news, short: "ニュース", cats: ["news"] },
-  { key: "video", ...CATEGORIES.video, short: "動画", cats: ["video"] },
+export const MENU: { key: CategoryKey; label: string; en: string; description: string; cats: CategoryKey[] }[] = [
+  { key: "weekly", ...CATEGORIES.weekly, cats: ["weekly"] },
+  { key: "news", ...CATEGORIES.news, cats: ["news"] },
+  { key: "video", ...CATEGORIES.video, cats: ["video"] },
   {
     key: "howto",
-    label: "使い方・プロンプト",
-    short: "使い方",
+    label: "使い方",
     en: "HOW TO & PROMPT",
     description: "メール返信・議事録・Excelなど10の仕事ごとの手順解説と、コピーしてすぐ使えるプロンプト。",
     cats: ["howto", "prompt"],
@@ -72,7 +71,7 @@ export const PERSONAS = [
   { slug: "sales", name: "マーケ・営業", lead: "提案書や分析を速く。新しいツールで差をつける", video: "土曜" },
 ] as const;
 
-// おすすめ動画の「AIで自分磨き」枠（ペルソナを問わず、仕事以外でも毎日使えるAI活用の動画）
+// 動画の「AIで自分磨き」枠（ペルソナを問わず、仕事以外でも毎日使えるAI活用の動画）
 export const SKILLUP = {
   label: "AIで自分磨き",
   description: "英語の勉強、ChatGPTとの音声会話での調べもの、学び直しなど、毎日の暮らしで使えるAI活用",

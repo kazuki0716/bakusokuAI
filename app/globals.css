@@ -1922,7 +1922,7 @@ img {
   }
 }
 
-/* おすすめ動画：ペルソナごとの見出し */
+/* 動画：ペルソナごとの見出し */
 .persona-block + .persona-block {
   margin-top: var(--sp-12);
 }
@@ -3221,7 +3221,7 @@ img {
   color: var(--muted);
 }
 
-/* 使い方・プロンプトの中の2つ */
+/* 使い方の中の2つ（使い方・特集とプロンプト） */
 .guide-corner-parts {
   display: grid;
   gap: var(--sp-1);

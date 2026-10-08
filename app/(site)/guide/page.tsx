@@ -90,7 +90,7 @@ export default function GuidePage() {
         </h2>
         <p>毎朝7時ごろに更新します。毎日ニュース2本、さらに曜日ごとにおすすめを1本追加します。</p>
         <p className="guide-note">
-          おすすめ動画は「公開から1週間以内・5分以上・ある程度見られて反応がある」動画だけを選んでいます。条件に合う動画が無い日はお休みします。
+          動画は「公開から1週間以内・5分以上・ある程度見られて反応がある」動画だけを選んでいます。条件に合う動画が無い日はお休みします。
         </p>
         <table className="guide-table">
           <thead>
@@ -219,7 +219,7 @@ export default function GuidePage() {
           <div>
             <dt>事務・総務・経理の方</dt>
             <dd>
-              木曜の動画と<Link href="/c/howto">使い方・プロンプト</Link>
+              木曜の動画と<Link href="/c/howto">使い方</Link>
               。Excel・議事録・メールのやり方が中心です（<Link href="/for/backoffice">まとめページ</Link>）。
             </dd>
           </div>

@@ -1,15 +1,23 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { AUTH_COOKIE, expectedToken, tokenFor } from "@/lib/auth";
 
-function safeNext(value: FormDataEntryValue | null): string {
+// ログイン後の戻り先。サイト内のページだけを許可する（外部サイトへのリダイレクトを防ぐ）
+function safeNext(value: FormDataEntryValue | null, base: string): string {
   const next = typeof value === "string" ? value : "/";
-  // 外部サイトへのリダイレクトを防ぐ
-  return next.startsWith("/") && !next.startsWith("//") ? next : "/";
+  if (!next.startsWith("/")) return "/";
+  try {
+    // "/\\evil.example.com" や "//evil.example.com" のような書き方も、実際の行き先で判定する
+    const origin = new URL(base).origin;
+    const url = new URL(next, origin);
+    return url.origin === origin ? url.pathname + url.search + url.hash : "/";
+  } catch {
+    return "/";
+  }
 }
 
 export async function POST(request: NextRequest) {
   const form = await request.formData();
-  const next = safeNext(form.get("next"));
+  const next = safeNext(form.get("next"), request.url);
   const password = String(form.get("password") ?? "");
   const expected = expectedToken();
 

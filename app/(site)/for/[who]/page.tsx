@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { LevelFilter } from "@/components/LevelFilter";
+import { levelCounts } from "@/lib/levels";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getArticles } from "@/lib/articles";
@@ -52,7 +54,7 @@ export default async function PersonaPage({ params }: Props) {
       {list.length === 0 ? (
         <p className="empty">まだ記事がありません。</p>
       ) : (
-        <>
+        <LevelFilter counts={levelCounts([...only.slice(0, 8), ...rest])}>
           {only.length > 0 && (
             <section className="persona-block">
               <h2 className="persona-title persona-title-only">
@@ -67,7 +69,7 @@ export default async function PersonaPage({ params }: Props) {
             </section>
           )}
           <GroupedList articles={rest} order={["weekly", "news", "video", "howto", "prompt"]} limit={4} />
-        </>
+        </LevelFilter>
       )}
       <p className="archive-link">
         <Link href="/archive">すべての記事はバックナンバーへ →</Link>

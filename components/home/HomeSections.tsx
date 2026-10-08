@@ -4,6 +4,7 @@ import { isForTask, MENU, PERSONAS, SKILLUP, TASK_LIST, type CategoryKey } from 
 import { shortDate } from "@/lib/schedule";
 import { ArticleCard, CategoryLabel, NewBadge, SectionHeading, Thumb } from "../ArticleParts";
 import { WeeklyCards } from "../WeeklyCards";
+import { LevelBadge } from "../LevelBadge";
 
 // ② 今日の記事（PICK UP と新着をまとめたもの）
 export function TodayUpdates({ list, isFallback, date }: { list: Article[]; isFallback: boolean; date: string }) {
@@ -22,7 +23,7 @@ export function TodayUpdates({ list, isFallback, date }: { list: Article[]; isFa
                 <span className="card-meta">
                   <CategoryLabel article={a} />
                   <NewBadge date={a.date} />
-                  {a.level && <span className="level">{a.level}</span>}
+                  <LevelBadge level={a.level} />
                 </span>
                 <span className="today-title">{a.title}</span>
                 {a.summary[0] && <span className="today-sum">{a.summary[0]}</span>}

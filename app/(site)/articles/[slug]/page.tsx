@@ -13,6 +13,7 @@ import {
 } from "@/lib/articles";
 import { SafeImage } from "@/components/SafeImage";
 import { LineBanner } from "@/components/LineBanner";
+import { LevelBadge } from "@/components/LevelBadge";
 import { CopyButtons } from "@/components/CopyButtons";
 import { SourceCard } from "@/components/SourceCard";
 import { ArticleCard, CategoryLabel, SectionHeading } from "@/components/ArticleParts";
@@ -86,7 +87,7 @@ export default async function ArticlePage({ params }: Props) {
             ) : (
               article.task && <span className="level">仕事：{article.task}</span>
             )}
-            {article.level && <span className="level">{article.level}</span>}
+            <LevelBadge level={article.level} />
           </p>
           <h1 className="article-title">{article.title}</h1>
           {article.skillup ? (

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { LevelFilter } from "@/components/LevelFilter";
+import { levelCounts } from "@/lib/levels";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getArticles } from "@/lib/articles";
@@ -52,7 +54,9 @@ export default async function TaskPage({ params }: Props) {
           </p>
         </div>
       ) : (
-        <GroupedList articles={list} order={["howto", "video", "prompt", "news", "weekly"]} />
+        <LevelFilter counts={levelCounts(list)}>
+          <GroupedList articles={list} order={["howto", "video", "prompt", "news", "weekly"]} />
+        </LevelFilter>
       )}
     </section>
   );

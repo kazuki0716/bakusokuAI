@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { LevelBadge } from "@/components/LevelBadge";
 import { CATEGORIES, categoryHref } from "@/lib/categories";
 import { LECTEA_COURSES_URL, LINE_URL } from "@/lib/links";
 import { MONEY_NAME } from "@/lib/money";
@@ -169,8 +170,13 @@ export default function GuidePage() {
             <strong>元記事・出典</strong>：情報の出どころです。くわしく知りたいときに開いてください
           </li>
           <li>
-            <span className="new">NEW</span>：公開から3日以内の記事／<span className="level">初級</span>
-            <span className="level">中級</span>：むずかしさの目安
+            <span className="new">NEW</span>：公開から3日以内の記事
+          </li>
+          <li>
+            むずかしさ：<LevelBadge level="初級" />AIをほとんど使ったことがなくてもできる／
+            <LevelBadge level="中級" />ふだんAIを使っている人向け（ファイルの読み込みや機能の組み合わせ）／
+            <LevelBadge level="上級" />
+            仕組み化・チームへの展開まで。一覧の「むずかしさ」ボタンで絞り込めます
           </li>
           <li>
             カテゴリの色：

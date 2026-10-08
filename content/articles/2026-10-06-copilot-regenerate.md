@@ -10,6 +10,7 @@ summary:
 impact: "WordやExcelでCopilotを使っている会社では、「イマイチな回答をもらったら、聞き直す前にまず再生成」が新しい基本動作になります。同じ質問でもモデルによって得意・不得意があるので、文章づくりやデータの読み取りで比べてみるのがおすすめです。"
 tags: [Copilot, Microsoft365]
 audience: [経営者・管理職, 事務・総務・経理]
+level: 初級
 sources:
   - title: "Release Notes for Microsoft 365 Copilot（Microsoft Learn）"
     url: "https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes"

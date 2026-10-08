@@ -1311,12 +1311,19 @@ img {
 
 .diagram .d-text {
   fill: var(--fg);
-  font-size: 15px;
   font-weight: 700;
 }
 
 .diagram .d-sub {
   fill: var(--muted);
+}
+
+/* 文字の大きさは記事側の font-size（ガイドでは26以上）を優先。指定の無い古い図だけ従来の大きさ */
+.diagram .d-text:not([font-size]) {
+  font-size: 15px;
+}
+
+.diagram .d-sub:not([font-size]) {
   font-size: 12px;
 }
 
@@ -3172,6 +3179,7 @@ img {
 }
 
 .guide-marks .cat,
+.guide-marks .lv,
 .guide-marks .level,
 .guide-marks .new {
   margin: 0 var(--sp-1);
@@ -3537,11 +3545,131 @@ h1.login-logo {
   color: var(--on-pop);
 }
 
-/* スマホの小さい「今日の記事」カードでは、ラベルが2段にならないよう難易度を省く（記事ページには表示） */
-@media (max-width: 640px) {
-  .today-item:not(.today-item-lg) .level {
-    display: none;
-  }
+/* =========================================================
+   むずかしさ（初級・中級・上級）：3本の棒の印＋文字。「仕事：」などのラベルと区別するため枠は付けない
+   ========================================================= */
+:root {
+  --lv-1: #1d6b45;
+  --lv-2: #8a5300;
+  --lv-3: var(--brand-ink);
+}
+
+.lv {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--lv-c, var(--fg));
+}
+
+.lv-1 {
+  --lv-c: var(--lv-1);
+}
+
+.lv-2 {
+  --lv-c: var(--lv-2);
+}
+
+.lv-3 {
+  --lv-c: var(--lv-3);
+}
+
+.lv-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+
+.lv-bars i {
+  display: block;
+  width: 4px;
+  border-radius: 1px;
+  background: currentColor;
+  opacity: 0.25;
+}
+
+.lv-bars i:nth-child(1) {
+  height: 6px;
+}
+
+.lv-bars i:nth-child(2) {
+  height: 9px;
+}
+
+.lv-bars i:nth-child(3) {
+  height: 12px;
+}
+
+.lv-bars i.on {
+  opacity: 1;
+}
+
+/* 一覧の「むずかしさ」絞り込み */
+.level-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+  margin: 0 0 var(--sp-6);
+}
+
+.level-filter-label {
+  margin-right: var(--sp-1);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.level-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 var(--sp-4);
+  border: var(--bw) solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--lv-c, var(--fg));
+  font: inherit;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--dur), color var(--dur), border-color var(--dur);
+}
+
+.level-filter-btn:hover:not(:disabled) {
+  border-color: var(--lv-c, var(--fg));
+}
+
+.level-filter-btn[aria-pressed="true"] {
+  border-color: var(--lv-c, var(--fg));
+  background: var(--lv-c, var(--fg));
+  color: var(--surface);
+}
+
+.level-filter-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.level-filter-count {
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.level-filter-reset {
+  margin-left: var(--sp-2);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--link);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 /* =========================================================
@@ -3836,4 +3964,14 @@ h3,
 .section-heading {
   flex-wrap: wrap;
   row-gap: var(--sp-2);
+}
+
+@media (max-width: 640px) {
+  .level-filter-btn {
+    padding: 0 var(--sp-3);
+  }
+
+  .level-filter-label {
+    flex-basis: 100%;
+  }
 }

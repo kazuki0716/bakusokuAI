@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { LevelFilter } from "@/components/LevelFilter";
+import { levelCounts } from "@/lib/levels";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getArticles, getAllTags, PAGE_SIZE } from "@/lib/articles";
@@ -29,11 +31,13 @@ export default async function TagPage({ params }: Props) {
         <h1 className="page-title">#{tag}</h1>
         <p className="page-desc">{all.length}本の記事</p>
       </header>
-      <ul className="cards">
-        {list.map((a) => (
-          <ArticleCard key={a.slug} article={a} />
-        ))}
-      </ul>
+      <LevelFilter counts={levelCounts(list)}>
+        <ul className="cards">
+          {list.map((a) => (
+            <ArticleCard key={a.slug} article={a} />
+          ))}
+        </ul>
+      </LevelFilter>
       {all.length > list.length && (
         <p className="archive-link">
           新しい{list.length}本を表示しています。<Link href="/archive">それより前の記事はバックナンバーへ →</Link>

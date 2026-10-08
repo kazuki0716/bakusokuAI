@@ -62,6 +62,6 @@ sources:
 
 1. 次の社内会議を録音する（参加者に一言伝える）
 2. 動画の手順でNotebookLMに読み込ませて、議事録を作る
-3. 指示文は[今週のプロンプト：録音から議事録・ToDo・お礼メールを一発で](/articles/2026-10-07-prompt-meeting-minutes)を使うと、ToDo表やお礼メールまで作れる
+3. 指示文は[プロンプト：録音から議事録・ToDo・お礼メールを一発で](/articles/2026-10-07-prompt-meeting-minutes)を使うと、ToDo表やお礼メールまで作れる
 
 もっと体系的に学びたい方は、[爆速AIの講座（業務効率化コース）](https://bakusoku.lectea.jp/school/course/)の「議事録作成」もあわせてどうぞ。

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Article } from "@/lib/articles";
 import { SafeImage } from "./SafeImage";
 import { weeklyShortName } from "./WeeklyCards";
+import { LevelBadge } from "./LevelBadge";
 import { formatDate, generatedEyecatch } from "@/lib/articles";
 import { CATEGORIES } from "@/lib/categories";
 
@@ -77,7 +78,7 @@ export function Thumb({ article, large = false }: { article: Article; large?: bo
 // サムネ付きのカード
 export function ArticleCard({ article }: { article: Article }) {
   return (
-    <li className="card">
+    <li className="card" data-level={article.level}>
       <Link href={`/articles/${article.slug}`}>
         <div className="card-thumb">
           <Thumb article={article} />
@@ -87,6 +88,7 @@ export function ArticleCard({ article }: { article: Article }) {
             <CategoryLabel article={article} />
             <time>{formatDate(article.date)}</time>
             <NewBadge date={article.date} />
+            <LevelBadge level={article.level} />
           </p>
           <p className="card-title">{article.title}</p>
         </div>

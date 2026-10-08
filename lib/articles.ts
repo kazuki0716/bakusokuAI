@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import { isCategory, type CategoryKey } from "./categories";
 import { getOgImage, youtubeThumb } from "./ogp";
+import { LEVELS, type Level } from "./levels";
 
 const ARTICLES_DIR = path.join(process.cwd(), "content", "articles");
 
@@ -35,7 +36,7 @@ export type ArticleMeta = {
   audience: string[]; // 対象ペルソナ（AUDIENCES のいずれか）
   task?: string; // 業務カテゴリ（TASKS のいずれか。業務に関係しない記事は省略）
   skillup?: string; // おすすめ動画の「AIで自分磨き」枠のテーマ（SKILLUP.themes のいずれか）
-  level?: "初級" | "中級" | "上級";
+  level?: Level;
   thumbnail?: string; // アイキャッチ画像を手動で指定（/images/articles/... または https://...）
   eyecatchFrom?: string; // このURLのOGP画像をアイキャッチにする（省略時は sources の1件目）
   thumbnailCredit?: string; // thumbnail の引用元（例："窓の杜「OpenAI、DevDay 2026を開催」より"）
@@ -69,6 +70,9 @@ function readArticle(file: string): Article {
     throw new Error(`${file}: category "${category}" は weekly / news / video / howto / prompt のいずれかにしてください`);
   }
   if (!data.title) throw new Error(`${file}: title がありません`);
+  if (data.level !== undefined && !(LEVELS as readonly string[]).includes(data.level)) {
+    throw new Error(`${file}: level "${data.level}" は 初級 / 中級 / 上級 のいずれかにしてください`);
+  }
 
   return {
     slug,

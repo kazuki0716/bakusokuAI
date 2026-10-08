@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { getArticles, PAGE_SIZE } from "@/lib/articles";
 import { AUDIENCES, MENU, SKILLUP, type CategoryKey } from "@/lib/categories";
 import { ArticleCard } from "./ArticleParts";
+import { LevelFilter } from "./LevelFilter";
+import { levelCounts } from "@/lib/levels";
 import { latestWeeklyPair, WeeklyCards } from "./WeeklyCards";
 
 export function pageHref(category: CategoryKey, page: number): string {
@@ -22,17 +24,8 @@ export async function CategoryListing({ category, page }: { category: CategoryKe
   const latestWeekly = category === "weekly" && page === 1 ? latestWeeklyPair(all) : [];
   const rest = list.filter((a) => !latestWeekly.includes(a));
 
-  return (
-    <section>
-      <header className={`page-head page-head-${category}`}>
-        <p className="page-en">{menu.en}</p>
-        <h1 className="page-title">
-          {menu.label}
-          {page > 1 && <span className="page-num">（{page}ページ目）</span>}
-        </h1>
-        <p className="page-desc">{menu.description}</p>
-      </header>
-
+  const body = (
+    <>
       {list.length === 0 ? (
         <p className="empty">まだ記事がありません。</p>
       ) : category === "video" ? (
@@ -101,6 +94,27 @@ export async function CategoryListing({ category, page }: { category: CategoryKe
             </ul>
           )}
         </>
+      )}
+    </>
+  );
+
+  return (
+    <section>
+      <header className={`page-head page-head-${category}`}>
+        <p className="page-en">{menu.en}</p>
+        <h1 className="page-title">
+          {menu.label}
+          {page > 1 && <span className="page-num">（{page}ページ目）</span>}
+        </h1>
+        <p className="page-desc">{menu.description}</p>
+      </header>
+
+      {category === "weekly" ? (
+        body
+      ) : (
+        <LevelFilter key={page} counts={levelCounts(list)}>
+          {body}
+        </LevelFilter>
       )}
 
       {totalPages > 1 && (

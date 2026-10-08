@@ -12,6 +12,7 @@ tags: [YouTube, 勉強法, 資格, 学び直し]
 audience: [経営者・管理職, 事務・総務・経理, マーケ・営業]
 skillup: "学び直し・資格"
 level: 中級
+saves: { before: 30, after: 10 }
 sources:
   - title: "【狂気のAI独学】1冊を20周する苦行を「AIで5倍速」にした男の超・合格ルーティン10選"
     url: "https://www.youtube.com/watch?v=o3EaoIUJ7Zc"

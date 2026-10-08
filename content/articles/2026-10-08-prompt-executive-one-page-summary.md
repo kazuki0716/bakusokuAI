@@ -12,6 +12,7 @@ tags: [プロンプト, 要約, 報告書, 経営判断]
 audience: [経営者・管理職, 事務・総務・経理, マーケ・営業]
 task: "文章の要約"
 level: 中級
+saves: { before: 60, after: 20 }
 sources: []
 ---
 

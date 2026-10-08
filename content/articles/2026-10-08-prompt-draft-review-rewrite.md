@@ -12,6 +12,7 @@ tags: [プロンプト, 校正, 添削, 文章作成]
 audience: [経営者・管理職, 事務・総務・経理, マーケ・営業]
 task: "文章の校正・添削"
 level: 上級
+saves: { before: 40, after: 20 }
 sources: []
 ---
 

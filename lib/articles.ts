@@ -37,6 +37,7 @@ export type ArticleMeta = {
   task?: string; // 業務カテゴリ（TASKS のいずれか。業務に関係しない記事は省略）
   skillup?: string; // 動画の「AIで自分磨き」枠のテーマ（SKILLUP.themes のいずれか）
   level?: Level;
+  saves?: { before: number; after: number }; // プロンプト1回あたりの目安（分）：手作業 before 分 → AIで after 分
   thumbnail?: string; // アイキャッチ画像を手動で指定（/images/articles/... または https://...）
   eyecatchFrom?: string; // このURLのOGP画像をアイキャッチにする（省略時は sources の1件目）
   thumbnailCredit?: string; // thumbnail の引用元（例："窓の杜「OpenAI、DevDay 2026を開催」より"）
@@ -89,6 +90,12 @@ function readArticle(file: string): Article {
   if (data.level !== undefined && !(LEVELS as readonly string[]).includes(data.level)) {
     throw new Error(`${file}: level "${data.level}" は 初級 / 中級 / 上級 のいずれかにしてください`);
   }
+  if (data.saves !== undefined) {
+    const { before, after } = data.saves ?? {};
+    if (!Number.isInteger(before) || !Number.isInteger(after) || after < 0 || before <= after || before > 480) {
+      throw new Error(`${file}: saves は「before: 手作業の分数」「after: AIを使ったときの分数」を整数で（before > after、480分まで）`);
+    }
+  }
   checkDiagramText(file, content);
 
   return {
@@ -103,6 +110,7 @@ function readArticle(file: string): Article {
     task: data.task,
     skillup: data.skillup,
     level: data.level,
+    saves: data.saves ? { before: data.saves.before, after: data.saves.after } : undefined,
     thumbnail: data.thumbnail ?? data.image,
     eyecatchFrom: data.eyecatchFrom,
     thumbnailCredit: data.thumbnailCredit,

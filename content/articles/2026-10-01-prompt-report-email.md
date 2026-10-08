@@ -10,6 +10,7 @@ summary:
 tags: [プロンプト, メール, ChatGPT]
 audience: [経営者・管理職, 事務・総務・経理, マーケ・営業]
 level: 初級
+saves: { before: 15, after: 5 }
 sources: []
 ---
 

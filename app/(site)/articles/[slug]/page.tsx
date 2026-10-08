@@ -15,6 +15,7 @@ import { SafeImage } from "@/components/SafeImage";
 import { LineBanner } from "@/components/LineBanner";
 import { LevelBadge } from "@/components/LevelBadge";
 import { CopyButtons } from "@/components/CopyButtons";
+import { ArticleSavedTime } from "@/components/SavedTime";
 import { SourceCard } from "@/components/SourceCard";
 import { ArticleCard, CategoryLabel, SectionHeading } from "@/components/ArticleParts";
 import { CATEGORIES, categoryHref, listLabel, SKILLUP, TASK_LIST } from "@/lib/categories";
@@ -145,7 +146,8 @@ export default async function ArticlePage({ params }: Props) {
         {article.ranking.length > 0 && <Ranking items={article.ranking} />}
 
         <div className="article-body" dangerouslySetInnerHTML={{ __html: article.html }} />
-        <CopyButtons />
+        <CopyButtons slug={article.slug} saves={article.saves} />
+        {article.saves && <ArticleSavedTime slug={article.slug} before={article.saves.before} after={article.saves.after} />}
 
         {article.impact && (
           <section className="impact-box">

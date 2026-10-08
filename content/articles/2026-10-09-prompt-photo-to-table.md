@@ -12,6 +12,7 @@ tags: [プロンプト, 画像の文字起こし, Excel]
 audience: [経営者・管理職, 事務・総務・経理, マーケ・営業]
 task: "画像の文字起こし"
 level: 初級
+saves: { before: 30, after: 10 }
 sources: []
 ---
 

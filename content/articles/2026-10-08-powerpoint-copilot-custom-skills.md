@@ -12,6 +12,7 @@ tags: [Copilot, PowerPoint, Microsoft 365, プレゼン資料作成]
 audience: [経営者・管理職, 事務・総務・経理, マーケ・営業]
 task: "プレゼン資料作成"
 level: 中級
+saves: { before: 20, after: 10 }
 sources:
   - title: "Release Notes for Microsoft 365 Copilot"
     url: "https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes"

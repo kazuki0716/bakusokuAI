@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SCHEDULE, type Today } from "@/lib/schedule";
 import { CountUp } from "./CountUp";
+import { SavedMeter } from "../SavedTime";
 
 type Props = {
   today: Today;
@@ -48,7 +49,10 @@ export function HomeHero({ today, isFallback, shownCount }: Props) {
           <strong>明日</strong>ニュース2本＋{tomorrowPlan.extra}
         </span>
       </p>
-      <div className="hero-actions" style={{ "--i": 3 } as React.CSSProperties}>
+      <div className="hero-saved" style={{ "--i": 3 } as React.CSSProperties}>
+        <SavedMeter />
+      </div>
+      <div className="hero-actions" style={{ "--i": 4 } as React.CSSProperties}>
         <a href={isMonday ? "#weekly" : "#today"} className="btn-primary">
           {isMonday ? "今週のTopを見る" : isFallback ? "最新の記事を読む" : "今日の記事を読む"} <span aria-hidden="true">↓</span>
         </a>

@@ -12,6 +12,7 @@ tags: [ChatGPT, Gemini, Claude, Copilot, プロンプト, 文章作成]
 audience: [経営者・管理職, 事務・総務・経理, マーケ・営業]
 task: "文章作成"
 level: 上級
+saves: { before: 20, after: 10 }
 sources:
   - title: "Introducing skills in the Gemini app and Workspace, plus what's next for Gems（Google Workspace Updates）"
     url: "https://workspaceupdates.googleblog.com/2026/09/skills-gemini-app-workspace.html"

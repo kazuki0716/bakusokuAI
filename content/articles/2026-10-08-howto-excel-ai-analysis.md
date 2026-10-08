@@ -12,6 +12,7 @@ tags: [Excel, Copilot, ChatGPT, Gemini, データ分析]
 audience: [事務・総務・経理, マーケ・営業]
 task: "Excel活用"
 level: 中級
+saves: { before: 45, after: 20 }
 sources:
   - title: "Excel の Copilot の使用を開始する（Microsoft サポート）"
     url: "https://support.microsoft.com/ja-jp/office/get-started-with-copilot-in-excel-d7110502-0334-4b4f-a175-a73abdfc118a"

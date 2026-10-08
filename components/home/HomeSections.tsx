@@ -35,17 +35,31 @@ export function TodayUpdates({ list, isFallback, date }: { list: Article[]; isFa
           </li>
         ))}
       </ul>
-      {/* 種類ごとの新着はホームに並べず、一覧ページへの入口だけ置く（ホームを短く、同じ記事を何度も出さない） */}
-      <nav className="today-more" aria-label="記事の一覧">
-        <span className="today-more-label">それより前の記事</span>
-        {MENU.filter((m) => m.key !== "weekly").map((m) => (
-          <Link key={m.key} href={`/c/${m.key}`} className="today-more-link">
-            {m.label} <span aria-hidden="true">→</span>
-          </Link>
-        ))}
-        <Link href="/archive" className="today-more-link">
-          バックナンバー <span aria-hidden="true">→</span>
-        </Link>
+      {/* 種類ごとの新着はホームに並べず、一覧ページへの入口だけ置く（ホームを短く、同じ記事を何度も出さない）。
+          「種類ごとの一覧」と「月ごとのバックナンバー」は性質が違うので、行を分けて見せる */}
+      <nav className="today-more" aria-labelledby="today-more-title">
+        <p id="today-more-title" className="today-more-title">
+          前の記事を探す
+        </p>
+        <div className="today-more-row">
+          <span className="today-more-label">種類から</span>
+          <div className="today-more-links">
+            {MENU.filter((m) => m.key !== "weekly").map((m) => (
+              <Link key={m.key} href={`/c/${m.key}`} className={`today-more-link cat-${m.key}`}>
+                <span className="today-more-dot" aria-hidden="true" />
+                {m.label}の一覧 <span aria-hidden="true">→</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div className="today-more-row">
+          <span className="today-more-label">月から</span>
+          <div className="today-more-links">
+            <Link href="/archive" className="today-more-link">
+              バックナンバー（全記事を月別に） <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
       </nav>
     </section>
   );

@@ -203,7 +203,34 @@ GeminiのスキルとPowerPointのCopilotのスキルは、どちらも <code>SK
 - **Claude**：プロジェクトの「ナレッジ」にファイルやテキストを入れます
 - **Gemini**：スキルには、テキストやPDF、画像などの参考ファイルを入れられると案内されています
 
-<div class="shot-placeholder">📷 スクショ差し込み枠：Copilotの「新しいエージェント」→「構成（Configure）」タブで、指示とナレッジを入れる画面<br>（編集部で撮影して <code>/images/articles/2026-10-08-howto-team-custom-ai-assistant/copilot-agent-configure.png</code> に保存）</div>
+<figure class="diagram">
+<svg viewBox="0 0 720 476" role="img" aria-label="画面イメージ：専用AIの設定画面。指示の欄に指示書を貼り、参考資料の欄に良い返信の例や用語集を入れる">
+<rect x="16" y="16" width="688" height="444" rx="14" class="d-screen"/>
+<text x="40" y="70" class="d-text" font-size="28">専用AIの設定</text>
+<text x="40" y="124" class="d-text" font-size="26">名前</text>
+<rect x="200" y="94" width="480" height="44" rx="8" class="d-box"/>
+<text x="216" y="125" class="d-sub" font-size="26">お客様返信アシスタント</text>
+<text x="40" y="190" class="d-text" font-size="26">指示</text>
+<rect x="200" y="160" width="480" height="150" rx="8" class="d-accent"/>
+<text x="216" y="194" class="d-sub" font-size="26"># 役割</text>
+<text x="216" y="228" class="d-sub" font-size="26"># 手順</text>
+<text x="216" y="262" class="d-sub" font-size="26"># 出力形式</text>
+<text x="216" y="296" class="d-sub" font-size="26"># 禁止事項</text>
+<text x="40" y="374" class="d-text" font-size="26">参考資料</text>
+<rect x="200" y="340" width="480" height="100" rx="8" class="d-box"/>
+<rect x="216" y="356" width="196" height="44" rx="8" class="d-screen"/>
+<text x="232" y="387" class="d-sub" font-size="26">良い返信の例</text>
+<rect x="428" y="356" width="120" height="44" rx="8" class="d-screen"/>
+<text x="444" y="387" class="d-sub" font-size="26">用語集</text>
+<rect x="192" y="152" width="496" height="166" rx="12" class="d-mark"/>
+<circle cx="192" cy="152" r="16" class="d-mark-dot"/>
+<text x="192" y="158" text-anchor="middle" class="d-mark-num">1</text>
+<rect x="192" y="332" width="496" height="116" rx="12" class="d-mark"/>
+<circle cx="192" cy="332" r="16" class="d-mark-dot"/>
+<text x="192" y="338" text-anchor="middle" class="d-mark-num">2</text>
+</svg>
+<figcaption>画面イメージ：① 指示書を「指示」の欄に貼る → ② 良い例や用語集を「参考資料」として入れる。欄の名前はツールによって違います（実際の画面と異なる場合があります）</figcaption>
+</figure>
 
 ## 手順4：サンプルの入力で試す
 

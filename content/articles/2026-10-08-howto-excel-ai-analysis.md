@@ -149,7 +149,34 @@ AIが読み間違えやすいのは、人が見やすく飾った表です。分
 4. 出てきた数式を、元のExcelに自分で貼りつけて計算させる
 5. グラフは、気に入った形が出たらExcelで同じグラフを作り直す（会議資料はExcelの数字を正にする）
 
-<div class="shot-placeholder">📷 スクショ差し込み枠：ChatGPTにExcelファイルを添付し、担当者別の集計表とグラフが表示された画面<br>（編集部で撮影して <code>/images/articles/2026-10-08-howto-excel-ai-analysis/chatgpt-excel.png</code> に保存）</div>
+<figure class="diagram">
+<svg viewBox="0 0 720 520" role="img" aria-label="画面イメージ：入力欄のファイル追加ボタンから売上表を添付して依頼すると、担当者別の集計表と棒グラフが返ってくる">
+<rect x="16" y="16" width="688" height="496" rx="14" class="d-screen"/>
+<rect x="300" y="36" width="384" height="116" rx="14" class="d-accent"/>
+<rect x="320" y="52" width="200" height="42" rx="8" class="d-box"/>
+<text x="336" y="82" class="d-sub" font-size="26">売上表.xlsx</text>
+<text x="320" y="134" class="d-text" font-size="26">担当者別に集計して</text>
+<rect x="36" y="176" width="648" height="248" rx="12" class="d-box"/>
+<text x="60" y="222" class="d-text" font-size="26">担当者別の売上</text>
+<text x="60" y="270" class="d-sub" font-size="26">佐藤　120万円</text>
+<text x="60" y="316" class="d-sub" font-size="26">鈴木　 95万円</text>
+<text x="60" y="362" class="d-sub" font-size="26">田中　 80万円</text>
+<line x1="420" y1="396" x2="660" y2="396" class="d-arrow"/>
+<rect x="440" y="246" width="50" height="150" rx="4" class="d-accent"/>
+<rect x="520" y="278" width="50" height="118" rx="4" class="d-accent"/>
+<rect x="600" y="296" width="50" height="100" rx="4" class="d-accent"/>
+<rect x="36" y="444" width="648" height="56" rx="28" class="d-box"/>
+<text x="70" y="482" text-anchor="middle" class="d-text" font-size="30">＋</text>
+<text x="110" y="481" class="d-sub" font-size="26">質問や依頼を入力</text>
+<rect x="42" y="446" width="56" height="52" rx="14" class="d-mark"/>
+<circle cx="42" cy="446" r="16" class="d-mark-dot"/>
+<text x="42" y="452" text-anchor="middle" class="d-mark-num">1</text>
+<rect x="28" y="168" width="664" height="264" rx="16" class="d-mark"/>
+<circle cx="692" cy="168" r="16" class="d-mark-dot"/>
+<text x="692" y="174" text-anchor="middle" class="d-mark-num">2</text>
+</svg>
+<figcaption>画面イメージ：① 入力欄の「＋」（ファイルの追加）から表を添付して依頼する → ② 担当者別の集計表とグラフが返ってくる（実際の画面と異なる場合があります）</figcaption>
+</figure>
 
 ## プロンプト（コピーして使えます）
 

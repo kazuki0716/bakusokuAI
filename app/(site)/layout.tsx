@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { getArticles } from "@/lib/articles";
-import { CATEGORIES, CATEGORY_KEYS } from "@/lib/categories";
 import { LINE_URL } from "@/lib/links";
 import { MONEY_NAME } from "@/lib/money";
 import { SITE_MAP } from "@/lib/navigation";
+import { NavLinks } from "@/components/NavLinks";
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -14,24 +14,16 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
 
   return (
     <>
+      <a href="#main" className="skip-link">
+        本文へスキップ
+      </a>
       <header className="site-header">
         <div className="wrap header-inner">
           <Link href="/" className="logo" aria-label="爆速AI NEWS トップへ">
             <img src="/brand/logo-header.png" alt="爆速AI" width={72} height={48} />
             <span className="logo-news">NEWS</span>
           </Link>
-          <nav className="nav" aria-label="カテゴリ">
-            {CATEGORY_KEYS.map((key) => (
-              <Link key={key} href={`/c/${key}`} className={`nav-link nav-${key}`}>
-                {CATEGORIES[key].label}
-              </Link>
-            ))}
-            {/* 会員特典はメインではないので、最後に控えめに */}
-            <Link href="/money" className="nav-link nav-money">
-              <span className="nav-money-tag">特典</span>
-              {MONEY_NAME}
-            </Link>
-          </nav>
+          <NavLinks moneyName={MONEY_NAME} />
           <div className="header-actions">
             <Link href="/guide" className="header-guide">
               はじめての方へ
@@ -57,7 +49,9 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         </div>
       </div>
 
-      <main className="wrap main">{children}</main>
+      <main id="main" className="wrap main" tabIndex={-1}>
+        {children}
+      </main>
 
       <footer className="site-footer">
         <div className="wrap">

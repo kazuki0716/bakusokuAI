@@ -2003,12 +2003,15 @@ img {
     gap: var(--sp-1);
   }
 
-  /* 上の3つは「アイコンの下に2文字」の小さなボタン */
-  .header-actions .header-guide,
-  .header-actions .header-money,
-  .header-actions .header-line-btn {
+  /* 上の3つは「アイコンの下に2文字」の小さなボタン。3つとも同じ位置にそろえる
+     （PC用の指定より優先させるため .site-header から指定する） */
+  .site-header .header-actions .header-guide,
+  .site-header .header-actions .header-money,
+  .site-header .header-actions .header-line-btn {
     flex-direction: column;
-    gap: 2px;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
     min-width: 48px;
     min-height: 44px;
     padding: 0 6px;

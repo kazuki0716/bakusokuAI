@@ -1948,8 +1948,8 @@ img {
   opacity: 0.9;
 }
 
-/* ヘッダーだけの例外：1100px以上でもメニューが窮屈な幅では、少し詰める */
-@media (max-width: 1240px) and (min-width: 1101px) {
+/* ヘッダーだけの例外：1100px以上でもメニューが窮屈な幅（〜1320px）では、少し詰める */
+@media (max-width: 1320px) and (min-width: 1101px) {
   .header-inner {
     gap: var(--sp-3);
   }
@@ -2204,20 +2204,46 @@ img {
   }
 }
 
-/* スマホ：見方への入口はホームとフッターにあるので、ヘッダーは「LINEで質問」だけ。流れる文字（ティッカー）も出さない */
+/* スマホ：流れる文字（ティッカー）は出さない */
 @media (max-width: 640px) {
-  .header-actions .header-guide,
   .ticker {
     display: none;
   }
 }
 
+/* ヘッダーのアイコン：すべて「アイコン＋短い文字」で統一（アイコンだけのボタンは作らない） */
+.header-icon {
+  flex-shrink: 0;
+}
+
+.nav-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 後ろの「ボタンの共通ルール」より優先させるため .header-actions から指定する */
+.header-actions .header-guide,
+.header-actions .header-line-btn {
+  gap: 6px;
+  padding: 0 var(--sp-3);
+}
+
+.header-ext {
+  font-size: 0.9em;
+}
+
+/* 幅の狭いスマホ（360px以下）では1段目（ロゴ＋ボタン）に収めるため「見方」を外す（ホームの冒頭とフッターから行ける） */
+@media (max-width: 360px) {
+  .header-actions .header-guide {
+    display: none;
+  }
+}
+
+/* 小さめのスマホでもメニューが3段に収まるよう、左右の余白を少し詰める */
 @media (max-width: 400px) {
-  .header-guide,
-  .header-line-btn {
-    min-height: 32px;
-    padding: 0 var(--sp-3);
-    font-size: var(--fs-2xs);
+  .nav-link {
+    padding-inline: var(--sp-3);
   }
 }
 

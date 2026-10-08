@@ -5,6 +5,7 @@ import { MONEY_NAME } from "@/lib/money";
 import { SITE_MAP } from "@/lib/navigation";
 import { NavLinks } from "@/components/NavLinks";
 import { Ticker } from "@/components/Ticker";
+import { HeaderIcon } from "@/components/HeaderIcon";
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -26,11 +27,23 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
           </Link>
           <NavLinks moneyName={MONEY_NAME} />
           <div className="header-actions">
-            <Link href="/guide" className="header-guide">
-              サイトの見方
+            {/* ヘッダーのボタンは「アイコン＋2文字」で統一。読み上げとマウスを重ねたときは正式名 */}
+            <Link href="/guide" className="header-guide" aria-label="サイトの見方" title="サイトの見方">
+              <HeaderIcon name="guide" />
+              見方
             </Link>
-            <a href={LINE_URL} {...external} className="header-line-btn">
-              LINEで質問 <span aria-hidden="true">↗</span>
+            <a
+              href={LINE_URL}
+              {...external}
+              className="header-line-btn"
+              aria-label="LINEで質問（新しいタブで開く）"
+              title="公式LINEで質問する"
+            >
+              <HeaderIcon name="chat" />
+              質問
+              <span className="header-ext" aria-hidden="true">
+                ↗
+              </span>
             </a>
           </div>
         </div>

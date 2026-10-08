@@ -106,53 +106,9 @@
   --stripes: repeating-linear-gradient(-60deg, rgba(255, 255, 255, 0.08) 0 2px, transparent 2px 16px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1b1d24; /* 真っ黒にせず、目にやさしいチャコール */
-    --surface: #252830;
-    --surface-2: #2f333d;
-    --fg: #f1f1f3;
-    --muted: #b0b4bd;
-    --line: #454a57;
-    --line-strong: #7c818c;
-    --focus: #8ab4ff;
-    --link: #8ab4ff;
-
-    --brand: #d42a20;        /* ボタン地は明るくしない（白文字のため） */
-    --brand-hover: #b3221a;
-    --brand-soft: #3a1d1a;
-    --brand-ink: #ff8a80;    /* 赤い文字はこちら */
-    --on-brand: #ffffff;
-    --new: #d42a20;
-    --on-new: #ffffff;
-
-    --pop: #ffd84f;
-    --on-pop: #16171b;
-    --marker: #5c4a10;
-    --band: #2f333d;
-    --on-band: #f1f1f3;
-    --band-accent: #ffd84f;
-
-    --cat-news-ink: #8fb0ff;   --cat-news-bg: #1b2542;
-    --cat-video-ink: #ff8fb6;  --cat-video-bg: #3a1b29;
-    --cat-howto-ink: #5fd3a6;  --cat-howto-bg: #13302a;
-    --cat-prompt-ink: #ffb466; --cat-prompt-bg: #3a2a14;
-    --cat-weekly-ink: #ffd84f; --cat-weekly-bg: #33290c; --cat-weekly-solid: #2a2d35;
-    /* 他の -solid はライトと同じ値（白文字用なので変えない） */
-
-    --money-ink: #a9c1f5;
-    --money-bg: #1a2132;
-    --money-line: #2f3a55;
-
-    --note-bg: #2a2414;
-    --note-line: #8a6d1e;
-    --note-ink: #f2d37a;
-    --footer-bg: #121318;
-    --code-bg: #121318;
-
-    --shadow: 0 0 0 1px var(--line);
-    --shadow-hover: 0 0 0 1px var(--line-strong);
-  }
+/* 配色は端末のダークモード設定に関係なく、ブランドの白ベースで固定する（運営判断） */
+:root {
+  color-scheme: light;
 }
 
 /* 全体のフォーカス（新規） */

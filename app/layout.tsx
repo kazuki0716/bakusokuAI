@@ -24,11 +24,9 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  // ブラウザのアドレスバーの色を、サイトの背景に合わせる
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fbf8f4" },
-    { media: "(prefers-color-scheme: dark)", color: "#1b1d24" },
-  ],
+  // ブラウザのアドレスバーの色を、サイトの背景に合わせる（配色は白ベースで固定）
+  themeColor: "#fbf8f4",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

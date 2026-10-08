@@ -16,8 +16,8 @@ export const CATEGORIES = {
     description: "経営者・管理職／事務・総務・経理／マーケ・営業の立場ごとに、仕事に直結するYouTube動画を編集部が1本ずつ厳選。英語学習や調べものなど、毎日使える「AIで自分磨き」の動画も。",
   },
   howto: {
-    label: "使い方・特集",
-    en: "HOW TO",
+    label: "ノウハウ",
+    en: "KNOW-HOW",
     description: "メール返信・議事録・Excelなど10の仕事ごとに、図解と画面イメージで手順を解説する実践ガイド。",
   },
   prompt: {
@@ -35,8 +35,8 @@ export function isCategory(value: string): value is CategoryKey {
   return value in CATEGORIES;
 }
 
-// 上のメニュー（PC）と下のメニュー（スマホ）で同じ名前を使う。読者の目的（使い方を知りたい）が同じなので、
-// howto と prompt は1つの一覧「使い方」にまとめる
+// 上のメニュー（PC）と下のメニュー（スマホ）で同じ名前を使う。読者の目的（やり方を知りたい）が同じなので、
+// howto と prompt は1つの一覧「ノウハウ」にまとめる
 // （記事の種類としては別のまま。一覧は /c/howto で、プロンプトはその中の #prompt）
 export const MENU: { key: CategoryKey; label: string; en: string; description: string; cats: CategoryKey[] }[] = [
   { key: "weekly", ...CATEGORIES.weekly, cats: ["weekly"] },
@@ -44,8 +44,8 @@ export const MENU: { key: CategoryKey; label: string; en: string; description: s
   { key: "video", ...CATEGORIES.video, cats: ["video"] },
   {
     key: "howto",
-    label: "使い方",
-    en: "HOW TO & PROMPT",
+    label: "ノウハウ",
+    en: "KNOW-HOW & PROMPT",
     description: "メール返信・議事録・Excelなど10の仕事ごとの手順解説と、コピーしてすぐ使えるプロンプト。",
     cats: ["howto", "prompt"],
   },

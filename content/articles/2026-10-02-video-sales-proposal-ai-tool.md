@@ -38,20 +38,20 @@ sources:
 - 顧客情報を入れる場合の注意（社外秘の扱い）を確認する
 
 <figure class="diagram">
-<svg viewBox="0 0 720 160" role="img" aria-label="営業資料をAIで作る流れ">
+<svg viewBox="0 0 720 556" role="img" aria-label="営業資料をAIで作る流れ">
 <defs><marker id="vs2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<rect x="16" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="118" y="70" text-anchor="middle" class="d-text">伝えたいこと</text>
-<text x="118" y="96" text-anchor="middle" class="d-sub">テーマ＋ポイント3つ</text>
-<path d="M225,80 L253,80" class="d-arrow" marker-end="url(#vs2)"/>
-<rect x="257" y="20" width="205" height="120" rx="12" class="d-accent"/>
-<text x="359" y="70" text-anchor="middle" class="d-text">AIツール</text>
-<text x="359" y="96" text-anchor="middle" class="d-sub">たたき台を作成</text>
-<path d="M466,80 L494,80" class="d-arrow" marker-end="url(#vs2)"/>
-<rect x="498" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="600" y="70" text-anchor="middle" class="d-text">自分で仕上げ</text>
-<text x="600" y="96" text-anchor="middle" class="d-sub">顧客ごとの課題・</text>
-<text x="600" y="114" text-anchor="middle" class="d-sub">数字・事例を追加</text>
+<rect x="80" y="16" width="560" height="122" rx="14" class="d-box"/>
+<text x="360" y="68" text-anchor="middle" class="d-text" font-size="28">伝えたいこと</text>
+<text x="360" y="110" text-anchor="middle" class="d-sub" font-size="26">テーマ＋ポイント3つ</text>
+<path d="M360,142 L360,192" class="d-arrow" marker-end="url(#vs2)"/>
+<rect x="80" y="198" width="560" height="122" rx="14" class="d-accent"/>
+<text x="360" y="250" text-anchor="middle" class="d-text" font-size="28">AIツール</text>
+<text x="360" y="292" text-anchor="middle" class="d-sub" font-size="26">たたき台を作成</text>
+<path d="M360,324 L360,374" class="d-arrow" marker-end="url(#vs2)"/>
+<rect x="80" y="380" width="560" height="160" rx="14" class="d-box"/>
+<text x="360" y="432" text-anchor="middle" class="d-text" font-size="28">自分で仕上げ</text>
+<text x="360" y="474" text-anchor="middle" class="d-sub" font-size="26">顧客ごとの課題・</text>
+<text x="360" y="512" text-anchor="middle" class="d-sub" font-size="26">数字・事例を追加</text>
 </svg>
 <figcaption>図：たたき台はAI、顧客ごとの中身は自分で</figcaption>
 </figure>

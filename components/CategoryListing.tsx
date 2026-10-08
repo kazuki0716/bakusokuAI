@@ -12,7 +12,7 @@ export function pageHref(category: CategoryKey, page: number): string {
 }
 
 // メニュー1つ分の記事一覧（新しい順に PAGE_SIZE 本ずつ）。古い記事は2ページ目以降とバックナンバーへ
-// 「使い方」（/c/howto）は使い方・特集とプロンプトの2つの種類をまとめて出す
+// 「ノウハウ」（/c/howto）は実践ガイドとプロンプトの2つの種類をまとめて出す
 export async function CategoryListing({ category, page }: { category: CategoryKey; page: number }) {
   const menu = MENU.find((m) => m.key === category);
   if (!menu) notFound();
@@ -60,10 +60,10 @@ export async function CategoryListing({ category, page }: { category: CategoryKe
           )}
         </>
       ) : category === "howto" ? (
-        // 使い方・特集 → プロンプト の2段
+        // 実践ガイド → プロンプト の2段
         <>
           {[
-            { id: "howto", title: "使い方・特集", desc: "仕事ごとの手順を、図解つきで解説します。", items: list.filter((a) => a.category === "howto") },
+            { id: "howto", title: "実践ガイド", desc: "仕事ごとの手順を、図解つきで解説します。", items: list.filter((a) => a.category === "howto") },
             { id: "prompt", title: "プロンプト", desc: "コピーしてそのまま使える指示文です。", items: list.filter((a) => a.category === "prompt") },
           ].map(
             (g) =>

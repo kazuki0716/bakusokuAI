@@ -38,32 +38,32 @@ Markdownとは、「#」で見出し、「-」で箇条書き、「|」で表を
 - **ドキュメント**：.mdファイルを変換せずにそのまま開いて、編集・コメント・共同編集ができる
 
 <figure class="diagram">
-<svg viewBox="0 0 720 250" role="img" aria-label="これまではAIの回答をドキュメントに貼ると書式が崩れていたが、これからは.mdファイルのままドライブに置けば整った見た目で共有・共同編集できることを示す比較図">
+<svg viewBox="0 0 720 452" role="img" aria-label="これまではAIの回答をドキュメントに貼ると書式が崩れていたが、これからは.mdファイルのままドライブに置けば整った見た目で共有・共同編集できることを示す比較図">
 <defs><marker id="md1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<text x="16" y="30" class="d-text">これまで</text>
-<rect x="16" y="44" width="190" height="70" rx="10" class="d-box"/>
-<text x="111" y="75" text-anchor="middle" class="d-text">AIの回答</text>
-<text x="111" y="98" text-anchor="middle" class="d-sub">見出し・表つき</text>
-<path d="M210,79 L262,79" class="d-arrow" marker-end="url(#md1)"/>
-<rect x="268" y="44" width="190" height="70" rx="10" class="d-box"/>
-<text x="363" y="75" text-anchor="middle" class="d-text">変換して開く</text>
-<text x="363" y="98" text-anchor="middle" class="d-sub">ドキュメント形式へ</text>
-<path d="M462,79 L514,79" class="d-arrow" marker-end="url(#md1)"/>
-<rect x="520" y="44" width="184" height="70" rx="10" class="d-box"/>
-<text x="612" y="75" text-anchor="middle" class="d-text">書式が崩れる</text>
-<text x="612" y="98" text-anchor="middle" class="d-sub">手で直す手間</text>
-<text x="16" y="160" class="d-text">これから</text>
-<rect x="16" y="174" width="190" height="70" rx="10" class="d-box"/>
-<text x="111" y="205" text-anchor="middle" class="d-text">AIの回答</text>
-<text x="111" y="228" text-anchor="middle" class="d-sub">.mdで保存</text>
-<path d="M210,209 L262,209" class="d-arrow" marker-end="url(#md1)"/>
-<rect x="268" y="174" width="190" height="70" rx="10" class="d-accent"/>
-<text x="363" y="205" text-anchor="middle" class="d-text">ドライブに置く</text>
-<text x="363" y="228" text-anchor="middle" class="d-sub">変換いらず</text>
-<path d="M462,209 L514,209" class="d-arrow" marker-end="url(#md1)"/>
-<rect x="520" y="174" width="184" height="70" rx="10" class="d-accent"/>
-<text x="612" y="205" text-anchor="middle" class="d-text">整ったまま共有</text>
-<text x="612" y="228" text-anchor="middle" class="d-sub">コメント・共同編集</text>
+<text x="184" y="44" text-anchor="middle" class="d-text" font-size="28">これまで</text>
+<rect x="16" y="64" width="336" height="100" rx="10" class="d-box"/>
+<text x="184" y="106" text-anchor="middle" class="d-text" font-size="28">AIの回答</text>
+<text x="184" y="144" text-anchor="middle" class="d-sub" font-size="26">見出し・表つき</text>
+<path d="M184,168 L184,196" class="d-arrow" marker-end="url(#md1)"/>
+<rect x="16" y="200" width="336" height="100" rx="10" class="d-box"/>
+<text x="184" y="242" text-anchor="middle" class="d-text" font-size="28">変換して開く</text>
+<text x="184" y="280" text-anchor="middle" class="d-sub" font-size="26">ドキュメント形式へ</text>
+<path d="M184,304 L184,332" class="d-arrow" marker-end="url(#md1)"/>
+<rect x="16" y="336" width="336" height="100" rx="10" class="d-box"/>
+<text x="184" y="378" text-anchor="middle" class="d-text" font-size="28">書式が崩れる</text>
+<text x="184" y="416" text-anchor="middle" class="d-sub" font-size="26">手で直す手間</text>
+<text x="536" y="44" text-anchor="middle" class="d-text" font-size="28">これから</text>
+<rect x="368" y="64" width="336" height="100" rx="10" class="d-box"/>
+<text x="536" y="106" text-anchor="middle" class="d-text" font-size="28">AIの回答</text>
+<text x="536" y="144" text-anchor="middle" class="d-sub" font-size="26">.mdで保存</text>
+<path d="M536,168 L536,196" class="d-arrow" marker-end="url(#md1)"/>
+<rect x="368" y="200" width="336" height="100" rx="10" class="d-accent"/>
+<text x="536" y="242" text-anchor="middle" class="d-text" font-size="28">ドライブに置く</text>
+<text x="536" y="280" text-anchor="middle" class="d-sub" font-size="26">変換いらず</text>
+<path d="M536,304 L536,332" class="d-arrow" marker-end="url(#md1)"/>
+<rect x="368" y="336" width="336" height="100" rx="10" class="d-accent"/>
+<text x="536" y="378" text-anchor="middle" class="d-text" font-size="28">整ったまま共有</text>
+<text x="536" y="416" text-anchor="middle" class="d-sub" font-size="26">コメント・共同編集</text>
 </svg>
 <figcaption>図：AIが書いた文章を「変換なし」でチームに回せるようになる</figcaption>
 </figure>

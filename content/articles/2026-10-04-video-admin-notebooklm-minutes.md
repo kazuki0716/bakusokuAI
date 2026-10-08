@@ -38,20 +38,20 @@ sources:
 - 録音を使う場合は、参加者に一言伝えるのがマナー
 
 <figure class="diagram">
-<svg viewBox="0 0 720 160" role="img" aria-label="NotebookLMで議事録を作る流れ">
+<svg viewBox="0 0 720 556" role="img" aria-label="NotebookLMで議事録を作る流れ">
 <defs><marker id="vd2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<rect x="16" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="118" y="70" text-anchor="middle" class="d-text">会議の録音</text>
-<text x="118" y="96" text-anchor="middle" class="d-sub">参加者に一言伝える</text>
-<path d="M225,80 L253,80" class="d-arrow" marker-end="url(#vd2)"/>
-<rect x="257" y="20" width="205" height="120" rx="12" class="d-accent"/>
-<text x="359" y="70" text-anchor="middle" class="d-text">NotebookLM</text>
-<text x="359" y="96" text-anchor="middle" class="d-sub">読み込ませて</text>
-<text x="359" y="114" text-anchor="middle" class="d-sub">議事録を作る</text>
-<path d="M466,80 L494,80" class="d-arrow" marker-end="url(#vd2)"/>
-<rect x="498" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="600" y="70" text-anchor="middle" class="d-text">議事録</text>
-<text x="600" y="96" text-anchor="middle" class="d-sub">決定事項・ToDo</text>
+<rect x="80" y="16" width="560" height="122" rx="14" class="d-box"/>
+<text x="360" y="68" text-anchor="middle" class="d-text" font-size="28">会議の録音</text>
+<text x="360" y="110" text-anchor="middle" class="d-sub" font-size="26">参加者に一言伝える</text>
+<path d="M360,142 L360,192" class="d-arrow" marker-end="url(#vd2)"/>
+<rect x="80" y="198" width="560" height="160" rx="14" class="d-accent"/>
+<text x="360" y="250" text-anchor="middle" class="d-text" font-size="28">NotebookLM</text>
+<text x="360" y="292" text-anchor="middle" class="d-sub" font-size="26">読み込ませて</text>
+<text x="360" y="330" text-anchor="middle" class="d-sub" font-size="26">議事録を作る</text>
+<path d="M360,362 L360,412" class="d-arrow" marker-end="url(#vd2)"/>
+<rect x="80" y="418" width="560" height="122" rx="14" class="d-box"/>
+<text x="360" y="470" text-anchor="middle" class="d-text" font-size="28">議事録</text>
+<text x="360" y="512" text-anchor="middle" class="d-sub" font-size="26">決定事項・ToDo</text>
 </svg>
 <figcaption>図：録音を読み込ませて、議事録とToDoをまとめて作る</figcaption>
 </figure>

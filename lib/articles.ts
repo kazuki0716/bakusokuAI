@@ -60,6 +60,22 @@ function toDateString(value: unknown): string {
   return String(value ?? "");
 }
 
+// 図解の文字がスマホで小さくなりすぎないよう、すべての <text> に font-size 26 以上を求める（docs/editorial-guide.md「5. 図解」）
+const MIN_DIAGRAM_FONT = 26;
+
+function checkDiagramText(file: string, content: string) {
+  for (const figure of content.match(/<figure class="diagram[\s\S]*?<\/figure>/g) ?? []) {
+    for (const text of figure.match(/<text\b[^>]*>/g) ?? []) {
+      const size = Number(text.match(/font-size="(\d+(?:\.\d+)?)"/)?.[1] ?? 0);
+      if (size < MIN_DIAGRAM_FONT) {
+        throw new Error(
+          `${file}: 図解の文字が小さすぎます（${text.slice(0, 60)}…）。<text> には font-size="${MIN_DIAGRAM_FONT}" 以上を付けてください`,
+        );
+      }
+    }
+  }
+}
+
 function readArticle(file: string): Article {
   const raw = fs.readFileSync(path.join(ARTICLES_DIR, file), "utf8");
   const { data, content } = matter(raw);
@@ -73,6 +89,7 @@ function readArticle(file: string): Article {
   if (data.level !== undefined && !(LEVELS as readonly string[]).includes(data.level)) {
     throw new Error(`${file}: level "${data.level}" は 初級 / 中級 / 上級 のいずれかにしてください`);
   }
+  checkDiagramText(file, content);
 
   return {
     slug,

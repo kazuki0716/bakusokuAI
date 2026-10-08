@@ -27,20 +27,21 @@ Anthropicは2026年9月28日、AIアシスタント「Claude」の新しいモ�
 - **無料プランでも使える**（Claude.aiのWeb版・アプリ）
 
 <figure class="diagram">
-<svg viewBox="0 0 720 160" role="img" aria-label="Claudeのプランごとに使えるモデル">
+<svg viewBox="0 0 720 498" role="img" aria-label="Claudeのプランごとに使えるモデル">
 <defs><marker id="cs1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<rect x="16" y="20" width="205" height="120" rx="12" class="d-accent"/>
-<text x="118" y="70" text-anchor="middle" class="d-text">無料プラン</text>
-<text x="118" y="96" text-anchor="middle" class="d-sub">Sonnet 5.5が使える</text>
-<path d="M225,80 L253,80" class="d-arrow" marker-end="url(#cs1)"/>
-<rect x="257" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="359" y="70" text-anchor="middle" class="d-text">有料プラン</text>
-<text x="359" y="96" text-anchor="middle" class="d-sub">Sonnet 5.5＋</text>
-<text x="359" y="114" text-anchor="middle" class="d-sub">さらに上位のOpus 5.5</text>
-<path d="M466,80 L494,80" class="d-arrow" marker-end="url(#cs1)"/>
-<rect x="498" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="600" y="70" text-anchor="middle" class="d-text">法人・API</text>
-<text x="600" y="96" text-anchor="middle" class="d-sub">料金は据え置き</text>
+<rect x="24" y="16" width="672" height="136" rx="14" class="d-accent"/>
+<text x="200" y="94" text-anchor="middle" class="d-text" font-size="28">無料プラン</text>
+<text x="520" y="74" text-anchor="middle" class="d-sub" font-size="26">Sonnet 5.5が</text>
+<text x="520" y="112" text-anchor="middle" class="d-sub" font-size="26">使える</text>
+<path d="M360,156 L360,196" class="d-arrow" marker-end="url(#cs1)"/>
+<rect x="24" y="200" width="672" height="136" rx="14" class="d-box"/>
+<text x="200" y="278" text-anchor="middle" class="d-text" font-size="28">有料プラン</text>
+<text x="520" y="258" text-anchor="middle" class="d-sub" font-size="26">Sonnet 5.5＋</text>
+<text x="520" y="296" text-anchor="middle" class="d-sub" font-size="26">上位のOpus 5.5</text>
+<path d="M360,340 L360,380" class="d-arrow" marker-end="url(#cs1)"/>
+<rect x="24" y="384" width="672" height="98" rx="14" class="d-box"/>
+<text x="200" y="443" text-anchor="middle" class="d-text" font-size="28">法人・API</text>
+<text x="520" y="442" text-anchor="middle" class="d-sub" font-size="26">料金は据え置き</text>
 </svg>
 <figcaption>図：無料プランでも、文章に強いSonnet 5.5が使える</figcaption>
 </figure>

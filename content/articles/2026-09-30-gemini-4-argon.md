@@ -30,24 +30,24 @@ Googleは2026年9月30日、新しい最上位のAIモデル **Gemini 4 Argon（
 2026年10月5日時点では、まだ一般の人は使えません。Googleは次の順番で、段階的に公開するとしています。
 
 <figure class="diagram">
-<svg viewBox="0 0 720 160" role="img" aria-label="Gemini 4 Argonの段階的な公開の順番">
+<svg viewBox="0 0 720 606" role="img" aria-label="Gemini 4 Argonの段階的な公開の順番">
 <defs><marker id="ga1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<rect x="16" y="20" width="145" height="120" rx="12" class="d-accent"/>
-<text x="88" y="70" text-anchor="middle" class="d-text">① 防御の専門家</text>
-<text x="88" y="96" text-anchor="middle" class="d-sub">サイバー防御</text>
-<text x="88" y="114" text-anchor="middle" class="d-sub">プログラム参加者</text>
-<path d="M165,80 L193,80" class="d-arrow" marker-end="url(#ga1)"/>
-<rect x="197" y="20" width="145" height="120" rx="12" class="d-box"/>
-<text x="269" y="70" text-anchor="middle" class="d-text">② 有料API</text>
-<text x="269" y="96" text-anchor="middle" class="d-sub">開発者向け</text>
-<path d="M346,80 L374,80" class="d-arrow" marker-end="url(#ga1)"/>
-<rect x="378" y="20" width="145" height="120" rx="12" class="d-box"/>
-<text x="450" y="70" text-anchor="middle" class="d-text">③ 上位プラン</text>
-<text x="450" y="96" text-anchor="middle" class="d-sub">Google AI Ultra</text>
-<path d="M527,80 L555,80" class="d-arrow" marker-end="url(#ga1)"/>
-<rect x="559" y="20" width="145" height="120" rx="12" class="d-box"/>
-<text x="631" y="70" text-anchor="middle" class="d-text">④ 一般</text>
-<text x="631" y="96" text-anchor="middle" class="d-sub">時期は未定</text>
+<rect x="24" y="16" width="672" height="136" rx="14" class="d-accent"/>
+<text x="200" y="94" text-anchor="middle" class="d-text" font-size="28">① 防御の専門家</text>
+<text x="520" y="74" text-anchor="middle" class="d-sub" font-size="26">サイバー防御</text>
+<text x="520" y="112" text-anchor="middle" class="d-sub" font-size="26">プログラム参加者</text>
+<path d="M360,156 L360,196" class="d-arrow" marker-end="url(#ga1)"/>
+<rect x="24" y="200" width="672" height="98" rx="14" class="d-box"/>
+<text x="200" y="259" text-anchor="middle" class="d-text" font-size="28">② 有料API</text>
+<text x="520" y="258" text-anchor="middle" class="d-sub" font-size="26">開発者向け</text>
+<path d="M360,302 L360,342" class="d-arrow" marker-end="url(#ga1)"/>
+<rect x="24" y="346" width="672" height="98" rx="14" class="d-box"/>
+<text x="200" y="405" text-anchor="middle" class="d-text" font-size="28">③ 上位プラン</text>
+<text x="520" y="404" text-anchor="middle" class="d-sub" font-size="26">Google AI Ultra</text>
+<path d="M360,448 L360,488" class="d-arrow" marker-end="url(#ga1)"/>
+<rect x="24" y="492" width="672" height="98" rx="14" class="d-box"/>
+<text x="200" y="551" text-anchor="middle" class="d-text" font-size="28">④ 一般</text>
+<text x="520" y="550" text-anchor="middle" class="d-sub" font-size="26">時期は未定</text>
 </svg>
 <figcaption>図：公開は4段階。一般向けの時期はまだ発表されていない</figcaption>
 </figure>

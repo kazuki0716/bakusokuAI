@@ -38,19 +38,19 @@ sources:
 - 社内でAI活用を任せている担当者と一緒に見ると、認識合わせに使える
 
 <figure class="diagram">
-<svg viewBox="0 0 720 160" role="img" aria-label="同じAIでも差がつく会社と変わらない会社">
+<svg viewBox="0 0 720 300" role="img" aria-label="同じAIでも差がつく会社と変わらない会社">
 <defs><marker id="vx1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<rect x="16" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="118" y="70" text-anchor="middle" class="d-text">同じAI・同じ料金</text>
-<text x="118" y="96" text-anchor="middle" class="d-sub">ツールは同じ</text>
-<path d="M225,80 L253,80" class="d-arrow" marker-end="url(#vx1)"/>
-<rect x="257" y="20" width="205" height="120" rx="12" class="d-accent"/>
-<text x="359" y="70" text-anchor="middle" class="d-text">差がつく会社</text>
-<text x="359" y="96" text-anchor="middle" class="d-sub">使い方を仕組みにする</text>
-<path d="M466,80 L494,80" class="d-arrow" marker-end="url(#vx1)"/>
-<rect x="498" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="600" y="70" text-anchor="middle" class="d-text">変わらない会社</text>
-<text x="600" y="96" text-anchor="middle" class="d-sub">一部の人だけが使う</text>
+<rect x="16" y="16" width="688" height="110" rx="14" class="d-box"/>
+<text x="360" y="63" text-anchor="middle" class="d-text" font-size="28">同じAI・同じ料金</text>
+<text x="360" y="105" text-anchor="middle" class="d-sub" font-size="26">ツールは同じ</text>
+<path d="M340,130 L196,166" class="d-arrow" marker-end="url(#vx1)"/>
+<path d="M380,130 L524,166" class="d-arrow" marker-end="url(#vx1)"/>
+<rect x="16" y="174" width="336" height="110" rx="14" class="d-accent"/>
+<text x="184" y="221" text-anchor="middle" class="d-text" font-size="28">差がつく会社</text>
+<text x="184" y="263" text-anchor="middle" class="d-sub" font-size="26">使い方を仕組みにする</text>
+<rect x="368" y="174" width="336" height="110" rx="14" class="d-box"/>
+<text x="536" y="221" text-anchor="middle" class="d-text" font-size="28">変わらない会社</text>
+<text x="536" y="263" text-anchor="middle" class="d-sub" font-size="26">一部の人だけが使う</text>
 </svg>
 <figcaption>図：差がつくのはツールではなく「会社としての使い方」</figcaption>
 </figure>

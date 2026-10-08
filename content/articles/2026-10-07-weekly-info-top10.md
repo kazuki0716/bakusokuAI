@@ -69,19 +69,16 @@ sources:
 今週公開された情報の中から、<strong>「爆速AI会員の仕事に、どれだけすぐ役立つか」</strong>を基準に10本を選びました。
 
 <figure class="diagram">
-<svg viewBox="0 0 720 170" role="img" aria-label="ランキングの選び方：すぐ使える、多くの会員に関係する、知らないと損をする、の3つの基準">
-<rect x="16" y="20" width="216" height="130" rx="12" class="d-accent"/>
-<text x="124" y="66" text-anchor="middle" class="d-text">① すぐ使える</text>
-<text x="124" y="96" text-anchor="middle" class="d-sub">明日の仕事で試せる</text>
-<text x="124" y="116" text-anchor="middle" class="d-sub">新機能・使い方</text>
-<rect x="252" y="20" width="216" height="130" rx="12" class="d-accent"/>
-<text x="360" y="66" text-anchor="middle" class="d-text">② 多くの人に関係</text>
-<text x="360" y="96" text-anchor="middle" class="d-sub">ChatGPT・Copilot・Gemini</text>
-<text x="360" y="116" text-anchor="middle" class="d-sub">など会員が使うツール</text>
-<rect x="488" y="20" width="216" height="130" rx="12" class="d-accent"/>
-<text x="596" y="66" text-anchor="middle" class="d-text">③ 知らないと損</text>
-<text x="596" y="96" text-anchor="middle" class="d-sub">料金・データの扱い</text>
-<text x="596" y="116" text-anchor="middle" class="d-sub">などの変更</text>
+<svg viewBox="0 0 720 376" role="img" aria-label="ランキングの選び方：すぐ使える、多くの会員に関係する、知らないと損をする、の3つの基準">
+<rect x="16" y="16" width="688" height="104" rx="12" class="d-accent"/>
+<text x="360" y="60" text-anchor="middle" class="d-text" font-size="28">① すぐ使える</text>
+<text x="360" y="100" text-anchor="middle" class="d-sub" font-size="26">明日の仕事で試せる新機能・使い方</text>
+<rect x="16" y="136" width="688" height="104" rx="12" class="d-accent"/>
+<text x="360" y="180" text-anchor="middle" class="d-text" font-size="28">② 多くの人に関係</text>
+<text x="360" y="220" text-anchor="middle" class="d-sub" font-size="26">ChatGPT・Copilot・Gemini など会員が使うツール</text>
+<rect x="16" y="256" width="688" height="104" rx="12" class="d-accent"/>
+<text x="360" y="300" text-anchor="middle" class="d-text" font-size="28">③ 知らないと損</text>
+<text x="360" y="340" text-anchor="middle" class="d-sub" font-size="26">料金・データの扱いなどの変更</text>
 </svg>
 <figcaption>図：今週のTop10の選び方</figcaption>
 </figure>

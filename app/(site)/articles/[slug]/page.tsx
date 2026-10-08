@@ -20,14 +20,6 @@ import { ArticleCard, CategoryLabel, SectionHeading } from "@/components/Article
 import { CATEGORIES, categoryHref, listLabel, SKILLUP, TASK_LIST } from "@/lib/categories";
 import { Ranking } from "@/components/Ranking";
 
-// 文字の小さい古い図解（font-size の指定が無いもの）は、スマホで縮みすぎないよう横スクロールで見せる。
-// キーボードでもスクロールできるよう tabindex を付ける。文字を26以上で書いた図はそのまま画面幅に収める
-function withScrollableDiagrams(html: string): string {
-  return html.replace(/<figure class="diagram">([\s\S]*?)<\/figure>/g, (fig, inner: string) =>
-    inner.includes("font-size") ? fig : `<figure class="diagram diagram-scroll" tabindex="0">${inner}</figure>`,
-  );
-}
-
 type Props = { params: Promise<{ slug: string }> };
 
 // 最近の記事だけビルド時に作る。古い記事は最初に読まれたときに作って保存する
@@ -152,7 +144,7 @@ export default async function ArticlePage({ params }: Props) {
 
         {article.ranking.length > 0 && <Ranking items={article.ranking} />}
 
-        <div className="article-body" dangerouslySetInnerHTML={{ __html: withScrollableDiagrams(article.html) }} />
+        <div className="article-body" dangerouslySetInnerHTML={{ __html: article.html }} />
         <CopyButtons />
 
         {article.impact && (

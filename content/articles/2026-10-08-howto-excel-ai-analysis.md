@@ -114,7 +114,7 @@ AIが読み間違えやすいのは、人が見やすく飾った表です。分
 <text x="348" y="374" text-anchor="middle" class="d-text" font-size="28">✦</text>
 <rect x="312" y="332" width="72" height="64" rx="12" class="d-mark"/>
 <circle cx="312" cy="330" r="16" class="d-mark-dot"/>
-<text x="312" y="336" text-anchor="middle" class="d-mark-num">1</text>
+<text x="312" y="339" text-anchor="middle" class="d-mark-num" font-size="26">1</text>
 <rect x="420" y="36" width="264" height="372" rx="10" class="d-box"/>
 <text x="440" y="80" class="d-text" font-size="28">Copilot</text>
 <rect x="440" y="104" width="220" height="14" rx="7" class="d-accent"/>
@@ -124,7 +124,7 @@ AIが読み間違えやすいのは、人が見やすく飾った表です。分
 <text x="452" y="350" class="d-sub" font-size="26">ここに依頼を書く</text>
 <rect x="428" y="292" width="248" height="100" rx="12" class="d-mark"/>
 <circle cx="676" cy="292" r="16" class="d-mark-dot"/>
-<text x="676" y="298" text-anchor="middle" class="d-mark-num">2</text>
+<text x="676" y="301" text-anchor="middle" class="d-mark-num" font-size="26">2</text>
 </svg>
 <figcaption>画面イメージ：① Excelの右下のCopilotアイコンを選ぶ → ② 開いた画面の入力欄に依頼を書く（実際の画面と異なる場合があります）</figcaption>
 </figure>
@@ -170,10 +170,10 @@ AIが読み間違えやすいのは、人が見やすく飾った表です。分
 <text x="110" y="481" class="d-sub" font-size="26">質問や依頼を入力</text>
 <rect x="42" y="446" width="56" height="52" rx="14" class="d-mark"/>
 <circle cx="42" cy="446" r="16" class="d-mark-dot"/>
-<text x="42" y="452" text-anchor="middle" class="d-mark-num">1</text>
+<text x="42" y="455" text-anchor="middle" class="d-mark-num" font-size="26">1</text>
 <rect x="28" y="168" width="664" height="264" rx="16" class="d-mark"/>
 <circle cx="692" cy="168" r="16" class="d-mark-dot"/>
-<text x="692" y="174" text-anchor="middle" class="d-mark-num">2</text>
+<text x="692" y="177" text-anchor="middle" class="d-mark-num" font-size="26">2</text>
 </svg>
 <figcaption>画面イメージ：① 入力欄の「＋」（ファイルの追加）から表を添付して依頼する → ② 担当者別の集計表とグラフが返ってくる（実際の画面と異なる場合があります）</figcaption>
 </figure>

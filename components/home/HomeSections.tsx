@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { formatMonth, type Article } from "@/lib/articles";
-import { isForTask, MENU, PERSONAS, SKILLUP, TASK_LIST, type CategoryKey } from "@/lib/categories";
+import { isForTask, MENU, PERSONAS, SKILLUP, TASK_LIST } from "@/lib/categories";
 import { shortDate } from "@/lib/schedule";
-import { ArticleCard, CategoryLabel, NewBadge, SectionHeading, Thumb } from "../ArticleParts";
+import { CategoryLabel, NewBadge, SectionHeading, Thumb } from "../ArticleParts";
 import { WeeklyCards } from "../WeeklyCards";
 import { LevelBadge } from "../LevelBadge";
 
@@ -35,9 +35,18 @@ export function TodayUpdates({ list, isFallback, date }: { list: Article[]; isFa
           </li>
         ))}
       </ul>
-      <p className="archive-link">
-        <Link href="/archive">それより前の記事はバックナンバーへ →</Link>
-      </p>
+      {/* 種類ごとの新着はホームに並べず、一覧ページへの入口だけ置く（ホームを短く、同じ記事を何度も出さない） */}
+      <nav className="today-more" aria-label="記事の一覧">
+        <span className="today-more-label">それより前の記事</span>
+        {MENU.filter((m) => m.key !== "weekly").map((m) => (
+          <Link key={m.key} href={`/c/${m.key}`} className="today-more-link">
+            {m.label} <span aria-hidden="true">→</span>
+          </Link>
+        ))}
+        <Link href="/archive" className="today-more-link">
+          バックナンバー <span aria-hidden="true">→</span>
+        </Link>
+      </nav>
     </section>
   );
 }
@@ -185,7 +194,7 @@ export function TaskGrid({ articles }: { articles: Article[] }) {
   return (
     <section id="tasks" className="block home-section reveal">
       <SectionHeading en="BY TASK" ja="やりたい仕事から探す" />
-      <p className="section-lead">10の仕事ごとに、使い方・動画・プロンプト・ニュースをまとめています。</p>
+      <p className="section-lead">10の仕事ごとに、ノウハウ・動画・プロンプト・ニュースをまとめています。</p>
       <ul className="task-grid">
         {TASK_LIST.map((t, i) => {
           const count = articles.filter((a) => isForTask(a, t)).length;
@@ -210,37 +219,6 @@ export function TaskGrid({ articles }: { articles: Article[] }) {
         })}
       </ul>
     </section>
-  );
-}
-
-const RAIL_KEYS: CategoryKey[] = ["news", "video", "howto"];
-
-// ⑦ メニューごとの新着（上で出した記事は除く。スマホは横スクロール）。使い方（使い方・特集とプロンプト）は1列にまとめる
-export function CategoryRails({ articles, exclude }: { articles: Article[]; exclude: Set<string> }) {
-  return (
-    <>
-      {MENU.filter((m) => RAIL_KEYS.includes(m.key)).map(({ key, label, en, cats }) => {
-        const list = articles.filter((a) => cats.includes(a.category) && !exclude.has(a.slug)).slice(0, 4);
-        if (list.length === 0) return null;
-        return (
-          <section key={key} className="block home-section reveal">
-            <SectionHeading en={en} ja={label} href={`/c/${key}`} more={`${label}の一覧へ`} />
-            <ul className="cards rail">
-              {list.map((a) => (
-                <ArticleCard key={a.slug} article={a} />
-              ))}
-              <li className="rail-more">
-                <Link href={`/c/${key}`}>
-                  {label}を
-                  <br />
-                  もっと見る <span aria-hidden="true">→</span>
-                </Link>
-              </li>
-            </ul>
-          </section>
-        );
-      })}
-    </>
   );
 }
 

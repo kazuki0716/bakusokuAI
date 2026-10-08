@@ -40,22 +40,22 @@ sources: []
 ```
 
 <figure class="diagram">
-<svg viewBox="0 0 720 160" role="img" aria-label="報告メールを結論、理由、次にやることの順に並べる">
+<svg viewBox="0 0 720 536" role="img" aria-label="報告メールを結論、理由、次にやることの順に並べる">
 <defs><marker id="pr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<rect x="16" y="20" width="205" height="120" rx="12" class="d-accent"/>
-<text x="118" y="70" text-anchor="middle" class="d-text">結論</text>
-<text x="118" y="96" text-anchor="middle" class="d-sub">A社の見積もりは</text>
-<text x="118" y="114" text-anchor="middle" class="d-sub">承認いただけた</text>
-<path d="M225,80 L253,80" class="d-arrow" marker-end="url(#pr1)"/>
-<rect x="257" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="359" y="70" text-anchor="middle" class="d-text">理由・状況</text>
-<text x="359" y="96" text-anchor="middle" class="d-sub">納期を1週間</text>
-<text x="359" y="114" text-anchor="middle" class="d-sub">早めたいとの要望</text>
-<path d="M466,80 L494,80" class="d-arrow" marker-end="url(#pr1)"/>
-<rect x="498" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="600" y="70" text-anchor="middle" class="d-text">次にやること</text>
-<text x="600" y="96" text-anchor="middle" class="d-sub">工場に確認し</text>
-<text x="600" y="114" text-anchor="middle" class="d-sub">明日ご報告</text>
+<rect x="24" y="16" width="672" height="136" rx="14" class="d-accent"/>
+<text x="200" y="94" text-anchor="middle" class="d-text" font-size="28">結論</text>
+<text x="520" y="74" text-anchor="middle" class="d-sub" font-size="26">A社の見積もりは</text>
+<text x="520" y="112" text-anchor="middle" class="d-sub" font-size="26">承認いただけた</text>
+<path d="M360,156 L360,196" class="d-arrow" marker-end="url(#pr1)"/>
+<rect x="24" y="200" width="672" height="136" rx="14" class="d-box"/>
+<text x="200" y="278" text-anchor="middle" class="d-text" font-size="28">理由・状況</text>
+<text x="520" y="258" text-anchor="middle" class="d-sub" font-size="26">納期を1週間</text>
+<text x="520" y="296" text-anchor="middle" class="d-sub" font-size="26">早めたいとの要望</text>
+<path d="M360,340 L360,380" class="d-arrow" marker-end="url(#pr1)"/>
+<rect x="24" y="384" width="672" height="136" rx="14" class="d-box"/>
+<text x="200" y="462" text-anchor="middle" class="d-text" font-size="28">次にやること</text>
+<text x="520" y="442" text-anchor="middle" class="d-sub" font-size="26">工場に確認し</text>
+<text x="520" y="480" text-anchor="middle" class="d-sub" font-size="26">明日ご報告</text>
 </svg>
 <figcaption>図：「結論 → 理由 → 次にやること」の順で並べると、伝わる報告になる</figcaption>
 </figure>

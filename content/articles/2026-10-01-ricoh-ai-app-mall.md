@@ -23,21 +23,21 @@ sources:
 <div class="note">💡 Difyとは：プログラミングをしなくても、画面上で部品をつなげて「AIを使った業務アプリ」を作れるツールです。</div>
 
 <figure class="diagram">
-<svg viewBox="0 0 720 160" role="img" aria-label="Difyで作った業務アプリを企業間で共有する流れ">
+<svg viewBox="0 0 720 594" role="img" aria-label="Difyで作った業務アプリを企業間で共有する流れ">
 <defs><marker id="rc1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<rect x="16" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="118" y="70" text-anchor="middle" class="d-text">A社</text>
-<text x="118" y="96" text-anchor="middle" class="d-sub">Difyで</text>
-<text x="118" y="114" text-anchor="middle" class="d-sub">業務アプリを作る</text>
-<path d="M225,80 L253,80" class="d-arrow" marker-end="url(#rc1)"/>
-<rect x="257" y="20" width="205" height="120" rx="12" class="d-accent"/>
-<text x="359" y="70" text-anchor="middle" class="d-text">AI App Mall</text>
-<text x="359" y="96" text-anchor="middle" class="d-sub">アプリを共有</text>
-<path d="M466,80 L494,80" class="d-arrow" marker-end="url(#rc1)"/>
-<rect x="498" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="600" y="70" text-anchor="middle" class="d-text">B社・C社</text>
-<text x="600" y="96" text-anchor="middle" class="d-sub">そのまま使う</text>
-<text x="600" y="114" text-anchor="middle" class="d-sub">自社用に直す</text>
+<rect x="80" y="16" width="560" height="160" rx="14" class="d-box"/>
+<text x="360" y="68" text-anchor="middle" class="d-text" font-size="28">A社</text>
+<text x="360" y="110" text-anchor="middle" class="d-sub" font-size="26">Difyで</text>
+<text x="360" y="148" text-anchor="middle" class="d-sub" font-size="26">業務アプリを作る</text>
+<path d="M360,180 L360,230" class="d-arrow" marker-end="url(#rc1)"/>
+<rect x="80" y="236" width="560" height="122" rx="14" class="d-accent"/>
+<text x="360" y="288" text-anchor="middle" class="d-text" font-size="28">AI App Mall</text>
+<text x="360" y="330" text-anchor="middle" class="d-sub" font-size="26">アプリを共有</text>
+<path d="M360,362 L360,412" class="d-arrow" marker-end="url(#rc1)"/>
+<rect x="80" y="418" width="560" height="160" rx="14" class="d-box"/>
+<text x="360" y="470" text-anchor="middle" class="d-text" font-size="28">B社・C社</text>
+<text x="360" y="512" text-anchor="middle" class="d-sub" font-size="26">そのまま使う</text>
+<text x="360" y="550" text-anchor="middle" class="d-sub" font-size="26">自社用に直す</text>
 </svg>
 <figcaption>図：他社が作ったAIアプリを、自社でも使える</figcaption>
 </figure>

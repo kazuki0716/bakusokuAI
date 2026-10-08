@@ -224,10 +224,10 @@ GeminiのスキルとPowerPointのCopilotのスキルは、どちらも <code>SK
 <text x="444" y="387" class="d-sub" font-size="26">用語集</text>
 <rect x="192" y="152" width="496" height="166" rx="12" class="d-mark"/>
 <circle cx="192" cy="152" r="16" class="d-mark-dot"/>
-<text x="192" y="158" text-anchor="middle" class="d-mark-num">1</text>
+<text x="192" y="161" text-anchor="middle" class="d-mark-num" font-size="26">1</text>
 <rect x="192" y="332" width="496" height="116" rx="12" class="d-mark"/>
 <circle cx="192" cy="332" r="16" class="d-mark-dot"/>
-<text x="192" y="338" text-anchor="middle" class="d-mark-num">2</text>
+<text x="192" y="341" text-anchor="middle" class="d-mark-num" font-size="26">2</text>
 </svg>
 <figcaption>画面イメージ：① 指示書を「指示」の欄に貼る → ② 良い例や用語集を「参考資料」として入れる。欄の名前はツールによって違います（実際の画面と異なる場合があります）</figcaption>
 </figure>

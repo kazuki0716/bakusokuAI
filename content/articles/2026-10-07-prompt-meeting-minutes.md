@@ -50,16 +50,16 @@ sources: []
 ## うまくいくコツ
 
 <figure class="diagram">
-<svg viewBox="0 0 720 150" role="img" aria-label="プロンプトのコツ：役割を決める、参加者を書く、要確認を書かせる">
-<rect x="16" y="20" width="216" height="110" rx="10" class="d-accent"/>
-<text x="124" y="62" text-anchor="middle" class="d-text">① 役割を決める</text>
-<text x="124" y="88" text-anchor="middle" class="d-sub">「あなたは優秀な秘書です」</text>
-<rect x="252" y="20" width="216" height="110" rx="10" class="d-accent"/>
-<text x="360" y="62" text-anchor="middle" class="d-text">② 参加者を書く</text>
-<text x="360" y="88" text-anchor="middle" class="d-sub">名前の聞き間違いが減る</text>
-<rect x="488" y="20" width="216" height="110" rx="10" class="d-accent"/>
-<text x="596" y="62" text-anchor="middle" class="d-text">③【要確認】を書かせる</text>
-<text x="596" y="88" text-anchor="middle" class="d-sub">AIの思い込みを防ぐ</text>
+<svg viewBox="0 0 720 394" role="img" aria-label="プロンプトのコツ：役割を決める、参加者を書く、要確認を書かせる">
+<rect x="16" y="16" width="688" height="110" rx="14" class="d-accent"/>
+<text x="360" y="61" text-anchor="middle" class="d-text" font-size="28">① 役割を決める</text>
+<text x="360" y="101" text-anchor="middle" class="d-sub" font-size="26">「あなたは優秀な秘書です」</text>
+<rect x="16" y="142" width="688" height="110" rx="14" class="d-accent"/>
+<text x="360" y="187" text-anchor="middle" class="d-text" font-size="28">② 参加者を書く</text>
+<text x="360" y="227" text-anchor="middle" class="d-sub" font-size="26">名前の聞き間違いが減る</text>
+<rect x="16" y="268" width="688" height="110" rx="14" class="d-accent"/>
+<text x="360" y="313" text-anchor="middle" class="d-text" font-size="28">③【要確認】を書かせる</text>
+<text x="360" y="353" text-anchor="middle" class="d-sub" font-size="26">AIの思い込みを防ぐ</text>
 </svg>
 <figcaption>図：このプロンプトで効いている3つの工夫</figcaption>
 </figure>

@@ -33,24 +33,24 @@ Microsoftは2026年10月6日付けのMicrosoft 365 Copilotのリリースノー�
 - 毎月の報告資料を、決まった構成でまとめる
 
 <figure class="diagram">
-<svg viewBox="0 0 720 220" role="img" aria-label="カスタムスキルの流れ：よく使う指示をSKILL.mdに書いてOneDriveのスキルフォルダに保存し、PowerPointのCopilotで@スキル名と入力して呼び出すと、同じルールで資料が仕上がる">
+<svg viewBox="0 0 720 560" role="img" aria-label="カスタムスキルの流れ：よく使う指示をSKILL.mdに書いてOneDriveのスキルフォルダに保存し、PowerPointのCopilotで@スキル名と入力して呼び出すと、同じルールで資料が仕上がる">
 <defs><marker id="ps1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<rect x="16" y="40" width="160" height="110" rx="12" class="d-box"/>
-<text x="96" y="85" text-anchor="middle" class="d-text">よく使う指示</text>
-<text x="96" y="110" text-anchor="middle" class="d-sub">SKILL.md に書く</text>
-<path d="M180,95 L208,95" class="d-arrow" marker-end="url(#ps1)"/>
-<rect x="212" y="40" width="160" height="110" rx="12" class="d-box"/>
-<text x="292" y="85" text-anchor="middle" class="d-text">OneDrive</text>
-<text x="292" y="110" text-anchor="middle" class="d-sub">スキル用フォルダ</text>
-<path d="M376,95 L404,95" class="d-arrow" marker-end="url(#ps1)"/>
-<rect x="408" y="40" width="140" height="110" rx="12" class="d-accent"/>
-<text x="478" y="85" text-anchor="middle" class="d-text">@スキル名</text>
-<text x="478" y="110" text-anchor="middle" class="d-sub">で呼び出す</text>
-<path d="M552,95 L580,95" class="d-arrow" marker-end="url(#ps1)"/>
-<rect x="584" y="40" width="120" height="110" rx="12" class="d-box"/>
-<text x="644" y="85" text-anchor="middle" class="d-text">同じルール</text>
-<text x="644" y="110" text-anchor="middle" class="d-sub">で仕上がる</text>
-<text x="360" y="190" text-anchor="middle" class="d-sub">一度作れば、毎回の長い指示を書かなくてよい</text>
+<rect x="110" y="16" width="500" height="92" rx="12" class="d-box"/>
+<text x="360" y="56" text-anchor="middle" class="d-text" font-size="28">よく使う指示</text>
+<text x="360" y="94" text-anchor="middle" class="d-sub" font-size="26">SKILL.md に書く</text>
+<path d="M360,112 L360,138" class="d-arrow" marker-end="url(#ps1)"/>
+<rect x="110" y="142" width="500" height="92" rx="12" class="d-box"/>
+<text x="360" y="182" text-anchor="middle" class="d-text" font-size="28">OneDrive</text>
+<text x="360" y="220" text-anchor="middle" class="d-sub" font-size="26">スキル用フォルダに保存</text>
+<path d="M360,238 L360,264" class="d-arrow" marker-end="url(#ps1)"/>
+<rect x="110" y="268" width="500" height="92" rx="12" class="d-accent"/>
+<text x="360" y="308" text-anchor="middle" class="d-text" font-size="28">@スキル名</text>
+<text x="360" y="346" text-anchor="middle" class="d-sub" font-size="26">で呼び出す</text>
+<path d="M360,364 L360,390" class="d-arrow" marker-end="url(#ps1)"/>
+<rect x="110" y="394" width="500" height="92" rx="12" class="d-box"/>
+<text x="360" y="434" text-anchor="middle" class="d-text" font-size="28">同じルール</text>
+<text x="360" y="472" text-anchor="middle" class="d-sub" font-size="26">で仕上がる</text>
+<text x="360" y="540" text-anchor="middle" class="d-sub" font-size="26">一度作れば、毎回の長い指示を書かなくてよい</text>
 </svg>
 <figcaption>図：よく頼む指示を「スキル」として保存し、名前で呼び出す</figcaption>
 </figure>

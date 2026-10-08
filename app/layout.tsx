@@ -19,7 +19,7 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: { default: "爆速AI NEWS", template: "%s | 爆速AI NEWS" },
-  description: "爆速AI会員向け：仕事に効くAIニュース・動画・使い方を毎日お届け",
+  description: "爆速AI会員向け：仕事に効くAIニュース・動画・ノウハウを毎日お届け",
   robots: { index: false, follow: false },
 };
 

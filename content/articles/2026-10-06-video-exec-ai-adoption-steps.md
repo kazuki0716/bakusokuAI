@@ -38,19 +38,19 @@ sources:
 - 部下に「AIを使え」と言う前に、会社として決めておくべきことを確認する
 
 <figure class="diagram">
-<svg viewBox="0 0 720 160" role="img" aria-label="動画を見たあとに社内でやること">
+<svg viewBox="0 0 720 466" role="img" aria-label="動画を見たあとに社内でやること">
 <defs><marker id="vx2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<rect x="16" y="20" width="205" height="120" rx="12" class="d-accent"/>
-<text x="118" y="70" text-anchor="middle" class="d-text">① 現状確認</text>
-<text x="118" y="96" text-anchor="middle" class="d-sub">今どこにいる？</text>
-<path d="M225,80 L253,80" class="d-arrow" marker-end="url(#vx2)"/>
-<rect x="257" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="359" y="70" text-anchor="middle" class="d-text">② 次の一手</text>
-<text x="359" y="96" text-anchor="middle" class="d-sub">ルール・担当・研修</text>
-<path d="M466,80 L494,80" class="d-arrow" marker-end="url(#vx2)"/>
-<rect x="498" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="600" y="70" text-anchor="middle" class="d-text">③ 社内に広げる</text>
-<text x="600" y="96" text-anchor="middle" class="d-sub">使い方を共有</text>
+<rect x="16" y="16" width="688" height="110" rx="14" class="d-accent"/>
+<text x="360" y="61" text-anchor="middle" class="d-text" font-size="28">① 現状確認</text>
+<text x="360" y="101" text-anchor="middle" class="d-sub" font-size="26">今どこにいる？</text>
+<path d="M360,130 L360,172" class="d-arrow" marker-end="url(#vx2)"/>
+<rect x="16" y="178" width="688" height="110" rx="14" class="d-box"/>
+<text x="360" y="223" text-anchor="middle" class="d-text" font-size="28">② 次の一手</text>
+<text x="360" y="263" text-anchor="middle" class="d-sub" font-size="26">ルール・担当・研修</text>
+<path d="M360,292 L360,334" class="d-arrow" marker-end="url(#vx2)"/>
+<rect x="16" y="340" width="688" height="110" rx="14" class="d-box"/>
+<text x="360" y="385" text-anchor="middle" class="d-text" font-size="28">③ 社内に広げる</text>
+<text x="360" y="425" text-anchor="middle" class="d-sub" font-size="26">使い方を共有</text>
 </svg>
 <figcaption>図：見たあとは「今どのステップか」を確認して、次の一手を1つ決める</figcaption>
 </figure>

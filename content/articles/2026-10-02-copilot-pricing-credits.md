@@ -23,17 +23,18 @@ sources:
 Microsoftは2026年9月下旬のアップデートで、**Microsoft 365 Copilot の料金を2本立て**にする方針を示しました。
 
 <figure class="diagram">
-<svg viewBox="0 0 720 160" role="img" aria-label="Copilotの料金の2本立て">
+<svg viewBox="0 0 720 230" role="img" aria-label="Copilotの料金の2本立て">
 <defs><marker id="cp1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<rect x="16" y="20" width="326" height="120" rx="12" class="d-box"/>
-<text x="179" y="70" text-anchor="middle" class="d-text">毎日のAI</text>
-<text x="179" y="96" text-anchor="middle" class="d-sub">文章の下書き・要約など</text>
-<text x="179" y="114" text-anchor="middle" class="d-sub">→ 1人あたり定額</text>
-<path d="M346,80 L374,80" class="d-arrow" marker-end="url(#cp1)"/>
-<rect x="378" y="20" width="326" height="120" rx="12" class="d-accent"/>
-<text x="541" y="70" text-anchor="middle" class="d-text">高度なAI</text>
-<text x="541" y="96" text-anchor="middle" class="d-sub">最新モデル・高度な機能</text>
-<text x="541" y="114" text-anchor="middle" class="d-sub">→ 使った分だけ</text>
+<rect x="16" y="16" width="326" height="198" rx="14" class="d-box"/>
+<text x="179" y="68" text-anchor="middle" class="d-text" font-size="28">毎日のAI</text>
+<text x="179" y="110" text-anchor="middle" class="d-sub" font-size="26">下書き・要約など</text>
+<text x="179" y="148" text-anchor="middle" class="d-sub" font-size="26">→ 1人あたり定額</text>
+<rect x="378" y="16" width="326" height="198" rx="14" class="d-accent"/>
+<path d="M346,115 L372,115" class="d-arrow" marker-end="url(#cp1)"/>
+<text x="541" y="68" text-anchor="middle" class="d-text" font-size="28">高度なAI</text>
+<text x="541" y="110" text-anchor="middle" class="d-sub" font-size="26">最新モデル・</text>
+<text x="541" y="148" text-anchor="middle" class="d-sub" font-size="26">高度な機能</text>
+<text x="541" y="186" text-anchor="middle" class="d-sub" font-size="26">→ 使った分だけ</text>
 </svg>
 <figcaption>図：毎日使う機能は定額、最新モデルなどは使った分だけ</figcaption>
 </figure>

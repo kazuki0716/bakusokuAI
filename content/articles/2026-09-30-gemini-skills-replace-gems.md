@@ -25,21 +25,21 @@ Googleは2026年9月30日、Geminiに **スキル（Skills）** を導入する�
 大きな違いは、**1つのチャットで複数のスキルを組み合わせられる**ことです。
 
 <figure class="diagram">
-<svg viewBox="0 0 720 160" role="img" aria-label="複数のスキルを1つのチャットで組み合わせる図">
+<svg viewBox="0 0 720 498" role="img" aria-label="複数のスキルを1つのチャットで組み合わせる図">
 <defs><marker id="gs1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<rect x="16" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="118" y="70" text-anchor="middle" class="d-text">スキル①</text>
-<text x="118" y="96" text-anchor="middle" class="d-sub">議事録の型</text>
-<path d="M225,80 L253,80" class="d-arrow" marker-end="url(#gs1)"/>
-<rect x="257" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="359" y="70" text-anchor="middle" class="d-text">スキル②</text>
-<text x="359" y="96" text-anchor="middle" class="d-sub">社内向けの</text>
-<text x="359" y="114" text-anchor="middle" class="d-sub">丁寧な文体</text>
-<path d="M466,80 L494,80" class="d-arrow" marker-end="url(#gs1)"/>
-<rect x="498" y="20" width="205" height="120" rx="12" class="d-accent"/>
-<text x="600" y="70" text-anchor="middle" class="d-text">1つのチャット</text>
-<text x="600" y="96" text-anchor="middle" class="d-sub">組み合わせて</text>
-<text x="600" y="114" text-anchor="middle" class="d-sub">まとめて実行</text>
+<rect x="24" y="16" width="672" height="98" rx="14" class="d-box"/>
+<text x="200" y="75" text-anchor="middle" class="d-text" font-size="28">スキル①</text>
+<text x="520" y="74" text-anchor="middle" class="d-sub" font-size="26">議事録の型</text>
+<path d="M360,118 L360,158" class="d-arrow" marker-end="url(#gs1)"/>
+<rect x="24" y="162" width="672" height="136" rx="14" class="d-box"/>
+<text x="200" y="240" text-anchor="middle" class="d-text" font-size="28">スキル②</text>
+<text x="520" y="220" text-anchor="middle" class="d-sub" font-size="26">社内向けの</text>
+<text x="520" y="258" text-anchor="middle" class="d-sub" font-size="26">丁寧な文体</text>
+<path d="M360,302 L360,342" class="d-arrow" marker-end="url(#gs1)"/>
+<rect x="24" y="346" width="672" height="136" rx="14" class="d-accent"/>
+<text x="200" y="424" text-anchor="middle" class="d-text" font-size="28">1つのチャット</text>
+<text x="520" y="404" text-anchor="middle" class="d-sub" font-size="26">組み合わせて</text>
+<text x="520" y="442" text-anchor="middle" class="d-sub" font-size="26">まとめて実行</text>
 </svg>
 <figcaption>図：「議事録の型」と「社内向けの文体」を組み合わせて使える</figcaption>
 </figure>

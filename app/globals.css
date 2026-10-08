@@ -1333,15 +1333,6 @@ img {
   fill: var(--muted);
 }
 
-/* 文字の大きさは記事側の font-size（ガイドでは26以上）を優先。指定の無い古い図だけ従来の大きさ */
-.diagram .d-text:not([font-size]) {
-  font-size: 15px;
-}
-
-.diagram .d-sub:not([font-size]) {
-  font-size: 12px;
-}
-
 .diagram .d-arrow {
   stroke: var(--fg);
   stroke-width: 2.5;
@@ -1371,7 +1362,6 @@ img {
 
 .diagram .d-mark-num {
   fill: var(--bg);
-  font-size: 14px;
   font-weight: 800;
 }
 
@@ -2140,6 +2130,41 @@ img {
   font-weight: 700;
 }
 
+/* ホーム「今日の記事」の下：種類ごとの一覧への入口（押しやすい高さ44px） */
+.today-more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2) var(--sp-3);
+  margin: var(--sp-6) 0 0;
+}
+
+.today-more-label {
+  width: 100%;
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+
+.today-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  min-height: 44px;
+  padding: 0 var(--sp-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--fg);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+
+.today-more-link:hover {
+  border-color: var(--fg);
+}
+
 .archive-link {
   margin: var(--sp-6) 0 0;
   text-align: center;
@@ -2900,54 +2925,6 @@ img {
   }
 }
 
-/* ⑦ カテゴリ別の新着：PCは4列、スマホは横スクロール */
-.rail {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--sp-5);
-}
-
-.rail-more {
-  display: none;
-}
-
-@media (max-width: 900px) {
-  .rail {
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: 72%;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    margin: 0 calc(-1 * var(--gutter));
-    padding: var(--sp-1) var(--gutter) var(--sp-4);
-    scroll-padding-inline: var(--gutter);
-    scrollbar-width: none;
-    gap: var(--sp-4);
-  }
-
-  .rail::-webkit-scrollbar {
-    display: none;
-  }
-
-  .rail > li {
-    scroll-snap-align: start;
-  }
-
-  .rail-more {
-    display: block;
-  }
-
-  .rail-more a {
-    display: grid;
-    place-items: center;
-    height: 100%;
-    min-height: 160px;
-    border-radius: var(--radius);
-    border: 2px dashed var(--line);
-    font-weight: 900;
-    text-align: center;
-    line-height: 1.6;
-  }
-}
 
 /* 外部ニュースの「もっと見る」 */
 .feed-more {
@@ -3236,7 +3213,7 @@ img {
   color: var(--muted);
 }
 
-/* 使い方の中の2つ（使い方・特集とプロンプト） */
+/* ノウハウの中の2つ（実践ガイドとプロンプト） */
 .guide-corner-parts {
   display: grid;
   gap: var(--sp-1);
@@ -3602,35 +3579,7 @@ h1.login-logo {
   }
 }
 
-/* 記事の図解：文字の小さい古い図だけ、スマホでは等倍に近い大きさで横にスクロールして見せる */
-@media (max-width: 640px) {
-  .article-body figure.diagram-scroll {
-    overflow-x: auto;
-    scrollbar-width: thin;
-  }
 
-  .article-body figure.diagram-scroll svg {
-    min-width: 560px;
-  }
-
-  .article-body figure.diagram-scroll::after {
-    content: "← 横にスクロールできます →";
-    display: block;
-    margin-top: 6px;
-    font-size: var(--fs-2xs);
-    color: var(--muted);
-    text-align: center;
-    position: sticky;
-    left: 0;
-  }
-}
-
-/* スマホのカテゴリ別の新着は3件まで（残りは「もっと見る」へ） */
-@media (max-width: 640px) {
-  .rail > .card:nth-child(n + 4) {
-    display: none;
-  }
-}
 
 /* 記事のプロンプト（コードブロック）のコピーボタン */
 .code-wrap {

@@ -28,27 +28,24 @@ OpenAIは2026年10月6日のリリースノートで、**ChatGPTに音声ファ�
 これまでも、ChatGPTに話しかける「音声入力」や、その場で録音する機能はありました。今回は**すでに録ってある会議の録音ファイル**をそのまま渡せるようになったのがポイントです。
 
 <figure class="diagram">
-<svg viewBox="0 0 720 230" role="img" aria-label="録音ファイルをChatGPTにアップロードすると、文字起こし・要約・ToDo・お礼メールが作れる流れの図">
+<svg viewBox="0 0 720 486" role="img" aria-label="録音ファイルをChatGPTにアップロードすると、文字起こし・要約・ToDo・お礼メールが作れる流れの図">
 <defs><marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<rect x="16" y="75" width="170" height="80" rx="10" class="d-box"/>
-<text x="101" y="110" text-anchor="middle" class="d-text">会議の録音</text>
-<text x="101" y="132" text-anchor="middle" class="d-sub">Zoom / Meet / Teams</text>
-<path d="M190,115 L262,115" class="d-arrow" marker-end="url(#ah1)"/>
-<rect x="268" y="65" width="170" height="100" rx="10" class="d-accent"/>
-<text x="353" y="108" text-anchor="middle" class="d-text">ChatGPT</text>
-<text x="353" y="130" text-anchor="middle" class="d-sub">ファイルをアップロード</text>
-<path d="M442,115 L492,40" class="d-arrow" marker-end="url(#ah1)"/>
-<path d="M442,115 L492,92" class="d-arrow" marker-end="url(#ah1)"/>
-<path d="M442,115 L492,140" class="d-arrow" marker-end="url(#ah1)"/>
-<path d="M442,115 L492,190" class="d-arrow" marker-end="url(#ah1)"/>
-<rect x="498" y="18" width="206" height="42" rx="8" class="d-box"/>
-<text x="601" y="45" text-anchor="middle" class="d-text">① 文字起こし</text>
-<rect x="498" y="70" width="206" height="42" rx="8" class="d-box"/>
-<text x="601" y="97" text-anchor="middle" class="d-text">② 要約・議事録</text>
-<rect x="498" y="120" width="206" height="42" rx="8" class="d-box"/>
-<text x="601" y="147" text-anchor="middle" class="d-text">③ ToDo・決定事項</text>
-<rect x="498" y="170" width="206" height="42" rx="8" class="d-box"/>
-<text x="601" y="197" text-anchor="middle" class="d-text">④ お礼・フォローメール</text>
+<rect x="150" y="16" width="420" height="104" rx="12" class="d-box"/>
+<text x="360" y="60" text-anchor="middle" class="d-text" font-size="28">会議の録音</text>
+<text x="360" y="100" text-anchor="middle" class="d-sub" font-size="26">Zoom / Meet / Teams</text>
+<path d="M360,124 L360,160" class="d-arrow" marker-end="url(#ah1)"/>
+<rect x="150" y="166" width="420" height="104" rx="12" class="d-accent"/>
+<text x="360" y="210" text-anchor="middle" class="d-text" font-size="28">ChatGPT</text>
+<text x="360" y="250" text-anchor="middle" class="d-sub" font-size="26">ファイルをアップロード</text>
+<path d="M360,274 L360,306" class="d-arrow" marker-end="url(#ah1)"/>
+<rect x="16" y="312" width="336" height="72" rx="10" class="d-box"/>
+<text x="184" y="358" text-anchor="middle" class="d-text" font-size="28">① 文字起こし</text>
+<rect x="368" y="312" width="336" height="72" rx="10" class="d-box"/>
+<text x="536" y="358" text-anchor="middle" class="d-text" font-size="28">② 要約・議事録</text>
+<rect x="16" y="398" width="336" height="72" rx="10" class="d-box"/>
+<text x="184" y="444" text-anchor="middle" class="d-text" font-size="28">③ ToDo・決定事項</text>
+<rect x="368" y="398" width="336" height="72" rx="10" class="d-box"/>
+<text x="536" y="444" text-anchor="middle" class="d-text" font-size="28">④ お礼・フォローメール</text>
 </svg>
 <figcaption>図：録音ファイル1つから、議事録づくりに必要なものがまとめて作れる</figcaption>
 </figure>
@@ -70,28 +67,28 @@ OpenAIは2026年10月6日のリリースノートで、**ChatGPTに音声ファ�
 3. 出てきた議事録を確認し、必要なら「決定事項だけ表にして」「参加者へのお礼メールも書いて」と追加で頼む
 
 <figure class="diagram">
-<svg viewBox="0 0 720 300" role="img" aria-label="画面イメージ：チャットの入力欄で、①添付ボタンから録音ファイルを選び、②やりたいことを書いて送信する">
-<rect x="16" y="12" width="688" height="276" rx="14" class="d-screen"/>
-<rect x="150" y="34" width="420" height="44" rx="12" class="d-box"/>
-<text x="360" y="62" text-anchor="middle" class="d-sub">（これまでの会話がここに表示されます）</text>
-<rect x="60" y="150" width="600" height="110" rx="22" class="d-box"/>
-<rect x="84" y="164" width="230" height="40" rx="8" class="d-accent"/>
-<text x="102" y="189" class="d-text">♪ 定例会議_1007.m4a</text>
-<text x="84" y="234" class="d-text">この会議の議事録を作って</text>
-<circle cx="606" cy="232" r="18" class="d-accent"/>
-<text x="606" y="238" text-anchor="middle" class="d-text">↑</text>
-<circle cx="560" cy="232" r="16" class="d-box"/>
-<text x="560" y="238" text-anchor="middle" class="d-text">＋</text>
-<rect x="538" y="210" width="44" height="44" rx="10" class="d-mark"/>
-<circle cx="538" cy="206" r="12" class="d-mark-dot"/>
-<text x="538" y="211" text-anchor="middle" class="d-mark-num">1</text>
-<rect x="74" y="156" width="250" height="56" rx="10" class="d-mark"/>
-<circle cx="74" cy="152" r="12" class="d-mark-dot"/>
-<text x="74" y="157" text-anchor="middle" class="d-mark-num">2</text>
-<rect x="582" y="208" width="48" height="48" rx="10" class="d-mark"/>
-<circle cx="630" cy="206" r="12" class="d-mark-dot"/>
-<text x="630" y="211" text-anchor="middle" class="d-mark-num">3</text>
-<text x="360" y="118" text-anchor="middle" class="d-sub">①「＋」やクリップのボタン → ②録音ファイルが添付される → ③送信</text>
+<svg viewBox="0 0 720 416" role="img" aria-label="画面イメージ：チャットの入力欄で、①「＋」ボタンから録音ファイルを選び、②ファイルが添付されたら、③やりたいことを書いて送信する">
+<rect x="16" y="12" width="688" height="392" rx="14" class="d-screen"/>
+<text x="48" y="62" class="d-sub" font-size="26">①「＋」ボタンでファイルを選ぶ</text>
+<text x="48" y="100" class="d-sub" font-size="26">② 録音ファイルが添付される</text>
+<text x="48" y="138" class="d-sub" font-size="26">③ 依頼を書いて送信</text>
+<rect x="40" y="170" width="640" height="210" rx="22" class="d-box"/>
+<rect x="64" y="190" width="400" height="56" rx="8" class="d-accent"/>
+<text x="80" y="228" class="d-text" font-size="28">♪ 定例会議_1007.m4a</text>
+<text x="64" y="296" class="d-text" font-size="28">この会議の議事録を作って</text>
+<circle cx="96" cy="342" r="22" class="d-box"/>
+<text x="96" y="352" text-anchor="middle" class="d-text" font-size="28">＋</text>
+<circle cx="632" cy="342" r="24" class="d-accent"/>
+<text x="632" y="352" text-anchor="middle" class="d-text" font-size="28">↑</text>
+<rect x="66" y="312" width="60" height="60" rx="10" class="d-mark"/>
+<circle cx="66" cy="312" r="20" class="d-mark-dot"/>
+<text x="66" y="321" text-anchor="middle" class="d-mark-num" font-size="26">1</text>
+<rect x="54" y="180" width="420" height="76" rx="10" class="d-mark"/>
+<circle cx="54" cy="180" r="20" class="d-mark-dot"/>
+<text x="54" y="189" text-anchor="middle" class="d-mark-num" font-size="26">2</text>
+<rect x="600" y="310" width="64" height="64" rx="10" class="d-mark"/>
+<circle cx="664" cy="310" r="20" class="d-mark-dot"/>
+<text x="664" y="319" text-anchor="middle" class="d-mark-num" font-size="26">3</text>
 </svg>
 <figcaption>画面イメージ：入力欄の添付ボタンから録音ファイルを付けて、やりたいことを書いて送るだけ（実際の画面とボタンの位置・形は異なる場合があります）</figcaption>
 </figure>

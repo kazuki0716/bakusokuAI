@@ -22,19 +22,19 @@ sources: []
 ## チェックするのはこの3か所
 
 <figure class="diagram">
-<svg viewBox="0 0 720 200" role="img" aria-label="AIの回答で確認すべき3か所：数字、固有名詞、出典">
-<rect x="16" y="20" width="216" height="160" rx="12" class="d-accent"/>
-<text x="124" y="70" text-anchor="middle" class="d-text">① 数字</text>
-<text x="124" y="102" text-anchor="middle" class="d-sub">金額・日付・割合・件数</text>
-<text x="124" y="124" text-anchor="middle" class="d-sub">→ 元の資料と照らし合わせる</text>
-<rect x="252" y="20" width="216" height="160" rx="12" class="d-accent"/>
-<text x="360" y="70" text-anchor="middle" class="d-text">② 固有名詞</text>
-<text x="360" y="102" text-anchor="middle" class="d-sub">人名・社名・商品名・法律名</text>
-<text x="360" y="124" text-anchor="middle" class="d-sub">→ 公式サイトで検索する</text>
-<rect x="488" y="20" width="216" height="160" rx="12" class="d-accent"/>
-<text x="596" y="70" text-anchor="middle" class="d-text">③ 出典</text>
-<text x="596" y="102" text-anchor="middle" class="d-sub">「〜によると」「調査では」</text>
-<text x="596" y="124" text-anchor="middle" class="d-sub">→ リンク先が本当にあるか</text>
+<svg viewBox="0 0 720 514" role="img" aria-label="AIの回答で確認すべき3か所：数字、固有名詞、出典">
+<rect x="16" y="16" width="688" height="150" rx="14" class="d-accent"/>
+<text x="360" y="61" text-anchor="middle" class="d-text" font-size="28">① 数字</text>
+<text x="360" y="101" text-anchor="middle" class="d-sub" font-size="26">金額・日付・割合・件数</text>
+<text x="360" y="141" text-anchor="middle" class="d-sub" font-size="26">→ 元の資料と照らし合わせる</text>
+<rect x="16" y="182" width="688" height="150" rx="14" class="d-accent"/>
+<text x="360" y="227" text-anchor="middle" class="d-text" font-size="28">② 固有名詞</text>
+<text x="360" y="267" text-anchor="middle" class="d-sub" font-size="26">人名・社名・商品名・法律名</text>
+<text x="360" y="307" text-anchor="middle" class="d-sub" font-size="26">→ 公式サイトで検索する</text>
+<rect x="16" y="348" width="688" height="150" rx="14" class="d-accent"/>
+<text x="360" y="393" text-anchor="middle" class="d-text" font-size="28">③ 出典</text>
+<text x="360" y="433" text-anchor="middle" class="d-sub" font-size="26">「〜によると」「調査では」</text>
+<text x="360" y="473" text-anchor="middle" class="d-sub" font-size="26">→ リンク先が本当にあるか</text>
 </svg>
 <figcaption>図：全部を疑う必要はない。間違いが起きやすい3か所だけ確認する</figcaption>
 </figure>

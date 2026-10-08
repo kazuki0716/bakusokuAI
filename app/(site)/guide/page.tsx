@@ -46,7 +46,7 @@ const CORNERS: {
     when: "メール・議事録・Excelなど、自分の仕事で今日から試したい",
     update: "週3本",
     parts: [
-      { label: "使い方・特集", text: "仕事ごとの手順を図解で（水・日）", time: "5〜10分" },
+      { label: "ノウハウ", text: "仕事ごとの手順を図解で（水・日）", time: "5〜10分" },
       { label: "プロンプト", text: "AIへの頼み方をコピーしてすぐ使う（金）", time: "1分" },
     ],
   },
@@ -219,7 +219,7 @@ export default function GuidePage() {
           <div>
             <dt>事務・総務・経理の方</dt>
             <dd>
-              木曜の動画と<Link href="/c/howto">使い方</Link>
+              木曜の動画と<Link href="/c/howto">ノウハウ</Link>
               。Excel・議事録・メールのやり方が中心です（<Link href="/for/backoffice">まとめページ</Link>）。
             </dd>
           </div>

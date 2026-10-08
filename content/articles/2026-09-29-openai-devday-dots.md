@@ -29,22 +29,22 @@ OpenAIは2026年9月29日、米サンフランシスコで開発者向けイベ�
 | **GPT-6.1 Sol** | 新しいAIモデル。上位モデル並みの性能を、約5分の1の料金で使えると発表された |
 
 <figure class="diagram">
-<svg viewBox="0 0 720 160" role="img" aria-label="これまでのAIとdotsの違い">
+<svg viewBox="0 0 720 536" role="img" aria-label="これまでのAIとdotsの違い">
 <defs><marker id="dv1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<rect x="16" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="118" y="70" text-anchor="middle" class="d-text">これまでのAI</text>
-<text x="118" y="96" text-anchor="middle" class="d-sub">聞かれたら</text>
-<text x="118" y="114" text-anchor="middle" class="d-sub">その場で答える</text>
-<path d="M225,80 L253,80" class="d-arrow" marker-end="url(#dv1)"/>
-<rect x="257" y="20" width="205" height="120" rx="12" class="d-accent"/>
-<text x="359" y="70" text-anchor="middle" class="d-text">dots</text>
-<text x="359" y="96" text-anchor="middle" class="d-sub">任せた仕事を</text>
-<text x="359" y="114" text-anchor="middle" class="d-sub">ずっと続ける</text>
-<path d="M466,80 L494,80" class="d-arrow" marker-end="url(#dv1)"/>
-<rect x="498" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="600" y="70" text-anchor="middle" class="d-text">あなた</text>
-<text x="600" y="96" text-anchor="middle" class="d-sub">結果を確認して</text>
-<text x="600" y="114" text-anchor="middle" class="d-sub">判断するだけ</text>
+<rect x="24" y="16" width="672" height="136" rx="14" class="d-box"/>
+<text x="200" y="94" text-anchor="middle" class="d-text" font-size="28">これまでのAI</text>
+<text x="520" y="74" text-anchor="middle" class="d-sub" font-size="26">聞かれたら</text>
+<text x="520" y="112" text-anchor="middle" class="d-sub" font-size="26">その場で答える</text>
+<path d="M360,156 L360,196" class="d-arrow" marker-end="url(#dv1)"/>
+<rect x="24" y="200" width="672" height="136" rx="14" class="d-accent"/>
+<text x="200" y="278" text-anchor="middle" class="d-text" font-size="28">dots</text>
+<text x="520" y="258" text-anchor="middle" class="d-sub" font-size="26">任せた仕事を</text>
+<text x="520" y="296" text-anchor="middle" class="d-sub" font-size="26">ずっと続ける</text>
+<path d="M360,340 L360,380" class="d-arrow" marker-end="url(#dv1)"/>
+<rect x="24" y="384" width="672" height="136" rx="14" class="d-box"/>
+<text x="200" y="462" text-anchor="middle" class="d-text" font-size="28">あなた</text>
+<text x="520" y="442" text-anchor="middle" class="d-sub" font-size="26">結果を確認して</text>
+<text x="520" y="480" text-anchor="middle" class="d-sub" font-size="26">判断するだけ</text>
 </svg>
 <figcaption>図：AIが「答える道具」から「仕事を進める同僚」に</figcaption>
 </figure>

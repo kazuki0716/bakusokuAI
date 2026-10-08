@@ -68,9 +68,6 @@ export function Thumb({ article, large = false }: { article: Article; large?: bo
   return (
     <div className={`thumb-photo${large ? " thumb-photo-lg" : ""}`}>
       <SafeImage src={src} className="thumb-img" fallback={fallback} eager={large} />
-      {article.image !== generated && (
-        <span className={`thumb-chip cat-${article.category}`}>{CATEGORIES[article.category].en}</span>
-      )}
     </div>
   );
 }

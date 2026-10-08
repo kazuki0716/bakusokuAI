@@ -38,21 +38,19 @@ sources:
 - AIが出した「原因」は仮説なので、最後は人が確認する前提で見る
 
 <figure class="diagram">
-<svg viewBox="0 0 720 160" role="img" aria-label="Excelの売上データをChatGPTで分析する流れ">
+<svg viewBox="0 0 720 496" role="img" aria-label="Excelの売上データをChatGPTで分析する流れ">
 <defs><marker id="vd1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="d-arrowhead"/></marker></defs>
-<rect x="16" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="118" y="70" text-anchor="middle" class="d-text">売上データ</text>
-<text x="118" y="96" text-anchor="middle" class="d-sub">Excel（個人情報は削除）</text>
-<path d="M225,80 L253,80" class="d-arrow" marker-end="url(#vd1)"/>
-<rect x="257" y="20" width="205" height="120" rx="12" class="d-accent"/>
-<text x="359" y="70" text-anchor="middle" class="d-text">ChatGPT</text>
-<text x="359" y="96" text-anchor="middle" class="d-sub">問題点と原因を</text>
-<text x="359" y="114" text-anchor="middle" class="d-sub">洗い出す</text>
-<path d="M466,80 L494,80" class="d-arrow" marker-end="url(#vd1)"/>
-<rect x="498" y="20" width="205" height="120" rx="12" class="d-box"/>
-<text x="600" y="70" text-anchor="middle" class="d-text">人が確認</text>
-<text x="600" y="96" text-anchor="middle" class="d-sub">数字を元の表と</text>
-<text x="600" y="114" text-anchor="middle" class="d-sub">照らし合わせる</text>
+<rect x="16" y="16" width="688" height="120" rx="14" class="d-box"/>
+<text x="360" y="66" text-anchor="middle" class="d-text" font-size="28">売上データ</text>
+<text x="360" y="106" text-anchor="middle" class="d-sub" font-size="26">Excel（個人情報は削除）</text>
+<path d="M360,140 L360,182" class="d-arrow" marker-end="url(#vd1)"/>
+<rect x="16" y="188" width="688" height="120" rx="14" class="d-accent"/>
+<text x="360" y="238" text-anchor="middle" class="d-text" font-size="28">ChatGPT</text>
+<text x="360" y="278" text-anchor="middle" class="d-sub" font-size="26">問題点と原因を洗い出す</text>
+<path d="M360,312 L360,354" class="d-arrow" marker-end="url(#vd1)"/>
+<rect x="16" y="360" width="688" height="120" rx="14" class="d-box"/>
+<text x="360" y="410" text-anchor="middle" class="d-text" font-size="28">人が確認</text>
+<text x="360" y="450" text-anchor="middle" class="d-sub" font-size="26">数字を元の表と照らし合わせる</text>
 </svg>
 <figcaption>図：AIに仮説を出させて、最後は人が数字を確認する</figcaption>
 </figure>

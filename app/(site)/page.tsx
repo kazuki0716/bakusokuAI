@@ -8,7 +8,6 @@ import { nextMonday, todayJST } from "@/lib/schedule";
 import { HomeHero } from "@/components/home/HomeHero";
 import { latestWeeklyPair } from "@/components/WeeklyCards";
 import {
-  CategoryRails,
   GuideBanner,
   MoreToExplore,
   PersonaPicker,
@@ -40,7 +39,6 @@ export default async function HomePage() {
 
   // 今週のTop：AI情報（読む）→ YouTube動画（見る）の順に、それぞれ最新の1本
   const weekly = latestWeeklyPair(articles);
-  const shown = new Set([...todayList, ...weekly].map((a) => a.slug));
   const months = [...new Set(articles.map((a) => monthKey(a.date)))];
 
   return (
@@ -51,16 +49,15 @@ export default async function HomePage() {
       <WeeklyTopPreview articles={weekly} next={nextMonday(today)} />
       <PersonaPicker articles={articles} />
       <TaskGrid articles={articles} />
-      <CategoryRails articles={articles} exclude={shown} />
 
       {feed.length > 0 && (
         <section className="block home-section reveal">
           <SectionHeading en="AI NEWS FEED" ja="ほかのサイトのAIニュース（外部サイト・自動）" />
-          <FeedList items={feed.slice(0, 6)} />
-          {feed.length > 6 && (
+          <FeedList items={feed.slice(0, 4)} />
+          {feed.length > 4 && (
             <details className="feed-more">
-              <summary>あと{feed.length - 6}件を見る</summary>
-              <FeedList items={feed.slice(6)} />
+              <summary>あと{feed.length - 4}件を見る</summary>
+              <FeedList items={feed.slice(4)} />
             </details>
           )}
         </section>

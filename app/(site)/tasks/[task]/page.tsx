@@ -35,7 +35,7 @@ export default async function TaskPage({ params }: Props) {
       <header className="page-head">
         <p className="page-en">BY TASK</p>
         <h1 className="page-title">{task.name}をAIで</h1>
-        <p className="page-desc">「{task.name}」に使える使い方・動画・プロンプト・ニュースをまとめています。</p>
+        <p className="page-desc">「{task.name}」に使えるノウハウ・動画・プロンプト・ニュースをまとめています。</p>
         <nav className="persona-switch task-switch" aria-label="ほかの業務">
           {TASK_LIST.map((t) => (
             <Link key={t.slug} href={`/tasks/${t.slug}`} className={t.slug === task.slug ? "is-current" : undefined} aria-current={t.slug === task.slug ? "page" : undefined}>
@@ -46,10 +46,10 @@ export default async function TaskPage({ params }: Props) {
       </header>
       {list.length === 0 ? (
         <div className="empty">
-          <p>この業務の記事は準備中です。使い方・特集（毎週水・日曜）で順番に取り上げていきます。</p>
+          <p>この業務の記事は準備中です。ノウハウ（毎週水・日曜）で順番に取り上げていきます。</p>
           <p>
             <Link href="/c/howto" className="more">
-              使い方・特集を見る <span aria-hidden="true">→</span>
+              ノウハウを見る <span aria-hidden="true">→</span>
             </Link>
           </p>
         </div>

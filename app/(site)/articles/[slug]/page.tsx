@@ -15,8 +15,13 @@ import { SafeImage } from "@/components/SafeImage";
 import { LineBanner } from "@/components/LineBanner";
 import { SourceCard } from "@/components/SourceCard";
 import { ArticleCard, CategoryLabel, SectionHeading } from "@/components/ArticleParts";
-import { CATEGORIES, SKILLUP } from "@/lib/categories";
+import { CATEGORIES, SKILLUP, TASK_LIST } from "@/lib/categories";
 import { Ranking } from "@/components/Ranking";
+
+// 図解はスマホで縮みすぎないよう横スクロールで見せるので、キーボードでもスクロールできるようにする
+function withScrollableDiagrams(html: string): string {
+  return html.replaceAll('<figure class="diagram">', '<figure class="diagram" tabindex="0">');
+}
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -42,6 +47,8 @@ export default async function ArticlePage({ params }: Props) {
   // ニュースは1件目の出典を「元記事カード」として上部に出す（NewsPicks風）
   const mainSource = article.category === "news" ? article.sources[0] : undefined;
 
+  const taskSlug = TASK_LIST.find((t) => t.name === article.task)?.slug;
+
   const related = (await getArticles())
     .filter((a) => a.slug !== article.slug && a.tags.some((t) => article.tags.includes(t)))
     .slice(0, 3);
@@ -52,9 +59,17 @@ export default async function ArticlePage({ params }: Props) {
         <header className={`article-head article-head-${article.category}`}>
           <p className="article-en">{CATEGORIES[article.category].en}</p>
           <p className="card-meta">
-            <CategoryLabel article={article} />
+            <Link href={`/c/${article.category}`} className="cat-link">
+              <CategoryLabel article={article} />
+            </Link>
             <time>{formatDate(article.date)}</time>
-            {article.task && <span className="level">業務：{article.task}</span>}
+            {taskSlug ? (
+              <Link href={`/tasks/${taskSlug}`} className="level level-link">
+                業務：{article.task}
+              </Link>
+            ) : (
+              article.task && <span className="level">業務：{article.task}</span>
+            )}
             {article.level && <span className="level">{article.level}</span>}
           </p>
           <h1 className="article-title">{article.title}</h1>
@@ -125,7 +140,7 @@ export default async function ArticlePage({ params }: Props) {
 
         {article.ranking.length > 0 && <Ranking items={article.ranking} />}
 
-        <div className="article-body" dangerouslySetInnerHTML={{ __html: article.html }} />
+        <div className="article-body" dangerouslySetInnerHTML={{ __html: withScrollableDiagrams(article.html) }} />
 
         {article.impact && (
           <section className="impact-box">
@@ -158,6 +173,12 @@ export default async function ArticlePage({ params }: Props) {
             ))}
           </div>
         )}
+
+        <p className="back-link">
+          <Link href={`/c/${article.category}`}>
+            <span aria-hidden="true">←</span> {CATEGORIES[article.category].label}の一覧へ戻る
+          </Link>
+        </p>
       </article>
 
       {related.length > 0 && (

@@ -1,11 +1,10 @@
+import Link from "next/link";
 import type { Article } from "@/lib/articles";
 import { CATEGORIES, type CategoryKey } from "@/lib/categories";
 import { ArticleCard } from "./ArticleParts";
 
-const MAX_PER_GROUP = 12;
-
-// 記事をカテゴリごとに並べる（立場別・業務別ページ用）
-export function GroupedList({ articles, order }: { articles: Article[]; order: CategoryKey[] }) {
+// 記事をカテゴリごとに並べる（立場別・業務別ページ用）。1グループは limit 件まで出し、残りはカテゴリ一覧へ
+export function GroupedList({ articles, order, limit = 12 }: { articles: Article[]; order: CategoryKey[]; limit?: number }) {
   return (
     <>
       {order.map((key) => {
@@ -18,10 +17,17 @@ export function GroupedList({ articles, order }: { articles: Article[]; order: C
               <span className="persona-title-count">{list.length}本</span>
             </h2>
             <ul className="cards">
-              {list.slice(0, MAX_PER_GROUP).map((a) => (
+              {list.slice(0, limit).map((a) => (
                 <ArticleCard key={a.slug} article={a} />
               ))}
             </ul>
+            {list.length > limit && (
+              <p className="group-more">
+                <Link href={`/c/${key}`}>
+                  {CATEGORIES[key].label}をもっと見る（全{list.length}本） <span aria-hidden="true">→</span>
+                </Link>
+              </p>
+            )}
           </section>
         );
       })}

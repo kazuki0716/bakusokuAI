@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getArticles } from "@/lib/articles";
-import { TASK_LIST } from "@/lib/categories";
+import { isForTask, TASK_LIST } from "@/lib/categories";
 import { GroupedList } from "@/components/GroupedList";
 
 type Props = { params: Promise<{ task: string }> };
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function TaskPage({ params }: Props) {
   const task = findTask((await params).task);
   if (!task) notFound();
-  const list = (await getArticles()).filter((a) => a.task === task.name);
+  const list = (await getArticles()).filter((a) => isForTask(a, task));
 
   return (
     <section>

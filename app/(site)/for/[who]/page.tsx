@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getArticles } from "@/lib/articles";
 import { PERSONAS } from "@/lib/categories";
 import { GroupedList } from "@/components/GroupedList";
+import { ArticleCard } from "@/components/ArticleParts";
 
 type Props = { params: Promise<{ who: string }> };
 
@@ -27,6 +28,9 @@ export default async function PersonaPage({ params }: Props) {
   const persona = findPersona((await params).who);
   if (!persona) notFound();
   const list = (await getArticles()).filter((a) => a.audience.includes(persona.name));
+  // この立場だけに向けた記事を先に。全員向けの記事はカテゴリごとに続ける
+  const only = list.filter((a) => a.audience.length === 1);
+  const rest = list.filter((a) => a.audience.length !== 1);
 
   return (
     <section>
@@ -48,7 +52,22 @@ export default async function PersonaPage({ params }: Props) {
       {list.length === 0 ? (
         <p className="empty">まだ記事がありません。</p>
       ) : (
-        <GroupedList articles={list} order={["video", "weekly", "news", "howto", "prompt"]} />
+        <>
+          {only.length > 0 && (
+            <section className="persona-block">
+              <h2 className="persona-title persona-title-only">
+                {persona.name}向けに選んだ記事
+                <span className="persona-title-count">{only.length}本</span>
+              </h2>
+              <ul className="cards">
+                {only.slice(0, 8).map((a) => (
+                  <ArticleCard key={a.slug} article={a} />
+                ))}
+              </ul>
+            </section>
+          )}
+          <GroupedList articles={rest} order={["weekly", "news", "video", "howto", "prompt"]} limit={4} />
+        </>
       )}
       <p className="archive-link">
         <Link href="/archive">すべての記事はバックナンバーへ →</Link>

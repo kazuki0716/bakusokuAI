@@ -13,7 +13,8 @@ export function Ranking({ items }: { items: RankingItem[] }) {
         <li key={item.url} className={`rank-item${item.image ? " rank-has-image" : ""}`}>
           <span className={`rank-no rank-no-${i + 1}`}>{i + 1}</span>
           {item.image && (
-            <a href={item.url} {...linkProps(item.url)} className="rank-thumb">
+            // タイトルと同じリンクなので、読み上げとTab移動はタイトルの方だけにする
+            <a href={item.url} {...linkProps(item.url)} className="rank-thumb" aria-hidden="true" tabIndex={-1}>
               <SafeImage src={item.image} fallback={<span className="rank-thumb-empty" />} />
               {item.youtube && (
                 <span className="rank-play" aria-hidden="true">
@@ -25,6 +26,13 @@ export function Ranking({ items }: { items: RankingItem[] }) {
           <div className="rank-body">
             <a href={item.url} {...linkProps(item.url)} className="rank-title">
               {item.title}
+              {!item.url.startsWith("/") && (
+                <>
+                  {" "}
+                  <span aria-hidden="true">↗</span>
+                  <span className="visually-hidden">（新しいタブで開きます）</span>
+                </>
+              )}
             </a>
             {item.channel && <p className="rank-channel">{item.channel}</p>}
             <p className="rank-comment">{item.comment}</p>

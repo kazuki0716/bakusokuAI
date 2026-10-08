@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { formatDate, formatMonth, type Article } from "@/lib/articles";
-import { CATEGORIES, PERSONAS, SKILLUP, TASK_LIST, type CategoryKey } from "@/lib/categories";
+import { CATEGORIES, isForTask, PERSONAS, SKILLUP, TASK_LIST, type CategoryKey } from "@/lib/categories";
 import { shortDate } from "@/lib/schedule";
 import { ArticleCard, CategoryLabel, NewBadge, SectionHeading, Thumb } from "../ArticleParts";
 
@@ -52,31 +52,37 @@ export function WeeklyTopPreview({ articles, next }: { articles: Article[]; next
         </h2>
         <span className="next-update">次回は{shortDate(next)}更新</span>
       </div>
-      <p className="section-lead">毎週月曜更新。1週間分から「これだけ見ればOK」を選びました。忙しい方はここだけでも。</p>
+      <p className="section-lead">
+        毎週月曜更新。1週間分から「これだけ見ればOK」を選びました。忙しい方はここだけでも。
+      </p>
       <ul className="weekly-cards">
-        {articles.map((a) => (
-          <li key={a.slug}>
-            <Link
-              href={`/articles/${a.slug}`}
-              className={`weekly-card${a.image ? " weekly-card-photo" : ""}`}
-              style={a.image ? { backgroundImage: `url("${a.image}")` } : undefined}
-            >
-              <span className="weekly-count">
-                TOP<strong>{a.ranking.length}</strong>
-              </span>
-              <span className="weekly-title">{a.title}</span>
-              <span className="weekly-mini">
-                {a.ranking.slice(0, 3).map((r, i) => (
-                  <span key={r.url} className="weekly-mini-item" style={{ "--i": i } as React.CSSProperties}>
-                    <span className="weekly-mini-no">{i + 1}</span>
-                    {r.title}
-                  </span>
-                ))}
-              </span>
-              <span className="weekly-date">{formatDate(a.date)} 更新</span>
-            </Link>
-          </li>
-        ))}
+        {articles.map((a) => {
+          // 文字入りの自動生成アイキャッチは背景にしない（文字が重なって読めなくなるため）
+          const photo = a.image && !a.image.startsWith("/eyecatch/") ? a.image : undefined;
+          return (
+            <li key={a.slug}>
+              <Link
+                href={`/articles/${a.slug}`}
+                className={`weekly-card${photo ? " weekly-card-photo" : ""}`}
+                style={photo ? { backgroundImage: `url("${photo}")` } : undefined}
+              >
+                <span className="weekly-count">
+                  TOP<strong>{a.ranking.length}</strong>
+                </span>
+                <span className="weekly-title">{a.title}</span>
+                <span className="weekly-mini">
+                  {a.ranking.slice(0, 3).map((r, i) => (
+                    <span key={r.url} className="weekly-mini-item" style={{ "--i": i } as React.CSSProperties}>
+                      <span className="weekly-mini-no">{i + 1}</span>
+                      {r.title}
+                    </span>
+                  ))}
+                </span>
+                <span className="weekly-date">{formatDate(a.date)} 更新</span>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </section>
   );
@@ -85,9 +91,21 @@ export function WeeklyTopPreview({ articles, next }: { articles: Article[]; next
 // ④ はじめての方へ
 export function GuideBanner() {
   const steps = [
-    { no: 1, title: "毎朝：今日の記事を読む", text: "ニュース2本と、曜日ごとのおすすめ1本。1本3分です。" },
-    { no: 2, title: "月曜：今週のTopをチェック", text: "1週間分の大事な話と、見るべき動画をまとめています。" },
-    { no: 3, title: "分からなければ：公式LINEで質問", text: "「うちの仕事だとどう使う？」も気軽にどうぞ。" },
+    {
+      no: 1,
+      title: "毎朝：今日の記事を読む",
+      text: "ニュース2本と、曜日ごとのおすすめ1本。1本3分です。",
+    },
+    {
+      no: 2,
+      title: "月曜：今週のTopをチェック",
+      text: "1週間分の大事な話と、見るべき動画をまとめています。",
+    },
+    {
+      no: 3,
+      title: "分からなければ：公式LINEで質問",
+      text: "「うちの仕事だとどう使う？」も気軽にどうぞ。",
+    },
   ];
   return (
     <section className="block guide-banner reveal">
@@ -137,11 +155,25 @@ export function PersonaPicker({ articles }: { articles: Article[] }) {
   const cards = [
     ...PERSONAS.map((p) => {
       const list = articles.filter((a) => a.audience.includes(p.name));
-      return { key: p.slug, name: p.name, lead: p.lead, href: `/for/${p.slug}`, count: list.length, latest: list[0] };
+      return {
+        key: p.slug,
+        name: p.name,
+        lead: p.lead,
+        href: `/for/${p.slug}`,
+        count: list.length,
+        latest: list[0],
+      };
     }),
     (() => {
       const list = articles.filter((a) => a.skillup);
-      return { key: "skillup", name: SKILLUP.label, lead: "英語・調べもの・学び直しに毎日使う", href: "/c/video#skillup", count: list.length, latest: list[0] };
+      return {
+        key: "skillup",
+        name: SKILLUP.label,
+        lead: "英語・調べもの・学び直しに毎日使う",
+        href: "/c/video#skillup",
+        count: list.length,
+        latest: list[0],
+      };
     })(),
   ];
   return (
@@ -151,13 +183,22 @@ export function PersonaPicker({ articles }: { articles: Article[] }) {
       <ul className="persona-grid">
         {cards.map((c) => (
           <li key={c.key}>
-            <Link href={c.href} className={`persona-card persona-card-${c.key}`}>
-              <PersonaIcon name={c.key} />
-              <span className="persona-name">{c.name}</span>
-              <span className="persona-lead">{c.lead}</span>
-              <span className="persona-count">{c.count > 0 ? `${c.count}本の記事 →` : "準備中"}</span>
-              {c.latest && <span className="persona-latest">最新：{c.latest.title}</span>}
-            </Link>
+            {c.count > 0 ? (
+              <Link href={c.href} className={`persona-card persona-card-${c.key}`}>
+                <PersonaIcon name={c.key} />
+                <span className="persona-name">{c.name}</span>
+                <span className="persona-lead">{c.lead}</span>
+                <span className="persona-count">{c.count}本の記事 →</span>
+                {c.latest && <span className="persona-latest">最新：{c.latest.title}</span>}
+              </Link>
+            ) : (
+              <div className={`persona-card persona-card-${c.key} is-empty`}>
+                <PersonaIcon name={c.key} />
+                <span className="persona-name">{c.name}</span>
+                <span className="persona-lead">{c.lead}</span>
+                <span className="persona-count">準備中（毎週月曜に追加します）</span>
+              </div>
+            )}
           </li>
         ))}
       </ul>
@@ -173,14 +214,23 @@ export function TaskGrid({ articles }: { articles: Article[] }) {
       <p className="section-lead">10の業務ごとに、使い方・動画・プロンプト・ニュースをまとめています。</p>
       <ul className="task-grid">
         {TASK_LIST.map((t, i) => {
-          const count = articles.filter((a) => a.task === t.name).length;
+          const count = articles.filter((a) => isForTask(a, t)).length;
           return (
             <li key={t.slug}>
-              <Link href={`/tasks/${t.slug}`} className={`task-tile${count === 0 ? " is-empty" : ""}`}>
-                <span className="task-no">{String(i + 1).padStart(2, "0")}</span>
-                <span className="task-name">{t.name}</span>
-                <span className="task-count">{count > 0 ? `${count}本` : "準備中"}</span>
-              </Link>
+              {count > 0 ? (
+                <Link href={`/tasks/${t.slug}`} className="task-tile">
+                  <span className="task-no">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="task-name">{t.name}</span>
+                  <span className="task-count">{count}本</span>
+                </Link>
+              ) : (
+                // 記事がまだ無い業務は押せない表示にする（記事が入れば自動でリンクになる）
+                <div className="task-tile is-empty">
+                  <span className="task-no">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="task-name">{t.name}</span>
+                  <span className="task-count">準備中</span>
+                </div>
+              )}
             </li>
           );
         })}

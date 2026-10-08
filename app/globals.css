@@ -4,6 +4,9 @@
    ========================================================= */
 
 :root {
+  /* 文字の最小サイズ（ラベル・バッジもこれより小さくしない） */
+  --fs-2xs: 0.75rem;
+
   /* 基本 */
   --bg: #fbf8f4;
   --surface: #ffffff;
@@ -432,7 +435,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   padding: 1px 10px 1px 8px;
   border-radius: 999px;
@@ -478,7 +481,7 @@ img {
   display: inline-block;
   font-style: italic;
   font-weight: 900;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   line-height: 1.6;
   color: var(--on-new);
@@ -488,7 +491,7 @@ img {
 }
 
 .level {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   border: 1.5px solid var(--line-strong);
   border-radius: 999px;
@@ -613,7 +616,7 @@ img {
   top: 10px;
   font-style: italic;
   font-weight: 900;
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   line-height: 1.8;
   padding: 0 9px;
@@ -720,11 +723,7 @@ img {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, rgba(22, 23, 27, 0.92) 0%, rgba(22, 23, 27, 0.78) 50%, rgba(22, 23, 27, 0.25) 100%);
-}
-
-.weekly-cards li:nth-child(2) .weekly-card-photo::before {
-  background: linear-gradient(100deg, rgba(22, 23, 27, 0.92) 0%, rgba(22, 23, 27, 0.78) 50%, rgba(22, 23, 27, 0.25) 100%);
+  background: rgba(22, 23, 27, 0.86);
 }
 
 .weekly-card > * {
@@ -860,7 +859,7 @@ img {
   display: flex;
   gap: 8px;
   margin-top: auto;
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   color: var(--muted);
 }
 
@@ -901,7 +900,7 @@ img {
   --c: var(--cat-weekly-solid);
   position: relative;
   margin-bottom: 36px;
-  padding: 40px 34px;
+  padding: 32px 34px;
   border-radius: var(--radius);
   color: var(--on-solid);
   overflow: hidden;
@@ -928,14 +927,16 @@ img {
   margin: 0;
   font-weight: 900;
   font-style: italic;
-  font-size: clamp(2.6rem, 8vw, 4.8rem);
-  line-height: 1;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  letter-spacing: 0.16em;
 }
 
 .page-title {
-  margin: 12px 0 4px;
-  font-size: 1.15rem;
+  margin: 6px 0 8px;
+  font-size: clamp(1.6rem, 4.6vw, 2.4rem);
   font-weight: 900;
+  line-height: 1.35;
 }
 
 .page-desc {
@@ -1056,7 +1057,7 @@ img {
 .box-en {
   font-style: italic;
   font-weight: 900;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.12em;
   color: var(--on-band);
   background: var(--band);
@@ -1184,6 +1185,11 @@ img {
   color: var(--muted);
   margin-top: 8px;
   text-align: center;
+}
+
+/* 表は記事の横幅いっぱいに（最後の列を伸ばす） */
+.article-body tr > :last-child {
+  width: 100%;
 }
 
 .article-body table {
@@ -1516,7 +1522,6 @@ img {
 }
 
 .login-card input:focus {
-  outline: none;
   border-color: var(--focus);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 35%, transparent);
 }
@@ -1750,7 +1755,7 @@ img {
 
 .src-label {
   align-self: flex-start;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 900;
   color: var(--muted);
   border: 1.5px solid var(--line);
@@ -1785,7 +1790,7 @@ img {
   margin-right: 5px;
   padding: 0 6px;
   border-radius: 4px;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 800;
   line-height: 1.6;
   vertical-align: 1px;
@@ -2072,7 +2077,7 @@ a.money-card:hover {
   }
 
   .logo-news {
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     letter-spacing: 0.16em;
   }
 
@@ -2299,7 +2304,7 @@ a.money-card:hover {
   .header-guide,
   .header-line-btn {
     padding: 5px 10px;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -2675,7 +2680,7 @@ a.money-card:hover {
   border-radius: 50%;
   background: var(--pop);
   color: var(--on-pop);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 900;
   vertical-align: 1px;
 }
@@ -2729,8 +2734,8 @@ a.money-card:hover {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: var(--band);
-  color: var(--on-band);
+  background: var(--fg);
+  color: var(--bg);
   font-family: var(--font-en), sans-serif;
   font-style: italic;
   font-weight: 900;
@@ -3061,7 +3066,7 @@ a.money-card:hover {
 
 .tag-count {
   margin-left: 6px;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   color: var(--muted);
 }
 
@@ -3166,9 +3171,9 @@ a.money-card:hover {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: var(--band);
-  color: var(--on-band);
-  font-size: 0.72rem;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 0.75rem;
   font-weight: 900;
 }
 
@@ -3192,8 +3197,8 @@ a.money-card:hover {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--band);
-  color: var(--on-band);
+  background: var(--fg);
+  color: var(--bg);
   font-family: var(--font-en), sans-serif;
   font-style: italic;
   font-size: 1rem;
@@ -3224,8 +3229,8 @@ a.money-card:hover {
 }
 
 .guide-table thead th {
-  background: var(--fg);
-  color: var(--bg);
+  background: var(--surface-2);
+  color: var(--fg);
   font-size: 0.8rem;
 }
 
@@ -3251,7 +3256,7 @@ a.money-card:hover {
   border-radius: 999px;
   background: var(--brand);
   color: #fff;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
 }
 
 @media (max-width: 640px) {
@@ -3543,4 +3548,135 @@ html {
 .not-found-help a {
   color: var(--link);
   text-decoration: underline;
+}
+
+/* 読み上げだけに使う文字（画面には出さない） */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ログイン：見出しにしたロゴの余白、エラー時の入力欄、問い合わせリンク */
+h1.login-logo {
+  margin: 0 0 12px;
+  font-size: inherit;
+}
+
+.login-card input[aria-invalid="true"] {
+  border-color: var(--brand-ink);
+  border-width: 2px;
+}
+
+.login-card .error {
+  margin-top: -2px;
+  margin-bottom: 6px;
+}
+
+.login-help-link {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 記事：カテゴリ・業務のラベルから一覧へ。最後に一覧へ戻る */
+.cat-link {
+  display: inline-flex;
+  border-radius: 999px;
+}
+
+.cat-link:hover .cat {
+  text-decoration: underline;
+}
+
+.level-link:hover {
+  border-color: var(--fg);
+}
+
+.back-link {
+  margin: 32px 0 0;
+  font-weight: 700;
+}
+
+.back-link a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 記事がまだ無い入口（押せない） */
+.persona-card.is-empty,
+.task-tile.is-empty {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--line);
+}
+
+.persona-card.is-empty:hover,
+.task-tile.is-empty:hover {
+  transform: none;
+  box-shadow: inset 0 0 0 1.5px var(--line);
+}
+
+.persona-card.is-empty .persona-count {
+  color: var(--muted);
+}
+
+/* 立場別・業務別ページの「もっと見る」 */
+.group-more {
+  margin: 14px 0 0;
+  font-weight: 700;
+}
+
+.group-more a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.persona-title-only::before {
+  background: var(--brand);
+}
+
+/* 「動きを減らす」設定では、ホバーで浮き上がる・拡大する動きもすべて止める */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+
+  a:hover,
+  a:hover *,
+  button:hover {
+    transform: none !important;
+  }
+}
+
+/* 記事の図解：スマホでは文字が小さくなりすぎないよう、等倍に近い大きさで横にスクロールして見せる */
+@media (max-width: 640px) {
+  .article-body figure.diagram {
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .article-body figure.diagram svg {
+    min-width: 560px;
+  }
+
+  .article-body figure.diagram::after {
+    content: "← 横にスクロールできます →";
+    display: block;
+    margin-top: 6px;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-align: center;
+    position: sticky;
+    left: 0;
+  }
 }

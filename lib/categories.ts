@@ -54,16 +54,24 @@ export const SKILLUP = {
 
 // 爆速AI 業務効率化コースの10カテゴリ（営業資料_V04 のカリキュラム構成より）。slug は業務別ページ（/tasks/[slug]）のURL
 export const TASK_LIST = [
-  { slug: "email", name: "メール返信" },
-  { slug: "writing", name: "文章作成" },
-  { slug: "summary", name: "文章の要約" },
-  { slug: "proofreading", name: "文章の校正・添削" },
-  { slug: "data", name: "会議資料のデータ分析" },
-  { slug: "minutes", name: "議事録作成" },
-  { slug: "audio-transcription", name: "録音の文字起こし" },
-  { slug: "image-transcription", name: "画像の文字起こし" },
-  { slug: "slides", name: "プレゼン資料作成" },
-  { slug: "excel", name: "Excel活用" },
+  // tags：task が付いていなくても、このキーワードを持つ記事はこの業務の記事として出す
+  { slug: "email", name: "メール返信", tags: ["メール", "メール返信"] },
+  { slug: "writing", name: "文章作成", tags: ["文章作成"] },
+  { slug: "summary", name: "文章の要約", tags: ["要約"] },
+  { slug: "proofreading", name: "文章の校正・添削", tags: ["校正", "添削"] },
+  { slug: "data", name: "会議資料のデータ分析", tags: ["データ分析"] },
+  { slug: "minutes", name: "議事録作成", tags: ["議事録", "議事録作成"] },
+  { slug: "audio-transcription", name: "録音の文字起こし", tags: ["文字起こし", "録音"] },
+  { slug: "image-transcription", name: "画像の文字起こし", tags: ["画像の文字起こし", "OCR"] },
+  { slug: "slides", name: "プレゼン資料作成", tags: ["プレゼン資料作成", "PowerPoint", "スライド"] },
+  { slug: "excel", name: "Excel活用", tags: ["Excel", "Excel活用"] },
 ] as const;
+
+export type Task = (typeof TASK_LIST)[number];
+
+// その業務の記事か（task が一致、または業務に対応するキーワードを持つ）
+export function isForTask(article: { task?: string; tags: string[] }, task: Task): boolean {
+  return article.task === task.name || article.tags.some((t) => (task.tags as readonly string[]).includes(t));
+}
 
 export const TASKS = TASK_LIST.map((t) => t.name);

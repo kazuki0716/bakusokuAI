@@ -2,7 +2,7 @@
 title: "Googleドキュメントで「Markdown」をそのまま開いて編集可能に。AIの回答を整ったまま共有"
 date: 2026-10-08
 category: news
-pickup: true
+pickup: false
 thumbLabel: "AIの文章をそのまま共有"
 thumbnail: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgD60CXMZ-xX2XeYiJlCmzCYGtiXONTrwBLO0dzW4Q7ti99TAYoNAEzgNLGK_jcP61dSIvavDiO1XOcxDpdxFZG-i_vEhDTqjn0T5V8fHARLLSihb4HsrT-aWyYy4kFSQBwZhmlqx5g-JI7cYBjYdnJ7yQKhzHmC4Bnf65ZBx0vH_Dkut7sUIycDrupvds/w1200-h630-p-k-no-nu/Preview,%20edit%20and%20collaborate%20on%20Markdown%20(.md)%20files%20natively%20across%20Drive%20and%20Docs%20-%207129.png"
 thumbnailCredit: "出典：Google Workspace Updates「Preview, edit and collaborate on Markdown (.md) files natively across Drive and Docs」"

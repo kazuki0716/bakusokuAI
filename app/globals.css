@@ -3764,3 +3764,10 @@ h1.login-logo {
   border-color: var(--pop);
   color: var(--on-pop);
 }
+
+/* スマホの小さい「今日の記事」カードでは、ラベルが2段にならないよう難易度を省く（記事ページには表示） */
+@media (max-width: 640px) {
+  .today-item:not(.today-item-lg) .level {
+    display: none;
+  }
+}

@@ -18,7 +18,7 @@ export const CATEGORIES = {
   howto: {
     label: "使い方・特集",
     en: "HOW TO",
-    description: "メール返信・議事録・Excelなど10の業務ごとに、図解と画面イメージで手順を解説する実践ガイド。",
+    description: "メール返信・議事録・Excelなど10の仕事ごとに、図解と画面イメージで手順を解説する実践ガイド。",
   },
   prompt: {
     label: "今週のプロンプト",

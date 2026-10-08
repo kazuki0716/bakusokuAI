@@ -3,7 +3,7 @@ import { Outfit, Zen_Kaku_Gothic_New } from "next/font/google";
 import "./globals.css";
 
 const zenKaku = Zen_Kaku_Gothic_New({
-  weight: ["400", "500", "700", "900"],
+  weight: ["500", "700", "900"], // 本文500・見出し700・大見出し900（400は使っていない）
   subsets: ["latin"],
   display: "swap",
   preload: false,
@@ -11,7 +11,7 @@ const zenKaku = Zen_Kaku_Gothic_New({
 });
 
 const outfit = Outfit({
-  weight: ["500", "700", "800", "900"],
+  weight: ["700", "800", "900"], // 英字の飾りだけに使う
   subsets: ["latin"],
   display: "swap",
   variable: "--font-en",
@@ -24,7 +24,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#e8382d",
+  // ブラウザのアドレスバーの色を、サイトの背景に合わせる
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fbf8f4" },
+    { media: "(prefers-color-scheme: dark)", color: "#1b1d24" },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

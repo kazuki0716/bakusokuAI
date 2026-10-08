@@ -27,7 +27,7 @@ export default async function TagPage({ params }: Props) {
       <header className="page-head">
         <p className="page-en">KEYWORD</p>
         <h1 className="page-title">#{tag}</h1>
-        <p className="page-desc">{all.length}件の記事</p>
+        <p className="page-desc">{all.length}本の記事</p>
       </header>
       <ul className="cards">
         {list.map((a) => (
@@ -36,7 +36,7 @@ export default async function TagPage({ params }: Props) {
       </ul>
       {all.length > list.length && (
         <p className="archive-link">
-          新しい{list.length}件を表示しています。<Link href="/archive">それより前の記事はバックナンバーへ →</Link>
+          新しい{list.length}本を表示しています。<Link href="/archive">それより前の記事はバックナンバーへ →</Link>
         </p>
       )}
     </section>

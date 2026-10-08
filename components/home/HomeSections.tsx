@@ -110,8 +110,8 @@ export function GuideBanner() {
   return (
     <section className="block guide-banner reveal">
       <div className="guide-banner-head">
-        <p className="guide-banner-en">HOW TO USE</p>
-        <h2 className="guide-banner-title">はじめての方へ｜このサイトの使い方は3つだけ</h2>
+        <p className="guide-banner-en">GUIDE</p>
+        <h2 className="guide-banner-title">はじめての方へ｜サイトの見方は3つだけ</h2>
       </div>
       <ol className="guide-steps">
         {steps.map((s) => (
@@ -211,7 +211,7 @@ export function TaskGrid({ articles }: { articles: Article[] }) {
   return (
     <section id="tasks" className="block home-section reveal">
       <SectionHeading en="BY TASK" ja="やりたい仕事から探す" />
-      <p className="section-lead">10の業務ごとに、使い方・動画・プロンプト・ニュースをまとめています。</p>
+      <p className="section-lead">10の仕事ごとに、使い方・動画・プロンプト・ニュースをまとめています。</p>
       <ul className="task-grid">
         {TASK_LIST.map((t, i) => {
           const count = articles.filter((a) => isForTask(a, t)).length;

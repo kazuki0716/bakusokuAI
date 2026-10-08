@@ -7,7 +7,7 @@ import { SITE_MAP } from "@/lib/navigation";
 import { SCHEDULE, todayJST } from "@/lib/schedule";
 import { LineBanner } from "@/components/LineBanner";
 
-export const metadata: Metadata = { title: "はじめての方へ（サイトの見方）" };
+export const metadata: Metadata = { title: "サイトの見方" };
 
 // 今日の曜日をハイライトするため、1時間ごとに作り直す
 export const revalidate = 3600;
@@ -38,8 +38,8 @@ export default function GuidePage() {
   return (
     <article className="guide-page">
       <header className="page-head">
-        <p className="page-en">HOW TO USE</p>
-        <h1 className="page-title">爆速AI NEWS の見方</h1>
+        <p className="page-en">GUIDE</p>
+        <h1 className="page-title">サイトの見方</h1>
         <p className="page-desc">
           AIの新しい情報を、仕事に使える形で毎朝お届けするサイトです。全部読む必要はありません。1日3分、気になるものだけで大丈夫です。
         </p>

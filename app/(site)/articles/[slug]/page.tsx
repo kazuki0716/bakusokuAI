@@ -48,6 +48,21 @@ export default async function ArticlePage({ params }: Props) {
   // ニュースは1件目の出典を「元記事カード」として上部に出す（NewsPicks風）
   const mainSource = article.category === "news" ? article.sources[0] : undefined;
 
+  const summary = article.summary.length > 0 && (
+    <section className="summary-box">
+      <h2>
+        <span className="box-en">3 POINTS</span>3行でわかる
+      </h2>
+      <ul>
+        {article.summary.map((line) => (
+          <li key={line}>{line}</li>
+        ))}
+      </ul>
+    </section>
+  );
+  // 末尾の出典一覧では、上に元記事カードとして出したものは繰り返さない
+  const otherSources = article.sources.filter((src) => src !== mainSource);
+
   const taskSlug = TASK_LIST.find((t) => t.name === article.task)?.slug;
 
   const related = (await getArticles())
@@ -66,10 +81,10 @@ export default async function ArticlePage({ params }: Props) {
             <time>{formatDate(article.date)}</time>
             {taskSlug ? (
               <Link href={`/tasks/${taskSlug}`} className="level level-link">
-                業務：{article.task}
+                仕事：{article.task}
               </Link>
             ) : (
-              article.task && <span className="level">業務：{article.task}</span>
+              article.task && <span className="level">仕事：{article.task}</span>
             )}
             {article.level && <span className="level">{article.level}</span>}
           </p>
@@ -88,6 +103,9 @@ export default async function ArticlePage({ params }: Props) {
             ⚠ この記事は約{Math.floor(age / 30)}か月前（{formatDate(article.date)}）の情報です。AIツールの機能や料金は変わっている可能性があるため、最新の情報は公式サイトでご確認ください。
           </p>
         )}
+
+        {/* ニュースは「3行でわかる」を元記事カードより先に（スマホの1画面目で要点が読めるように） */}
+        {mainSource && summary}
 
         {mainSource ? (
           <div className="src-main">
@@ -114,18 +132,7 @@ export default async function ArticlePage({ params }: Props) {
           )
         )}
 
-        {article.summary.length > 0 && (
-          <section className="summary-box">
-            <h2>
-              <span className="box-en">3 POINTS</span>3行でわかる
-            </h2>
-            <ul>
-              {article.summary.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
-          </section>
-        )}
+        {!mainSource && summary}
 
         {article.youtube && (
           <div className="video">
@@ -155,11 +162,14 @@ export default async function ArticlePage({ params }: Props) {
 
         <LineBanner />
 
-        {article.sources.length > 0 && (
+        {otherSources.length > 0 && (
           <section className="sources">
-            <h2>SOURCES</h2>
+            <h2>
+              <span className="sources-en">SOURCES</span>
+              {mainSource ? "ほかの出典" : "出典"}
+            </h2>
             <div className="src-list">
-              {article.sources.map((src) => (
+              {otherSources.map((src) => (
                 <SourceCard key={src.url} source={src} />
               ))}
             </div>

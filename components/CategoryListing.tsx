@@ -36,7 +36,7 @@ export async function CategoryListing({ category, page }: { category: CategoryKe
             if (forWho.length === 0) return null;
             return (
               <section key={who} className="persona-block">
-                <h2 className="persona-title">{who}におすすめ</h2>
+                <h2 className="persona-title">{who}向け</h2>
                 <ul className="cards">
                   {forWho.map((a) => (
                     <ArticleCard key={a.slug} article={a} />

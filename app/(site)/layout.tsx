@@ -27,7 +27,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
           <NavLinks moneyName={MONEY_NAME} />
           <div className="header-actions">
             <Link href="/guide" className="header-guide">
-              はじめての方へ
+              サイトの見方
             </Link>
             <a href={LINE_URL} {...external} className="header-line-btn">
               LINEで質問 <span aria-hidden="true">↗</span>

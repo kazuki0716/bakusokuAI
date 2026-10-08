@@ -22,7 +22,7 @@ export const SITE_MAP: { title: string; links: NavLink[] }[] = [
       { label: "経営者・管理職向け", href: "/for/executive" },
       { label: "事務・総務・経理向け", href: "/for/backoffice" },
       { label: "マーケ・営業向け", href: "/for/sales" },
-      { label: "やりたい仕事から探す", href: "/#tasks", note: "メール・議事録・Excelなど10の業務" },
+      { label: "やりたい仕事から探す", href: "/#tasks", note: "メール・議事録・Excelなど10の仕事" },
       { label: "バックナンバー", href: "/archive", note: "月ごとの記事一覧" },
     ],
   },
@@ -36,7 +36,7 @@ export const SITE_MAP: { title: string; links: NavLink[] }[] = [
   {
     title: "このサイトについて",
     links: [
-      { label: "はじめての方へ（サイトの見方）", href: "/guide" },
+      { label: "サイトの見方（はじめての方へ）", href: "/guide" },
       { label: "爆速AIの講座（レクティ）", href: LECTEA_COURSES_URL, external: true },
     ],
   },

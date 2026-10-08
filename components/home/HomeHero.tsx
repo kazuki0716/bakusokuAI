@@ -53,7 +53,7 @@ export function HomeHero({ today, isFallback, shownCount }: Props) {
           {isMonday ? "今週のTopを見る" : isFallback ? "最新の記事を読む" : "今日の記事を読む"} <span aria-hidden="true">↓</span>
         </a>
         <Link href="/guide" className="hero-guide-link">
-          はじめての方はこちら（サイトの見方） <span aria-hidden="true">→</span>
+          はじめての方は「サイトの見方」へ <span aria-hidden="true">→</span>
         </Link>
       </div>
     </section>

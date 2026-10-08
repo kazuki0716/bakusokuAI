@@ -6,9 +6,9 @@ export const metadata: Metadata = { title: "会員ログイン" };
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; next?: string }>;
+  searchParams: Promise<{ error?: string; next?: string; loggedout?: string }>;
 }) {
-  const { error, next } = await searchParams;
+  const { error, next, loggedout } = await searchParams;
   const message =
     error === "1"
       ? "合言葉が違います。公式LINEのお知らせをご確認ください。"
@@ -24,6 +24,11 @@ export default async function LoginPage({
           <small>NEWS</small>
           <span className="visually-hidden">会員ログイン</span>
         </h1>
+        {loggedout && !message && (
+          <p className="login-notice" role="status">
+            ログアウトしました。また合言葉を入力すると、いつでも読めます。
+          </p>
+        )}
         <p className="muted">爆速AI会員専用のニュースサイトです。会員向けにお知らせしている合言葉を入力してください。</p>
         <form method="post" action="/api/login">
           <input type="hidden" name="next" value={next ?? "/"} />

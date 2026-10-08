@@ -36,7 +36,7 @@ export default async function PersonaPage({ params }: Props) {
     <section>
       <header className="page-head">
         <p className="page-en">FOR YOU</p>
-        <h1 className="page-title">{persona.name}の方へ</h1>
+        <h1 className="page-title">{persona.name}向け</h1>
         <p className="page-desc">
           {persona.lead}。{persona.name}向けのおすすめ動画は毎週{persona.video}に届きます。
         </p>

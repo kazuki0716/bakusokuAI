@@ -108,12 +108,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0e0f12;
-    --surface: #1c1e24;
-    --surface-2: #262931;
+    --bg: #1b1d24; /* 真っ黒にせず、目にやさしいチャコール */
+    --surface: #252830;
+    --surface-2: #2f333d;
     --fg: #f1f1f3;
-    --muted: #a7abb4;
-    --line: #3a3f4a;
+    --muted: #b0b4bd;
+    --line: #454a57;
     --line-strong: #7c818c;
     --focus: #8ab4ff;
     --link: #8ab4ff;
@@ -129,7 +129,7 @@
     --pop: #ffd84f;
     --on-pop: #16171b;
     --marker: #5c4a10;
-    --band: #262931;
+    --band: #2f333d;
     --on-band: #f1f1f3;
     --band-accent: #ffd84f;
 
@@ -147,8 +147,8 @@
     --note-bg: #2a2414;
     --note-line: #8a6d1e;
     --note-ink: #f2d37a;
-    --footer-bg: #08090b;
-    --code-bg: #08090b;
+    --footer-bg: #121318;
+    --code-bg: #121318;
 
     --shadow: 0 0 0 1px var(--line);
     --shadow-hover: 0 0 0 1px var(--line-strong);
@@ -226,7 +226,7 @@ img {
 .article-en,
 .box-en,
 .rank-no,
-.sources h2,
+.sources-en,
 .footer-mark {
   font-family: var(--font-en), var(--font-ja), sans-serif;
 }
@@ -1466,17 +1466,6 @@ img {
   padding-top: var(--sp-5);
   border-top: 1px solid var(--line);
 }
-
-.sources h2 {
-  font-style: italic;
-  font-weight: 700;
-  font-size: var(--fs-sm);
-  letter-spacing: 0.15em;
-  color: var(--muted);
-  margin: 0 0 6px;
-}
-
-
 
 /* ---------- login ---------- */
 .login {
@@ -3789,4 +3778,62 @@ a.task-tile:active {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* 記事末尾の出典（日本語の見出し＋英字の小さな飾り） */
+.sources h2 {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  margin: 0 0 var(--sp-2);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+
+.sources-en {
+  font-style: italic;
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+
+/* =========================================================
+   見出しの改行位置：意味のまとまり（文節）で折り返し、行の長さをそろえる
+   （対応していないブラウザでは今までどおり）
+   ========================================================= */
+h1,
+h2,
+h3,
+.today-title,
+.card-title,
+.weekly-title,
+.persona-name,
+.task-name,
+.line-banner-title,
+.guide-banner-title,
+.rank-title,
+.src-title {
+  word-break: auto-phrase;
+  text-wrap: balance;
+}
+
+.article-body p,
+.article-body li,
+.summary-box li,
+.impact-box p,
+.page-desc,
+.section-lead {
+  word-break: auto-phrase;
+  text-wrap: pretty;
+}
+
+/* ログアウトしたあとのお知らせ */
+.login-notice {
+  margin: 0 0 var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-sm);
+  background: var(--cat-howto-bg);
+  color: var(--cat-howto-ink);
+  font-size: var(--fs-sm);
+  font-weight: 700;
 }

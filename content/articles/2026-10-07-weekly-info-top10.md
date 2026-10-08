@@ -80,7 +80,6 @@ sources:
 <text x="360" y="300" text-anchor="middle" class="d-text" font-size="28">③ 知らないと損</text>
 <text x="360" y="340" text-anchor="middle" class="d-sub" font-size="26">料金・データの扱いなどの変更</text>
 </svg>
-<figcaption>図：今週のTop10の選び方</figcaption>
 </figure>
 
 ## 今週のひとこと

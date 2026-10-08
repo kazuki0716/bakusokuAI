@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { SCHEDULE, type Today } from "@/lib/schedule";
 import { CountUp } from "./CountUp";
 import { SavedMeter } from "../SavedTime";
@@ -56,9 +55,6 @@ export function HomeHero({ today, isFallback, shownCount }: Props) {
         <a href={isMonday ? "#weekly" : "#today"} className="btn-primary">
           {isMonday ? "今週のTopを見る" : isFallback ? "最新の記事を読む" : "今日の記事を読む"} <span aria-hidden="true">↓</span>
         </a>
-        <Link href="/guide" className="hero-guide-link">
-          はじめての方は「サイトの見方」へ <span aria-hidden="true">→</span>
-        </Link>
       </div>
     </section>
   );

@@ -2465,18 +2465,6 @@ img {
   margin-top: var(--sp-5);
 }
 
-.hero-guide-link {
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  color: var(--muted);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.hero-guide-link:hover {
-  color: var(--fg);
-}
-
 .btn-primary,
 .btn-ghost {
   border: 1.5px solid var(--fg);

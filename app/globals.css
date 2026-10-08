@@ -317,10 +317,29 @@ img {
   animation: ticker 48s linear infinite;
 }
 
+/* マウスを乗せている間と、キーボードで帯の中にいる間だけ止める（クリックしたボタンにフォーカスが残っても止まらないように） */
 .ticker:hover .ticker-track,
-.ticker:focus-within .ticker-track,
+.ticker:has(:focus-visible) .ticker-track,
 .ticker.is-paused .ticker-track {
   animation-play-state: paused;
+}
+
+/* 「動きを減らす」設定の人向け：横に流さず、見出しを1つずつ切り替える */
+.ticker-step {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: ticker-fade 0.6s ease;
+}
+
+.ticker-step::after {
+  display: none;
+}
+
+@keyframes ticker-fade {
+  from {
+    opacity: 0;
+  }
 }
 
 .ticker-group {
@@ -369,10 +388,6 @@ img {
 @media (prefers-reduced-motion: reduce) {
   .ticker-track {
     animation: none;
-  }
-
-  .ticker-toggle {
-    display: none;
   }
 }
 

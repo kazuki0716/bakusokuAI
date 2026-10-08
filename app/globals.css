@@ -3216,7 +3216,22 @@ img {
 }
 
 .guide-corner-time {
+  margin-top: auto;
   font-size: var(--fs-xs);
+  color: var(--muted);
+}
+
+/* 使い方・プロンプトの中の2つ */
+.guide-corner-parts {
+  display: grid;
+  gap: var(--sp-1);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+.guide-note {
+  margin-top: var(--sp-4);
+  font-size: var(--fs-sm);
   color: var(--muted);
 }
 

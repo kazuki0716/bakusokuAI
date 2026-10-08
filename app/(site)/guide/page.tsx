@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LevelBadge } from "@/components/LevelBadge";
-import { CATEGORIES, categoryHref } from "@/lib/categories";
+import { CATEGORIES, MENU } from "@/lib/categories";
 import { LECTEA_COURSES_URL, LINE_URL } from "@/lib/links";
 import { MONEY_NAME } from "@/lib/money";
 import { SITE_MAP } from "@/lib/navigation";
@@ -15,17 +15,47 @@ export const revalidate = 3600;
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
-const CORNERS = [
-  { key: "weekly", when: "忙しくて毎日は見られない。1週間分をまとめて知りたい", time: "5分" },
-  { key: "news", when: "ChatGPT・Gemini・Claude・Copilotの新しい機能や、料金の変更を知りたい", time: "3分" },
-  { key: "video", when: "実際の画面で、やり方を見ながら覚えたい（立場別に1本ずつ厳選）", time: "10〜20分" },
-  { key: "howto", when: "メール・議事録・Excelなど、自分の仕事で今日から試したい", time: "5〜10分" },
-  { key: "prompt", when: "AIへの頼み方（指示文）をコピーして、すぐ使いたい", time: "1分" },
-] as const;
+// メニューの4つのコーナー（MENU と同じ並び）。更新の回数は lib/schedule.ts・編集ガイド3章と合わせる
+const CORNERS: {
+  key: "weekly" | "news" | "video" | "howto";
+  when: string;
+  update: string;
+  time?: string;
+  parts?: { label: string; text: string; time: string }[];
+}[] = [
+  {
+    key: "weekly",
+    when: "忙しくて毎日は見られない。1週間分をまとめて知りたい",
+    update: "毎週月曜",
+    time: "5分",
+  },
+  {
+    key: "news",
+    when: "ChatGPT・Gemini・Claude・Copilotの新しい機能や、料金・ルールの変更を知りたい",
+    update: "毎朝2本",
+    time: "3分",
+  },
+  {
+    key: "video",
+    when: "実際の画面で、やり方を見ながら覚えたい（立場別と「AIで自分磨き」の動画を厳選）",
+    update: "週4本（火・木・土は立場別）",
+    time: "5〜20分",
+  },
+  {
+    key: "howto",
+    when: "メール・議事録・Excelなど、自分の仕事で今日から試したい",
+    update: "週3本",
+    parts: [
+      { label: "使い方・特集", text: "仕事ごとの手順を図解で（水・日）", time: "5〜10分" },
+      { label: "プロンプト", text: "AIへの頼み方をコピーしてすぐ使う（金）", time: "1分" },
+    ],
+  },
+];
 
 const TOC = [
   ["schedule", "更新スケジュール"],
   ["corners", "コーナーの使い分け"],
+  ["find", "記事の探し方"],
   ["how", "おすすめの読み方"],
   ["article", "記事の読み方"],
   ["help", "困ったときは"],
@@ -59,6 +89,9 @@ export default function GuidePage() {
           <span>1</span>更新スケジュール
         </h2>
         <p>毎朝7時ごろに更新します。毎日ニュース2本、さらに曜日ごとにおすすめを1本追加します。</p>
+        <p className="guide-note">
+          おすすめ動画は「公開から1週間以内・5分以上・ある程度見られて反応がある」動画だけを選んでいます。条件に合う動画が無い日はお休みします。
+        </p>
         <table className="guide-table">
           <thead>
             <tr>
@@ -88,30 +121,81 @@ export default function GuidePage() {
         <h2 className="guide-h2">
           <span>2</span>コーナーの使い分け
         </h2>
+        <p>上のメニュー（スマホでは画面の下）の4つのコーナーです。</p>
         <ul className="guide-corners">
-          {CORNERS.map((c) => (
-            <li key={c.key}>
-              <Link href={categoryHref(c.key)} className={`guide-corner guide-corner-${c.key}`}>
-                <span className={`cat cat-${c.key}`}>{CATEGORIES[c.key].label}</span>
-                <span className="guide-corner-when">{c.when}</span>
-                <span className="guide-corner-time">1本の目安：{c.time}</span>
-              </Link>
-            </li>
-          ))}
-          <li>
-            <Link href="/money" className="guide-corner guide-corner-money">
-              <span className="cat cat-money">会員特典</span>
-              <span className="guide-corner-when">
-                YourLife「{MONEY_NAME}」。AI以外の、お金のお得情報です。公式LINEの配信をまとめています
-              </span>
-            </Link>
-          </li>
+          {CORNERS.map((c) => {
+            const menu = MENU.find((m) => m.key === c.key)!;
+            return (
+              <li key={c.key}>
+                <Link href={`/c/${c.key}`} className={`guide-corner guide-corner-${c.key}`}>
+                  <span className={`cat cat-${c.key}`}>{menu.label}</span>
+                  <span className="guide-corner-when">{c.when}</span>
+                  {c.parts && (
+                    <span className="guide-corner-parts">
+                      {c.parts.map((p) => (
+                        <span key={p.label}>
+                          <strong>{p.label}</strong>：{p.text}（1本{p.time}）
+                        </span>
+                      ))}
+                    </span>
+                  )}
+                  <span className="guide-corner-time">
+                    更新：{c.update}
+                    {c.time && `／1本の目安：${c.time}`}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
+        <p className="guide-note">
+          会員特典のYourLife「{MONEY_NAME}」（AI以外の、お金のお得情報）は、AIのコーナーとは別に、画面右上の
+          <Link href="/money">「特典」</Link>から見られます。
+        </p>
+      </section>
+
+      <section id="find" className="guide-section">
+        <h2 className="guide-h2">
+          <span>3</span>記事の探し方
+        </h2>
+        <dl className="guide-how">
+          <div>
+            <dt>メニュー</dt>
+            <dd>
+              PCは画面の上、スマホは画面の下にあります。どのページからでも、ホームと4つのコーナーへ1回で移れます。画面右上の「見方」はこのページ、「特典」は会員特典、「質問」は公式LINEです。
+            </dd>
+          </div>
+          <div>
+            <dt>自分の立場から</dt>
+            <dd>
+              ホームの「あなたの立場から探す」で、
+              <Link href="/for/executive">経営者・管理職</Link>／<Link href="/for/backoffice">事務・総務・経理</Link>／
+              <Link href="/for/sales">マーケ・営業</Link>向けの記事をまとめて見られます。
+            </dd>
+          </div>
+          <div>
+            <dt>やりたい仕事から</dt>
+            <dd>
+              ホームの<Link href="/#tasks">「やりたい仕事から探す」</Link>で、メール・議事録・Excelなど10の仕事ごとに記事を探せます。
+            </dd>
+          </div>
+          <div>
+            <dt>むずかしさで</dt>
+            <dd>記事の一覧の上にある「むずかしさ」のボタンで、初級・中級・上級に絞り込めます。</dd>
+          </div>
+          <div>
+            <dt>キーワード・過去の記事</dt>
+            <dd>
+              ホームの下の「もっと探す」から、よく出てくるキーワード（#ChatGPT など）や、月ごとの
+              <Link href="/archive">バックナンバー</Link>で探せます。
+            </dd>
+          </div>
+        </dl>
       </section>
 
       <section id="how" className="guide-section">
         <h2 className="guide-h2">
-          <span>3</span>おすすめの読み方
+          <span>4</span>おすすめの読み方
         </h2>
         <dl className="guide-how">
           <div>
@@ -149,7 +233,7 @@ export default function GuidePage() {
           <div>
             <dt>スマホのホーム画面に追加すると便利</dt>
             <dd>
-              iPhoneは Safari の共有ボタン →「ホーム画面に追加」、Androidは Chrome のメニュー →「ホーム画面に追加」。アプリのように1タップで開けます。
+              iPhoneは Safari の共有ボタン →「ホーム画面に追加」、Androidは Chrome のメニュー →「ホーム画面に追加」。1タップで開けます。
             </dd>
           </div>
         </dl>
@@ -157,7 +241,7 @@ export default function GuidePage() {
 
       <section id="article" className="guide-section">
         <h2 className="guide-h2">
-          <span>4</span>記事の読み方
+          <span>5</span>記事の読み方
         </h2>
         <ul className="guide-marks">
           <li>
@@ -168,6 +252,9 @@ export default function GuidePage() {
           </li>
           <li>
             <strong>元記事・出典</strong>：情報の出どころです。くわしく知りたいときに開いてください
+          </li>
+          <li>
+            <strong>コピー</strong>：プロンプトなどの枠の右上のボタンで、中身をそのままコピーできます。AIに貼り付けて使ってください
           </li>
           <li>
             <span className="new">NEW</span>：公開から3日以内の記事
@@ -192,7 +279,7 @@ export default function GuidePage() {
 
       <section id="help" className="guide-section">
         <h2 className="guide-h2">
-          <span>5</span>困ったときは
+          <span>6</span>困ったときは
         </h2>
         <ul className="guide-marks">
           <li>
@@ -200,6 +287,7 @@ export default function GuidePage() {
             で質問してください。「うちの業務だとどう使う？」のような相談も歓迎です。
           </li>
           <li>合言葉が分からなくなったときも、公式LINEでお問い合わせください。</li>
+          <li>共用のパソコンで読んだあとは、ページのいちばん下の「ログアウト」を押してください。</li>
           <li>合言葉や記事・画像を、会員以外の方に共有するのはご遠慮ください。</li>
         </ul>
         <LineBanner title="AIのこと、公式LINEで気軽に質問できます" sub="記事のこと・AIの使い方・合言葉のことなど、なんでもどうぞ。" />
@@ -207,7 +295,7 @@ export default function GuidePage() {
 
       <section id="map" className="guide-section">
         <h2 className="guide-h2">
-          <span>6</span>サイトの地図
+          <span>7</span>サイトの地図
         </h2>
         <div className="guide-map">
           {SITE_MAP.map((g) => (

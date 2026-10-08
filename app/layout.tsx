@@ -27,6 +27,8 @@ export const viewport: Viewport = {
   // ブラウザのアドレスバーの色を、サイトの背景に合わせる（配色は白ベースで固定）
   themeColor: "#fbf8f4",
   colorScheme: "light",
+  // iPhoneの画面下のバーの分だけ、下のメニューに余白を取れるようにする
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

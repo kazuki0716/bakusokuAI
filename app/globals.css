@@ -1968,10 +1968,121 @@ img {
   }
 }
 
+/* =========================================================
+   スマホ：上は細い帯（ロゴ＋見方・特典・質問）、メニューは画面の下に固定
+   上の帯は下へ読み進めると隠れ、上に戻すと出る（HeaderAutoHide）
+   ========================================================= */
+.bottom-nav {
+  display: none;
+}
+
 @media (max-width: 640px) {
-  /* メニューが2段になるので、スマホではヘッダーを画面上部に固定しない */
   .site-header {
+    transition: transform var(--dur);
+  }
+
+  .site-header.is-hidden {
+    transform: translateY(-100%);
+  }
+
+  .header-inner {
+    flex-wrap: nowrap;
+    height: 60px;
+    padding-top: 0;
+  }
+
+  .logo img {
+    height: 36px;
+  }
+
+  .site-header .nav {
+    display: none;
+  }
+
+  .header-actions {
+    gap: var(--sp-1);
+  }
+
+  /* 上の3つは「アイコンの下に2文字」の小さなボタン */
+  .header-actions .header-guide,
+  .header-actions .header-money,
+  .header-actions .header-line-btn {
+    flex-direction: column;
+    gap: 2px;
+    min-width: 48px;
+    min-height: 44px;
+    padding: 0 6px;
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-2xs);
+    line-height: 1.2;
+  }
+
+  .header-actions .header-guide {
+    border-color: transparent;
+  }
+
+  .header-actions .header-money {
+    border-color: transparent;
+  }
+
+  .header-actions .header-ext {
+    display: none;
+  }
+
+  .bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    padding: 0 max(4px, env(safe-area-inset-left)) env(safe-area-inset-bottom) max(4px, env(safe-area-inset-right));
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -4px 16px rgba(22, 23, 27, 0.06);
+  }
+
+  .bottom-nav-link {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    min-height: 58px;
+    color: var(--muted);
+    font-size: var(--fs-2xs);
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .bottom-nav-link[aria-current="page"] {
+    color: var(--fg);
+  }
+
+  /* 今いる場所：上に太い線 */
+  .bottom-nav-link[aria-current="page"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 22%;
+    right: 22%;
+    height: 3px;
+    border-radius: 0 0 3px 3px;
+    background: var(--brand);
+  }
+
+  /* 下のメニューに、ページの最後（フッター）が隠れないように */
+  body {
+    padding-bottom: calc(58px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+  .site-header {
+    transition: none;
   }
 }
 
@@ -2172,9 +2283,8 @@ img {
   font-size: 0.9em;
 }
 
-/* 会員特典（AI情報とは別枠）：PC・タブレットはヘッダー右上のボタン、スマホはメニューの最後に区切って置く */
-.header-money,
-.nav-money {
+/* 会員特典（AI情報とは別枠）：ヘッダー右上のボタン */
+.header-money {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -2197,27 +2307,6 @@ img {
   border-color: var(--money-ink);
 }
 
-.nav-money {
-  display: none;
-}
-
-@media (max-width: 640px) {
-  .header-money {
-    display: none;
-  }
-
-  /* 色とアイコンでAIのメニューと区別する（区切り線は折り返したときに行頭に残るので使わない） */
-  .nav-money {
-    display: inline-flex;
-  }
-}
-
-/* 幅の狭いスマホ（360px以下）では1段目（ロゴ＋ボタン）に収めるため「見方」を外す（ホームの冒頭とフッターから行ける） */
-@media (max-width: 360px) {
-  .header-actions .header-guide {
-    display: none;
-  }
-}
 
 /* 小さめのスマホでもメニューが3段に収まるよう、左右の余白を少し詰める */
 @media (max-width: 400px) {
@@ -3309,9 +3398,9 @@ html {
 }
 
 @media (max-width: 640px) {
-  /* スマホはヘッダーを固定しない */
+  /* スマホの上の帯（60px）の分 */
   html {
-    scroll-padding-top: 16px;
+    scroll-padding-top: 72px;
   }
 }
 
@@ -3480,18 +3569,18 @@ h1.login-logo {
   }
 }
 
-/* 記事の図解：スマホでは文字が小さくなりすぎないよう、等倍に近い大きさで横にスクロールして見せる */
+/* 記事の図解：文字の小さい古い図だけ、スマホでは等倍に近い大きさで横にスクロールして見せる */
 @media (max-width: 640px) {
-  .article-body figure.diagram {
+  .article-body figure.diagram-scroll {
     overflow-x: auto;
     scrollbar-width: thin;
   }
 
-  .article-body figure.diagram svg {
+  .article-body figure.diagram-scroll svg {
     min-width: 560px;
   }
 
-  .article-body figure.diagram::after {
+  .article-body figure.diagram-scroll::after {
     content: "← 横にスクロールできます →";
     display: block;
     margin-top: 6px;

@@ -6,7 +6,7 @@ import { MENU } from "@/lib/categories";
 import { HeaderIcon } from "./HeaderIcon";
 
 // ヘッダーのメニュー（ホーム＋カテゴリ）。今いるページを aria-current と見た目で示す
-export function NavLinks({ moneyName }: { moneyName: string }) {
+export function NavLinks() {
   const pathname = usePathname();
   const current = (href: string) => (pathname === href || pathname.startsWith(`${href}/`) ? "page" : undefined);
 
@@ -22,11 +22,6 @@ export function NavLinks({ moneyName }: { moneyName: string }) {
           {m.label}
         </Link>
       ))}
-      {/* 会員特典（AI情報とは別枠）。PC・タブレットはヘッダー右上のボタン、スマホだけここに区切って置く */}
-      <Link href="/money" className="nav-link nav-money" aria-current={current("/money")} aria-label={`会員特典：${moneyName}`}>
-        <HeaderIcon name="gift" />
-        特典
-      </Link>
     </nav>
   );
 }

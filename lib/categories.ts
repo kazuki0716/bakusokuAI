@@ -37,13 +37,15 @@ export function isCategory(value: string): value is CategoryKey {
 
 // 上のメニュー。読者の目的（使い方を知りたい）が同じなので、howto と prompt は1つの一覧「使い方・プロンプト」にまとめる
 // （記事の種類としては別のまま。一覧は /c/howto で、プロンプトはその中の #prompt）
-export const MENU: { key: CategoryKey; label: string; en: string; description: string; cats: CategoryKey[] }[] = [
-  { key: "weekly", ...CATEGORIES.weekly, cats: ["weekly"] },
-  { key: "news", ...CATEGORIES.news, cats: ["news"] },
-  { key: "video", ...CATEGORIES.video, cats: ["video"] },
+// short はスマホの下のメニュー用の短い名前
+export const MENU: { key: CategoryKey; label: string; short: string; en: string; description: string; cats: CategoryKey[] }[] = [
+  { key: "weekly", ...CATEGORIES.weekly, short: "今週のTop", cats: ["weekly"] },
+  { key: "news", ...CATEGORIES.news, short: "ニュース", cats: ["news"] },
+  { key: "video", ...CATEGORIES.video, short: "動画", cats: ["video"] },
   {
     key: "howto",
     label: "使い方・プロンプト",
+    short: "使い方",
     en: "HOW TO & PROMPT",
     description: "メール返信・議事録・Excelなど10の仕事ごとの手順解説と、コピーしてすぐ使えるプロンプト。",
     cats: ["howto", "prompt"],

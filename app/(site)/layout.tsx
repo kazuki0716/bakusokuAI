@@ -6,6 +6,8 @@ import { SITE_MAP } from "@/lib/navigation";
 import { NavLinks } from "@/components/NavLinks";
 import { Ticker } from "@/components/Ticker";
 import { HeaderIcon } from "@/components/HeaderIcon";
+import { BottomNav } from "@/components/BottomNav";
+import { HeaderAutoHide } from "@/components/HeaderAutoHide";
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -25,7 +27,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
             <img src="/brand/logo-header.png" alt="爆速AI" width={72} height={48} />
             <span className="logo-news">NEWS</span>
           </Link>
-          <NavLinks moneyName={MONEY_NAME} />
+          <NavLinks />
           <div className="header-actions">
             {/* ヘッダーのボタンは「アイコン＋2文字」で統一。読み上げとマウスを重ねたときは正式名 */}
             <Link href="/guide" className="header-guide" aria-label="サイトの見方" title="サイトの見方">
@@ -104,6 +106,8 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
           </div>
         </div>
       </footer>
+      <BottomNav />
+      <HeaderAutoHide />
     </>
   );
 }

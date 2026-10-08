@@ -701,11 +701,6 @@ img {
   box-shadow: var(--shadow);
 }
 
-.weekly-cards li:nth-child(2) .weekly-card:not(.weekly-card-photo) {
-  background: var(--surface-2);
-  color: var(--fg);
-}
-
 .weekly-card-photo {
   background-size: cover;
   background-position: center;
@@ -722,55 +717,105 @@ img {
   position: relative;
 }
 
+.weekly-kind {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-3);
+}
+
+.weekly-kind-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px var(--sp-3);
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: var(--fs-xs);
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.weekly-period {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+/* 種類ごとの色：AI情報＝黄、YouTube動画＝赤 */
+.weekly-card-info {
+  --accent: var(--pop);
+  --on-accent: var(--on-pop);
+}
+
+.weekly-card-video {
+  --accent: var(--brand);
+  --on-accent: #ffffff;
+}
+
 .weekly-count {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--sp-3);
+  line-height: 1;
+}
+
+.weekly-count-name {
+  font-size: var(--fs-xl);
+  font-weight: 900;
+}
+
+.weekly-count-top {
   font-weight: 800;
   font-style: italic;
   font-size: var(--fs-md);
   letter-spacing: 0.1em;
-  line-height: 1;
-}
-
-.weekly-cards li:nth-child(2) .weekly-card:not(.weekly-card-photo) .weekly-count strong {
-  color: var(--fg);
 }
 
 .weekly-count strong {
-  font-size: 3.8rem;
+  font-size: 3.2rem;
   font-weight: 900;
   margin-left: var(--sp-1);
   color: var(--pop);
 }
 
+.weekly-use {
+  margin-top: calc(var(--sp-1) * -1);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  opacity: 0.9;
+}
+
 .weekly-title {
-  padding-right: var(--sp-14);
-  font-size: var(--fs-lg);
+  padding-top: var(--sp-3);
+  border-top: var(--bw) solid rgba(255, 255, 255, 0.22);
+  font-size: var(--fs-md);
   font-weight: 700;
   line-height: 1.6;
 }
 
-.weekly-date {
+.weekly-go {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: 44px;
   margin-top: auto;
-  font-size: var(--fs-xs);
-  opacity: 0.8;
+  padding: 0 var(--sp-5);
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: var(--fs-sm);
+  font-weight: 900;
 }
 
-.weekly-card::after {
-  content: "→";
-  position: absolute;
-  right: 24px;
-  bottom: 22px;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--pop);
-  color: var(--on-pop);
-  font-weight: 700;
-  transition: transform 0.2s;
+.weekly-go span {
+  transition: transform var(--dur);
 }
 
-.weekly-card:hover::after {
+.weekly-card:hover .weekly-go span {
   transform: translateX(4px);
 }
 
@@ -2478,7 +2523,6 @@ img {
 .weekly-mini {
   display: grid;
   gap: 6px;
-  padding-right: var(--sp-14);
 }
 
 .weekly-mini-item {

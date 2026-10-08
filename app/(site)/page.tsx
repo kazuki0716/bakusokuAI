@@ -16,6 +16,7 @@ import {
   TaskGrid,
   TodayUpdates,
   WeeklyTopPreview,
+  weeklyKind,
 } from "@/components/home/HomeSections";
 
 // 外部ニュースフィードと「今日」の表示を1時間ごとに更新
@@ -39,7 +40,11 @@ export default async function HomePage() {
     (a, b) => Number(b.pickup) - Number(a.pickup),
   );
 
-  const weekly = articles.filter((a) => a.category === "weekly").slice(0, 2);
+  // 今週のTop：AI情報（読む）→ YouTube動画（見る）の順に、それぞれ最新の1本
+  const weeklyAll = articles.filter((a) => a.category === "weekly");
+  const weekly = (["info", "video"] as const)
+    .map((kind) => weeklyAll.find((a) => weeklyKind(a) === kind))
+    .filter((a): a is (typeof weeklyAll)[number] => Boolean(a));
   const shown = new Set([...todayList, ...weekly].map((a) => a.slug));
   const months = [...new Set(articles.map((a) => monthKey(a.date)))];
   const money = getMoneySecrets().slice(0, 4);

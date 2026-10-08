@@ -31,7 +31,7 @@ export default async function TagPage({ params }: Props) {
         <h1 className="page-title">#{tag}</h1>
         <p className="page-desc">{all.length}本の記事</p>
       </header>
-      <LevelFilter counts={levelCounts(list)}>
+      <LevelFilter counts={levelCounts(list)} total={list.length}>
         <ul className="cards">
           {list.map((a) => (
             <ArticleCard key={a.slug} article={a} />

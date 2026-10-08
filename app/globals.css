@@ -4012,3 +4012,75 @@ h3,
     flex-basis: 100%;
   }
 }
+
+/* =========================================================
+   サイト内検索（/search）
+   ========================================================= */
+.search-form {
+  display: flex;
+  gap: var(--sp-2);
+  margin-top: var(--sp-5);
+  max-width: 640px;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0 var(--sp-4);
+  border: var(--bw) solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--fg);
+  font: inherit;
+  font-size: var(--fs-md);
+}
+
+.search-input:focus {
+  border-color: var(--fg);
+  outline: 2px solid var(--fg);
+  outline-offset: 1px;
+}
+
+.search-submit {
+  min-height: 48px;
+  padding: 0 var(--sp-6);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--pop);
+  color: var(--on-pop);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.search-count {
+  margin: 0 0 var(--sp-5);
+  font-weight: 700;
+}
+
+.search-hints {
+  margin-top: var(--sp-12);
+}
+
+/* 幅の狭いスマホ（360px以下）：上の4つのボタンとロゴを1段に収める */
+@media (max-width: 360px) {
+  .site-header .header-actions {
+    gap: 2px;
+  }
+
+  .site-header .header-actions .header-guide,
+  .site-header .header-actions .header-money,
+  .site-header .header-actions .header-line-btn {
+    min-width: 42px;
+    padding: 0 3px;
+  }
+
+  .logo img {
+    height: 32px;
+  }
+
+  .logo-news {
+    letter-spacing: 0.08em;
+  }
+}

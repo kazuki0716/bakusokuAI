@@ -54,7 +54,7 @@ export default async function PersonaPage({ params }: Props) {
       {list.length === 0 ? (
         <p className="empty">まだ記事がありません。</p>
       ) : (
-        <LevelFilter counts={levelCounts([...only.slice(0, 8), ...rest])}>
+        <LevelFilter counts={levelCounts([...only.slice(0, 8), ...rest])} total={only.slice(0, 8).length + rest.length}>
           {only.length > 0 && (
             <section className="persona-block">
               <h2 className="persona-title persona-title-only">

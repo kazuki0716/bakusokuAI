@@ -30,6 +30,10 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
           <NavLinks />
           <div className="header-actions">
             {/* ヘッダーのボタンは「アイコン＋2文字」で統一。読み上げとマウスを重ねたときは正式名 */}
+            <Link href="/search" className="header-guide header-search" aria-label="サイト内検索" title="サイト内検索">
+              <HeaderIcon name="search" />
+              検索
+            </Link>
             <Link href="/guide" className="header-guide" aria-label="サイトの見方" title="サイトの見方">
               <HeaderIcon name="guide" />
               見方

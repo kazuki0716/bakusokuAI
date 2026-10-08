@@ -6,7 +6,16 @@ import { LevelBars } from "./LevelBadge";
 
 // むずかしさ（初級・中級・上級）で、この中の記事カードを絞り込む。
 // カードの <li data-level="初級"> を見て隠し、記事が1本も残らないまとまり（.persona-block）も隠す
-export function LevelFilter({ counts, children }: { counts: Record<Level, number>; children: React.ReactNode }) {
+// total：一覧の記事の本数（むずかしさの無い「今週のTop」も含む）。省略時は3段階の合計
+export function LevelFilter({
+  counts,
+  total: totalAll,
+  children,
+}: {
+  counts: Record<Level, number>;
+  total?: number;
+  children: React.ReactNode;
+}) {
   const [level, setLevel] = useState<Level | "all">("all");
   const [empty, setEmpty] = useState(false);
   const box = useRef<HTMLDivElement>(null);
@@ -23,8 +32,9 @@ export function LevelFilter({ counts, children }: { counts: Record<Level, number
     setEmpty(level !== "all" && !root.querySelector("li.card:not([hidden])"));
   }, [level]);
 
-  const total = LEVELS.reduce((n, l) => n + counts[l], 0);
-  if (total === 0) return <>{children}</>;
+  const leveled = LEVELS.reduce((n, l) => n + counts[l], 0);
+  if (leveled === 0) return <>{children}</>;
+  const total = totalAll ?? leveled;
 
   const options: { key: Level | "all"; label: string; count: number }[] = [
     { key: "all", label: "すべて", count: total },

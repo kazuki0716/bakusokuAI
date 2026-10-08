@@ -54,7 +54,7 @@ export default async function TaskPage({ params }: Props) {
           </p>
         </div>
       ) : (
-        <LevelFilter counts={levelCounts(list)}>
+        <LevelFilter counts={levelCounts(list)} total={list.length}>
           <GroupedList articles={list} order={["howto", "video", "prompt", "news", "weekly"]} />
         </LevelFilter>
       )}

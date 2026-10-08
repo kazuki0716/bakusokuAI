@@ -13,6 +13,7 @@ import {
 } from "@/lib/articles";
 import { SafeImage } from "@/components/SafeImage";
 import { LineBanner } from "@/components/LineBanner";
+import { CopyButtons } from "@/components/CopyButtons";
 import { SourceCard } from "@/components/SourceCard";
 import { ArticleCard, CategoryLabel, SectionHeading } from "@/components/ArticleParts";
 import { CATEGORIES, SKILLUP, TASK_LIST } from "@/lib/categories";
@@ -97,7 +98,7 @@ export default async function ArticlePage({ params }: Props) {
           article.image &&
           !article.youtube && (
             <figure className="eyecatch">
-              <SafeImage src={article.image} fallback={null} />
+              <SafeImage src={article.image} fallback={null} eager />
               {article.imageCredit && (
                 <figcaption>
                   {article.imageCreditUrl ? (
@@ -141,6 +142,7 @@ export default async function ArticlePage({ params }: Props) {
         {article.ranking.length > 0 && <Ranking items={article.ranking} />}
 
         <div className="article-body" dangerouslySetInnerHTML={{ __html: withScrollableDiagrams(article.html) }} />
+        <CopyButtons />
 
         {article.impact && (
           <section className="impact-box">

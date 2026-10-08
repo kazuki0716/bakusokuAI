@@ -112,8 +112,8 @@ export function getArticle(slug: string): Article | undefined {
 }
 
 // 自動生成のオリジナル・アイキャッチ画像のURL（app/eyecatch/[file]/route.tsx で作る）
-export function generatedEyecatch(slug: string): string {
-  return `/eyecatch/${slug}.png`;
+export function generatedEyecatch(slug: string, small = false): string {
+  return `/eyecatch/${slug}${small ? ".sm" : ""}.png`;
 }
 
 function hostOf(url: string): string {

@@ -4,6 +4,7 @@ import { LINE_URL } from "@/lib/links";
 import { MONEY_NAME } from "@/lib/money";
 import { SITE_MAP } from "@/lib/navigation";
 import { NavLinks } from "@/components/NavLinks";
+import { Ticker } from "@/components/Ticker";
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
@@ -35,19 +36,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         </div>
       </header>
 
-      <div className="ticker" aria-hidden="true">
-        <div className="ticker-track">
-          {[0, 1].map((n) => (
-            <span key={n} className="ticker-group">
-              {ticker.map((t) => (
-                <span key={t} className="ticker-item">
-                  {t}
-                </span>
-              ))}
-            </span>
-          ))}
-        </div>
-      </div>
+      <Ticker items={ticker} />
 
       <main id="main" className="wrap main" tabIndex={-1}>
         {children}

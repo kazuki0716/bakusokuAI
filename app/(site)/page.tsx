@@ -50,7 +50,6 @@ export default async function HomePage() {
 
       <TodayUpdates list={todayList} isFallback={isFallback} date={shownDate} />
       <WeeklyTopPreview articles={weekly} next={nextMonday(today)} />
-      <GuideBanner />
       <PersonaPicker articles={articles} />
       <TaskGrid articles={articles} />
       <CategoryRails articles={articles} exclude={shown} />
@@ -89,6 +88,8 @@ export default async function HomePage() {
         sub="「この記事、うちの業務だとどう使う？」「ChatGPTとGemini、どっちがいい？」など、なんでもどうぞ。"
       />
 
+      {/* 初めての人向けの案内は、毎日来る人の邪魔にならないよう下の方に（ヒーローにも入口あり） */}
+      <GuideBanner />
       <MoreToExplore months={months} tags={getTagCounts()} />
     </>
   );

@@ -51,12 +51,15 @@ export function Thumb({ article, large = false }: { article: Article; large?: bo
   const pattern = <PatternThumb article={article} className={base} />;
   if (!article.image) return pattern;
   const generated = generatedEyecatch(article.slug);
+  // 一覧の小さいサムネイルには、自動生成アイキャッチの小さい版（600×315）を使う
+  const sized = generatedEyecatch(article.slug, !large);
+  const src = article.image === generated ? sized : article.image;
   // 外部の画像が読めなかったら、自動生成のアイキャッチに切り替える
   const fallback =
-    article.image === generated ? pattern : <SafeImage src={generated} className="thumb-img" fallback={pattern} />;
+    article.image === generated ? pattern : <SafeImage src={sized} className="thumb-img" fallback={pattern} />;
   return (
     <div className={`thumb-photo${large ? " thumb-photo-lg" : ""}`}>
-      <SafeImage src={article.image} className="thumb-img" fallback={fallback} />
+      <SafeImage src={src} className="thumb-img" fallback={fallback} eager={large} />
       {article.image !== generated && (
         <span className={`thumb-chip cat-${article.category}`}>{CATEGORIES[article.category].en}</span>
       )}

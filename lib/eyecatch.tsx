@@ -2,7 +2,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { ImageResponse } from "next/og";
 import type { Article } from "./articles";
-import { formatDate } from "./articles";
 import { CATEGORIES } from "./categories";
 
 // 記事タイトル入りのオリジナル・アイキャッチ画像（1200×630。一覧用の小さい版は scale 0.5 で 600×315）を生成する。
@@ -11,13 +10,31 @@ import { CATEGORIES } from "./categories";
 const WIDTH = 1200;
 const HEIGHT = 630;
 
-const COLORS: Record<Article["category"], [string, string]> = {
-  // 白文字が読めるよう、globals.css の --cat-*-solid から暗くなる方向のグラデーション
-  weekly: ["#1d1e24", "#3a3d47"],
-  news: ["#2456d0", "#1b409c"],
-  video: ["#bc2459", "#8d1b43"],
-  howto: ["#0b7050", "#08543c"],
-  prompt: ["#9a4c00", "#733900"],
+// カテゴリごとの光の色（暗い地に光らせる装飾なので、文字色のコントラストには使わない）
+const GLOW: Record<Article["category"], [string, string]> = {
+  weekly: ["255,210,63", "255,90,78"],
+  news: ["61,123,255", "34,198,255"],
+  video: ["255,79,139", "162,89,255"],
+  howto: ["20,196,141", "61,123,255"],
+  prompt: ["255,154,31", "255,79,139"],
+};
+
+// 地の色（ほぼ黒に、カテゴリの色をほんの少し混ぜる）
+const BASE: Record<Article["category"], string> = {
+  weekly: "#14130f",
+  news: "#0c1020",
+  video: "#170c16",
+  howto: "#0b1513",
+  prompt: "#17110b",
+};
+
+// カテゴリのラベルの地（白文字が読める濃さ。globals.css の --cat-*-solid と同じ）
+const SOLID: Record<Article["category"], string> = {
+  weekly: "#16171b",
+  news: "#2456d0",
+  video: "#bc2459",
+  howto: "#0b7050",
+  prompt: "#9a4c00",
 };
 
 let logoDataUri: string | undefined;
@@ -42,21 +59,68 @@ async function loadFont(text: string, weight: 700 | 900): Promise<ArrayBuffer | 
   }
 }
 
-function Stripes({ px }: { px: (n: number) => number }) {
-  // 斜めのスピード線
+// 細い方眼（テック感を出す装飾）
+function Grid({ px }: { px: (n: number) => number }) {
+  const step = 60;
   return (
     <div style={{ position: "absolute", inset: 0, display: "flex" }}>
-      {Array.from({ length: 22 }, (_, i) => (
+      {Array.from({ length: Math.ceil(WIDTH / step) }, (_, i) => (
         <div
-          key={i}
+          key={`v${i}`}
+          style={{ position: "absolute", top: 0, left: px(i * step), width: 1, height: px(HEIGHT), background: "rgba(255,255,255,0.06)" }}
+        />
+      ))}
+      {Array.from({ length: Math.ceil(HEIGHT / step) }, (_, i) => (
+        <div
+          key={`h${i}`}
+          style={{ position: "absolute", left: 0, top: px(i * step), height: 1, width: px(WIDTH), background: "rgba(255,255,255,0.06)" }}
+        />
+      ))}
+    </div>
+  );
+}
+
+// やわらかい光：中心ほど濃くなるよう、半透明の円を小さくしながら重ねる
+function Glow({ px, rgb, cx, cy, r, alpha }: { px: (n: number) => number; rgb: string; cx: number; cy: number; r: number; alpha: number }) {
+  const steps = 28;
+  return (
+    <div style={{ position: "absolute", inset: 0, display: "flex" }}>
+      {Array.from({ length: steps }, (_, i) => {
+        const d = (r * 2 * (steps - i)) / steps;
+        return (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              left: px(cx - d / 2),
+              top: px(cy - d / 2),
+              width: px(d),
+              height: px(d),
+              borderRadius: 9999,
+              background: `rgba(${rgb},${alpha})`,
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+// 右側の同心円（ブランドの「スピード」と「広がり」を表す装飾）
+function Rings({ px, rgb }: { px: (n: number) => number; rgb: string }) {
+  return (
+    <div style={{ position: "absolute", right: px(-170), top: px(-90), display: "flex" }}>
+      {[620, 470, 320].map((d, i) => (
+        <div
+          key={d}
           style={{
             position: "absolute",
-            top: px(-200),
-            left: px(-300 + i * 80),
-            width: Math.max(1, px(3)),
-            height: px(1100),
-            background: "rgba(255,255,255,0.16)",
-            transform: "rotate(30deg)",
+            right: px((620 - d) / 2),
+            top: px((620 - d) / 2),
+            width: px(d),
+            height: px(d),
+            borderRadius: 9999,
+            border: `${Math.max(1, px(i === 2 ? 3 : 2))}px solid rgba(${rgb},${0.55 - i * 0.12})`,
           }}
         />
       ))}
@@ -66,20 +130,21 @@ function Stripes({ px }: { px: (n: number) => number }) {
 
 export async function renderEyecatch(article: Article, scale = 1): Promise<ImageResponse> {
   const px = (n: number) => Math.round(n * scale);
-  const [c1, c2] = COLORS[article.category];
+  const [g1, g2] = GLOW[article.category];
+  const solid = SOLID[article.category];
   const label = article.thumbLabel ?? CATEGORIES[article.category].label;
-  const en = CATEGORIES[article.category].en;
-  const date = formatDate(article.date);
-  const title = article.title.length > 64 ? `${article.title.slice(0, 63)}…` : article.title;
+  const catLabel = CATEGORIES[article.category].label;
 
-  const text = `${label}${title}${en}${date}${CATEGORIES[article.category].label}NEWS爆速AI`;
+  const text = `${label}${catLabel}BAKUSOKUAINEWS`;
   const [bold, black] = await Promise.all([loadFont(text, 700), loadFont(text, 900)]);
   const fonts = [
     ...(bold ? [{ name: "Zen", data: bold, weight: 700 as const, style: "normal" as const }] : []),
     ...(black ? [{ name: "Zen", data: black, weight: 900 as const, style: "normal" as const }] : []),
   ];
 
-  const labelSize = px(label.length <= 8 ? 104 : label.length <= 12 ? 86 : label.length <= 16 ? 70 : 58);
+  // 見出しはなるべく1行で大きく。全角を1、半角を0.56文字分として幅を見積もり、入りきる最大の大きさにする（最小72px、それより長ければ2行）
+  const units = [...label].reduce((n, ch) => n + (/[\x20-\x7e]/.test(ch) ? 0.56 : 1), 0);
+  const labelSize = px(Math.max(72, Math.min(132, Math.floor(1000 / (units * 1.06)))));
 
   return new ImageResponse(
     (
@@ -91,101 +156,80 @@ export async function renderEyecatch(article: Article, scale = 1): Promise<Image
           position: "relative",
           fontFamily: "Zen",
           color: "#fff",
-          background: `linear-gradient(135deg, ${c1} 0%, ${c2} 100%)`,
+          background: BASE[article.category],
           overflow: "hidden",
         }}
       >
-        <Stripes px={px} />
+        {/* カテゴリ色の光（右上と左下）。グラデーションの代わりに、薄い円を重ねてぼかしを作る */}
+        <Glow px={px} rgb={g1} cx={1020} cy={150} r={540} alpha={0.026} />
+        <Glow px={px} rgb={g2} cx={-40} cy={680} r={480} alpha={0.018} />
+        <Grid px={px} />
+        <Rings px={px} rgb={g1} />
 
-        {/* 背景の大きな英字 */}
         <div
           style={{
-            position: "absolute",
-            right: px(-20),
-            top: px(-40),
-            fontSize: px(230),
-            fontWeight: 900,
-            color: "rgba(255,255,255,0.16)",
-            transform: "skewX(-12deg)",
-            letterSpacing: px(-6),
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            padding: `${px(64)}px ${px(76)}px`,
+            width: "100%",
+            position: "relative",
           }}
         >
-          {en}
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", padding: `${px(64)}px ${px(72)}px`, width: "100%", position: "relative" }}>
-          {/* カテゴリと日付 */}
-          <div style={{ display: "flex", alignItems: "center", gap: px(18) }}>
+          {/* カテゴリ */}
+          <div style={{ display: "flex", alignItems: "center", gap: px(16) }}>
             <div
               style={{
                 display: "flex",
-                background: "#fff",
-                color: c1,
+                alignItems: "center",
+                gap: px(12),
+                background: solid,
+                border: `${Math.max(1, px(2))}px solid rgba(${g1},0.9)`,
+                color: "#fff",
                 fontSize: px(30),
                 fontWeight: 900,
-                padding: `${px(6)}px ${px(24)}px`,
+                padding: `${px(8)}px ${px(26)}px`,
                 borderRadius: 999,
               }}
             >
-              {CATEGORIES[article.category].label}
+              <div style={{ width: px(12), height: px(12), borderRadius: 999, background: `rgb(${g1})` }} />
+              {catLabel}
             </div>
-            <div style={{ fontSize: px(28), fontWeight: 700, opacity: 0.9 }}>{date}</div>
           </div>
 
-          {/* キャッチコピー（大） */}
-          <div style={{ display: "flex", flexDirection: "column", marginTop: px(44) }}>
-            <div style={{ width: px(90), height: px(10), background: "#ffd23f", transform: "skewX(-30deg)", marginBottom: px(22) }} />
+          {/* 見出し（大） */}
+          <div style={{ display: "flex", flexDirection: "column" }}>
             <div
               style={{
                 fontSize: labelSize,
                 fontWeight: 900,
-                lineHeight: 1.15,
-                letterSpacing: px(2),
-                textShadow: `0 ${px(4)}px ${px(24)}px rgba(0,0,0,0.25)`,
-                maxWidth: px(1000),
+                lineHeight: 1.12,
+                letterSpacing: px(1),
+                maxWidth: px(1048),
               }}
             >
               {label}
             </div>
+            <div style={{ display: "flex", marginTop: px(26), gap: px(10) }}>
+              <div style={{ width: px(120), height: px(10), borderRadius: 999, background: "#ffd23f" }} />
+              <div style={{ width: px(28), height: px(10), borderRadius: 999, background: `rgb(${g1})` }} />
+            </div>
           </div>
 
-          {/* 記事タイトル（小） */}
+          {/* サイト名 */}
           <div
             style={{
               display: "flex",
-              marginTop: "auto",
-              alignItems: "flex-end",
-              justifyContent: "space-between",
-              gap: px(40),
+              alignItems: "center",
+              gap: px(14),
+              fontSize: px(24),
+              fontWeight: 900,
+              letterSpacing: px(6),
+              color: "rgba(255,255,255,0.78)",
             }}
           >
-            <div
-              style={{
-                fontSize: px(30),
-                fontWeight: 700,
-                lineHeight: 1.45,
-                maxWidth: px(820),
-                background: "rgba(0,0,0,0.22)",
-                padding: `${px(14)}px ${px(22)}px`,
-                borderRadius: px(14),
-              }}
-            >
-              {title}
-            </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                background: "#fff",
-                borderRadius: px(22),
-                padding: `${px(12)}px ${px(18)}px ${px(8)}px`,
-                flexShrink: 0,
-              }}
-            >
-              <img src={logo()} width={px(150)} height={px(100)} alt="" />
-              <div style={{ fontSize: px(18), fontWeight: 900, color: "#d42a20", letterSpacing: px(6) }}>NEWS</div>
-            </div>
+            <img src={logo()} width={px(66)} height={px(44)} alt="" />
+            BAKUSOKU AI NEWS
           </div>
         </div>
       </div>

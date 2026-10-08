@@ -3793,3 +3793,9 @@ h3,
   font-size: var(--fs-sm);
   font-weight: 700;
 }
+
+/* 幅の狭いスマホでは、見出しの右の「一覧へ」ボタンを見出しの下に回す（はみ出し防止） */
+.section-heading {
+  flex-wrap: wrap;
+  row-gap: var(--sp-2);
+}

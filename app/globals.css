@@ -4,8 +4,38 @@
    ========================================================= */
 
 :root {
-  /* 文字の最小サイズ（ラベル・バッジもこれより小さくしない） */
-  --fs-2xs: 0.75rem;
+  /* ===== デザイントークン（色以外）=====
+     ブレークポイントは 400 / 640 / 900 / 1100px の4つだけを使う（CSS変数はメディアクエリに使えないため、ここに明記） */
+
+  /* 文字サイズ（最小 12px） */
+  --fs-2xs: 0.75rem; /* 12px ラベル・バッジ */
+  --fs-xs: 0.8125rem; /* 13px 補足・メタ情報 */
+  --fs-sm: 0.875rem; /* 14px 小さめの本文・ボタン */
+  --fs-md: 1rem; /* 16px 本文 */
+  --fs-lg: 1.125rem; /* 18px カードの大きい見出し */
+  --fs-xl: 1.375rem; /* 22px 小見出し */
+
+  /* 余白（4の倍数） */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-14: 56px;
+  --sp-18: 72px;
+  --gutter: 20px; /* 画面の左右の余白 */
+
+  /* 角丸・線・動き */
+  --radius-xs: 6px; /* NEW・小さなタグ */
+  --radius-pill: 999px; /* ボタン・ラベル */
+  --bw: 1.5px; /* 操作できる部品の枠線 */
+  --lift: -3px; /* 押せるカードのホバーで浮く量 */
+  --dur: 0.2s;
+  --z-header: 20;
 
   /* 基本 */
   --bg: #fbf8f4;
@@ -68,14 +98,6 @@
   --code-bg: #1b1c22;
   --code-fg: #eceef2;
 
-  /* 互換（置き換え後に削除可） */
-  --brand-deep: var(--brand-hover);
-  --accent: var(--link);
-  --cat-news: var(--cat-news-solid);
-  --cat-video: var(--cat-video-solid);
-  --cat-howto: var(--cat-howto-solid);
-  --cat-prompt: var(--cat-prompt-solid);
-  --cat-weekly: var(--cat-weekly-solid);
 
   --radius: 22px;
   --radius-sm: 14px;
@@ -170,12 +192,12 @@ img {
 .wrap {
   max-width: 1160px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--gutter);
 }
 
 @media (max-width: 640px) {
-  .wrap {
-    padding: 0 16px;
+  :root {
+    --gutter: 16px;
   }
 }
 
@@ -184,12 +206,12 @@ img {
 }
 
 .small {
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
 }
 
 .empty {
   color: var(--muted);
-  padding: 40px 0;
+  padding: var(--sp-10) 0;
   text-align: center;
 }
 
@@ -223,7 +245,7 @@ img {
 .header-inner {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: var(--sp-5);
   height: 72px;
 }
 
@@ -242,7 +264,7 @@ img {
 
 .logo-news,
 .login-logo small {
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   font-weight: 800;
   font-style: italic;
   color: var(--brand-ink);
@@ -252,14 +274,14 @@ img {
 
 .nav {
   display: flex;
-  gap: 4px;
+  gap: var(--sp-1);
   margin-left: auto;
 }
 
 .nav-link {
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-size: 0.9rem;
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
   font-weight: 700;
   white-space: nowrap;
   transition: background 0.2s, color 0.2s;
@@ -274,8 +296,8 @@ img {
   .header-inner {
     flex-wrap: wrap;
     height: auto;
-    padding-top: 10px;
-    gap: 6px 12px;
+    padding-top: var(--sp-3);
+    gap: 6px var(--sp-3);
   }
 
   .logo img {
@@ -284,9 +306,9 @@ img {
 
   .nav {
     order: 3;
-    width: calc(100% + 40px);
-    margin: 0 -20px;
-    padding: 0 16px 10px;
+    width: calc(100% + 2 * var(--gutter));
+    margin: 0 calc(-1 * var(--gutter));
+    padding: 0 var(--gutter) var(--sp-3);
     overflow-x: auto;
     scrollbar-width: none;
   }
@@ -297,15 +319,8 @@ img {
 
   .nav-link {
     background: var(--bg);
-    font-size: 0.85rem;
-    padding: 6px 14px;
-  }
-}
-
-@media (max-width: 640px) {
-  .nav {
-    width: calc(100% + 32px);
-    margin: 0 -16px;
+    font-size: var(--fs-sm);
+    padding: 6px var(--sp-4);
   }
 }
 
@@ -316,7 +331,7 @@ img {
   background: var(--band);
   color: var(--on-band);
   white-space: nowrap;
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.04em;
 }
@@ -324,13 +339,13 @@ img {
 .ticker-label {
   display: flex;
   align-items: center;
-  padding: 0 22px 0 20px;
+  padding: 0 var(--sp-6) 0 var(--sp-5);
   background: var(--pop);
   color: var(--on-pop);
   font-family: var(--font-en), sans-serif;
   font-style: italic;
   font-weight: 900;
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.14em;
   clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
 }
@@ -357,7 +372,7 @@ img {
 }
 
 .ticker-item {
-  padding: 8px 0;
+  padding: var(--sp-2) 0;
 }
 
 .ticker-item::after {
@@ -365,7 +380,7 @@ img {
   display: inline-block;
   width: 6px;
   height: 6px;
-  margin: 0 22px;
+  margin: 0 var(--sp-6);
   border-radius: 50%;
   vertical-align: middle;
   background: var(--band-accent);
@@ -381,7 +396,7 @@ img {
   background: var(--band);
   color: var(--on-band);
   font: inherit;
-  font-size: 0.7rem;
+  font-size: var(--fs-2xs);
   cursor: pointer;
 }
 
@@ -407,21 +422,21 @@ img {
 
 /* ---------- main ---------- */
 .main {
-  padding-top: 36px;
+  padding-top: var(--sp-10);
   padding-bottom: 80px;
 }
 
 .block {
-  margin-top: 72px;
+  margin-top: var(--sp-18);
 }
 
 @media (max-width: 640px) {
   .main {
-    padding-top: 24px;
+    padding-top: var(--sp-6);
   }
 
   .block {
-    margin-top: 52px;
+    margin-top: var(--sp-14);
   }
 }
 
@@ -429,8 +444,8 @@ img {
 .section-heading {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 22px;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
 }
 
 .section-heading h2 {
@@ -445,7 +460,7 @@ img {
 .sh-en {
   font-weight: 900;
   font-style: italic;
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   letter-spacing: 0.16em;
   color: var(--muted);
 }
@@ -459,20 +474,6 @@ img {
 .more {
   margin-left: auto;
   flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 16px;
-  border-radius: 999px;
-  border: 1.5px solid var(--fg);
-  font-size: 0.8rem;
-  font-weight: 700;
-  transition: background 0.2s, color 0.2s;
-}
-
-.more:hover {
-  background: var(--fg);
-  color: var(--bg);
 }
 
 /* ---------- labels ---------- */
@@ -480,11 +481,11 @@ img {
   --c: var(--cat-news-solid);
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 0.75rem;
+  gap: var(--sp-1);
+  font-size: var(--fs-2xs);
   font-weight: 700;
-  padding: 1px 10px 1px 8px;
-  border-radius: 999px;
+  padding: 1px var(--sp-3) 1px var(--sp-2);
+  border-radius: var(--radius-pill);
   color: var(--ci, var(--cat-news-ink));
   background: var(--cb, var(--cat-news-bg));
   white-space: nowrap;
@@ -527,30 +528,30 @@ img {
   display: inline-block;
   font-style: italic;
   font-weight: 900;
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.08em;
   line-height: 1.6;
   color: var(--on-new);
   background: var(--new);
-  padding: 0 7px;
-  border-radius: 4px;
+  padding: 0 var(--sp-2);
+  border-radius: var(--radius-xs);
 }
 
 .level {
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   border: 1.5px solid var(--line-strong);
-  border-radius: 999px;
-  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  padding: 0 var(--sp-3);
 }
 
 .card-meta {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--sp-2);
   margin: 0;
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   color: var(--muted);
 }
 
@@ -566,7 +567,7 @@ img {
   object-fit: cover;
   overflow: hidden;
   border-radius: var(--radius-sm);
-  padding: 16px 18px;
+  padding: var(--sp-4) var(--sp-5);
   color: var(--on-solid);
   background: var(--stripes), linear-gradient(135deg, var(--c), color-mix(in srgb, var(--c) 75%, #000));
 }
@@ -602,7 +603,7 @@ img {
 .thumb-label {
   position: relative;
   font-weight: 900;
-  font-size: 1.1rem;
+  font-size: var(--fs-lg);
   line-height: 1.4;
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.12);
 }
@@ -612,13 +613,13 @@ img {
   display: block;
   width: 28px;
   height: 4px;
-  margin-bottom: 8px;
+  margin-bottom: var(--sp-2);
   background: var(--on-solid);
   transform: skewX(-30deg);
 }
 
 .thumb-lg {
-  padding: 28px 32px;
+  padding: var(--sp-6) var(--sp-8);
 }
 
 .thumb-lg .thumb-en {
@@ -636,7 +637,7 @@ img {
   aspect-ratio: 16 / 9;
   border-radius: var(--radius-sm);
   overflow: hidden;
-  background: var(--line);
+  background: var(--surface-2);
 }
 
 .thumb-photo .thumb-img {
@@ -662,25 +663,21 @@ img {
   top: 10px;
   font-style: italic;
   font-weight: 700;
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.1em;
   line-height: 1.8;
-  padding: 0 9px;
-  border-radius: 999px;
+  padding: 0 var(--sp-2);
+  border-radius: var(--radius-pill);
   color: var(--on-solid);
   background: var(--c, var(--cat-news-solid));
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 
-.thumb-chip::before {
-  display: none;
-}
-
 .thumb-photo-lg .thumb-chip {
   left: 18px;
   top: 18px;
-  font-size: 0.8rem;
-  padding: 2px 12px;
+  font-size: var(--fs-xs);
+  padding: 2px var(--sp-3);
 }
 
 /* ---------- cards ---------- */
@@ -690,7 +687,7 @@ img {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 28px;
+  gap: var(--sp-6);
 }
 
 .card a {
@@ -701,27 +698,21 @@ img {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-
-.card a:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
 }
 
 .card-thumb {
-  padding: 10px 10px 0;
+  padding: var(--sp-3) var(--sp-3) 0;
 }
 
 .card-body {
-  padding: 14px 18px 22px;
+  padding: var(--sp-4) var(--sp-5) var(--sp-6);
 }
 
 .card-title {
-  margin: 8px 0 0;
+  margin: var(--sp-2) 0 0;
   font-weight: 700;
   line-height: 1.65;
-  transition: color 0.2s;
+  transition: color var(--dur);
 }
 
 .card a:hover .card-title {
@@ -736,23 +727,22 @@ img {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
+  gap: var(--sp-6);
 }
 
 .weekly-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--sp-3);
   min-height: 220px;
   height: 100%;
-  padding: 26px 28px 28px;
+  padding: var(--sp-6) var(--sp-6) var(--sp-6);
   border-radius: var(--radius);
   color: var(--on-solid);
   overflow: hidden;
   background: var(--stripes), linear-gradient(120deg, var(--cat-weekly-solid), color-mix(in srgb, var(--cat-weekly-solid) 82%, #fff));
   box-shadow: var(--shadow);
-  transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .weekly-cards li:nth-child(2) .weekly-card:not(.weekly-card-photo) {
@@ -776,15 +766,10 @@ img {
   position: relative;
 }
 
-.weekly-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-}
-
 .weekly-count {
   font-weight: 800;
   font-style: italic;
-  font-size: 0.95rem;
+  font-size: var(--fs-md);
   letter-spacing: 0.1em;
   line-height: 1;
 }
@@ -796,20 +781,20 @@ img {
 .weekly-count strong {
   font-size: 3.8rem;
   font-weight: 900;
-  margin-left: 4px;
+  margin-left: var(--sp-1);
   color: var(--pop);
 }
 
 .weekly-title {
-  padding-right: 56px;
-  font-size: 1.1rem;
+  padding-right: var(--sp-14);
+  font-size: var(--fs-lg);
   font-weight: 700;
   line-height: 1.6;
 }
 
 .weekly-date {
   margin-top: auto;
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   opacity: 0.8;
 }
 
@@ -840,7 +825,7 @@ img {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 22px;
+  gap: var(--sp-6);
 }
 
 .feed-item {
@@ -851,12 +836,6 @@ img {
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow);
   overflow: hidden;
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-
-.feed-item:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
 }
 
 .feed-thumb {
@@ -885,14 +864,14 @@ img {
 .feed-body {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--sp-2);
   flex: 1;
-  padding: 12px 16px 16px;
+  padding: var(--sp-3) var(--sp-4) var(--sp-4);
 }
 
 .feed-title {
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: var(--fs-sm);
   line-height: 1.6;
 }
 
@@ -903,9 +882,9 @@ img {
 
 .feed-meta {
   display: flex;
-  gap: 8px;
+  gap: var(--sp-2);
   margin-top: auto;
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   color: var(--muted);
 }
 
@@ -917,17 +896,17 @@ img {
 .tag-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 16px 0;
+  gap: var(--sp-2);
+  margin: var(--sp-4) 0;
 }
 
 .tag {
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   background: var(--surface);
   border: 1.5px solid var(--line);
-  padding: 4px 14px;
-  border-radius: 999px;
+  padding: var(--sp-1) var(--sp-4);
+  border-radius: var(--radius-pill);
   transition: border-color 0.2s, color 0.2s;
 }
 
@@ -936,17 +915,12 @@ img {
   color: var(--fg);
 }
 
-.tag-cloud .tag {
-  font-size: 0.92rem;
-  padding: 8px 18px;
-}
-
 /* ---------- page head（カテゴリ・タグ一覧） ---------- */
 .page-head {
   --c: var(--cat-weekly-solid);
   position: relative;
-  margin-bottom: 36px;
-  padding: 32px 34px;
+  margin-bottom: var(--sp-10);
+  padding: var(--sp-8) var(--sp-8);
   border-radius: var(--radius);
   color: var(--on-solid);
   overflow: hidden;
@@ -973,13 +947,13 @@ img {
   margin: 0;
   font-weight: 900;
   font-style: italic;
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   line-height: 1.4;
   letter-spacing: 0.16em;
 }
 
 .page-title {
-  margin: 6px 0 8px;
+  margin: 6px 0 var(--sp-2);
   font-size: clamp(1.6rem, 4.6vw, 2.4rem);
   font-weight: 900;
   line-height: 1.35;
@@ -987,7 +961,7 @@ img {
 
 .page-desc {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   opacity: 0.92;
 }
 
@@ -999,8 +973,8 @@ img {
 
 .article-head {
   --c: var(--cat-news-ink);
-  padding: 8px 0 26px;
-  margin-bottom: 8px;
+  padding: var(--sp-2) 0 var(--sp-6);
+  margin-bottom: var(--sp-2);
   border-bottom: 1px solid var(--line);
 }
 
@@ -1023,11 +997,11 @@ img {
 .article-en {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 0 0 12px;
+  gap: var(--sp-3);
+  margin: 0 0 var(--sp-3);
   font-weight: 900;
   font-style: italic;
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   letter-spacing: 0.22em;
   color: var(--c);
 }
@@ -1044,17 +1018,17 @@ img {
   font-size: clamp(1.5rem, 3.6vw, 2.15rem);
   font-weight: 900;
   line-height: 1.5;
-  margin: 14px 0 10px;
+  margin: var(--sp-4) 0 var(--sp-3);
 }
 
 .audience {
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   color: var(--muted);
   margin: 0;
 }
 
 .eyecatch {
-  margin: 24px 0 0;
+  margin: var(--sp-6) 0 0;
 }
 
 .eyecatch img {
@@ -1068,7 +1042,7 @@ img {
 
 .eyecatch figcaption {
   margin-top: 6px;
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   color: var(--muted);
   text-align: right;
 }
@@ -1081,8 +1055,8 @@ img {
 .summary-box,
 .impact-box {
   border-radius: var(--radius-sm);
-  padding: 22px 26px;
-  margin: 30px 0;
+  padding: var(--sp-6) var(--sp-6);
+  margin: var(--sp-8) 0;
 }
 
 .summary-box {
@@ -1094,21 +1068,21 @@ img {
 .impact-box h2 {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 0.95rem;
+  gap: var(--sp-3);
+  font-size: var(--fs-md);
   font-weight: 700;
-  margin: 0 0 10px;
+  margin: 0 0 var(--sp-3);
 }
 
 .box-en {
   font-style: italic;
   font-weight: 900;
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.12em;
   color: var(--on-band);
   background: var(--band);
-  padding: 2px 12px;
-  border-radius: 999px;
+  padding: 2px var(--sp-3);
+  border-radius: var(--radius-pill);
 }
 
 .summary-box ul {
@@ -1120,8 +1094,8 @@ img {
 
 .summary-box li {
   position: relative;
-  padding-left: 36px;
-  margin: 10px 0;
+  padding-left: var(--sp-10);
+  margin: var(--sp-3) 0;
   font-weight: 700;
   line-height: 1.7;
 }
@@ -1140,7 +1114,7 @@ img {
   background: var(--fg);
   color: var(--bg);
   font-weight: 900;
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
 }
 
 .impact-box p {
@@ -1149,7 +1123,7 @@ img {
 
 .video {
   aspect-ratio: 16 / 9;
-  margin: 24px 0;
+  margin: var(--sp-6) 0;
 }
 
 .video iframe {
@@ -1160,17 +1134,17 @@ img {
 }
 
 .article-body {
-  font-size: 1.03rem;
+  font-size: var(--fs-md);
   line-height: 1.95;
 }
 
 .article-body h2 {
   position: relative;
-  font-size: 1.35rem;
+  font-size: var(--fs-xl);
   font-weight: 700;
   line-height: 1.5;
-  margin: 56px 0 16px;
-  padding-left: 22px;
+  margin: var(--sp-14) 0 var(--sp-4);
+  padding-left: var(--sp-6);
 }
 
 .article-body h2::before {
@@ -1186,9 +1160,9 @@ img {
 }
 
 .article-body h3 {
-  font-size: 1.1rem;
+  font-size: var(--fs-lg);
   font-weight: 700;
-  margin: 32px 0 8px;
+  margin: var(--sp-8) 0 var(--sp-2);
 }
 
 .article-body a {
@@ -1209,11 +1183,11 @@ img {
 }
 
 .article-body li {
-  margin: 4px 0;
+  margin: var(--sp-1) 0;
 }
 
 .article-body figure {
-  margin: 30px 0;
+  margin: var(--sp-8) 0;
 }
 
 .article-body figure img,
@@ -1227,9 +1201,9 @@ img {
 }
 
 .article-body figcaption {
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   color: var(--muted);
-  margin-top: 8px;
+  margin-top: var(--sp-2);
   text-align: center;
 }
 
@@ -1242,8 +1216,8 @@ img {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  font-size: 0.92rem;
-  margin: 22px 0;
+  font-size: var(--fs-sm);
+  margin: var(--sp-6) 0;
   display: block;
   overflow-x: auto;
   border: 1px solid var(--line);
@@ -1253,7 +1227,7 @@ img {
 
 .article-body th,
 .article-body td {
-  padding: 10px 14px;
+  padding: var(--sp-3) var(--sp-4);
   text-align: left;
   border-bottom: 1px solid var(--line);
 }
@@ -1271,10 +1245,10 @@ img {
 .article-body pre {
   background: var(--code-bg);
   color: var(--code-fg);
-  padding: 18px 20px;
+  padding: var(--sp-5) var(--sp-5);
   border-radius: var(--radius-sm);
   overflow-x: auto;
-  font-size: 0.88rem;
+  font-size: var(--fs-sm);
   line-height: 1.7;
   white-space: pre-wrap;
 }
@@ -1286,13 +1260,13 @@ img {
 .article-body :not(pre) > code {
   background: var(--surface-2);
   padding: 1px 6px;
-  border-radius: 6px;
+  border-radius: var(--radius-xs);
   font-size: 0.88em;
 }
 
 .article-body blockquote {
-  margin: 20px 0;
-  padding: 10px 20px;
+  margin: var(--sp-5) 0;
+  padding: var(--sp-3) var(--sp-5);
   border-left: 4px solid var(--line);
   color: var(--muted);
 }
@@ -1301,20 +1275,20 @@ img {
 .article-body .note {
   background: var(--note-bg);
   border-radius: var(--radius-sm);
-  padding: 14px 18px;
-  margin: 22px 0;
-  font-size: 0.95rem;
+  padding: var(--sp-4) var(--sp-5);
+  margin: var(--sp-6) 0;
+  font-size: var(--fs-md);
 }
 
 /* スクショ差し込み待ちの枠：<div class="shot-placeholder">…</div> */
 .article-body .shot-placeholder {
   border: 2px dashed var(--note-line);
   border-radius: var(--radius-sm);
-  padding: 24px 16px;
+  padding: var(--sp-6) var(--sp-4);
   text-align: center;
   color: var(--muted);
-  font-size: 0.9rem;
-  margin: 24px 0;
+  font-size: var(--fs-sm);
+  margin: var(--sp-6) 0;
 }
 
 /* 図解（インラインSVG）用の色 */
@@ -1377,18 +1351,18 @@ img {
 /* ---------- ranking（今週のTop） ---------- */
 .ranking {
   list-style: none;
-  margin: 12px 0 32px;
+  margin: var(--sp-3) 0 var(--sp-8);
   padding: 0;
   display: grid;
-  gap: 16px;
+  gap: var(--sp-4);
 }
 
 .rank-item {
   display: grid;
   grid-template-columns: 56px minmax(0, 1fr);
-  gap: 16px;
+  gap: var(--sp-4);
   align-items: start;
-  padding: 18px;
+  padding: var(--sp-5);
   background: var(--surface);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow);
@@ -1398,7 +1372,7 @@ img {
   grid-template-columns: 56px 220px minmax(0, 1fr);
 }
 
-@media (max-width: 680px) {
+@media (max-width: 640px) {
   .rank-has-image {
     grid-template-columns: 56px minmax(0, 1fr);
   }
@@ -1412,7 +1386,7 @@ img {
 .rank-thumb-empty {
   display: block;
   aspect-ratio: 16 / 9;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background: var(--stripes), linear-gradient(135deg, var(--band), color-mix(in srgb, var(--band) 80%, #fff));
 }
 
@@ -1426,21 +1400,11 @@ img {
   -webkit-text-stroke: 1.5px var(--muted);
 }
 
+/* 1〜3位は塗り、4位以下は白抜き */
 .rank-no-1,
 .rank-no-2,
 .rank-no-3 {
   -webkit-text-stroke: 0;
-}
-
-.rank-no-1 {
-  color: var(--fg);
-}
-
-.rank-no-2 {
-  color: var(--fg);
-}
-
-.rank-no-3 {
   color: var(--fg);
 }
 
@@ -1454,7 +1418,7 @@ img {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background: var(--line);
 }
 
@@ -1469,7 +1433,7 @@ img {
   border-radius: 50%;
   background: rgba(22, 23, 27, 0.8);
   color: var(--on-band);
-  font-size: 1rem;
+  font-size: var(--fs-md);
   padding-left: 3px;
 }
 
@@ -1485,28 +1449,28 @@ img {
 }
 
 .rank-channel {
-  margin: 4px 0 0;
-  font-size: 0.78rem;
+  margin: var(--sp-1) 0 0;
+  font-size: var(--fs-xs);
   color: var(--muted);
 }
 
 .rank-comment {
-  margin: 8px 0 0;
-  font-size: 0.92rem;
+  margin: var(--sp-2) 0 0;
+  font-size: var(--fs-sm);
   line-height: 1.8;
 }
 
 /* ---------- sources ---------- */
 .sources {
-  margin-top: 32px;
-  padding-top: 20px;
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-5);
   border-top: 1px solid var(--line);
 }
 
 .sources h2 {
   font-style: italic;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   letter-spacing: 0.15em;
   color: var(--muted);
   margin: 0 0 6px;
@@ -1519,7 +1483,7 @@ img {
   min-height: 100vh;
   display: grid;
   place-items: center;
-  padding: 16px;
+  padding: var(--sp-4);
   background: var(--stripes), linear-gradient(135deg, var(--brand), var(--brand-hover));
 }
 
@@ -1527,8 +1491,8 @@ img {
   width: 100%;
   max-width: 400px;
   background: var(--surface);
-  border-radius: 28px;
-  padding: 36px 30px 30px;
+  border-radius: var(--radius);
+  padding: var(--sp-10) var(--sp-8) var(--sp-8);
   box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.35);
 }
 
@@ -1537,7 +1501,7 @@ img {
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  margin-bottom: 12px;
+  margin-bottom: var(--sp-3);
 }
 
 .login-logo img {
@@ -1548,20 +1512,20 @@ img {
 
 .login-card form {
   display: grid;
-  gap: 10px;
-  margin: 20px 0 16px;
+  gap: var(--sp-3);
+  margin: var(--sp-5) 0 var(--sp-4);
 }
 
 .login-card label {
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
 }
 
 .login-card input {
   font: inherit;
-  font-size: 1rem;
-  padding: 12px 18px;
-  border-radius: 999px;
+  font-size: var(--fs-md);
+  padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--radius-pill);
   border: 1.5px solid var(--line-strong);
   background: var(--bg);
   color: var(--fg);
@@ -1572,28 +1536,9 @@ img {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--focus) 35%, transparent);
 }
 
-.login-card button {
-  margin-top: 6px;
-  font: inherit;
-  font-size: 1rem;
-  font-weight: 700;
-  padding: 12px;
-  border: 0;
-  border-radius: 999px;
-  background: var(--brand);
-  color: var(--on-brand);
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-
-.login-card button:hover {
-  background: var(--brand-hover);
-  color: var(--on-brand);
-}
-
 .error {
   color: var(--brand-ink);
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   font-weight: 700;
   margin: 0;
 }
@@ -1602,12 +1547,12 @@ img {
 .site-footer {
   background: var(--footer-bg);
   color: var(--footer-fg);
-  padding: 60px 0 44px;
+  padding: var(--sp-14) 0 var(--sp-10);
   overflow: hidden;
 }
 
 .footer-mark {
-  margin: 0 0 30px;
+  margin: 0 0 var(--sp-8);
   font-weight: 900;
   font-style: italic;
   font-size: clamp(2.2rem, 9vw, 6rem);
@@ -1624,26 +1569,20 @@ img {
 
 .footer-note p {
   margin: 0 0 6px;
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   color: var(--footer-muted);
 }
 
 .line-banner {
   display: flex;
   align-items: center;
-  gap: 18px;
-  margin: 36px 0 8px;
-  padding: 22px 24px;
+  gap: var(--sp-5);
+  margin: var(--sp-10) 0 var(--sp-2);
+  padding: var(--sp-6) var(--sp-6);
   border-radius: var(--radius);
   color: var(--on-line);
   background: linear-gradient(120deg, var(--line-green), var(--line-green-hover));
   box-shadow: var(--shadow);
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-
-.line-banner:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
 }
 
 .line-banner-icon {
@@ -1652,19 +1591,19 @@ img {
   place-items: center;
   width: 56px;
   height: 56px;
-  border-radius: 16px;
+  border-radius: var(--radius-sm);
   background: #fff;
   color: var(--line-green);
   font-family: var(--font-en), sans-serif;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   letter-spacing: 0.04em;
 }
 
 .line-banner-body {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--sp-1);
   min-width: 0;
   flex: 1;
 }
@@ -1673,42 +1612,42 @@ img {
   font-family: var(--font-en), sans-serif;
   font-style: italic;
   font-weight: 900;
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.2em;
   opacity: 1;
 }
 
 .line-banner-title {
-  font-size: 1.1rem;
+  font-size: var(--fs-lg);
   font-weight: 700;
   line-height: 1.5;
 }
 
 .line-banner-sub {
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   opacity: 1;
 }
 
 .line-banner-go {
   flex: none;
-  padding: 10px 18px;
-  border-radius: 999px;
+  padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--radius-pill);
   background: #fff;
   color: var(--line-green);
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   white-space: nowrap;
 }
 
 @media (max-width: 640px) {
   .line-banner {
     flex-wrap: wrap;
-    padding: 20px;
+    padding: var(--sp-5);
   }
   .line-banner-icon {
     width: 46px;
     height: 46px;
-    font-size: 0.75rem;
+    font-size: var(--fs-2xs);
   }
   .line-banner-go {
     width: 100%;
@@ -1726,12 +1665,12 @@ img {
 
 /* ---------- 元記事カード（NewsPicks風） ---------- */
 .src-main {
-  margin: 24px 0 8px;
+  margin: var(--sp-6) 0 var(--sp-2);
 }
 
 .src-note {
-  margin: 10px 2px 0;
-  font-size: 0.8rem;
+  margin: var(--sp-3) 2px 0;
+  font-size: var(--fs-xs);
   color: var(--muted);
 }
 
@@ -1743,12 +1682,6 @@ img {
   border: 1.5px solid var(--line);
   border-radius: var(--radius-sm);
   overflow: hidden;
-  transition: border-color 0.2s, transform 0.2s;
-}
-
-.src-card:hover {
-  border-color: var(--fg);
-  transform: translateY(-2px);
 }
 
 .src-card-lg {
@@ -1780,9 +1713,9 @@ img {
   display: grid;
   place-items: center;
   height: 100%;
-  padding: 8px;
+  padding: var(--sp-2);
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   text-align: center;
   color: var(--on-band);
   background: var(--stripes), linear-gradient(135deg, var(--band), color-mix(in srgb, var(--band) 80%, #fff));
@@ -1791,52 +1724,52 @@ img {
 .src-body {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 12px 16px;
+  gap: var(--sp-1);
+  padding: var(--sp-3) var(--sp-4);
 }
 
 .src-card-lg .src-body {
-  padding: 16px 20px 18px;
+  padding: var(--sp-4) var(--sp-5) var(--sp-5);
 }
 
 .src-label {
   align-self: flex-start;
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   color: var(--muted);
   border: 1.5px solid var(--line);
-  border-radius: 999px;
-  padding: 0 8px;
+  border-radius: var(--radius-pill);
+  padding: 0 var(--sp-2);
 }
 
 .src-title {
   font-weight: 700;
   line-height: 1.55;
-  font-size: 0.92rem;
+  font-size: var(--fs-sm);
 }
 
 .src-card-lg .src-title {
-  font-size: 1.1rem;
+  font-size: var(--fs-lg);
 }
 
 .src-media {
-  font-size: 0.76rem;
+  font-size: var(--fs-xs);
   color: var(--muted);
 }
 
 .src-list {
   display: grid;
-  gap: 10px;
+  gap: var(--sp-3);
 }
 
 /* ---------- YourLife お金の秘密辞典（会員特典・AIニュースとは別枠） ---------- */
 /* ナビでは他のメニューと同じ見た目にして、小さな「特典」タグだけ付ける */
 .nav-money-tag {
   display: inline-block;
-  margin-right: 5px;
+  margin-right: var(--sp-1);
   padding: 0 6px;
-  border-radius: 4px;
-  font-size: 0.75rem;
+  border-radius: var(--radius-xs);
+  font-size: var(--fs-2xs);
   font-weight: 800;
   line-height: 1.6;
   vertical-align: 1px;
@@ -1845,7 +1778,7 @@ img {
 }
 
 .money-block {
-  padding: 32px;
+  padding: var(--sp-8);
   border-radius: var(--radius);
   background: var(--money-bg);
   color: var(--fg);
@@ -1854,15 +1787,15 @@ img {
 
 @media (max-width: 640px) {
   .money-block {
-    padding: 22px 16px;
+    padding: var(--sp-6) var(--sp-4);
   }
 }
 
 .money-block-head {
   display: flex;
   align-items: flex-end;
-  gap: 16px;
-  margin-bottom: 22px;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
 }
 
 .money-head-en {
@@ -1870,7 +1803,7 @@ img {
   font-family: var(--font-en), sans-serif;
   font-style: italic;
   font-weight: 900;
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   letter-spacing: 0.24em;
   color: var(--money-ink);
 }
@@ -1880,7 +1813,7 @@ img {
 }
 
 .money-block-title {
-  margin: 4px 0 6px;
+  margin: var(--sp-1) 0 6px;
   font-size: clamp(1.5rem, 3.6vw, 2.1rem);
   font-weight: 900;
   line-height: 1.3;
@@ -1888,7 +1821,7 @@ img {
 
 .money-block-desc {
   margin: 0;
-  font-size: 0.88rem;
+  font-size: var(--fs-sm);
   opacity: 1;
   color: var(--muted);
 }
@@ -1899,12 +1832,12 @@ img {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
+  gap: var(--sp-5);
 }
 
 .money-list-detailed {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 26px;
+  gap: var(--sp-6);
 }
 
 .money-card {
@@ -1917,11 +1850,6 @@ img {
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: transform 0.25s, box-shadow 0.25s;
-}
-
-a.money-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 22px 40px -18px rgba(0, 0, 0, 0.5);
 }
 
 .money-img {
@@ -1945,44 +1873,44 @@ a.money-card:hover {
   font-family: var(--font-en), sans-serif;
   font-style: italic;
   font-weight: 900;
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   color: #fff;
   background: var(--money-solid);
-  padding: 1px 10px;
-  border-radius: 999px;
+  padding: 1px var(--sp-3);
+  border-radius: var(--radius-pill);
 }
 
 .money-badge {
   position: absolute;
   right: 10px;
   top: 10px;
-  font-size: 0.7rem;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   color: var(--money-ink);
   background: var(--money-bg);
-  padding: 1px 10px;
-  border-radius: 999px;
+  padding: 1px var(--sp-3);
+  border-radius: var(--radius-pill);
 }
 
 .money-body {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--sp-2);
   flex: 1;
-  padding: 14px 16px 16px;
+  padding: var(--sp-4) var(--sp-4) var(--sp-4);
 }
 
 .money-title {
   font-weight: 700;
   line-height: 1.55;
-  font-size: 0.95rem;
+  font-size: var(--fs-md);
 }
 
 .money-points {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  font-size: 0.85rem;
+  gap: var(--sp-1);
+  font-size: var(--fs-sm);
 }
 
 .money-point::before {
@@ -1992,16 +1920,16 @@ a.money-card:hover {
   width: 18px;
   height: 18px;
   margin-right: 6px;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
   background: var(--ok);
   color: var(--on-ok);
-  font-size: 0.7rem;
+  font-size: var(--fs-2xs);
   font-weight: 700;
 }
 
 .money-go {
   margin-top: auto;
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   color: var(--link);
 }
@@ -2011,33 +1939,34 @@ a.money-card:hover {
 }
 
 .money-head {
-  margin-bottom: 36px;
-  padding: 40px 34px;
+  margin-bottom: var(--sp-10);
+  padding: var(--sp-10) var(--sp-8);
   border-radius: var(--radius);
   color: #fff;
   background: var(--money-solid);
 }
 
 .money-head-title {
-  margin: 8px 0;
+  margin: var(--sp-2) 0;
   font-size: clamp(1.7rem, 4.6vw, 2.6rem);
   font-weight: 900;
 }
 
 .money-head-desc {
   margin: 0;
-  font-size: 0.92rem;
+  font-size: var(--fs-sm);
   opacity: 0.9;
 }
 
+/* ヘッダーだけの例外：1100px以上でもメニューが窮屈な幅では、少し詰める */
 @media (max-width: 1240px) and (min-width: 1101px) {
   .header-inner {
-    gap: 12px;
+    gap: var(--sp-3);
   }
 
   .nav-link {
-    padding: 8px 9px;
-    font-size: 0.84rem;
+    padding: var(--sp-2) var(--sp-2);
+    font-size: var(--fs-sm);
   }
 }
 
@@ -2049,9 +1978,9 @@ a.money-card:hover {
     grid-auto-columns: 72%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    margin: 0 -16px;
-    padding: 0 16px 8px;
-    scroll-padding-inline: 16px;
+    margin: 0 calc(-1 * var(--gutter));
+    padding: 0 var(--gutter) var(--sp-2);
+    scroll-padding-inline: var(--gutter);
     scrollbar-width: none;
   }
 
@@ -2066,15 +1995,15 @@ a.money-card:hover {
 
 /* おすすめ動画：ペルソナごとの見出し */
 .persona-block + .persona-block {
-  margin-top: 48px;
+  margin-top: var(--sp-12);
 }
 
 .persona-title {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin: 0 0 18px;
-  font-size: 1.2rem;
+  gap: var(--sp-3);
+  margin: 0 0 var(--sp-5);
+  font-size: var(--fs-lg);
   font-weight: 700;
 }
 
@@ -2088,8 +2017,8 @@ a.money-card:hover {
 }
 
 .persona-desc {
-  margin: -10px 0 18px;
-  font-size: 0.88rem;
+  margin: -12px 0 var(--sp-5);
+  font-size: var(--fs-sm);
   color: var(--muted);
 }
 
@@ -2105,8 +2034,8 @@ a.money-card:hover {
 
 @media (max-width: 640px) {
   .nav-link {
-    padding: 5px 11px;
-    font-size: 0.8rem;
+    padding: var(--sp-1) var(--sp-3);
+    font-size: var(--fs-xs);
   }
 }
 
@@ -2123,12 +2052,12 @@ a.money-card:hover {
   }
 
   .logo-news {
-    font-size: 0.75rem;
+    font-size: var(--fs-2xs);
     letter-spacing: 0.16em;
   }
 
   .header-inner {
-    gap: 6px 8px;
+    gap: 6px var(--sp-2);
   }
 }
 
@@ -2137,22 +2066,8 @@ a.money-card:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin: 40px 0 0;
-}
-
-.pager-btn {
-  padding: 9px 20px;
-  border-radius: 999px;
-  border: 1.5px solid var(--fg);
-  font-weight: 700;
-  font-size: 0.88rem;
-  transition: background 0.2s, color 0.2s;
-}
-
-.pager-btn:hover {
-  background: var(--fg);
-  color: var(--bg);
+  gap: var(--sp-3);
+  margin: var(--sp-10) 0 0;
 }
 
 .pager-info {
@@ -2162,15 +2077,15 @@ a.money-card:hover {
 }
 
 .page-num {
-  margin-left: 8px;
-  font-size: 0.85rem;
+  margin-left: var(--sp-2);
+  font-size: var(--fs-sm);
   font-weight: 700;
 }
 
 .archive-link {
-  margin: 28px 0 0;
+  margin: var(--sp-6) 0 0;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   font-weight: 700;
 }
 
@@ -2189,24 +2104,18 @@ a.money-card:hover {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 12px;
+  gap: var(--sp-3);
 }
 
 .archive-month {
   display: grid;
   grid-template-columns: 140px minmax(0, 1fr) auto;
   align-items: center;
-  gap: 16px;
-  padding: 18px 22px;
+  gap: var(--sp-4);
+  padding: var(--sp-5) var(--sp-6);
   background: var(--surface);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.archive-month:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
 }
 
 @media (max-width: 640px) {
@@ -2221,7 +2130,7 @@ a.money-card:hover {
 }
 
 .archive-month-name {
-  font-size: 1.15rem;
+  font-size: var(--fs-lg);
   font-weight: 700;
 }
 
@@ -2237,7 +2146,7 @@ a.money-card:hover {
 }
 
 .archive-group + .archive-group {
-  margin-top: 36px;
+  margin-top: var(--sp-10);
 }
 
 .archive-list {
@@ -2253,10 +2162,10 @@ a.money-card:hover {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px 12px;
-  padding: 12px 18px;
+  gap: var(--sp-1) var(--sp-3);
+  padding: var(--sp-3) var(--sp-5);
   border-bottom: 1px solid var(--line);
-  font-size: 0.92rem;
+  font-size: var(--fs-sm);
 }
 
 .archive-list li:last-child a {
@@ -2264,7 +2173,7 @@ a.money-card:hover {
 }
 
 .archive-list time {
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   color: var(--muted);
   min-width: 92px;
 }
@@ -2280,12 +2189,12 @@ a.money-card:hover {
 }
 
 .stale-note {
-  margin: 18px 0 0;
-  padding: 12px 16px;
+  margin: var(--sp-5) 0 0;
+  padding: var(--sp-3) var(--sp-4);
   border-radius: var(--radius-sm);
   background: var(--note-bg);
   border-left: 4px solid var(--note-line);
-  font-size: 0.88rem;
+  font-size: var(--fs-sm);
   font-weight: 700;
 }
 
@@ -2295,41 +2204,8 @@ a.money-card:hover {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--sp-2);
   flex-shrink: 0;
-}
-
-.header-guide {
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1.5px solid var(--line);
-  font-size: 0.8rem;
-  font-weight: 700;
-  white-space: nowrap;
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.header-guide:hover {
-  border-color: var(--fg);
-}
-
-.header-line-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 7px 14px;
-  border-radius: 999px;
-  background: var(--line-green);
-  color: var(--on-line);
-  font-size: 0.8rem;
-  font-weight: 700;
-  white-space: nowrap;
-  transition: transform 0.2s, filter 0.2s;
-}
-
-.header-line-btn:hover {
-  transform: translateY(-1px);
-  background: var(--line-green-hover);
 }
 
 @media (max-width: 1100px) {
@@ -2340,7 +2216,7 @@ a.money-card:hover {
 
 /* スマホ：見方への入口はホームとフッターにあるので、ヘッダーは「LINEで質問」だけ。流れる文字（ティッカー）も出さない */
 @media (max-width: 640px) {
-  .header-guide,
+  .header-actions .header-guide,
   .ticker {
     display: none;
   }
@@ -2349,13 +2225,14 @@ a.money-card:hover {
 @media (max-width: 400px) {
   .header-guide,
   .header-line-btn {
-    padding: 5px 10px;
-    font-size: 0.75rem;
+    min-height: 32px;
+    padding: 0 var(--sp-3);
+    font-size: var(--fs-2xs);
   }
 }
 
 .footer-catch {
-  margin: -16px 0 32px;
+  margin: -16px 0 var(--sp-8);
   font-weight: 800;
   color: var(--footer-head);
 }
@@ -2363,19 +2240,19 @@ a.money-card:hover {
 .footer-groups {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 28px 32px;
-  margin-bottom: 36px;
+  gap: var(--sp-6) var(--sp-8);
+  margin-bottom: var(--sp-10);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .footer-groups {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 .footer-group-title {
-  margin: 0 0 10px;
-  font-size: 0.75rem;
+  margin: 0 0 var(--sp-3);
+  font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.12em;
   color: var(--footer-head);
@@ -2386,8 +2263,8 @@ a.money-card:hover {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 8px;
-  font-size: 0.88rem;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
   font-weight: 700;
 }
 
@@ -2418,15 +2295,15 @@ a.money-card:hover {
    ホーム
    ========================================================= */
 .section-lead {
-  margin: -10px 0 22px;
-  font-size: 0.9rem;
+  margin: -12px 0 var(--sp-6);
+  font-size: var(--fs-sm);
   color: var(--muted);
 }
 
 /* ① 今日の爆速AI（箱で囲まず、すぐ下に今日の記事が続く） */
 .home-hero {
   position: relative;
-  padding: 8px 0 4px;
+  padding: var(--sp-2) 0 var(--sp-1);
 }
 
 .hero-date {
@@ -2443,7 +2320,7 @@ a.money-card:hover {
 }
 
 .hero-lead {
-  margin: 8px 0 0;
+  margin: var(--sp-2) 0 0;
   font-size: clamp(1.1rem, 2.6vw, 1.45rem);
   font-weight: 700;
   line-height: 1.6;
@@ -2466,18 +2343,18 @@ a.money-card:hover {
 .hero-plan {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 18px;
-  margin: 12px 0 0;
-  font-size: 0.88rem;
+  gap: 6px var(--sp-5);
+  margin: var(--sp-3) 0 0;
+  font-size: var(--fs-sm);
   font-weight: 700;
 }
 
 .hero-plan strong {
   display: inline-block;
-  margin-right: 8px;
-  padding: 0 8px;
-  border-radius: 6px;
-  font-size: 0.75rem;
+  margin-right: var(--sp-2);
+  padding: 0 var(--sp-2);
+  border-radius: var(--radius-xs);
+  font-size: var(--fs-2xs);
   background: var(--fg);
   color: var(--bg);
 }
@@ -2491,12 +2368,12 @@ a.money-card:hover {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px 20px;
-  margin-top: 20px;
+  gap: var(--sp-3) var(--sp-5);
+  margin-top: var(--sp-5);
 }
 
 .hero-guide-link {
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   font-weight: 700;
   color: var(--muted);
   text-decoration: underline;
@@ -2509,39 +2386,7 @@ a.money-card:hover {
 
 .btn-primary,
 .btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-}
-
-.btn-primary {
-  background: var(--brand);
-  color: var(--on-brand);
-}
-
-.btn-primary:hover {
-  background: var(--brand-hover);
-  transform: translateY(-2px);
-}
-
-.btn-ghost {
   border: 1.5px solid var(--fg);
-}
-
-.btn-ghost:hover {
-  background: var(--fg);
-  color: var(--bg);
-}
-
-.btn-primary:active,
-.btn-ghost:active {
-  transform: scale(0.97);
 }
 
 @media (max-width: 640px) {
@@ -2550,12 +2395,12 @@ a.money-card:hover {
   }
 
   .hero-actions {
-    margin-top: 16px;
+    margin-top: var(--sp-4);
   }
 }
 
 .home-hero + #today {
-  margin-top: 40px;
+  margin-top: var(--sp-10);
 }
 
 /* ② 今日の記事 */
@@ -2566,7 +2411,7 @@ a.money-card:hover {
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
   grid-auto-rows: auto;
-  gap: 18px 24px;
+  gap: var(--sp-5) var(--sp-6);
 }
 
 .today-item-lg {
@@ -2576,27 +2421,17 @@ a.money-card:hover {
 .today-card {
   display: grid;
   grid-template-columns: 180px minmax(0, 1fr);
-  gap: 16px;
+  gap: var(--sp-4);
   height: 100%;
-  padding: 12px;
+  padding: var(--sp-3);
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: var(--shadow);
-  transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .today-item-lg .today-card {
   grid-template-columns: minmax(0, 1fr);
-  padding: 12px 12px 22px;
-}
-
-.today-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
-}
-
-.today-card:active {
-  transform: scale(0.98);
+  padding: var(--sp-3) var(--sp-3) var(--sp-6);
 }
 
 .today-body {
@@ -2604,11 +2439,11 @@ a.money-card:hover {
   flex-direction: column;
   gap: 6px;
   min-width: 0;
-  padding: 4px 6px 0 0;
+  padding: var(--sp-1) 6px 0 0;
 }
 
 .today-item-lg .today-body {
-  padding: 4px 12px 0;
+  padding: var(--sp-1) var(--sp-3) 0;
 }
 
 .today-title {
@@ -2617,19 +2452,19 @@ a.money-card:hover {
 }
 
 .today-item-lg .today-title {
-  font-size: 1.3rem;
+  font-size: var(--fs-xl);
   line-height: 1.5;
 }
 
 .today-sum {
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   color: var(--muted);
   line-height: 1.6;
 }
 
 .today-go {
   margin-top: auto;
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   color: var(--brand-ink);
 }
@@ -2653,12 +2488,12 @@ a.money-card:hover {
 @media (max-width: 640px) {
   .today-card {
     grid-template-columns: 112px minmax(0, 1fr);
-    gap: 12px;
-    padding: 10px;
+    gap: var(--sp-3);
+    padding: var(--sp-3);
   }
 
   .today-card .thumb-label {
-    font-size: 0.75rem;
+    font-size: var(--fs-2xs);
   }
 
   .today-card .thumb-en {
@@ -2666,7 +2501,7 @@ a.money-card:hover {
   }
 
   .today-card .thumb {
-    padding: 8px;
+    padding: var(--sp-2);
   }
 
   .today-item-lg .today-card {
@@ -2679,7 +2514,7 @@ a.money-card:hover {
   }
 
   .today-item-lg .today-title {
-    font-size: 1.1rem;
+    font-size: var(--fs-lg);
   }
 }
 
@@ -2687,24 +2522,22 @@ a.money-card:hover {
 .next-update {
   margin-left: auto;
   flex-shrink: 0;
-  padding: 4px 12px;
-  border-radius: 999px;
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--radius-pill);
   background: var(--surface-2);
   color: var(--fg);
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   font-weight: 800;
 }
 
 .weekly-mini {
   display: grid;
   gap: 6px;
-  padding-right: 56px;
+  padding-right: var(--sp-14);
 }
 
 .weekly-mini-item {
-  display: flex;
-  gap: 8px;
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   font-weight: 700;
   line-height: 1.5;
   overflow: hidden;
@@ -2718,18 +2551,18 @@ a.money-card:hover {
   place-items: center;
   width: 20px;
   height: 20px;
-  margin-right: 8px;
+  margin-right: var(--sp-2);
   border-radius: 50%;
   background: var(--pop);
   color: var(--on-pop);
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   font-weight: 900;
   vertical-align: 1px;
 }
 
 /* ④ はじめての方へ */
 .guide-banner {
-  padding: 30px 32px;
+  padding: var(--sp-8) var(--sp-8);
   border-radius: var(--radius);
   background: var(--note-bg);
   border: 2px solid var(--note-line);
@@ -2741,12 +2574,12 @@ a.money-card:hover {
   font-weight: 900;
   font-style: italic;
   letter-spacing: 0.16em;
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   color: var(--note-ink);
 }
 
 .guide-banner-title {
-  margin: 2px 0 18px;
+  margin: 2px 0 var(--sp-5);
   font-size: clamp(1.1rem, 2.6vw, 1.4rem);
   font-weight: 900;
   line-height: 1.5;
@@ -2754,17 +2587,17 @@ a.money-card:hover {
 
 .guide-steps {
   list-style: none;
-  margin: 0 0 22px;
+  margin: 0 0 var(--sp-6);
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  gap: var(--sp-4);
 }
 
 .guide-step {
   display: flex;
-  gap: 12px;
-  padding: 16px;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
   border-radius: var(--radius-sm);
   background: var(--surface);
 }
@@ -2791,22 +2624,22 @@ a.money-card:hover {
 }
 
 .guide-step-body span {
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   color: var(--muted);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .guide-banner {
-    padding: 22px 18px;
+    padding: var(--sp-6) var(--sp-5);
   }
 
   .guide-steps {
     grid-template-columns: minmax(0, 1fr);
-    gap: 8px;
+    gap: var(--sp-2);
   }
 
   .guide-step {
-    padding: 12px;
+    padding: var(--sp-3);
   }
 
   .guide-banner-btn {
@@ -2821,7 +2654,7 @@ a.money-card:hover {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+  gap: var(--sp-4);
 }
 
 .persona-card {
@@ -2830,12 +2663,11 @@ a.money-card:hover {
   flex-direction: column;
   gap: 6px;
   height: 100%;
-  padding: 20px;
+  padding: var(--sp-5);
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: var(--shadow);
   border-top: 5px solid var(--c);
-  transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .persona-card-backoffice {
@@ -2850,20 +2682,11 @@ a.money-card:hover {
   --c: var(--cat-video-ink);
 }
 
-.persona-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
-}
-
-.persona-card:active {
-  transform: scale(0.98);
-}
-
 .persona-icon {
   width: 36px;
   height: 36px;
-  padding: 7px;
-  border-radius: 12px;
+  padding: var(--sp-2);
+  border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--c) 14%, transparent);
   fill: none;
   stroke: var(--c);
@@ -2874,11 +2697,11 @@ a.money-card:hover {
 
 .persona-name {
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: var(--fs-md);
 }
 
 .persona-lead {
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   color: var(--muted);
   line-height: 1.6;
 }
@@ -2886,13 +2709,13 @@ a.money-card:hover {
 .persona-count {
   margin-top: auto;
   padding-top: 6px;
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   color: var(--c);
 }
 
 .persona-latest {
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   color: var(--muted);
   overflow: hidden;
   display: -webkit-box;
@@ -2903,11 +2726,11 @@ a.money-card:hover {
 @media (max-width: 900px) {
   .persona-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    gap: var(--sp-3);
   }
 
   .persona-card {
-    padding: 14px;
+    padding: var(--sp-4);
   }
 
   .persona-latest {
@@ -2922,7 +2745,7 @@ a.money-card:hover {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 12px;
+  gap: var(--sp-3);
 }
 
 .task-tile {
@@ -2930,38 +2753,28 @@ a.money-card:hover {
   flex-direction: column;
   gap: 2px;
   height: 100%;
-  padding: 14px 16px;
+  padding: var(--sp-4) var(--sp-4);
   border-radius: var(--radius-sm);
   background: var(--surface);
   box-shadow: var(--shadow);
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-}
-
-.task-tile:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
-}
-
-.task-tile:active {
-  transform: scale(0.97);
 }
 
 .task-no {
   font-family: var(--font-en), sans-serif;
   font-style: italic;
   font-weight: 900;
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   color: var(--cat-howto-ink);
 }
 
 .task-name {
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: var(--fs-sm);
   line-height: 1.45;
 }
 
 .task-count {
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   color: var(--muted);
 }
@@ -2978,18 +2791,18 @@ a.money-card:hover {
 @media (max-width: 900px) {
   .task-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
+    gap: var(--sp-2);
   }
 
   .task-tile {
-    padding: 10px 12px;
+    padding: var(--sp-3) var(--sp-3);
   }
 }
 
 /* ⑦ カテゴリ別の新着：PCは4列、スマホは横スクロール */
 .rail {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
+  gap: var(--sp-5);
 }
 
 .rail-more {
@@ -3003,11 +2816,11 @@ a.money-card:hover {
     grid-auto-columns: 72%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    margin: 0 -16px;
-    padding: 4px 16px 14px;
-    scroll-padding-inline: 16px;
+    margin: 0 calc(-1 * var(--gutter));
+    padding: var(--sp-1) var(--gutter) var(--sp-4);
+    scroll-padding-inline: var(--gutter);
     scrollbar-width: none;
-    gap: 14px;
+    gap: var(--sp-4);
   }
 
   .rail::-webkit-scrollbar {
@@ -3035,26 +2848,13 @@ a.money-card:hover {
   }
 }
 
-@media (min-width: 901px) {
-  .rail {
-    grid-auto-rows: auto;
-  }
-}
-
 /* 外部ニュースの「もっと見る」 */
 .feed-more {
-  margin-top: 18px;
+  margin-top: var(--sp-5);
 }
 
 .feed-more summary,
 .more-tags summary {
-  display: inline-flex;
-  padding: 7px 16px;
-  border-radius: 999px;
-  border: 1.5px solid var(--fg);
-  font-size: 0.8rem;
-  font-weight: 700;
-  cursor: pointer;
   list-style: none;
 }
 
@@ -3065,35 +2865,35 @@ a.money-card:hover {
 
 .feed-more[open] summary,
 .more-tags[open] summary {
-  margin-bottom: 18px;
+  margin-bottom: var(--sp-5);
 }
 
 /* ⑪ もっと探す */
 .explore {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-  gap: 24px;
+  gap: var(--sp-6);
 }
 
 .explore-col {
-  padding: 22px 24px;
+  padding: var(--sp-6) var(--sp-6);
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: var(--shadow);
 }
 
 .explore-title {
-  margin: 0 0 12px;
-  font-size: 0.95rem;
+  margin: 0 0 var(--sp-3);
+  font-size: var(--fs-md);
   font-weight: 700;
 }
 
 .explore-months {
   list-style: none;
-  margin: 0 0 16px;
+  margin: 0 0 var(--sp-4);
   padding: 0;
   display: grid;
-  gap: 8px;
+  gap: var(--sp-2);
   font-weight: 700;
 }
 
@@ -3108,22 +2908,22 @@ a.money-card:hover {
 
 .tag-count {
   margin-left: 6px;
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   color: var(--muted);
 }
 
 .more-tags {
-  margin-top: 14px;
+  margin-top: var(--sp-4);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
   .explore {
     grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
+    gap: var(--sp-4);
   }
 
   .explore-col {
-    padding: 18px;
+    padding: var(--sp-5);
   }
 }
 
@@ -3131,17 +2931,17 @@ a.money-card:hover {
 .persona-switch {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
 }
 
 .persona-switch a {
-  padding: 6px 14px;
-  border-radius: 999px;
+  padding: 6px var(--sp-4);
+  border-radius: var(--radius-pill);
   color: var(--fg);
   background: var(--surface);
   box-shadow: inset 0 0 0 1.5px var(--line);
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
 }
 
@@ -3153,7 +2953,7 @@ a.money-card:hover {
 }
 
 .persona-title-count {
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   color: var(--muted);
 }
@@ -3174,11 +2974,6 @@ a.money-card:hover {
   background: var(--cat-prompt-ink);
 }
 
-/* 画像が届くまで灰色の箱にしない（カテゴリ色の模様を敷く） */
-.thumb-photo {
-  background: var(--surface-2);
-}
-
 /* =========================================================
    はじめての方へ（/guide）
    ========================================================= */
@@ -3190,20 +2985,20 @@ a.money-card:hover {
 .guide-toc {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 18px;
+  gap: var(--sp-2);
+  margin-top: var(--sp-5);
 }
 
 .guide-toc a {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 14px 6px 6px;
-  border-radius: 999px;
+  padding: 6px var(--sp-4) 6px 6px;
+  border-radius: var(--radius-pill);
   background: var(--surface);
   color: var(--fg);
   box-shadow: var(--shadow);
-  font-size: 0.82rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
 }
 
@@ -3215,21 +3010,21 @@ a.money-card:hover {
   border-radius: 50%;
   background: var(--fg);
   color: var(--bg);
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
   font-weight: 900;
 }
 
 .guide-section {
-  margin-top: 56px;
+  margin-top: var(--sp-14);
   scroll-margin-top: 96px;
 }
 
 .guide-h2 {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 0 0 16px;
-  font-size: 1.4rem;
+  gap: var(--sp-3);
+  margin: 0 0 var(--sp-4);
+  font-size: var(--fs-xl);
   font-weight: 900;
 }
 
@@ -3243,12 +3038,12 @@ a.money-card:hover {
   color: var(--bg);
   font-family: var(--font-en), sans-serif;
   font-style: italic;
-  font-size: 1rem;
+  font-size: var(--fs-md);
 }
 
 .guide-h3 {
-  margin: 0 0 8px;
-  font-size: 1rem;
+  margin: 0 0 var(--sp-2);
+  font-size: var(--fs-md);
   font-weight: 700;
 }
 
@@ -3260,12 +3055,12 @@ a.money-card:hover {
   overflow: hidden;
   background: var(--surface);
   box-shadow: var(--shadow);
-  font-size: 0.92rem;
+  font-size: var(--fs-sm);
 }
 
 .guide-table th,
 .guide-table td {
-  padding: 10px 14px;
+  padding: var(--sp-3) var(--sp-4);
   text-align: left;
   border-bottom: 1px solid var(--line);
 }
@@ -3273,7 +3068,7 @@ a.money-card:hover {
 .guide-table thead th {
   background: var(--surface-2);
   color: var(--fg);
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
 }
 
 .guide-table tbody th {
@@ -3294,11 +3089,11 @@ a.money-card:hover {
 
 .guide-today {
   margin-left: 6px;
-  padding: 1px 8px;
-  border-radius: 999px;
+  padding: 1px var(--sp-2);
+  border-radius: var(--radius-pill);
   background: var(--brand);
   color: #fff;
-  font-size: 0.75rem;
+  font-size: var(--fs-2xs);
 }
 
 @media (max-width: 640px) {
@@ -3314,25 +3109,19 @@ a.money-card:hover {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: var(--sp-3);
 }
 
 .guide-corner {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: var(--sp-2);
   height: 100%;
-  padding: 16px 18px;
+  padding: var(--sp-4) var(--sp-5);
   border-radius: var(--radius-sm);
   background: var(--surface);
   box-shadow: var(--shadow);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.guide-corner:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
 }
 
 .guide-corner-when {
@@ -3341,7 +3130,7 @@ a.money-card:hover {
 }
 
 .guide-corner-time {
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   color: var(--muted);
 }
 
@@ -3359,11 +3148,11 @@ a.money-card:hover {
 .guide-how {
   margin: 0;
   display: grid;
-  gap: 12px;
+  gap: var(--sp-3);
 }
 
 .guide-how div {
-  padding: 14px 18px;
+  padding: var(--sp-4) var(--sp-5);
   border-radius: var(--radius-sm);
   background: var(--surface);
   box-shadow: var(--shadow);
@@ -3374,7 +3163,7 @@ a.money-card:hover {
 }
 
 .guide-how dd {
-  margin: 4px 0 0;
+  margin: var(--sp-1) 0 0;
   line-height: 1.75;
 }
 
@@ -3391,33 +3180,33 @@ a.money-card:hover {
   margin: 0;
   padding-left: 1.2em;
   display: grid;
-  gap: 10px;
+  gap: var(--sp-3);
   line-height: 1.75;
 }
 
 .guide-marks .cat,
 .guide-marks .level,
 .guide-marks .new {
-  margin: 0 4px;
+  margin: 0 var(--sp-1);
   white-space: nowrap;
 }
 
 .guide-map {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: var(--sp-4);
 }
 
 .guide-map-group {
-  padding: 18px 20px;
+  padding: var(--sp-5) var(--sp-5);
   border-radius: var(--radius-sm);
   background: var(--surface);
   box-shadow: var(--shadow);
 }
 
 .guide-map-group h3 {
-  margin: 0 0 8px;
-  font-size: 0.95rem;
+  margin: 0 0 var(--sp-2);
+  font-size: var(--fs-md);
   font-weight: 700;
   color: var(--muted);
 }
@@ -3427,7 +3216,7 @@ a.money-card:hover {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 8px;
+  gap: var(--sp-2);
 }
 
 .guide-map-group li {
@@ -3446,7 +3235,7 @@ a.money-card:hover {
 }
 
 .guide-map-group li span {
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   color: var(--muted);
 }
 
@@ -3457,9 +3246,9 @@ a.money-card:hover {
 }
 
 .guide-courses {
-  padding-top: 24px;
+  padding-top: var(--sp-6);
   border-top: 1px solid var(--line);
-  font-size: 0.88rem;
+  font-size: var(--fs-sm);
   color: var(--muted);
 }
 
@@ -3536,8 +3325,8 @@ html {
   left: 12px;
   top: -100px;
   z-index: 100;
-  padding: 10px 18px;
-  border-radius: 999px;
+  padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--radius-pill);
   background: var(--fg);
   color: var(--bg);
   font-weight: 700;
@@ -3564,12 +3353,12 @@ html {
 /* 404 */
 .not-found {
   max-width: 640px;
-  margin: 24px auto 0;
+  margin: var(--sp-6) auto 0;
   text-align: center;
 }
 
 .not-found-title {
-  margin: 4px 0 12px;
+  margin: var(--sp-1) 0 var(--sp-3);
   font-size: clamp(1.4rem, 4vw, 1.9rem);
   font-weight: 900;
 }
@@ -3583,8 +3372,8 @@ html {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
-  margin: 24px 0;
+  gap: var(--sp-3);
+  margin: var(--sp-6) 0;
 }
 
 .not-found-help a {
@@ -3607,7 +3396,7 @@ html {
 
 /* ログイン：見出しにしたロゴの余白、エラー時の入力欄、問い合わせリンク */
 h1.login-logo {
-  margin: 0 0 12px;
+  margin: 0 0 var(--sp-3);
   font-size: inherit;
 }
 
@@ -3630,7 +3419,7 @@ h1.login-logo {
 /* 記事：カテゴリ・業務のラベルから一覧へ。最後に一覧へ戻る */
 .cat-link {
   display: inline-flex;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
 }
 
 .cat-link:hover .cat {
@@ -3642,7 +3431,7 @@ h1.login-logo {
 }
 
 .back-link {
-  margin: 32px 0 0;
+  margin: var(--sp-8) 0 0;
   font-weight: 700;
 }
 
@@ -3662,7 +3451,7 @@ h1.login-logo {
 .persona-card.is-empty:hover,
 .task-tile.is-empty:hover {
   transform: none;
-  box-shadow: inset 0 0 0 1.5px var(--line);
+  box-shadow: inset 0 0 0 var(--bw) var(--line);
 }
 
 .persona-card.is-empty .persona-count {
@@ -3671,7 +3460,7 @@ h1.login-logo {
 
 /* 立場別・業務別ページの「もっと見る」 */
 .group-more {
-  margin: 14px 0 0;
+  margin: var(--sp-4) 0 0;
   font-weight: 700;
 }
 
@@ -3715,7 +3504,7 @@ h1.login-logo {
     content: "← 横にスクロールできます →";
     display: block;
     margin-top: 6px;
-    font-size: 0.75rem;
+    font-size: var(--fs-2xs);
     color: var(--muted);
     text-align: center;
     position: sticky;
@@ -3736,7 +3525,7 @@ h1.login-logo {
 }
 
 .code-wrap pre {
-  padding-top: 48px;
+  padding-top: var(--sp-12);
 }
 
 .copy-btn {
@@ -3744,13 +3533,13 @@ h1.login-logo {
   top: 10px;
   right: 10px;
   min-height: 32px;
-  padding: 4px 14px;
+  padding: var(--sp-1) var(--sp-4);
   border: 1.5px solid color-mix(in srgb, var(--code-fg) 40%, transparent);
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   background: transparent;
   color: var(--code-fg);
   font: inherit;
-  font-size: 0.8rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   cursor: pointer;
 }
@@ -3770,4 +3559,234 @@ h1.login-logo {
   .today-item:not(.today-item-lg) .level {
     display: none;
   }
+}
+
+/* =========================================================
+   ボタン（全サイトで共通。大きさ3段 × 種類4つ）
+   ========================================================= */
+.btn-primary,
+.btn-ghost,
+.more,
+.pager-btn,
+.feed-more summary,
+.more-tags summary,
+.login-card button,
+.header-guide,
+.header-line-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  border: var(--bw) solid transparent;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--dur), color var(--dur), border-color var(--dur), transform var(--dur);
+}
+
+/* 大きさ：小（36px）・中（44px）・大（48px） */
+.more,
+.feed-more summary,
+.more-tags summary,
+.header-guide,
+.header-line-btn {
+  min-height: 36px;
+  padding: 0 var(--sp-4);
+  font-size: var(--fs-xs);
+}
+
+.pager-btn {
+  min-height: 44px;
+  padding: 0 var(--sp-5);
+  font-size: var(--fs-sm);
+}
+
+.btn-primary,
+.btn-ghost,
+.login-card button {
+  min-height: 48px;
+  padding: 0 var(--sp-6);
+  font-size: var(--fs-md);
+}
+
+/* 種類：主ボタン（赤）・枠線・控えめ・LINE */
+.btn-primary,
+.login-card button {
+  background: var(--brand);
+  color: var(--on-brand);
+}
+
+.btn-primary:hover,
+.login-card button:hover {
+  background: var(--brand-hover);
+}
+
+.btn-ghost,
+.more,
+.pager-btn,
+.feed-more summary,
+.more-tags summary {
+  border-color: var(--fg);
+  background: transparent;
+  color: var(--fg);
+}
+
+.btn-ghost:hover,
+.more:hover,
+.pager-btn:hover,
+.feed-more summary:hover,
+.more-tags summary:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.header-guide {
+  border-color: var(--line-strong);
+  color: var(--fg);
+}
+
+.header-guide:hover {
+  border-color: var(--fg);
+}
+
+.header-line-btn {
+  background: var(--line-green);
+  color: var(--on-line);
+}
+
+.header-line-btn:hover {
+  background: var(--line-green-hover);
+}
+
+.btn-primary:active,
+.btn-ghost:active,
+.more:active,
+.pager-btn:active,
+.login-card button:active,
+.header-line-btn:active {
+  transform: scale(0.97);
+}
+
+.login-card button {
+  margin-top: var(--sp-2);
+  width: 100%;
+}
+
+/* =========================================================
+   カード：押せるカードはすべて同じ量だけ浮き、同じ影になる
+   （押せないパネル＝.explore-col・.rank-item・.guide-how など は動かない）
+   ========================================================= */
+.card a,
+.weekly-card,
+.feed-item,
+.line-banner,
+.src-card,
+a.money-card,
+.archive-month,
+.today-card,
+a.persona-card,
+a.task-tile,
+.guide-corner {
+  transition: transform var(--dur), box-shadow var(--dur), border-color var(--dur);
+}
+
+.card a:hover,
+.weekly-card:hover,
+.feed-item:hover,
+.line-banner:hover,
+.src-card:hover,
+a.money-card:hover,
+.archive-month:hover,
+.today-card:hover,
+a.persona-card:hover,
+a.task-tile:hover,
+.guide-corner:hover {
+  transform: translateY(var(--lift));
+  box-shadow: var(--shadow-hover);
+}
+
+.src-card:hover {
+  border-color: var(--fg);
+}
+
+.card a:active,
+.today-card:active,
+a.persona-card:active,
+a.task-tile:active {
+  transform: scale(0.98);
+}
+
+/* =========================================================
+   スマホの記事一覧（カテゴリ・キーワード・立場別・業務別・関連記事）
+   大きなカード1列だと1画面に2件しか見えないので、左にサムネ・右に見出しの横長カードにする
+   （ホームの横スクロール列 .rail はカードのまま）
+   ========================================================= */
+@media (max-width: 640px) {
+  .cards:not(.rail) {
+    gap: var(--sp-3);
+  }
+
+  .cards:not(.rail) .card a {
+    display: grid;
+    grid-template-columns: 128px minmax(0, 1fr);
+    align-items: start;
+    gap: var(--sp-3);
+    padding: var(--sp-3);
+    border-radius: var(--radius-sm);
+  }
+
+  .cards:not(.rail) .card-thumb {
+    padding: 0;
+  }
+
+  .cards:not(.rail) .card-thumb .thumb-photo,
+  .cards:not(.rail) .card-thumb .thumb {
+    border-radius: var(--radius-xs);
+  }
+
+  .cards:not(.rail) .card-thumb .thumb-chip {
+    display: none;
+  }
+
+  .cards:not(.rail) .card-thumb .thumb {
+    padding: var(--sp-2);
+  }
+
+  .cards:not(.rail) .card-thumb .thumb-en {
+    font-size: 1.6rem;
+  }
+
+  .cards:not(.rail) .card-thumb .thumb-label {
+    font-size: var(--fs-2xs);
+  }
+
+  .cards:not(.rail) .card-body {
+    padding: 0;
+  }
+
+  .cards:not(.rail) .card-meta {
+    gap: var(--sp-1) var(--sp-2);
+  }
+
+  .cards:not(.rail) .card-title {
+    margin-top: var(--sp-1);
+    font-size: var(--fs-sm);
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* カードの見出しは長くても3行まで（PCも）。カードの高さがそろって一覧が整う */
+.card-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

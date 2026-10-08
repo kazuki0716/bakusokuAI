@@ -9,7 +9,7 @@ export const SCHEDULE: { wd: number; short: string; extra: string; detail: strin
   { wd: 2, short: "火", extra: "経営者・管理職向け動画", detail: "経営者・管理職向けのおすすめ動画", href: "/c/video", cat: "video" },
   { wd: 3, short: "水", extra: "使い方・特集", detail: "使い方・特集", href: "/c/howto", cat: "howto" },
   { wd: 4, short: "木", extra: "事務・総務・経理向け動画", detail: "事務・総務・経理向けのおすすめ動画", href: "/c/video", cat: "video" },
-  { wd: 5, short: "金", extra: "プロンプト", detail: "今週のプロンプト", href: "/c/prompt", cat: "prompt" },
+  { wd: 5, short: "金", extra: "プロンプト", detail: "プロンプト", href: "/c/howto#prompt", cat: "prompt" },
   { wd: 6, short: "土", extra: "マーケ・営業向け動画", detail: "マーケ・営業向けのおすすめ動画", href: "/c/video", cat: "video" },
   { wd: 0, short: "日", extra: "使い方・特集", detail: "使い方・特集", href: "/c/howto", cat: "howto" },
 ];

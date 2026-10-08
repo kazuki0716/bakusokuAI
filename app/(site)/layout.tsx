@@ -32,6 +32,10 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
               <HeaderIcon name="guide" />
               見方
             </Link>
+            <Link href="/money" className="header-money" aria-label={`会員特典：${MONEY_NAME}`} title={`会員特典：${MONEY_NAME}`}>
+              <HeaderIcon name="gift" />
+              特典
+            </Link>
             <a
               href={LINE_URL}
               {...external}

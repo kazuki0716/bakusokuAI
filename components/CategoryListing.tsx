@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getArticles, PAGE_SIZE } from "@/lib/articles";
-import { AUDIENCES, CATEGORIES, SKILLUP, type CategoryKey } from "@/lib/categories";
+import { AUDIENCES, MENU, SKILLUP, type CategoryKey } from "@/lib/categories";
 import { ArticleCard } from "./ArticleParts";
 import { latestWeeklyPair, WeeklyCards } from "./WeeklyCards";
 
@@ -9,9 +9,12 @@ export function pageHref(category: CategoryKey, page: number): string {
   return page <= 1 ? `/c/${category}` : `/c/${category}/page/${page}`;
 }
 
-// カテゴリの記事一覧（新しい順に PAGE_SIZE 本ずつ）。古い記事は2ページ目以降とバックナンバーへ
+// メニュー1つ分の記事一覧（新しい順に PAGE_SIZE 本ずつ）。古い記事は2ページ目以降とバックナンバーへ
+// 「使い方・プロンプト」（/c/howto）は使い方・特集とプロンプトの2つの種類をまとめて出す
 export async function CategoryListing({ category, page }: { category: CategoryKey; page: number }) {
-  const all = (await getArticles()).filter((a) => a.category === category);
+  const menu = MENU.find((m) => m.key === category);
+  if (!menu) notFound();
+  const all = (await getArticles()).filter((a) => menu.cats.includes(a.category));
   const totalPages = Math.max(1, Math.ceil(all.length / PAGE_SIZE));
   if (page < 1 || page > totalPages) notFound();
   const list = all.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
@@ -22,12 +25,12 @@ export async function CategoryListing({ category, page }: { category: CategoryKe
   return (
     <section>
       <header className={`page-head page-head-${category}`}>
-        <p className="page-en">{CATEGORIES[category].en}</p>
+        <p className="page-en">{menu.en}</p>
         <h1 className="page-title">
-          {CATEGORIES[category].label}
+          {menu.label}
           {page > 1 && <span className="page-num">（{page}ページ目）</span>}
         </h1>
-        <p className="page-desc">{CATEGORIES[category].description}</p>
+        <p className="page-desc">{menu.description}</p>
       </header>
 
       {list.length === 0 ? (
@@ -61,6 +64,27 @@ export async function CategoryListing({ category, page }: { category: CategoryKe
                   ))}
               </ul>
             </section>
+          )}
+        </>
+      ) : category === "howto" ? (
+        // 使い方・特集 → プロンプト の2段
+        <>
+          {[
+            { id: "howto", title: "使い方・特集", desc: "仕事ごとの手順を、図解つきで解説します。", items: list.filter((a) => a.category === "howto") },
+            { id: "prompt", title: "プロンプト", desc: "コピーしてそのまま使える指示文です。", items: list.filter((a) => a.category === "prompt") },
+          ].map(
+            (g) =>
+              g.items.length > 0 && (
+                <section key={g.id} id={g.id} className="persona-block">
+                  <h2 className={`persona-title persona-title-${g.id}`}>{g.title}</h2>
+                  <p className="persona-desc">{g.desc}</p>
+                  <ul className="cards">
+                    {g.items.map((a) => (
+                      <ArticleCard key={a.slug} article={a} />
+                    ))}
+                  </ul>
+                </section>
+              ),
           )}
         </>
       ) : (

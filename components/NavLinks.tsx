@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CATEGORIES, CATEGORY_KEYS } from "@/lib/categories";
+import { MENU } from "@/lib/categories";
 import { HeaderIcon } from "./HeaderIcon";
 
 // ヘッダーのメニュー（ホーム＋カテゴリ）。今いるページを aria-current と見た目で示す
@@ -17,15 +17,15 @@ export function NavLinks({ moneyName }: { moneyName: string }) {
         <HeaderIcon name="home" />
         ホーム
       </Link>
-      {CATEGORY_KEYS.map((key) => (
-        <Link key={key} href={`/c/${key}`} className={`nav-link nav-${key}`} aria-current={current(`/c/${key}`)}>
-          {CATEGORIES[key].label}
+      {MENU.map((m) => (
+        <Link key={m.key} href={`/c/${m.key}`} className={`nav-link nav-${m.key}`} aria-current={current(`/c/${m.key}`)}>
+          {m.label}
         </Link>
       ))}
-      {/* 会員特典はメインではないので、最後に控えめに */}
-      <Link href="/money" className="nav-link nav-money" aria-current={current("/money")}>
-        <span className="nav-money-tag">特典</span>
-        {moneyName}
+      {/* 会員特典（AI情報とは別枠）。PC・タブレットはヘッダー右上のボタン、スマホだけここに区切って置く */}
+      <Link href="/money" className="nav-link nav-money" aria-current={current("/money")} aria-label={`会員特典：${moneyName}`}>
+        <HeaderIcon name="gift" />
+        特典
       </Link>
     </nav>
   );

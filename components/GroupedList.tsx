@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Article } from "@/lib/articles";
-import { CATEGORIES, type CategoryKey } from "@/lib/categories";
+import { CATEGORIES, categoryHref, type CategoryKey } from "@/lib/categories";
 import { ArticleCard } from "./ArticleParts";
 
 // 記事をカテゴリごとに並べる（立場別・業務別ページ用）。1グループは limit 件まで出し、残りはカテゴリ一覧へ
@@ -23,7 +23,7 @@ export function GroupedList({ articles, order, limit = 12 }: { articles: Article
             </ul>
             {list.length > limit && (
               <p className="group-more">
-                <Link href={`/c/${key}`}>
+                <Link href={categoryHref(key)}>
                   {CATEGORIES[key].label}をもっと見る（全{list.length}本） <span aria-hidden="true">→</span>
                 </Link>
               </p>

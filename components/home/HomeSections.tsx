@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { formatMonth, type Article } from "@/lib/articles";
-import { CATEGORIES, isForTask, PERSONAS, SKILLUP, TASK_LIST, type CategoryKey } from "@/lib/categories";
+import { isForTask, MENU, PERSONAS, SKILLUP, TASK_LIST, type CategoryKey } from "@/lib/categories";
 import { shortDate } from "@/lib/schedule";
 import { ArticleCard, CategoryLabel, NewBadge, SectionHeading, Thumb } from "../ArticleParts";
 import { WeeklyCards } from "../WeeklyCards";
@@ -212,19 +212,18 @@ export function TaskGrid({ articles }: { articles: Article[] }) {
   );
 }
 
-const RAIL_KEYS: CategoryKey[] = ["news", "video", "howto", "prompt"];
+const RAIL_KEYS: CategoryKey[] = ["news", "video", "howto"];
 
-// ⑦ カテゴリ別の新着（上で出した記事は除く。スマホは横スクロール）
+// ⑦ メニューごとの新着（上で出した記事は除く。スマホは横スクロール）。使い方・プロンプトは1列にまとめる
 export function CategoryRails({ articles, exclude }: { articles: Article[]; exclude: Set<string> }) {
   return (
     <>
-      {RAIL_KEYS.map((key) => {
-        const list = articles.filter((a) => a.category === key && !exclude.has(a.slug)).slice(0, 4);
+      {MENU.filter((m) => RAIL_KEYS.includes(m.key)).map(({ key, label, en, cats }) => {
+        const list = articles.filter((a) => cats.includes(a.category) && !exclude.has(a.slug)).slice(0, 4);
         if (list.length === 0) return null;
-        const label = CATEGORIES[key].label;
         return (
           <section key={key} className="block home-section reveal">
-            <SectionHeading en={CATEGORIES[key].en} ja={label} href={`/c/${key}`} more={`${label}の一覧へ`} />
+            <SectionHeading en={en} ja={label} href={`/c/${key}`} more={`${label}の一覧へ`} />
             <ul className="cards rail">
               {list.map((a) => (
                 <ArticleCard key={a.slug} article={a} />

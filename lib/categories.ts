@@ -21,7 +21,7 @@ export const CATEGORIES = {
     description: "メール返信・議事録・Excelなど10の仕事ごとに、図解と画面イメージで手順を解説する実践ガイド。",
   },
   prompt: {
-    label: "今週のプロンプト",
+    label: "プロンプト",
     en: "PROMPT",
     description: "コピーしてすぐ使えるプロンプトを、使う場面とコツつきで紹介。",
   },
@@ -33,6 +33,31 @@ export const CATEGORY_KEYS = Object.keys(CATEGORIES) as CategoryKey[];
 
 export function isCategory(value: string): value is CategoryKey {
   return value in CATEGORIES;
+}
+
+// 上のメニュー。読者の目的（使い方を知りたい）が同じなので、howto と prompt は1つの一覧「使い方・プロンプト」にまとめる
+// （記事の種類としては別のまま。一覧は /c/howto で、プロンプトはその中の #prompt）
+export const MENU: { key: CategoryKey; label: string; en: string; description: string; cats: CategoryKey[] }[] = [
+  { key: "weekly", ...CATEGORIES.weekly, cats: ["weekly"] },
+  { key: "news", ...CATEGORIES.news, cats: ["news"] },
+  { key: "video", ...CATEGORIES.video, cats: ["video"] },
+  {
+    key: "howto",
+    label: "使い方・プロンプト",
+    en: "HOW TO & PROMPT",
+    description: "メール返信・議事録・Excelなど10の仕事ごとの手順解説と、コピーしてすぐ使えるプロンプト。",
+    cats: ["howto", "prompt"],
+  },
+];
+
+// その種類の記事一覧へのリンク
+export function categoryHref(category: CategoryKey): string {
+  return category === "prompt" ? "/c/howto#prompt" : `/c/${category}`;
+}
+
+// その種類の記事一覧の名前（「〜の一覧へ戻る」などで使う）
+export function listLabel(category: CategoryKey): string {
+  return MENU.find((m) => m.cats.includes(category))?.label ?? CATEGORIES[category].label;
 }
 
 // 会員ペルソナ（スプレッドシート「ペルソナ」シート・営業資料_V04 より）

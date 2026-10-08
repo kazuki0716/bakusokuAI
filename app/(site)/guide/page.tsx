@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CATEGORIES } from "@/lib/categories";
+import { CATEGORIES, categoryHref } from "@/lib/categories";
 import { LECTEA_COURSES_URL, LINE_URL } from "@/lib/links";
 import { MONEY_NAME } from "@/lib/money";
 import { SITE_MAP } from "@/lib/navigation";
@@ -90,7 +90,7 @@ export default function GuidePage() {
         <ul className="guide-corners">
           {CORNERS.map((c) => (
             <li key={c.key}>
-              <Link href={`/c/${c.key}`} className={`guide-corner guide-corner-${c.key}`}>
+              <Link href={categoryHref(c.key)} className={`guide-corner guide-corner-${c.key}`}>
                 <span className={`cat cat-${c.key}`}>{CATEGORIES[c.key].label}</span>
                 <span className="guide-corner-when">{c.when}</span>
                 <span className="guide-corner-time">1本の目安：{c.time}</span>
@@ -117,7 +117,7 @@ export default function GuidePage() {
             <dt>はじめての方</dt>
             <dd>
               まず月曜の<Link href="/c/weekly">「今週のTop」</Link>を見て、気になった記事を1本。次に
-              <Link href="/c/prompt">「今週のプロンプト」</Link>をコピーして、実際にAIに貼ってみてください。
+              <Link href="/c/howto#prompt">「プロンプト」</Link>をコピーして、実際にAIに貼ってみてください。
             </dd>
           </div>
           <div>
@@ -134,7 +134,7 @@ export default function GuidePage() {
           <div>
             <dt>事務・総務・経理の方</dt>
             <dd>
-              木曜の動画と<Link href="/c/howto">使い方・特集</Link>
+              木曜の動画と<Link href="/c/howto">使い方・プロンプト</Link>
               。Excel・議事録・メールのやり方が中心です（<Link href="/for/backoffice">まとめページ</Link>）。
             </dd>
           </div>

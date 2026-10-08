@@ -16,7 +16,7 @@ import { LineBanner } from "@/components/LineBanner";
 import { CopyButtons } from "@/components/CopyButtons";
 import { SourceCard } from "@/components/SourceCard";
 import { ArticleCard, CategoryLabel, SectionHeading } from "@/components/ArticleParts";
-import { CATEGORIES, SKILLUP, TASK_LIST } from "@/lib/categories";
+import { CATEGORIES, categoryHref, listLabel, SKILLUP, TASK_LIST } from "@/lib/categories";
 import { Ranking } from "@/components/Ranking";
 
 // 図解はスマホで縮みすぎないよう横スクロールで見せるので、キーボードでもスクロールできるようにする
@@ -75,7 +75,7 @@ export default async function ArticlePage({ params }: Props) {
         <header className={`article-head article-head-${article.category}`}>
           <p className="article-en">{CATEGORIES[article.category].en}</p>
           <p className="card-meta">
-            <Link href={`/c/${article.category}`} className="cat-link">
+            <Link href={categoryHref(article.category)} className="cat-link">
               <CategoryLabel article={article} />
             </Link>
             <time>{formatDate(article.date)}</time>
@@ -187,8 +187,8 @@ export default async function ArticlePage({ params }: Props) {
         )}
 
         <p className="back-link">
-          <Link href={`/c/${article.category}`}>
-            <span aria-hidden="true">←</span> {CATEGORIES[article.category].label}の一覧へ戻る
+          <Link href={categoryHref(article.category)}>
+            <span aria-hidden="true">←</span> {listLabel(article.category)}の一覧へ戻る
           </Link>
         </p>
       </article>

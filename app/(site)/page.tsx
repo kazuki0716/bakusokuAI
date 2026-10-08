@@ -3,8 +3,6 @@ import { getArticles, getTagCounts, monthKey } from "@/lib/articles";
 import { getFeedItems } from "@/lib/feeds";
 import { FeedList } from "@/components/FeedList";
 import { LineBanner } from "@/components/LineBanner";
-import { getMoneySecrets, MONEY_NAME } from "@/lib/money";
-import { MoneySecretList } from "@/components/MoneySecrets";
 import { SectionHeading } from "@/components/ArticleParts";
 import { nextMonday, todayJST } from "@/lib/schedule";
 import { HomeHero } from "@/components/home/HomeHero";
@@ -44,7 +42,6 @@ export default async function HomePage() {
   const weekly = latestWeeklyPair(articles);
   const shown = new Set([...todayList, ...weekly].map((a) => a.slug));
   const months = [...new Set(articles.map((a) => monthKey(a.date)))];
-  const money = getMoneySecrets().slice(0, 4);
 
   return (
     <>
@@ -55,24 +52,6 @@ export default async function HomePage() {
       <PersonaPicker articles={articles} />
       <TaskGrid articles={articles} />
       <CategoryRails articles={articles} exclude={shown} />
-
-      {money.length > 0 && (
-        <section className="block money-block reveal">
-          <div className="money-block-head">
-            <div>
-              <p className="money-head-en">MEMBERS BENEFIT</p>
-              <h2 className="money-block-title">YourLife {MONEY_NAME}</h2>
-              <p className="money-block-desc">
-                爆速AI会員だけの特典。公式LINEで届く「お金のお得情報」をまとめて見られます。
-              </p>
-            </div>
-            <Link href="/money" className="more">
-              すべて見る <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-          <MoneySecretList items={money} />
-        </section>
-      )}
 
       {feed.length > 0 && (
         <section className="block home-section reveal">

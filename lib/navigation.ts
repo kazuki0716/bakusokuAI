@@ -1,4 +1,4 @@
-import { CATEGORIES } from "./categories";
+import { CATEGORIES, MENU } from "./categories";
 import { LECTEA_COURSES_URL, LINE_URL } from "./links";
 import { MONEY_NAME } from "./money";
 
@@ -12,8 +12,7 @@ export const SITE_MAP: { title: string; links: NavLink[] }[] = [
       { label: CATEGORIES.weekly.label, href: "/c/weekly", note: "毎週月曜。1週間分のランキング" },
       { label: CATEGORIES.news.label, href: "/c/news", note: "毎朝2本。AIの新機能や料金の変更" },
       { label: CATEGORIES.video.label, href: "/c/video", note: "立場別のYouTube動画と、AIで自分磨き" },
-      { label: CATEGORIES.howto.label, href: "/c/howto", note: "毎週水・日。業務ごとの手順" },
-      { label: CATEGORIES.prompt.label, href: "/c/prompt", note: "毎週金曜。コピーして使える指示文" },
+      { label: MENU[3].label, href: "/c/howto", note: "水・日は業務ごとの手順、金曜はコピーして使える指示文" },
     ],
   },
   {

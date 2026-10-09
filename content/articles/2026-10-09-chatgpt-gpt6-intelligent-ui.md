@@ -2,7 +2,7 @@
 title: "ChatGPTが無料版も「GPT-6」に。答えの中に計算ツールや図が出る「Intelligent UI」を搭載"
 date: 2026-10-09
 category: news
-pickup: true
+pickup: false
 thumbLabel: "答えが“操作できる画面”に"
 thumbnail: "https://www.itmedia.co.jp/news/article/ogp/2610/08/2000002119/10008812/2048"
 thumbnailCredit: "出典：ITmedia NEWS「ChatGPT、無料版を含む全ユーザーに「GPT-6」　回答内に“操作できる画面”を生成する「Intelligent UI」搭載」"

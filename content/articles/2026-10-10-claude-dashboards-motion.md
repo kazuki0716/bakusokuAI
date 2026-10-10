@@ -2,7 +2,7 @@
 title: "Claudeに「Dashboards」「Motion」登場。データから最新のグラフ画面、資料から解説アニメを作れる"
 date: 2026-10-10
 category: news
-pickup: true
+pickup: false
 thumbLabel: "グラフも解説動画もClaudeで"
 thumbnail: "https://forest.watch.impress.co.jp/img/wf/list/2146/954/claude.jpg"
 thumbnailCredit: "出典：窓の杜「Anthropic、「Claude」の新機能「Dashboards」「Motion」を発表。「Docs」「Slides」「Design」は無償でも提供」"

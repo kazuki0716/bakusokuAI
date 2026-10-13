@@ -2,7 +2,7 @@
 title: "Googleが仕事用の「Gemini agent」を発表。目標を伝えるとGmailやドキュメントで仕事を進めるAI"
 date: 2026-10-11
 category: news
-pickup: true
+pickup: false
 thumbLabel: "AIに仕事を任せる時代へ"
 thumbnail: "https://9to5google.com/wp-content/uploads/sites/4/2026/10/Gemini-agent.jpg?quality=82&strip=all&resize=1200,628"
 thumbnailCredit: "出典：9to5Google「Google Cloud announces 'Gemini agent' as 'universal agent for work'」"

@@ -2,7 +2,7 @@
 title: "Googleの新しい最上位AI「Gemini 4 Argon」が公開。Geminiアプリでは有料プラン（Pro・Ultra）から使える"
 date: 2026-10-14
 category: news
-pickup: true
+pickup: false
 thumbLabel: "Geminiの最上位モデル"
 thumbnail: "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-4-argon__blog-header__2784x1566.width-1300.png"
 thumbnailCredit: "出典：Google 公式ブログ「Gemini 4 Argon: Built to solve your hardest problems」"

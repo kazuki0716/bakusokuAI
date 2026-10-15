@@ -2,7 +2,7 @@
 title: "Copilotアプリの中でWord・Excel・PowerPointが使える「Office in Copilot」。チャットで頼んだ資料を、その場で直して仕上げる"
 date: 2026-10-15
 category: news
-pickup: true
+pickup: false
 thumbLabel: "Copilotの中でOffice"
 thumbnail: "https://forest.watch.impress.co.jp/img/wf/list/2147/444/image_top.png"
 thumbnailCredit: "出典：窓の杜「Microsoft、「Office in Copilot」を発表 ～CopilotアプリにWord、Excel、PowerPointを統合」"

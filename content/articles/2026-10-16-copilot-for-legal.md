@@ -2,7 +2,7 @@
 title: "Copilotに契約書の確認・作成を助ける「Copilot for Legal」。20以上の法務向けスキルを世界で提供開始"
 date: 2026-10-16
 category: news
-pickup: true
+pickup: false
 thumbLabel: "契約書チェックをCopilotで"
 thumbnail: "https://www.lawnext.com/wp-content/uploads/2026/10/MS-Copilot-for-Legal-Featured.png"
 thumbnailCredit: "出典：LawSites「Microsoft Launches Copilot for Legal, Becoming the Fourth AI Giant in Five Months to Build Out a Legal Vertical」"
